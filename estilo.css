@@ -23,9 +23,9 @@ h1{
 .row {
   display: -webkit-flex;
   display: flex;
-   background-image: url(transferir.jpg);
-    background-size:cover;
-    background-repeat: no-repeat;
+  background-image: url(transferir.jpg);
+  background-size:cover;
+  background-repeat: no-repeat;
 }
 .column {
   -webkit-flex: 1;
@@ -38,7 +38,6 @@ h1{
 
 /* Create three equal columns that sits next to each other */
 .menu{
-    flex: 1;
     text-align: center;
     padding: 10px;
   }
