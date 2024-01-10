@@ -26,6 +26,7 @@ h1{
   background-image: url(transferir.jpg);
   background-size:cover;
   background-repeat: no-repeat;
+
 }
 .column {
   -webkit-flex: 1;
@@ -33,6 +34,7 @@ h1{
   flex: 1;
   padding: 10px;
   height: 300px; /* Should be removed. Only for demonstration */
+  
 }
 
 
@@ -85,16 +87,16 @@ h1{
     text-align: center;
     margin-bottom: 20px;
     display: flex;
-    font-size: 18px;
+    font-size: 20px;
     justify-content: center;
     align-items: center;
     position:width;
 }
-.id=botaocontribuicao {
+.botaocontribuicao {
    border-radius: 50%;
     padding:10px;
     font-family: "open_sanslight";
-    font-size:10px;
+    font-size:20px;
     text-decoration:none;
     box-shadow: 0 0 6px 0 rgba(157, 96, 212, 0.5);
     border: solid 3px transparent;
@@ -104,7 +106,7 @@ h1{
     box-shadow: inset 5em 1em gold;
  
 }
-.id=botaocontribuicao:hover {
+.botaocontribuicao:hover {
     box-shadow: none;
     color: (white);
     border-radius: 60rem;
