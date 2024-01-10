@@ -61,10 +61,11 @@ h1{
         position:static;
 }      
 
-footer{
-     background-color: black;
+.section.footer{
+    padding:20px;
+    background-color: black;
     color: #fff;
-    margim: 8px;
+    margim: 0px;
     text-align: center;
     margin-bottom: 20px;
     display: inline-block;
