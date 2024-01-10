@@ -48,6 +48,8 @@ h1{
     margin-left: 70px;
     text-align: center;
     margin-right:20px;
+    justify-content: center;
+    align-items: center;
     
 }
 .menu1 a:hover{
@@ -88,7 +90,7 @@ footer{
 .botaocontribuicao:hover {
     box-shadow: none;
     color: (darkgoldenrod, khaki, peru, sandybrown);
-    border-radius: 5px;
+    border-radius: 20px;
   }
 
 
