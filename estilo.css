@@ -1,7 +1,7 @@
 
 .body{
     margin: 0;
-    background-image: url(transferir.jpg);
+    background-image: url("transferir.jpg");
     background-size:cover;
     background-repeat: no-repeat;
       align-items: center;
@@ -70,8 +70,8 @@ h1{
     margin-bottom: 20px;
     display: flex;
     font-size: 18px;
+    justify-content: center;
     align-items: center;
-    position:center;
 }
 .id=botaocontribuicao {
    border-radius: 60rem;
