@@ -1,41 +1,49 @@
-body{
-   align-items: center;   
+* {
+  box-sizing: border-box;
 }
 
-
-h1{
-    color: black;
+body {
+  font-family: Arial, Helvetica, sans-serif;
 }
 
-.header{
-  display: flex;
-  height: 60px;
-  background-color: black;
-  justify-content: center;
-  align-items: center;
+/* Style the header */
+.header {
+  background-color: #f1f1f1;
+  padding: 30px;
+  text-align: center;
+  font-size: 35px;
 }
 
 /* Container for flexboxes */
 .row {
-  -webkit-flex: 1;
+  display: -webkit-flex;
   display: flex;
+}
+
+/* Create three unequal columns that sits next to each other */
+.column {
+  padding: 10px;
+  height: 300px; /* Should be removed. Only for demonstration */
+}
+
+/* Left and right column */
+.column.side {
+   -webkit-flex: 1;
+   -ms-flex: 1;
+   flex: 1;
+}
+
+/* Middle column */
+.column.middle {
+  -webkit-flex: 2;
+  -ms-flex: 2;
+  flex: 2;
   background-image: url(transferir.jpg);
   background-size:cover;
   background-repeat: no-repeat;
-
-}
-.column {
-  -webkit-flex: 1;
-  -ms-flex: 1;
-  flex: 1;
-  padding:10px;
-  height:0px; /* Should be removed. Only for demonstration */  
- justify-content: center;
-  align-items: center;
 }
 
 
-/* Create three equal columns that sits next to each other */
 .menu{
     text-align: center;
     padding: 10px;
