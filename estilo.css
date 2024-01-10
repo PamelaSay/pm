@@ -22,14 +22,14 @@ h1{
     align-items: center;
 }
 .menu{
-    flex: 80%;
+    flex: 60px;
     text-align: center;
     padding: 10px;
 }
 
 .menu a{
     color:white;
-    font-size: 60px;
+    font-size: 20 px;
     text-decoration: none;
     padding: 25px 25px;
     margin-left:40px;
@@ -40,7 +40,7 @@ h1{
     color: burlywood;
 }
 .menu1 a{
-    border-box:20px;
+    border-radius:20px;
     color:black;
     font-size: 20px;
     text-decoration: none;
@@ -73,7 +73,7 @@ h1{
     justify-content: center;
 }
 .botaocontribuicao {
-    border-box: 20px;
+    border-radius: 20px;
     padding:16px;
     font-family: "open_sanslight";
     font-size:1.2em;
