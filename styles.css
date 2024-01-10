@@ -1,0 +1,82 @@
+body{
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+ul.Menu {
+    list-style-type: none;
+    margin: 0;
+    padding: 30 px ; /*Cor de fundo do Menu */
+    box-sizing: border-box;
+    background-color: #0a0a0a; /*Cor de fundo ao passar o mouse */
+    position: center ;
+    transition: background .5s;
+    display: flex;
+   }
+  
+   ul.Menu li a {
+    display: inline-block; /* isso faz com que os itens fiquem na mesma linha*/
+    color: white;/* Cor do texto do Menu */
+    margin-right: 20 px ; /* Adicione o espaçamento desejado entre os itens */
+    font-size:20 px;
+    font-weight:400 px;
+    padding:0 px;
+    justify-content:center;/* centralizar horizontalemente*/
+    float: none;
+    cursor: pointer;
+  
+    }
+   ul.Menu li{
+    display: inline; /* isso faz com que os itens fiquem na mesma linha*/
+    margin: 10px;
+   }
+   a.Menu li a:hover {
+    background-color:DarkTurquoise; /*Cor de fundo ao passar o mouse */
+    }
+
+
+.calculator{
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+label {
+    display: block;
+    margin-bottom: 8px;
+}
+
+input{
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 16px;
+    box-sizing: border-box;
+}
+
+button:hover{
+    background-color: #45a049;
+}
+
+footer{
+    background-color: black;
+    color: #fff;
+    padding: 8px;
+    text-align: center;
+    margin-bottom: 20px;
+    display: inline-block;
+    font-size: 18px
+
+}
+
+
+
+
+
+
