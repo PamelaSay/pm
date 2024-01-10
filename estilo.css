@@ -29,19 +29,14 @@ h1{
 }
 
 /* Create three equal columns that sits next to each other */
-.column {
-  -webkit-flex: 1;
-  -ms-flex: 1;
-  flex: 1;
-  padding: 10px;
-  height: 300px; /* Should be removed. Only for demonstration */
-}
-
 .menu{
-    flex: 80%;
+    flex: 1;
     text-align: center;
     padding: 10px;
-    }
+   -webkit-flex: 1;
+   -ms-flex: 1; 
+    height: 300px; /* Should be removed. Only for demonstration */
+}
 
 .menu a{
     color:white;
