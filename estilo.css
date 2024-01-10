@@ -81,13 +81,13 @@ footer{
     background-image: linear-gradient(rgba(255, 255, 255, 0), rgba(255, 255, 255, 0)), linear-gradient(101deg, darkgoldenrod, khaki, peru, sandybrown);
     background-origin: border-box;
     background-clip: content-box, border-box;
-    box-shadow: 2px 1000px 1px white inset;
+    box-shadow: 2px 100px 1px black inset;
  
 }
 .botaocontribuicao:hover {
     box-shadow: none;
     color: (darkgoldenrod, khaki, peru, sandybrown);
-    border-radius: 5px;
+    border-radius: 10px;
   }
 
 
