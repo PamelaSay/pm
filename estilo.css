@@ -29,12 +29,12 @@ h1{
 
 .menu a{
     color:white;
-    font-size: 30px;
+    font-size: 60px;
     text-decoration: none;
     padding: 25px 25px;
     margin-left:40px;
     text-align: center;
-    margin-right: 40px;
+ 
 }
 .menu a:hover{
     color: burlywood;
