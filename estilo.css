@@ -61,8 +61,13 @@ h1{
 }      
 
 footer{
+     background-color: black;
+    color: #fff;
+    padding: 8px;
     text-align: center;
-    background-color: #fff;
+    margin-bottom: 20px;
+    display: inline-block;
+    font-size: 18px;
 }
 .botaocontribuicao {
    border-radius: 100rem;
