@@ -15,10 +15,11 @@ h1{
     color: black;
 }
 header {
-  background-color: #f1f1f1;
-  padding: 30px;
-  text-align: center;
-  font-size: 35px;
+  display: flex;
+   height: 60px;
+    background: black;
+    justify-content: center;
+    align-items: center;
 }
 
 /* Container for flexboxes */
