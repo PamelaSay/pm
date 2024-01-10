@@ -13,12 +13,12 @@
 h1{
     color: black;
 }
-header {
+.header{
   display: flex;
-   height: 60px;
-    background: black;
-    justify-content: center;
-    align-items: center;
+  height: 60px;
+  background: black;
+  justify-content: center;
+  align-items: center;
 }
 
 /* Container for flexboxes */
