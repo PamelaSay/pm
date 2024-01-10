@@ -1,16 +1,12 @@
-* {
-  box-sizing: border-box;
-}
-
-.body{
-   align-items: center;
-    
+body{
+   align-items: center;   
 }
 
 
 h1{
     color: black;
 }
+
 .header{
   display: flex;
   height: 60px;
@@ -33,8 +29,7 @@ h1{
   -ms-flex: 1;
   flex: 1;
   padding: 10px;
-  height: 300px; /* Should be removed. Only for demonstration */
-  
+  height: 300px; /* Should be removed. Only for demonstration */  
 }
 
 
@@ -70,8 +65,7 @@ h1{
 }
 .menu1 a:hover{
     color: white;
-     border: solid 3px;
-    
+     border: solid 3px;    
 }
 
 
@@ -108,11 +102,9 @@ h1{
 }
 .botaocontribuicao:hover {
     box-shadow: none;
-    color: (white);
+    color: white;
     border-radius: 60rem;
   }
-
-
 
 .button {
     border-radius: 50%;
