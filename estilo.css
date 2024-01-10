@@ -1,13 +1,12 @@
 * {
   box-sizing: border-box;
+   background-image: url(transferir.jpg);
+    background-size:cover;
+    background-repeat: no-repeat;
 }
 
 .body{
-    margin: 0;
-    background-image: url(transferir.jpg);
-    background-size:cover;
-    background-repeat: no-repeat;
-    align-items: center;
+   align-items: center;
 }
 
 
