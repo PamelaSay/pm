@@ -4,7 +4,7 @@
 
 body{
     margin: 0;
-    background-image: url(fundoredu.png);
+    background-image: url(#);
     background-size:cover;
     background-repeat: no-repeat;
 }
@@ -25,8 +25,7 @@ h1{
     flex: 80%;
     text-align: center;
     padding: 10px;
-   
-    }
+}
 
 .menu a{
     color:white;
@@ -70,7 +69,7 @@ footer{
     font-size: 18px
 }
 .botaocontribuicao {
-   border-radius: 100rem;
+    border-radius: 100rem;
     padding:16px;
     font-family: "open_sanslight";
     font-size:1.2em;
