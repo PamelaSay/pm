@@ -68,11 +68,12 @@ h1{
     padding: 8px;
     text-align: center;
     margin-bottom: 20px;
-    display: inline-block;
+    display: flex;
     font-size: 18px;
     align-items: center;
+    position:center;
 }
-.botaocontribuicao {
+.id=botaocontribuicao {
    border-radius: 60rem;
     padding:10px;
     font-family: "open_sanslight";
@@ -87,7 +88,7 @@ h1{
     box-shadow: 2px 60rem 1px black  inset;
  
 }
-.botaocontribuicao:hover {
+.id=botaocontribuicao:hover {
     box-shadow: none;
     color: (white);
     border-radius: 60rem;
