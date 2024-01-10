@@ -54,6 +54,8 @@ h1{
 }
 .menu1 a:hover{
     color: burlywood;
+     border: solid 3px;
+    
 }
 
 
