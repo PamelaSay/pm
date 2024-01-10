@@ -4,7 +4,7 @@
 
 body{
     margin: 0;
-    background-image: url(#);
+    background-image: url(transferir.jpg);
     background-size:cover;
     background-repeat: no-repeat;
 }
@@ -106,7 +106,7 @@ footer{
 .button:hover {
     box-shadow: none;
     color: (darkgoldenrod, khaki, peru, sandybrown););
-    border-radius: 5px;
+    border-radius: 100rem;
   }
   
 .button return-button{
