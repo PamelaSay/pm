@@ -4,7 +4,7 @@
     background-image: url("transferir.jpg");
     background-size:cover;
     background-repeat: no-repeat;
-      align-items: center;
+    align-items: center;
 }
 
 
@@ -72,6 +72,7 @@ h1{
     font-size: 18px;
     justify-content: center;
     align-items: center;
+    position:width;
 }
 .id=botaocontribuicao {
    border-radius: 50%;
