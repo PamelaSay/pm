@@ -4,9 +4,7 @@
 
 .body{
    align-items: center;
-     background-image: url(transferir.jpg);
-    background-size:cover;
-    background-repeat: no-repeat;
+    
 }
 
 
@@ -25,6 +23,9 @@ h1{
 .row {
   display: -webkit-flex;
   display: flex;
+   background-image: url(transferir.jpg);
+    background-size:cover;
+    background-repeat: no-repeat;
 }
 
 /* Create three equal columns that sits next to each other */
