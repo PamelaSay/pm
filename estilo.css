@@ -4,7 +4,7 @@
 
 body{
     margin: 0;
-    background-image: url(#);
+    background-image: url(transferir.jpg);
     background-size:cover;
     background-repeat: no-repeat;
 }
@@ -69,7 +69,7 @@ footer{
     font-size: 18px
 }
 .botaocontribuicao {
-    border-radius: 100rem;
+    border-radius: 80rem;
     padding:16px;
     font-family: "open_sanslight";
     font-size:1.2em;
@@ -81,12 +81,12 @@ footer{
     background-image: linear-gradient(rgba(255, 255, 255, 0), rgba(255, 255, 255, 0)), linear-gradient(101deg, darkgoldenrod, khaki, peru, sandybrown);
     background-origin: border-box;
     background-clip: content-box, border-box;
-    box-shadow: 2px 100px 1px black inset;
+    box-shadow: 2px 20px 1px  inset;
  
 }
 .botaocontribuicao:hover {
     box-shadow: none;
-    color: (darkgoldenrod, khaki, peru, sandybrown);
+    color: black;
     border-radius: 10px;
   }
 
