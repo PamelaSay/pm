@@ -16,7 +16,7 @@ h1{
 .header{
   display: flex;
   height: 60px;
-  background: black;
+  background-color: black;
   justify-content: center;
   align-items: center;
 }
@@ -36,19 +36,10 @@ h1{
   height: 300px; /* Should be removed. Only for demonstration */
 }
 
-
-.nav_bar  {
-    display: flex;
-    height: 60px;
-    background: black;
-    justify-content: center;
-    align-items: center;
-}
 .menu{
     flex: 80%;
     text-align: center;
     padding: 10px;
-   
     }
 
 .menu a{
