@@ -1,24 +1,44 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="widt=device-width, initial-scale=1.0">
-        <link rel="stylesheet" href="estilo.css">
-        <title> Home</title>
-    </head>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Site para o trabalho de Matematica e tecnologia FURG">
+    <title>Home</title>
+    <link rel="stylesheet" href="estilo.css">
+</head>
 <body>
-    <section>
-      <ul class="Menu"> 
-        <li><a href="#">Home</a></li>
-        <li><a href="#">Criadora</a></li>
-        <li><a href="#">Conttribuição</a></li>
+   <header>      
+      <nav class="nav_bar">
+        <div class="menu">
+            <ul class="menu">
+                <a href="#">Home</a>
+                <a href="criadores.html">Criadores</a>
+                 <a class="botaocontribuicao" href="contribuicao.html">Contribuições</a>;    
+            </ul> 
+        </div> 
+        <div class="btn_mobile">
+             <button onclick="menuShow()"><img class = "icon" src="iconemenu2.png" alt="menus"> </button>
+        </div>           
+    </nav>
+         <div class="mobile_menu">
+            <ul class="menu">
+             <a href="#">Home</a>
+             <a href="criadores.html">Criadores</a>
+             <a id="botaocontribuicao" href="contribuicao.html">Contribuições</a>;    
+            </ul> 
+        </div> 
+   </header>
+      <br>
+    <div class="menu1">
+        <a href="historia.html" class="button" title="História">História</a>
+        <a href="Planta.html" class="button" title="Planta">Planta</a>
+        <a href="#" class="button" title="Galeria">Galeria</a>
+        <a href="docas.html"class="button" title="Doca">Doca</a>
+        <a href="quizz.html" class="button" title="Quizz">Quizz</a>
         
-        </ul>
-        <a href="precificacao.html"><button>Costura</button> </a>
-        <a href="Conhecendo os números.html"><button>Jogos Matemáticos</button></a>
-        
-    </section>
-    
+    </div>
 </body>
 <br><br>
 <footer class="footer">
