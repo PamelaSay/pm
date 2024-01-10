@@ -1,7 +1,6 @@
-
 .body{
     margin: 0;
-    background-image: url("transferir.jpg");
+    background-image: url(transferir.jpg);
     background-size:cover;
     background-repeat: no-repeat;
     align-items: center;
