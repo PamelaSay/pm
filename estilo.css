@@ -81,19 +81,18 @@ footer{
     background-image: linear-gradient(rgba(255, 255, 255, 0), rgba(255, 255, 255, 0)), linear-gradient(101deg, darkgoldenrod, khaki, peru, sandybrown);
     background-origin: border-box;
     background-clip: content-box, border-box;
-    box-shadow: 2px 20px 1px  inset;
+    box-shadow: 2px 20px 2px 2px  inset;
  
 }
 .botaocontribuicao:hover {
     box-shadow: none;
     color: black;
-    border-radius: 10px;
+    box-shadow: 10px;
   }
 
 
 
 .button {
-    border-radius: 100rem;
     padding:25px;
     font-family:"open_sanslight";
     font-size:1.2em;
@@ -105,11 +104,11 @@ footer{
     background-image: linear-gradient(rgba(255, 255, 255, 0), rgba(255, 255, 255, 0)), linear-gradient(101deg, darkgoldenrod, khaki, peru, sandybrown);
     background-origin: border-box;
     background-clip: content-box, border-box;
-    box-shadow: 2px 1000px 1px white inset;
+    
 }
 .button:hover {
     box-shadow: none;
-    color: (darkgoldenrod, khaki, peru, sandybrown););
+    color:black;
     border-radius: 5px;
   }
   
