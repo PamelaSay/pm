@@ -51,7 +51,7 @@ h1{
     
 }
 .menu1 a:hover{
-    color: burlywood;
+    color: white;
      border: solid 3px;
     
 }
@@ -73,7 +73,7 @@ footer{
     align-items: center;
 }
 .botaocontribuicao {
-   border-radius: 80rem;
+   border-radius: 60rem;
     padding:10px;
     font-family: "open_sanslight";
     font-size:1.2em;
@@ -84,13 +84,13 @@ footer{
     background-image: linear-gradient(rgba(255, 255, 255, 0), rgba(255, 255, 255, 0)), linear-gradient(101deg, darkgoldenrod, khaki, peru, sandybrown);
     background-origin: border-box;
     background-clip: content-box, border-box;
-    box-shadow: 2px 80rem 1px black  inset;
+    box-shadow: 2px 60rem 1px black  inset;
  
 }
 .botaocontribuicao:hover {
     box-shadow: none;
-    color: (darkgoldenrod, khaki, peru, sandybrown);
-    border-radius: 80rem;
+    color: (white);
+    border-radius: 60rem;
   }
 
 
@@ -112,7 +112,6 @@ footer{
 }
 .button:hover {
     box-shadow: none;
-    color: white;
     border-radius: 100rem;
   }
   
