@@ -43,13 +43,6 @@ body {
   text-align: center;
   align-items: center;
 }
-.menu{
-    flex: 80%;
-    text-align: center;
-    padding: 10px;
-   
-    }
-
 .menu a{
     color:white;
     font-size: 30px;
