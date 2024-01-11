@@ -4,6 +4,7 @@
 
 body{
     margin: 0;
+    
    }
 h1{
     color: black;
@@ -35,10 +36,9 @@ h1{
     font-size: 20px;
     text-decoration: none;
     padding:10px 10px;
-
     text-align: center;
-   
-    
+    justify-content: center;
+    align-items: center;
 }
 .menu1 a:hover{
     color: burlywood;
@@ -122,7 +122,7 @@ h1{
    -webkit-flex: 2;
    -ms-flex: 1;
    flex: 1;
-}
+    }
 
 /* Middle column */
 .column.middle {
@@ -133,6 +133,8 @@ h1{
   background-size:cover;
   background-repeat: no-repeat;
   text-align: center;
+  flex-direction: column;
+  justify-content: center;
   align-items: center;
 }
 
