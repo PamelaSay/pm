@@ -5,7 +5,11 @@
 body{
     margin: 0;
    }
-h1{color: black;}
+h1{
+    color: black;
+    border: solid 3px;
+    
+}
 
 .menu{
     flex: 80%;
