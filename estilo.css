@@ -46,13 +46,6 @@ h1{
     color: black;
 }
 
-.nav_bar  {
-    display: flex;
-    height: 60px;
-    background: black;
-    justify-content: center;
-    align-items: center;
-}
 .menu{
     flex: 80%;
     text-align: center;
