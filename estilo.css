@@ -71,7 +71,8 @@ body {
     font-size: 20px;
     text-decoration: none;
     padding:20px 20px;
-    margin-left: 70px; 
+    align-items:center;
+    justify-content: center;
   }
 .menu1 a:hover{
     color: white;
