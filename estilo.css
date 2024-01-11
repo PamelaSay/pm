@@ -30,6 +30,7 @@ h1{
     background-image: linear-gradient(rgba(255, 255, 255, 0), rgba(255, 255, 255, 0)), linear-gradient(101deg, darkgoldenrod, khaki, peru, sandybrown);
     background-origin: border-box;
     background-clip: content-box, border-box;
+      box-shadow: 2px 1000px 1px black inset;
 }
 .menu a:hover{
     color: burlywood;
