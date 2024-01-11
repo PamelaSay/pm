@@ -34,8 +34,8 @@ body {
 
 /* Middle column */
 .column.middle {
-  -webkit-flex: 8;
-  -ms-flex: 2;
+  -webkit-flex: 1;
+  -ms-flex: 1;
   flex: 2;
   background-image: url(transferir.jpg);
   background-size:cover;
