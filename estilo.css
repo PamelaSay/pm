@@ -49,7 +49,7 @@ h1{
         position:static;
 }      
 .botaocontribuicao {
-   border-radius: 100rem;
+   border-radius:15px;
     padding:16px;
     font-family: "open_sanslight";
     font-size:1.2em;
@@ -67,13 +67,13 @@ h1{
 .botaocontribuicao:hover {
     box-shadow: none;
     color: (darkgoldenrod, khaki, peru, sandybrown);
-    border-radius: 5px;
+    border-radius: 15px;
   }
 
 
 
 .button {
-    border-radius: 100rem;
+    border-radius: 15px;
     padding:25px;
     font-family:"open_sanslight";
     font-size:1.2em;
@@ -90,7 +90,7 @@ h1{
 .button:hover {
     box-shadow: none;
     color: (darkgoldenrod, khaki, peru, sandybrown););
-    border-radius: 5px;
+    border-radius: 15px;
   }
 
 /* Style the header */
