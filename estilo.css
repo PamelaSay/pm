@@ -140,7 +140,7 @@ h1{
   background-size:cover;
   background-repeat: no-repeat;
   text-align: center;
-  flex-direction: column;
+  flex-direction:inline;
   justify-content: center;
   align-items: center;
 }
