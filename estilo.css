@@ -64,7 +64,7 @@ h1{
    
   }
 .menu1 a{
-    border-radius: 60rem;
+    border-radius: 1.25px;
     color:black;
     font-size: 20px;
     text-decoration: none;
@@ -91,7 +91,7 @@ h1{
     position:bottom;
 }
 .botaocontribuicao {
-    border-radius: 30rem;
+    border-radius: 1.25px;
     padding:5px;
     font-family:"open_sanslight";
     font-size:20px;
@@ -107,10 +107,10 @@ h1{
 }
 .botaocontribuicao:hover {
     box-shadow: none;
-    border-radius: 30rem;
+    border-radius: 1.25px;
     
 .button{
-    border-radius: 60rem;
+    border-radius: 1.25px;
     padding:5px;
     font-family:"open_sanslight";
     font-size:20px;
@@ -125,7 +125,7 @@ h1{
     }
 .button:hover {
     box-shadow: none;
-    border-radius: 60rem;
+    border-radius: 1.25px;
   }
   
 .button return-button{
