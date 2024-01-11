@@ -8,10 +8,7 @@ body {
   padding:5px;
   text-align: center;
   font-size:35px;
-    color:white;
-    font-size: 20px;
-    text-decoration: none;
-    margin-right:20px;
+
 }
 
 /* Container for flexboxes */
@@ -43,6 +40,12 @@ body {
   background-repeat: no-repeat;
   text-align: center;
    align-items: center;
+}
+.menu{
+    color:white;
+    font-size: 20px;
+    text-decoration: none;
+    margin-right:20px;
 }
 .menu a:hover{
     color: burlywood;
