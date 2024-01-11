@@ -121,6 +121,9 @@ h1{
 .column {
   padding: 5px;
   height: 300px; /* Should be removed. Only for demonstration */
+  display: flex;
+     justify-content: center;
+    align-items: center;
 }
 
 /* Left and right column */
