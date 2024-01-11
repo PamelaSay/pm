@@ -56,9 +56,7 @@ body {
     text-decoration: none;
     padding:20px 20px;
     margin-left: 70px;
-    
-    
-}
+  }
 .menu1 a:hover{
     color: white;
     border: solid 3px;    
@@ -85,7 +83,7 @@ body {
     text-decoration:none;
     box-shadow: 0 0 6px 0 rgba(157, 96, 212, 0.5);
     border: solid 3px transparent;
-    background-image: linear-gradient(rgba(255, 255, 255, 0), rgba(255, 255, 255, 0)), linear-gradient(101deg, darkgoldenrod, khaki, peru, sandybrown);
+    background-image: linear-gradient(101deg, darkgoldenrod, khaki, peru, sandybrown);
     background-origin: border-box;
     background-clip: content-box, border-box;
     box-shadow: inset 5em 1em black;
@@ -109,7 +107,7 @@ body {
     background-origin: border-box;
     background-clip: content-box, border-box;
     box-shadow: 2px 800px 1px white inset;
-  text-align:center;
+    text-align:center;
     position:relative;
 }
 .button:hover {
