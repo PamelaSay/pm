@@ -157,6 +157,16 @@ h1{color: black;}
 }
 
 
+.footer{
+    background-color: black;
+    color: #fff;
+    padding: 8px;
+    text-align: center;
+    margin-bottom: 20px;
+    display: inline-block;
+    font-size: 18px
+}
+
  @media screen and (max-width: 480px){
 .nav_bar{
         display: none;
