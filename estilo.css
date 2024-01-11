@@ -41,8 +41,7 @@ h1{
     text-decoration: none;
     padding:10px 10px;
     text-align:center;
-    align-items: center;
-}
+    }
 .menu1 a:hover{
     color: burlywood;
 }
