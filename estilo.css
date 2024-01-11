@@ -8,6 +8,11 @@ body {
   padding:5px;
   text-align: center;
   font-size:35px;
+    color:white;
+    font-size: 20px;
+    text-decoration: none;
+    text-align: center;
+    margin-right:20px;
 }
 
 /* Container for flexboxes */
@@ -38,13 +43,6 @@ body {
   background-size:cover;
   background-repeat: no-repeat;
   text-align: center;
-}
-.menu a{
-    color:white;
-    font-size: 20px;
-    text-decoration: none;
-    text-align: center;
-    margin-right:20px;
 }
 .menu a:hover{
     color: burlywood;
