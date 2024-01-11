@@ -1,6 +1,5 @@
 body {
   font-family: Arial;
-  margin:0;
 }
 
 /* Style the header */
@@ -10,7 +9,6 @@ body {
     background: black;
     justify-content: center;
     align-items: center;
-
 }
 
 /* Container for flexboxes */
@@ -27,7 +25,7 @@ body {
 
 /* Left and right column */
 .column.side {
-   -webkit-flex: 10px;
+   -webkit-flex: 2;
    -ms-flex: 1;
    flex: 1;
 }
@@ -64,7 +62,7 @@ h1{
 
 .menu a{
     color:white;
-    font-size: 30px;
+    font-size: 20px;
     text-decoration: none;
     padding: 25px 25px;
     margin-left: 70px;
@@ -107,7 +105,7 @@ h1{
     position:bottom;
 }
 .botaocontribuicao {
-    border-radius: 60rem;
+    border-radius: 30rem;
     padding:0px;
     font-family:"open_sanslight";
     font-size:20px;
@@ -123,7 +121,7 @@ h1{
 }
 .botaocontribuicao:hover {
     box-shadow: none;
-    border-radius: 60rem;
+    border-radius: 30rem;
     
 .button {
     border-radius: 60rem;
