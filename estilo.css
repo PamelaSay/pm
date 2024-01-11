@@ -40,8 +40,7 @@ h1{
     font-size: 20px;
     text-decoration: none;
     padding:10px 10px;
-    text-align: center;
-    justify-content: center;
+    text-align:center;
     align-items: center;
 }
 .menu1 a:hover{
@@ -91,7 +90,7 @@ h1{
     box-shadow: 2px 1000px 1px white inset;
     justify-content: center;
     align-items: center;
-     text-align: center;
+    text-align: center;
 }
 .button:hover {
     box-shadow: none;
