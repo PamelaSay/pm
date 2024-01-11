@@ -172,10 +172,9 @@ h1{
     color: #fff;
     padding: 8px;
     text-align: center;
-    margin-bottom: 20px;
-    display: inline-block;
+    display:block;
     font-size: 18px;
-     justify-content: center;
+    justify-content: center;
     align-items: center;
     position:bootom;
 }
