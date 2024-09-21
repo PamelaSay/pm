@@ -5,11 +5,13 @@
 }
 
 body {
-    margin: 0;                  /* Remover margens padrão */
-    background-color: #1d72b8;  /* Fundo azul */
-    min-height: 100vh;          /* Garantir que o body ocupe pelo menos a altura total da tela */
-    display: flex;              /* Usar flex para organizar o layout */
-    flex-direction: column;     /* Direção vertical */
+    margin: 0;                           /* Remove margens padrão */
+    background-image: url('transferir.jpg'); /* Substitua pelo caminho da sua imagem */
+    background-size: cover;              /* Faz a imagem cobrir todo o fundo */
+    background-position: center;         /* Centraliza a imagem */
+    min-height: 100vh;                   /* Garante que o body ocupe a altura total da tela */
+    display: flex;                       /* Usar flex para organizar o layout */
+    flex-direction: column;              /* Direção vertical */
 }
 
 
