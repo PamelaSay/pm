@@ -1,204 +1,136 @@
 * {
     box-sizing: border-box;
+    margin: 0;
+    padding: 0;
 }
 
 body {
-    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: #87CEEB; /* Fundo azul */
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
 }
 
-/* Estilos gerais para h1 */
-h1 {
-    color: black;
-    border: solid 3px;
-    text-align: center;
-}
-
-/* Menu principal */
-.menu {
-    flex: 80%;
-    text-align: center;
+/* Estilos gerais do header */
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #1E90FF;
     padding: 20px;
 }
 
-.menu a {
+.logo img {
+    max-width: 100px;
+}
+
+.menu ul {
+    list-style-type: none;
+    display: flex;
+    gap: 30px;
+}
+
+.menu ul li a {
     color: white;
-    font-size: 30px;
-    text-decoration: none;
-    padding: 10px;
-    margin-left: 70px;
-    margin-right: 60px;
-    text-align: center;
-    border-radius: 30px;
-    border: solid 3px transparent;
-    background-image: linear-gradient(rgba(255, 255, 255, 0), rgba(255, 255, 255, 0)),
-    linear-gradient(101deg, darkgoldenrod, khaki, peru, sandybrown);
-    background-origin: border-box;
-    background-clip: content-box, border-box;
-    box-shadow: 2px 1000px 1px black inset;
-}
-
-.menu a:hover {
-    color: burlywood;
-}
-
-/* Menu secundário */
-.menu1 a {
-    color: black;
     font-size: 20px;
     text-decoration: none;
-    padding: 10px;
-    text-align: center;
-    margin-right: 40px;
+    padding: 10px 20px;
+    background-color: #4169E1;
+    border-radius: 20px;
+    transition: background-color 0.3s ease;
 }
 
-.menu1 a:hover {
-    color: burlywood;
+.menu ul li a:hover {
+    background-color: #6495ED;
 }
 
-/* Estilos do botão de contribuição */
+/* Botão de contribuição */
 .botaocontribuicao {
-    border-radius: 30px;
-    font-family: "open_sanslight";
-    font-size: 15px;
-    padding: 10px;
+    background-color: #FFD700;
     color: black;
-    text-decoration: none;
-    background-image: linear-gradient(rgba(255, 255, 255, 0), rgba(255, 255, 255, 0)),
-    linear-gradient(101deg, darkgoldenrod, khaki, peru, sandybrown);
-    background-origin: border-box;
-    background-clip: content-box, border-box;
-    box-shadow: 2px 1000px 1px black inset;
 }
 
-.botaocontribuicao:hover {
-    box-shadow: none;
-    color: darkgoldenrod;
-}
-
-/* Estilos para o TILS */
-.tils {
-    grid-column: 4; /* Último quarto da tela */
-    grid-row: 2; /* Metade inferior */
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: #f0f0f0;
-    padding: 10px;
-    max-width: 100%;
-    max-height: 100%;
-    border-radius: 10px;
-}
-
-/* Estilos do botão geral */
-.button {
-    border-radius: 15px;
-    font-family: "open_sanslight";
-    font-size: 1.2em;
-    padding: 30px 40px;
-    color: black;
-    text-decoration: none;
-    border: solid 3px transparent;
-    box-shadow: 0 0 6px 0 rgba(157, 96, 212, 0.5);
-    background-image: linear-gradient(rgba(255, 255, 255, 0), rgba(255, 255, 255, 0)),
-    linear-gradient(101deg, darkgoldenrod, khaki, peru, sandybrown);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 10px;
-}
-
-.button:hover {
-    box-shadow: none;
-    color: darkgoldenrod;
-}
-
-/* Estilo do header */
-.header {
-    display: flex;
-    height: 60px;
-    background-color: black;
-    justify-content: center;
-    align-items: center;
-}
-
-/* Flexbox row */
-.row {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-}
-
-/* Colunas */
-.column {
-    padding: 5px;
-    height: 300px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-}
-
-/* Colunas laterais */
-.column.side {
-    flex: 1;
-}
-
-/* Coluna do meio */
-.column.middle {
-    flex: 2;
-    background-image: url(transferir.jpg);
-    background-size: cover;
-    background-repeat: no-repeat;
-    text-align: center;
-}
-
-/* Estilo do botão de retorno */
-.return-button {
-    display: inline;
-    margin-right: 2px;
-    padding: 10px;
-    border-radius: 5px;
-    text-decoration: none;
-    transition: background-color 0.3s;
-    z-index: 0;
-}
-
-.return-button img {
-    vertical-align: top;
-    margin-right: 20px;
-    max-width: 30px;
-    max-height: 30px;
-}
-
-/* Estilos para menu mobile */
 .btn_mobile {
     display: none;
 }
 
-.mobile_menu {
-    display: none;
-}
-
-/* Estilos do footer */
-.footer {
-    background-color: black;
-    color: #fff;
-    padding: 8px;
-    text-align: center;
-    font-size: 18px;
+/* Layout das colunas */
+.row {
     display: flex;
-    justify-content: center;
-    align-items: center;
+    justify-content: space-between;
+    padding: 20px;
+    flex: 1;
 }
 
-/* Estilos responsivos */
-@media screen and (max-width: 480px) {
-    .nav_bar {
-        display: none;
-    }
+.column {
+    flex: 1;
+}
 
-    .menu {
+.column.middle {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+}
+
+.button {
+    padding: 15px 30px;
+    background-color: #FF6347;
+    color: white;
+    text-decoration: none;
+    font-size: 18px;
+    border-radius: 15px;
+    transition: background-color 0.3s ease;
+}
+
+.button:hover {
+    background-color: #FF4500;
+}
+
+/* Espaço para o TILS (canto inferior direito) */
+section {
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+}
+
+#tils {
+    width: 150px;
+    height: auto;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+}
+
+/* Footer */
+.footer {
+    background-color: #000080;
+    color: white;
+    text-align: center;
+    padding: 20px;
+}
+
+.footer small {
+    display: block;
+    margin-bottom: 10px;
+}
+
+.social-links {
+    margin-bottom: 10px;
+}
+
+.social-links a {
+    margin: 0 10px;
+}
+
+.contacts {
+    margin-top: 10px;
+}
+
+/* Responsividade */
+@media screen and (max-width: 768px) {
+    .menu ul {
         display: none;
     }
 
@@ -206,51 +138,20 @@ h1 {
         display: block;
     }
 
-    .btn_mobile button {
-        background-color: transparent;
-        border: none;
-        cursor: pointer;
-    }
-
     .mobile_menu {
-        display: flex;
+        display: none;
+    }
+
+    .mobile_menu.open {
+        display: block;
+    }
+
+    .row {
         flex-direction: column;
-        text-align: center;
-        z-index: 2;
     }
 
-    .open {
-        display: block;
-    }
-
-    body {
-        background-size: cover;
-        background-repeat: no-repeat;
-        font-size: 14px;
-        margin-top: 500px;
-    }
-
-    .menu {
-        display: block;
-        position: absolute;
-        width: 100%;
-        top: 70px;
-        background: gray;
-        transition: 0.6s;
-        visibility: hidden;
-    }
-
-    .menu a {
-        text-align: center;
-        padding: 0.1rem 0;
-        margin: 0 0.1rem;
-        border-bottom: 2px solid rgba(0, 0, 0, 0.5);
-    }
-
-    .button {
-        display: block;
-        border-radius: 100rem;
-        text-align: center;
-        margin-bottom: 10px;
+    section {
+        position: static;
+        margin-top: 20px;
     }
 }
