@@ -20,7 +20,7 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background-color: #00000;
+    background-color:#000000;
     padding: 20px 20px 20px;
 }
 
@@ -32,7 +32,7 @@ body {
     display: flex;               /* Usar flex para alinhar os itens na mesma linha */
     justify-content: center;     /* Centralizar os itens */
     padding: 20px;
-    background-color: #000000;  /* Cor de fundo azul */
+    background-color:#000000;  /* Cor de fundo preta */
     text-decoration:none;
 }
 
