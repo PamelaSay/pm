@@ -26,7 +26,7 @@ body {
 }
 
 .menu {
-    display: flex;               /* Usar flex para alinhar os itens na mesma linha */
+    display: inline-block;              /* Usar flex para alinhar os itens na mesma linha */
     justify-content: center;     /* Centralizar os itens */
     padding: 20px;
     background-color:#000000;  /* Cor de fundo preta */
