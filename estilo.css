@@ -33,6 +33,7 @@ body {
     justify-content: center;     /* Centralizar os itens */
     padding: 20px;
     background-color: #000000;  /* Cor de fundo azul */
+    text-decoration:none;
 }
 
 .menu a {
