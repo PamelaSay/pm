@@ -29,7 +29,7 @@ body {
 .menu {
     display: inline-block;              /* Usar flex para alinhar os itens na mesma linha */
     justify-content: center;     /* Centralizar os itens */
-    padding: 20px;
+    padding: 15px;
     background-color:#000000;  /* Cor de fundo preta */
     text-decoration:none;
 }
@@ -47,6 +47,7 @@ ul {
     border-radius: 30px ;
     background-image: linear-gradient(rgba(255, 255, 255, 0), rgba(255, 255, 255, 0)), linear-gradient(101deg, darkgoldenrod, khaki, peru, sandybrown);
     box-shadow: 2px 1000px 1px black inset;
+    text-decoration:none;
 }
 
 .menu a:hover {
