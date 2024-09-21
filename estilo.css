@@ -41,7 +41,7 @@ body {
     text-decoration: none;
     padding: 10px 20px;         /* Espaçamento uniforme nos botões */
     margin: 0 20px;             /* Margem horizontal para espaçamento entre os botões */
-    border-radius: 30px;
+    border-radius: 30px ;
     background-image: linear-gradient(rgba(255, 255, 255, 0), rgba(255, 255, 255, 0)), linear-gradient(101deg, darkgoldenrod, khaki, peru, sandybrown);
     box-shadow: 2px 1000px 1px black inset;
 }
@@ -83,7 +83,7 @@ body {
     background-color: white; /* Fundo branco */
     color: black; /* Cor do texto */
     border: 2px solid gold; /* Borda dourada */
-    border-radius: 15px; /* Bordas arredondadas */
+    border-radius: 15px 40px; /* Bordas arredondadas */
     padding: 15px 25px; /* Espaçamento interno */
     text-decoration: none; /* Remove o sublinhado */
     transition: background-color 0.3s, color 0.3s, transform 0.3s; /* Transição suave */
@@ -92,7 +92,7 @@ body {
 }
 
 .button:hover {
-    background-color: gold; /* Fundo dourado ao passar o mouse */
+    background-color: #FFD700; /* Fundo dourado ao passar o mouse */
     color: white; /* Texto branco ao passar o mouse */
 }
 
@@ -117,7 +117,7 @@ section {
 
 /* Footer */
 .footer {
-    background-color: #000080;
+    background-color: #000000;
     color: white;
     text-align: center;
     padding: 20px;
