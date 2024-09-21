@@ -6,7 +6,7 @@
 
 body {
     margin: 0;                           /* Remove margens padrão */
-    background-image: url('..\transferir.jpg'); /* Substitua pelo caminho da sua imagem */
+    background-image: url('transferir.jpg'); /* Substitua pelo caminho da sua imagem */
     background-size: cover;              /* Faz a imagem cobrir todo o fundo */
     background-position: center;         /* Centraliza a imagem */
     min-height: 100vh;                   /* Garante que o body ocupe a altura total da tela */
@@ -37,8 +37,7 @@ body {
 }
 ul {
     list-style-type: none; /* Remove os marcadores */
-    padding: 0; /* Remove o espaçamento interno padrão */
-    margin: 0; /* Remove a margem padrão */
+
 }
 .menu a {
     color: white;
@@ -53,6 +52,11 @@ ul {
 
 .menu a:hover {
     color: linear-gradient(rgba(255, 255, 255, 0), rgba(255, 255, 255, 0)), linear-gradient(101deg, darkgoldenrod, khaki, peru, sandybrown);
+    background-color: linear-gradient(rgba(255, 255, 255, 0), rgba(255, 255, 255, 0)), linear-gradient(101deg, darkgoldenrod, khaki, peru, sandybrown); /* Fundo dourado ao passar o mouse */
+    box-shadow: none;
+    color: (darkgoldenrod, khaki, peru, sandybrown);
+     border-radius: 30px;
+}
 }
 /* Botão de contribuição */
 .botaocontribuicao {
@@ -104,10 +108,9 @@ ul {
 
 .button:hover {
     background-color: linear-gradient(rgba(255, 255, 255, 0), rgba(255, 255, 255, 0)), linear-gradient(101deg, darkgoldenrod, khaki, peru, sandybrown); /* Fundo dourado ao passar o mouse */
-    color: white; /* Texto branco ao passar o mouse */
-     box-shadow: none;
+    box-shadow: none;
      color: (darkgoldenrod, khaki, peru, sandybrown);
-     border-radius: 15PX 60PX;
+     border-radius: 15px 60px;
 }
 
 .button:active {
