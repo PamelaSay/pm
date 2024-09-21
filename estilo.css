@@ -56,7 +56,7 @@ ul {
     color: (darkgoldenrod, khaki, peru, sandybrown);
      border-radius: 30px;
 }
-}
+
 /* Botão de contribuição */
 .botaocontribuicao {
     background-color: linear-gradient(rgba(255, 255, 255, 0), rgba(255, 255, 255, 0)), linear-gradient(101deg, darkgoldenrod, khaki, peru, sandybrown);
@@ -102,7 +102,7 @@ ul {
 }
 
 .button:hover {
-    color: white;
+    color:linear-gradient(rgba(255, 255, 255, 0), rgba(255, 255, 255, 0)), linear-gradient(101deg, darkgoldenrod, khaki, peru, sandybrown);
     background-color: linear-gradient(rgba(255, 255, 255, 0), rgba(255, 255, 255, 0)), linear-gradient(101deg, darkgoldenrod, khaki, peru, sandybrown); /* Fundo dourado ao passar o mouse */
     color: (darkgoldenrod, khaki, peru, sandybrown);
      border-radius: 15px 60px;
@@ -122,7 +122,7 @@ section {
 }
 
 #tils {
-    width: 100px;
+    width: 200px;
     height: auto;
     border-radius: 10px;
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
@@ -142,15 +142,15 @@ section {
 }
 
 .social-links {
-    margin-bottom: 10px;
+    margin-bottom: 0px;
 }
 
 .social-links a {
-    margin: 0 10px;
+    margin: 0 0px;
 }
 
 .contacts {
-    margin-top: 10px;
+    margin-top: 5px;
     color:white;
 }
 
