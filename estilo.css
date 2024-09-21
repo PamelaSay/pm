@@ -71,7 +71,7 @@ ul {
 
 /* Layout das colunas */
 .row {
-    display: none;
+    display: flex;
     justify-content: space-between;
     padding: 20px;
     flex: 1;
