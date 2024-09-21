@@ -97,7 +97,7 @@ h1{
     background-image: linear-gradient(rgba(255, 255, 255, 0), rgba(255, 255, 255, 0)), linear-gradient(101deg, darkgoldenrod, khaki, peru, sandybrown);
     background-origin: border-radius;
     background-clip: content-radius, border-radius;
-    box-shadow: 2px 1000px 1px white inset;
+    box-shadow:32px 1000px 32px white inset;
     justify-content: center;
     
    text-align: center;
