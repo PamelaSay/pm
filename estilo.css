@@ -103,10 +103,11 @@ ul {
 }
 
 .button:hover {
-    color: linear-gradient(rgba(255, 255, 255, 0), rgba(255, 255, 255, 0)), linear-gradient(101deg, darkgoldenrod, khaki, peru, sandybrown);
+    color: white;
     background-color: linear-gradient(rgba(255, 255, 255, 0), rgba(255, 255, 255, 0)), linear-gradient(101deg, darkgoldenrod, khaki, peru, sandybrown); /* Fundo dourado ao passar o mouse */
     color: (darkgoldenrod, khaki, peru, sandybrown);
      border-radius: 15px 60px;
+    display:flex;
 }
 
 .button:active {
@@ -117,7 +118,7 @@ ul {
 /* Espaço para o TILS (canto inferior direito) */
 section {
     position: absolute;
-    bottom: 20px;
+    bottom: 50px;
     right: 20px;
 }
 
@@ -138,7 +139,7 @@ section {
 
 .footer small {
     display: block;
-    margin-bottom: 10px;
+    margin-bottom:0px;
 }
 
 .social-links {
