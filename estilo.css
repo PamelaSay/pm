@@ -63,7 +63,7 @@ ul {
     background-color: linear-gradient(rgba(255, 255, 255, 0), rgba(255, 255, 255, 0)), linear-gradient(101deg, darkgoldenrod, khaki, peru, sandybrown);
     color: black;
 }
-.botão de contribuição:hover {
+.botão de contribuicao:hover {
     background-color: linear-gradient(rgba(255, 255, 255, 0), rgba(255, 255, 255, 0)), linear-gradient(101deg, darkgoldenrod, khaki, peru, sandybrown); /* Fundo dourado ao passar o mouse */
      border-radius: 30px;
     display:flex;
@@ -106,7 +106,6 @@ ul {
 .button:hover {
     color: linear-gradient(rgba(255, 255, 255, 0), rgba(255, 255, 255, 0)), linear-gradient(101deg, darkgoldenrod, khaki, peru, sandybrown);
     background-color: linear-gradient(rgba(255, 255, 255, 0), rgba(255, 255, 255, 0)), linear-gradient(101deg, darkgoldenrod, khaki, peru, sandybrown); /* Fundo dourado ao passar o mouse */
-    box-shadow: none;
     color: (darkgoldenrod, khaki, peru, sandybrown);
      border-radius: 15px 60px;
 }
