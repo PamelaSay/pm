@@ -25,26 +25,27 @@ body {
     max-width: 100px;
 }
 
-.menu ul {
-    list-style-type: none;
-    display: flex;
-    gap: 30px;
+.menu {
+    display: flex;               /* Usar flex para alinhar os itens na mesma linha */
+    justify-content: center;     /* Centralizar os itens */
+    padding: 20px;
+    background-color: #1d72b8;  /* Cor de fundo azul */
 }
 
-.menu ul li a {
+.menu a {
     color: white;
-    font-size: 20px;
+    font-size: 30px;
     text-decoration: none;
-    padding: 10px 20px;
-    background-color: #4169E1;
-    border-radius: 20px;
-    transition: background-color 0.3s ease;
+    padding: 10px 20px;         /* Espaçamento uniforme nos botões */
+    margin: 0 20px;             /* Margem horizontal para espaçamento entre os botões */
+    border-radius: 30px;
+    background-image: linear-gradient(rgba(255, 255, 255, 0), rgba(255, 255, 255, 0)), linear-gradient(101deg, darkgoldenrod, khaki, peru, sandybrown);
+    box-shadow: 2px 1000px 1px black inset;
 }
 
-.menu ul li a:hover {
-    background-color: #6495ED;
+.menu a:hover {
+    color: burlywood;
 }
-
 /* Botão de contribuição */
 .botaocontribuicao {
     background-color: #FFD700;
