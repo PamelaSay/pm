@@ -26,7 +26,7 @@ body {
 }
 
 .menu {
-    display: inline;              /* Usar flex para alinhar os itens na mesma linha */
+    display: flex;              /* Usar flex para alinhar os itens na mesma linha */
     justify-content: center;     /* Centralizar os itens */
     padding: 10px;
     background-color:#000000;  /* Cor de fundo preta */
@@ -178,6 +178,6 @@ section {
 
     section {
         position: static;
-        margin-top: 10px;
+        margin-top: 30px;
     }
 }
