@@ -6,7 +6,7 @@
 
 body {
     margin: 0;                           /* Remove margens padrão */
-    background-image: url('..transferir.jpg'); /* Substitua pelo caminho da sua imagem */
+    background-image: url('..\transferir.jpg'); /* Substitua pelo caminho da sua imagem */
     background-size: cover;              /* Faz a imagem cobrir todo o fundo */
     background-position: center;         /* Centraliza a imagem */
     min-height: 100vh;                   /* Garante que o body ocupe a altura total da tela */
@@ -20,7 +20,7 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background-color: #FFFFFF;
+    background-color: #00000;
     padding: 20px 20px 20px;
 }
 
@@ -32,7 +32,7 @@ body {
     display: flex;               /* Usar flex para alinhar os itens na mesma linha */
     justify-content: center;     /* Centralizar os itens */
     padding: 20px;
-    background-color: #FFFFFF;  /* Cor de fundo azul */
+    background-color: #000000;  /* Cor de fundo azul */
 }
 
 .menu a {
@@ -47,11 +47,11 @@ body {
 }
 
 .menu a:hover {
-    color: burlywood;
+    color: linear-gradient(rgba(255, 255, 255, 0), rgba(255, 255, 255, 0)), linear-gradient(101deg, darkgoldenrod, khaki, peru, sandybrown);
 }
 /* Botão de contribuição */
 .botaocontribuicao {
-    background-color: #FFD700;
+    background-color: linear-gradient(rgba(255, 255, 255, 0), rgba(255, 255, 255, 0)), linear-gradient(101deg, darkgoldenrod, khaki, peru, sandybrown);
     color: black;
 }
 
@@ -83,7 +83,7 @@ body {
     background-color: white; /* Fundo branco */
     color: black; /* Cor do texto */
     border: 2px solid gold; /* Borda dourada */
-    border-radius: 15px 40px; /* Bordas arredondadas */
+    border-radius: 20px 60px; /* Bordas arredondadas */
     padding: 15px 25px; /* Espaçamento interno */
     text-decoration: none; /* Remove o sublinhado */
     transition: background-color 0.3s, color 0.3s, transform 0.3s; /* Transição suave */
@@ -92,7 +92,7 @@ body {
 }
 
 .button:hover {
-    background-color: #FFD700; /* Fundo dourado ao passar o mouse */
+    background-color: linear-gradient(rgba(255, 255, 255, 0), rgba(255, 255, 255, 0)), linear-gradient(101deg, darkgoldenrod, khaki, peru, sandybrown); /* Fundo dourado ao passar o mouse */
     color: white; /* Texto branco ao passar o mouse */
 }
 
