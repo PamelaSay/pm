@@ -37,7 +37,7 @@ body {
 }
 ul {
     list-style-type: none; /* Remove os marcadores */
-    text-decoration:none;
+    
 
 }
 .menu a {
@@ -179,6 +179,6 @@ section {
 
     section {
         position: static;
-        margin-top: 20px;
+        margin-top: 10px;
     }
 }
