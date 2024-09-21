@@ -71,7 +71,7 @@ ul {
 
 /* Layout das colunas */
 .row {
-    display: flex;
+    display: none;
     justify-content: space-between;
     padding: 20px;
     flex: 1;
@@ -99,7 +99,6 @@ ul {
     transition: background-color 0.3s, color 0.3s, transform 0.3s; /* Transição suave */
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra sutil */
     display: inline-block; /* Para manter os botões lado a lado */
-    background-image: linear-gradient(rgba(255, 255, 255, 0), rgba(255, 255, 255, 0)), linear-gradient(101deg, darkgoldenrod, khaki, peru, sandybrown);
     background-origin: border-box;
     background-clip: content-box, border-box;
 }
@@ -108,6 +107,7 @@ ul {
     background-color: linear-gradient(rgba(255, 255, 255, 0), rgba(255, 255, 255, 0)), linear-gradient(101deg, darkgoldenrod, khaki, peru, sandybrown); /* Fundo dourado ao passar o mouse */
      color: (darkgoldenrod, khaki, peru, sandybrown);
      border-radius: 15px 60px;
+    display:flex;
 }
 
 .button:active {
