@@ -135,6 +135,7 @@ section {
     color: white;
     text-align: center;
     padding: 30px 0px 30px;
+    position:fixed;
 }
 
 .footer small {
