@@ -14,7 +14,6 @@ body {
 
 /* Estilos gerais do header */
 .header {
-    display:flex;
     justify-content: space-between;
     align-items: center, no repeat;
     background-color:#000000;
@@ -27,9 +26,9 @@ body {
 }
 
 .menu {
-    display: inline-block;              /* Usar flex para alinhar os itens na mesma linha */
+    display: flex;              /* Usar flex para alinhar os itens na mesma linha */
     justify-content: center;     /* Centralizar os itens */
-    padding: 15px;
+    padding: 10px;
     background-color:#000000;  /* Cor de fundo preta */
     text-decoration:none;
 }
