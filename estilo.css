@@ -80,13 +80,17 @@ body {
 }
 
 .button {
-    padding: 15px 30px;
-    background-color: #FF6347;
-    color: white;
-    text-decoration: none;
-    font-size: 18px;
-    border-radius: 15px;
-    transition: background-color 0.3s ease;
+    display: inline-block; /* Garante que os botões fiquem lado a lado */
+    background-color: white; /* Fundo branco */
+    color: black; /* Cor do texto */
+    border: 2px solid gold; /* Borda dourada */
+    border-radius: 15px; /* Bordas arredondadas */
+    padding: 15px 25px; /* Espaçamento interno */
+    text-decoration: none; /* Remove o sublinhado */
+    transition: all 0.3s; /* Transição suave para os efeitos */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra sutil */
+}
+
 }
 
 .button:hover {
