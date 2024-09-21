@@ -59,6 +59,9 @@ ul {
     background-color: linear-gradient(rgba(255, 255, 255, 0), rgba(255, 255, 255, 0)), linear-gradient(101deg, darkgoldenrod, khaki, peru, sandybrown);
     color: black;
 }
+.botão de contribuição:hover {
+    color: linear-gradient(rgba(255, 255, 255, 0), rgba(255, 255, 255, 0)), linear-gradient(101deg, darkgoldenrod, khaki, peru, sandybrown);
+}
 
 .btn_mobile {
     display: none;
@@ -88,8 +91,8 @@ ul {
     background-color: white; /* Fundo branco */
     color: black; /* Cor do texto */
     border: 2px solid gold; /* Borda dourada */
-    border-radius: 20px 60px; /* Bordas arredondadas */
-    padding: 15px 25px; /* Espaçamento interno */
+    border-radius: 15px 60px; /* Bordas arredondadas */
+    padding: 25px 35px; /* Espaçamento interno */
     text-decoration: none; /* Remove o sublinhado */
     transition: background-color 0.3s, color 0.3s, transform 0.3s; /* Transição suave */
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra sutil */
