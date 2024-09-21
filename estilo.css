@@ -80,21 +80,25 @@ body {
 }
 
 .button {
-    display: inline-block; /* Garante que os botões fiquem lado a lado */
     background-color: white; /* Fundo branco */
     color: black; /* Cor do texto */
     border: 2px solid gold; /* Borda dourada */
     border-radius: 15px; /* Bordas arredondadas */
     padding: 15px 25px; /* Espaçamento interno */
     text-decoration: none; /* Remove o sublinhado */
-    transition: all 0.3s; /* Transição suave para os efeitos */
+    transition: background-color 0.3s, color 0.3s, transform 0.3s; /* Transição suave */
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra sutil */
-}
-
+    display: inline-block; /* Para manter os botões lado a lado */
 }
 
 .button:hover {
-    background-color: #FF4500;
+    background-color: gold; /* Fundo dourado ao passar o mouse */
+    color: white; /* Texto branco ao passar o mouse */
+}
+
+.button:active {
+    transform: scale(0.95); /* Efeito de clique ao pressionar */
+    box-shadow: inset 0 4px 8px rgba(0, 0, 0, 0.2); /* Efeito de sombra interna ao clicar */
 }
 
 /* Espaço para o TILS (canto inferior direito) */
