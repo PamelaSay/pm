@@ -105,6 +105,9 @@ ul {
 .button:hover {
     background-color: linear-gradient(rgba(255, 255, 255, 0), rgba(255, 255, 255, 0)), linear-gradient(101deg, darkgoldenrod, khaki, peru, sandybrown); /* Fundo dourado ao passar o mouse */
     color: white; /* Texto branco ao passar o mouse */
+     box-shadow: none;
+     color: (darkgoldenrod, khaki, peru, sandybrown);
+     border-radius: 15PX 60PX;
 }
 
 .button:active {
