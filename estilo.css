@@ -6,7 +6,7 @@
 
 body {
     margin: 0;                           /* Remove margens padrão */
-    background-image: url('transferir.jpg'); /* Substitua pelo caminho da sua imagem */
+    background-image: img('transferir.jpg'); /* Substitua pelo caminho da sua imagem */
     background-size: cover;              /* Faz a imagem cobrir todo o fundo */
     background-position: center;         /* Centraliza a imagem */
     min-height: 100vh;                   /* Garante que o body ocupe a altura total da tela */
@@ -20,7 +20,7 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background-color: #1E90FF;
+    background-color: #FFFFFF;
     padding: 20px 20px 20px;
 }
 
@@ -32,7 +32,7 @@ body {
     display: flex;               /* Usar flex para alinhar os itens na mesma linha */
     justify-content: center;     /* Centralizar os itens */
     padding: 20px;
-    background-color: #1d72b8;  /* Cor de fundo azul */
+    background-color: #FFFFFF;  /* Cor de fundo azul */
 }
 
 .menu a {
