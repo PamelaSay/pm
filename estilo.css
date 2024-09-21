@@ -37,6 +37,7 @@ ul {
     padding: 0; /* Remove o espaçamento interno padrão */
     margin: 0; /* Remove a margem padrão */
     text-decoration:none;
+    display: flex;
 }
 .menu a {
     color: white;
