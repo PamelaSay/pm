@@ -102,9 +102,13 @@ h1{
     background-clip: content-box, border-box;
     box-shadow: 2px 1000px 1px white inset;
     justify-content: center;
-    align-items: center;
+    
    text-align: center;
     flex-direction: column;
+    display: flex;          /* Usa Flexbox para controlar o layout */
+    flex-direction: column; /* Organiza os botões em colunas */
+    gap: 10px;              /* Espaçamento de 10px entre os botões */
+    align-items: center;
 }
 .button:hover {
     box-shadow: none;
