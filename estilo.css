@@ -134,12 +134,12 @@ section {
     background-color: #000000;
     color: white;
     text-align: center;
-    padding: 20px;
+    padding: 10px;
 }
 
 .footer small {
     display: block;
-    margin-bottom: 10px;
+    margin-bottom: 5px;
 }
 
 .social-links {
