@@ -19,6 +19,7 @@ body {
     align-items: center, no repeat;
     background-color:#000000;
     padding: 10px 10px 10px;
+    text-decoration:none;
 }
 
 .logo img {
