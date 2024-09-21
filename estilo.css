@@ -5,12 +5,13 @@
 }
 
 body {
-    font-family: Arial, sans-serif;
-    background-color: #87CEEB; /* Fundo azul */
-    display: flex;
-    flex-direction: column;
-    
+    margin: 0;                  /* Remover margens padrão */
+    background-color: #1d72b8;  /* Fundo azul */
+    min-height: 100vh;          /* Garantir que o body ocupe pelo menos a altura total da tela */
+    display: flex;              /* Usar flex para organizar o layout */
+    flex-direction: column;     /* Direção vertical */
 }
+
 
 /* Estilos gerais do header */
 .header {
