@@ -64,11 +64,9 @@ ul {
     color: black;
 }
 .botão de contribuição:hover {
-    color: linear-gradient(rgba(255, 255, 255, 0), rgba(255, 255, 255, 0)), linear-gradient(101deg, darkgoldenrod, khaki, peru, sandybrown);
-}
-
-.btn_mobile {
-    display: none;
+    background-color: linear-gradient(rgba(255, 255, 255, 0), rgba(255, 255, 255, 0)), linear-gradient(101deg, darkgoldenrod, khaki, peru, sandybrown); /* Fundo dourado ao passar o mouse */
+     border-radius: 30px;
+    display:flex;
 }
 
 /* Layout das colunas */
