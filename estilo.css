@@ -5,7 +5,7 @@
 }
 
 body {
-    background-image: url('../imagens/fundo.jpg'); /* Caminho relativo à pasta CSS */
+    background-image: url('transferir.jpg'); /* Caminho relativo à pasta CSS */
     background-size: cover;  /* Faz a imagem cobrir o fundo */
     background-position: center;  /* Centraliza a imagem */
     background-repeat: no-repeat; /* Impede a repetição da imagem */
