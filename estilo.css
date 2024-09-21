@@ -77,7 +77,11 @@ h1{
     border-radius: 30px;
   }
 
-
+.tils: hover{
+ border-radius:30px;
+    padding:10px 10px;
+    
+}
 
 .button {
     border-radius: 15px 0 15px; 
