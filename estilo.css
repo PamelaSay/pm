@@ -6,7 +6,7 @@
 
 body {
     margin: 0;                           /* Remove margens padrão */
-    background-image: url('transferir.jpg'); /* Substitua pelo caminho da sua imagem */
+    background-image:img src='transferir.jpg'; /* Substitua pelo caminho da sua imagem */
     background-size: cover;              /* Faz a imagem cobrir todo o fundo */
     background-position: center;         /* Centraliza a imagem */
     min-height: 100vh;                   /* Garante que o body ocupe a altura total da tela */
