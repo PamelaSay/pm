@@ -6,7 +6,7 @@
 
 body {
     margin: 0;                           /* Remove margens padrão */
-    background-image:img src='transferir.jpg'; /* Substitua pelo caminho da sua imagem */
+    background-image:src='transferir.jpg'; /* Substitua pelo caminho da sua imagem */
     background-size: cover;              /* Faz a imagem cobrir todo o fundo */
     background-position: center;         /* Centraliza a imagem */
     min-height: 100vh;                   /* Garante que o body ocupe a altura total da tela */
@@ -43,7 +43,6 @@ ul {
 .menu a {
     color: white;
     font-size: 30px;
-    text-decoration: none;
     padding: 10px 20px;         /* Espaçamento uniforme nos botões */
     margin: 0 20px;             /* Margem horizontal para espaçamento entre os botões */
     border-radius: 30px ;
@@ -105,10 +104,11 @@ ul {
 }
 
 .button:hover {
+    color: linear-gradient(rgba(255, 255, 255, 0), rgba(255, 255, 255, 0)), linear-gradient(101deg, darkgoldenrod, khaki, peru, sandybrown);
     background-color: linear-gradient(rgba(255, 255, 255, 0), rgba(255, 255, 255, 0)), linear-gradient(101deg, darkgoldenrod, khaki, peru, sandybrown); /* Fundo dourado ao passar o mouse */
-     color: (darkgoldenrod, khaki, peru, sandybrown);
+    box-shadow: none;
+    color: (darkgoldenrod, khaki, peru, sandybrown);
      border-radius: 15px 60px;
-    display:flex;
 }
 
 .button:active {
@@ -120,7 +120,7 @@ ul {
 section {
     position: absolute;
     bottom: 20px;
-    right: 20px;
+    right: 50px;
 }
 
 #tils {
