@@ -135,7 +135,7 @@ section {
     background-color: #000000;
     color: white;
     text-align: center;
-    padding: 10px;
+    padding: 5px;
 }
 
 .footer small {
@@ -153,6 +153,7 @@ section {
 
 .contacts {
     margin-top: 10px;
+    color:white;
 }
 
 /* Responsividade */
