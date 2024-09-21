@@ -37,6 +37,7 @@ body {
 }
 ul {
     list-style-type: none; /* Remove os marcadores */
+    text-decoration:none;
 
 }
 .menu a {
