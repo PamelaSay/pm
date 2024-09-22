@@ -126,7 +126,6 @@ section {
     position: absolute;
     right:10 px; /* Alinha à direita */
     top: 50%; /* Posiciona verticalmente no meio da tela */
-    transform: translateY(-50%); /* Ajusta para centralizar exatamente no meio */
     padding: 10px;
 }
 
