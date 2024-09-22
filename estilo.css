@@ -131,13 +131,14 @@ section {
 
 /* Footer */
 .footer {
-    background-color: black;
     color: white;
     text-align: center;
     padding: 10px;
     position: fixed;
     bottom: 0; /* Fixado no fundo da página */
     width: 100%; /* Garante que ocupe toda a largura */
+    justify-content: center;     /* Centralizar os itens */
+    background-color:#000000; 
 }
 .footer small {
     display: block;
