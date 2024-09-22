@@ -124,11 +124,11 @@ section {
 
 .tils {
     position: absolute;
-    right:10 px; /* Alinha à direita */
+    right:5 px; /* Alinha à direita */
     top: 50%; /* Posiciona verticalmente no meio da tela */
     padding: 10px;
-    width:50%;
-    height:50%;
+    width:30%;
+    height:30%;
 }
 
 /* Footer */
@@ -137,7 +137,7 @@ section {
     text-align: center;
     padding: 10px;
     position: fixed;
-    bottom: 0; /* Fixado no fundo da página */
+    bottom: 0px; /* Fixado no fundo da página */
     width: 100%; /* Garante que ocupe toda a largura */
     justify-content: center;     /* Centralizar os itens */
     background-color:#000000; 
