@@ -4,7 +4,7 @@
     padding: 0;
 }
 
-body {
+.body {
     background-image: url('transferir.jpg'); /* Caminho relativo à pasta CSS */
     background-size: cover;  /* Faz a imagem cobrir o fundo */
     background-position: center;  /* Centraliza a imagem */
@@ -122,12 +122,11 @@ section {
     right: 20px;
 }
 
-#tils {
+.tils {
     position: absolute;
-    right: 0; /* Alinha à direita */
+    right:10 px; /* Alinha à direita */
     top: 50%; /* Posiciona verticalmente no meio da tela */
     transform: translateY(-50%); /* Ajusta para centralizar exatamente no meio */
-    background-color: lightgray; /* Adiciona um fundo para visualização */
     padding: 10px;
 }
 
