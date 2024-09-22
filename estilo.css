@@ -123,21 +123,24 @@ section {
 }
 
 #tils {
-    width:80%;
-    height: auto;
-    border-radius: 10px;
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+    position: absolute;
+    right: 0; /* Alinha à direita */
+    top: 50%; /* Posiciona verticalmente no meio da tela */
+    transform: translateY(-50%); /* Ajusta para centralizar exatamente no meio */
+    background-color: lightgray; /* Adiciona um fundo para visualização */
+    padding: 10px;
 }
 
 /* Footer */
 .footer {
-    background-color: #000000;
+    background-color: black;
     color: white;
     text-align: center;
-    padding: 30px 0px 30px;
-    position:fixed;
+    padding: 10px;
+    position: fixed;
+    bottom: 0; /* Fixado no fundo da página */
+    width: 100%; /* Garante que ocupe toda a largura */
 }
-
 .footer small {
     display: block;
     margin-bottom:5px;
