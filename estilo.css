@@ -133,7 +133,7 @@ section {
 
 /* Footer */
 .footer {
-    color: white;
+    color: black;
     text-align: center;
     padding: 10px;
     position: fixed;
@@ -145,6 +145,7 @@ section {
 .footer small {
     display: block;
     margin-bottom:5px;
+    background-color:#000000;
 }
 
 .social-links {
