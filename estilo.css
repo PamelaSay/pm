@@ -123,7 +123,7 @@ section {
 }
 
 .tils {
-    position: absolute;
+    position: relative;
     right:5 px; /* Alinha à direita */
     top: 50%; /* Posiciona verticalmente no meio da tela */
     padding: 10px;
