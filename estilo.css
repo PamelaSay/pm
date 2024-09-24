@@ -3,86 +3,30 @@
     margin: 0;
     padding: 0;
 }
-
-.body {
-    background-image: url('transferir.jpg'); /* Caminho relativo à pasta CSS */
+/* Estilos gerais do body */
+body {
+    background-image: url('transferir.jpg'); /* Certifique-se que o caminho da imagem está correto */
     background-size: cover;  /* Faz a imagem cobrir o fundo */
     background-position: center;  /* Centraliza a imagem */
     background-repeat: no-repeat; /* Impede a repetição da imagem */
+    height: 100vh; /* Faz o body ocupar a tela inteira */
 }
 
-
-/* Estilos gerais do header */
-.header {
-    justify-content: space-between;
-    align-items: center, no repeat;
-    background-color:#000000;
-    padding: 10px 10px 10px;
-    text-decoration:none;
+/* Container para os botões "Costura" e "Jogos Matemáticos" */
+.row {
+  display: flex;
+  justify-content: center;    /* Centraliza os botões horizontalmente */
+  align-items: center;        /* Centraliza os botões verticalmente */
+  height: calc(100vh - 100px); /* Altura total da página, menos a altura do header */
 }
 
-.logo img {
-    max-width: 100px;
-}
-
-.menu {
-    display: flex;              /* Usar flex para alinhar os itens na mesma linha */
-    justify-content: center;     /* Centralizar os itens */
-    padding: 10px;
-    background-color:#000000;  /* Cor de fundo preta */
-    text-decoration:none;
-}
-ul {
-    list-style-type: none; /* Remove os marcadores */
-    padding: 0; /* Remove o espaçamento interno padrão */
-    margin: 0; /* Remove a margem padrão */
-    text-decoration:none;
-    display: flex;
-}
-.menu a {
-    color: white;
-    font-size: 30px;
-    padding: 10px 20px;         /* Espaçamento uniforme nos botões */
-    margin: 0 20px;             /* Margem horizontal para espaçamento entre os botões */
-    border-radius: 30px ;
-    background-image: linear-gradient(rgba(255, 255, 255, 0), rgba(255, 255, 255, 0)), linear-gradient(101deg, darkgoldenrod, khaki, peru, sandybrown);
-    box-shadow: 8px 1000px 8px black inset;
-     border: 2px solid gold;
-    text-decoration:none;
-}
-
-.menu a:hover {
-    color: linear-gradient(rgba(255, 255, 255, 0), rgba(255, 255, 255, 0)), linear-gradient(101deg, darkgoldenrod, khaki, peru, sandybrown);
-    background-color: linear-gradient(rgba(255, 255, 255, 0), rgba(255, 255, 255, 0)), linear-gradient(101deg, darkgoldenrod, khaki, peru, sandybrown); /* Fundo dourado ao passar o mouse */
-    box-shadow: none;
-    color: (darkgoldenrod, khaki, peru, sandybrown);
-     border-radius: 30px;
-}
-
-/* Botão de contribuição */
-.botaocontribuicao {
-    background-color: linear-gradient(rgba(255, 255, 255, 0), rgba(255, 255, 255, 0)), linear-gradient(101deg, darkgoldenrod, khaki, peru, sandybrown);
-    color: black;
-}
-.botão de contribuicao:hover {
-    background-color: linear-gradient(rgba(255, 255, 255, 0), rgba(255, 255, 255, 0)), linear-gradient(101deg, darkgoldenrod, khaki, peru, sandybrown); /* Fundo dourado ao passar o mouse */
-     border-radius: 30px;
-    display:flex;
-}
-
-/* Layout das colunas */
-.row {  
-  display: flex;                /* Usa flexbox para organizar os itens horizontalmente */
-  justify-content: center;      /* Centraliza os botões horizontalmente */
-  align-items: center;          /* Centraliza verticalmente */
-  margin-bottom: 50px;          /* Espaçamento embaixo da seção */
-  position: absolute;           /* Para que a TILS seja posicionada em relação a isso */
-}
 .column.middle {
+    display: flex;
     flex-direction: column;
-    gap: 20px;
+    gap: 20px;               /* Espaço entre os botões */
 }
 
+/* Botões de "Costura" e "Jogos Matemáticos" */
 .button {
     background-color: white; /* Fundo branco */
     color: black; /* Cor do texto */
@@ -92,84 +36,58 @@ ul {
     text-decoration: none; /* Remove o sublinhado */
     transition: background-color 0.3s, color 0.3s, transform 0.3s; /* Transição suave */
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra sutil */
-    display: inline-block; /* Para manter os botões lado a lado */
-     justify-content: center; 
-   }
+}
 
 .button:hover {
-    color:linear-gradient(rgba(255, 255, 255, 0), rgba(255, 255, 255, 0)), linear-gradient(101deg, darkgoldenrod, khaki, peru, sandybrown);
-    background-color: linear-gradient(rgba(255, 255, 255, 0), rgba(255, 255, 255, 0)), linear-gradient(101deg, darkgoldenrod, khaki, peru, sandybrown); /* Fundo dourado ao passar o mouse */
-    border-radius: 15px 60px;
-    display:flex;
+    background-color: gold; /* Fundo dourado ao passar o mouse */
+    color: black;
 }
 
 .button:active {
     transform: scale(0.95); /* Efeito de clique ao pressionar */
-    box-shadow: inset 0 4px 8px rgba(0, 0, 0, 0.2); /* Efeito de sombra interna ao clicar */
 }
 
-
+/* TILS posicionada à direita */
 #tils {
-  position: absolute;           /* Posição absoluta em relação à .row */
-  right: 0;                     /* Alinha à direita da tela */
-  top: 30%;                     /* Centraliza verticalmente */
-  transform: translateY(-50%);  /* Ajusta a centralização vertical */
-  width: 30%;                 /* Tamanho ajustável da imagem */
-  height: 40%;                 /* Mantém a proporção da imagem */
-  border-radius: 10px;   
+  position: absolute;
+  right: 10px;
+  top: 20%; /* Subi a imagem */
+  width: 25%; /* Aumentei o tamanho da imagem */
+  height: auto;
+  border-radius: 10px;
 }
 
-/* Footer */
+/* Footer fixado na parte inferior */
 .footer {
- background-color: black;
+    background-color: black;
     color: white;
     text-align: center;
-    padding:5px 5px;
-    position: absolute; /* O rodapé será posicionado normalmente */
-    width: 100%; /*
+    padding: 10px 0;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
 }
+
 .footer small {
     display: block;
-    margin-bottom:0px;
-    background-color:#000000;
 }
 
-.social-links {
-    margin-bottom: 0px;
+.footer .social-links {
+    margin-top: 10px;
 }
 
-.social-links a {
-    margin: 0 0px;
-}
-
-.contacts {
+.footer .contacts {
     margin-top: 5px;
-    color:white;
+    color: white;
 }
 
 /* Responsividade */
 @media screen and (max-width: 768px) {
-    .menu ul {
-        display: none;
-    }
-
-    .btn_mobile {
-        display: block;
-    }
-
-    .mobile_menu {
-        display: none;
-    }
-
-    .mobile_menu.open {
-        display: block;
-    }
-
     .row {
         flex-direction: column;
     }
 
-    section {
+    #tils {
         position: static;
         margin-top: 20px;
     }
