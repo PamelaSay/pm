@@ -50,7 +50,7 @@ body {
 /* TILS posicionada à direita */
 #tils {
   position: absolute;
-  right: 10px;
+  right: 15px;
   top: 20%; /* Subi a imagem */
   width: 25%; /* Aumentei o tamanho da imagem */
   height: auto;
