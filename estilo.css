@@ -9,7 +9,7 @@ body {
     background-size: cover;  /* Faz a imagem cobrir o fundo */
     background-position: center;  /* Centraliza a imagem */
     background-repeat: no-repeat; /* Impede a repetição da imagem */
-    height: 100vh; /* Faz o body ocupar a tela inteira */
+   
 }
 
 /* Container para os botões "Costura" e "Jogos Matemáticos" */
