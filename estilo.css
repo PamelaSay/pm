@@ -113,12 +113,12 @@ ul {
 
 
 #tils {
-    position: absolute;           /* Posição absoluta em relação à .row */
+  position: absolute;           /* Posição absoluta em relação à .row */
   right: 0;                     /* Alinha à direita da tela */
   top: 50%;                     /* Centraliza verticalmente */
   transform: translateY(-50%);  /* Ajusta a centralização vertical */
-  width: 100px;                 /* Tamanho ajustável da imagem */
-  height: 100px;                 /* Mantém a proporção da imagem */
+  width: 200px;                 /* Tamanho ajustável da imagem */
+  height: 200px;                 /* Mantém a proporção da imagem */
   border-radius: 10px;   
 }
 
@@ -128,11 +128,11 @@ ul {
     color: white;
     text-align: center;
     padding:10px 10px;
-    position: relative; /* O rodapé será posicionado normalmente */
+    position: absolute; /* O rodapé será posicionado normalmente */
     width: 100%; /*
 }
-.footer small {
-    display: flex;
+.small {
+    display: block;
     margin-bottom:5px;
     background-color:#000000;
 }
