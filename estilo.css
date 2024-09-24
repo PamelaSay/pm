@@ -5,7 +5,7 @@
 }
 
 .body {
-    background-image: url('transferir.jpg'); /* Caminho relativo à pasta CSS */
+    background-image: url("transferir.jpg"); /* Caminho relativo à pasta CSS */
     background-size: cover;  /* Faz a imagem cobrir o fundo */
     background-position: center;  /* Centraliza a imagem */
     background-repeat: no-repeat; /* Impede a repetição da imagem */
@@ -46,7 +46,8 @@ ul {
     margin: 0 20px;             /* Margem horizontal para espaçamento entre os botões */
     border-radius: 30px ;
     background-image: linear-gradient(rgba(255, 255, 255, 0), rgba(255, 255, 255, 0)), linear-gradient(101deg, darkgoldenrod, khaki, peru, sandybrown);
-    box-shadow: 4px 1000px 4px black inset;
+    box-shadow: 8px 1000px 8px black inset;
+     border: 2px solid gold;
     text-decoration:none;
 }
 
@@ -75,7 +76,7 @@ ul {
   justify-content: center;      /* Centraliza os botões horizontalmente */
   align-items: center;          /* Centraliza verticalmente */
   margin-bottom: 50px;          /* Espaçamento embaixo da seção */
-  position: relative;           /* Para que a TILS seja posicionada em relação a isso */
+  position: absolute;           /* Para que a TILS seja posicionada em relação a isso */
 }
 
 .column {
