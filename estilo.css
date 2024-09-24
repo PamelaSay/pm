@@ -5,7 +5,7 @@
 }
 
 .body {
-    background-image: url("transferir.jpg"); /* Caminho relativo à pasta CSS */
+    background-image: url('transferir.jpg'); /* Caminho relativo à pasta CSS */
     background-size: cover;  /* Faz a imagem cobrir o fundo */
     background-position: center;  /* Centraliza a imagem */
     background-repeat: no-repeat; /* Impede a repetição da imagem */
@@ -79,10 +79,7 @@ ul {
   position: absolute;           /* Para que a TILS seja posicionada em relação a isso */
 }
 .column.middle {
-    display: flex;
     flex-direction: column;
-    align-items: center;
-    justify-content: center;
     gap: 20px;
 }
 
@@ -102,8 +99,7 @@ ul {
 .button:hover {
     color:linear-gradient(rgba(255, 255, 255, 0), rgba(255, 255, 255, 0)), linear-gradient(101deg, darkgoldenrod, khaki, peru, sandybrown);
     background-color: linear-gradient(rgba(255, 255, 255, 0), rgba(255, 255, 255, 0)), linear-gradient(101deg, darkgoldenrod, khaki, peru, sandybrown); /* Fundo dourado ao passar o mouse */
-    color: (darkgoldenrod, khaki, peru, sandybrown);
-     border-radius: 15px 60px;
+    border-radius: 15px 60px;
     display:flex;
 }
 
@@ -132,7 +128,7 @@ ul {
     position: absolute; /* O rodapé será posicionado normalmente */
     width: 100%; /*
 }
-.small {
+.footer small {
     display: block;
     margin-bottom:5px;
     background-color:#000000;
