@@ -124,8 +124,8 @@ section {
 #tils {
     top: 50%; /* Posiciona verticalmente no meio da tela */
     padding: 10px;
-    width:100%;
-    height:100%;
+    width:50%;
+    height:50%;
 }
 
 /* Footer */
