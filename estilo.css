@@ -117,7 +117,6 @@ ul {
 
 /* Espaço para o TILS (canto inferior direito) */
 section {
-    position: absolute;
     bottom: 10px;
     right: 20px;
 }
