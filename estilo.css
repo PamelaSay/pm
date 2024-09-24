@@ -132,14 +132,12 @@ section {
 
 /* Footer */
 .footer {
-    color: black;
+ background-color: black;
+    color: white;
     text-align: center;
     padding: 10px;
-    position: fixed;
-    bottom: 0px; /* Fixado no fundo da página */
-    width: 100%; /* Garante que ocupe toda a largura */
-    justify-content: center;     /* Centralizar os itens */
-    background-color:#000000; 
+    position: relative; /* O rodapé será posicionado normalmente */
+    width: 100%; /*
 }
 .footer small {
     display: block;
