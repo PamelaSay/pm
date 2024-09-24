@@ -121,8 +121,8 @@ ul {
   right: 0;                     /* Alinha à direita da tela */
   top: 50%;                     /* Centraliza verticalmente */
   transform: translateY(-50%);  /* Ajusta a centralização vertical */
-  width: 150px;                 /* Tamanho ajustável da imagem */
-  height: 150px;                 /* Mantém a proporção da imagem */
+  width: 100px;                 /* Tamanho ajustável da imagem */
+  height: 100px;                 /* Mantém a proporção da imagem */
   border-radius: 10px;   
 }
 
