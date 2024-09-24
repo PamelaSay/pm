@@ -78,11 +78,6 @@ ul {
   margin-bottom: 50px;          /* Espaçamento embaixo da seção */
   position: absolute;           /* Para que a TILS seja posicionada em relação a isso */
 }
-
-.column {
-    flex: 1;
-}
-
 .column.middle {
     display: flex;
     flex-direction: column;
@@ -137,7 +132,7 @@ ul {
     width: 100%; /*
 }
 .footer small {
-    display: block;
+    display: flex;
     margin-bottom:5px;
     background-color:#000000;
 }
