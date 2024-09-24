@@ -122,12 +122,14 @@ section {
 }
 
 #tils {
- position: absolute;
-    right: 0; /* Alinha à direita */
+    position: absolute;
     top: 50%; /* Posiciona verticalmente no meio da tela */
     transform: translateY(-50%); /* Ajusta para centralizar exatamente no meio */
     background-color: lightgray; /* Adiciona um fundo para visualização */
     padding: 10px;
+     display: flex;
+    justify-content: flex-end; /* Alinha o conteúdo à direita */
+    align-items: center;
 }
 
 /* Footer */
