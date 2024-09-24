@@ -70,8 +70,7 @@ ul {
 }
 
 /* Layout das colunas */
-.row {
-  
+.row {  
   display: flex;                /* Usa flexbox para organizar os itens horizontalmente */
   justify-content: center;      /* Centraliza os botões horizontalmente */
   align-items: center;          /* Centraliza verticalmente */
@@ -101,8 +100,7 @@ ul {
     transition: background-color 0.3s, color 0.3s, transform 0.3s; /* Transição suave */
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra sutil */
     display: inline-block; /* Para manter os botões lado a lado */
-   
-}
+   }
 
 .button:hover {
     color:linear-gradient(rgba(255, 255, 255, 0), rgba(255, 255, 255, 0)), linear-gradient(101deg, darkgoldenrod, khaki, peru, sandybrown);
@@ -124,7 +122,7 @@ ul {
   top: 50%;                     /* Centraliza verticalmente */
   transform: translateY(-50%);  /* Ajusta a centralização vertical */
   width: 150px;                 /* Tamanho ajustável da imagem */
-  height: auto;                 /* Mantém a proporção da imagem */
+  height: 150px;                 /* Mantém a proporção da imagem */
   border-radius: 10px;   
 }
 
