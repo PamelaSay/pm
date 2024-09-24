@@ -117,11 +117,6 @@ ul {
     box-shadow: inset 0 4px 8px rgba(0, 0, 0, 0.2); /* Efeito de sombra interna ao clicar */
 }
 
-/* Espaço para o TILS (canto inferior direito) */
-section {
-    bottom: 10px;
-    right: 20px;
-}
 
 #tils {
     position: absolute;           /* Posição absoluta em relação à .row */
