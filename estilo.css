@@ -132,7 +132,7 @@ ul {
  background-color: black;
     color: white;
     text-align: center;
-    padding: 10px;
+    padding:10px 10px;
     position: relative; /* O rodapé será posicionado normalmente */
     width: 100%; /*
 }
