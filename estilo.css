@@ -71,10 +71,12 @@ ul {
 
 /* Layout das colunas */
 .row {
-    display: flex;
-    justify-content: space-between;
-    padding: 10px;
-    flex: 1;
+  
+  display: flex;                /* Usa flexbox para organizar os itens horizontalmente */
+  justify-content: center;      /* Centraliza os botões horizontalmente */
+  align-items: center;          /* Centraliza verticalmente */
+  margin-bottom: 50px;          /* Espaçamento embaixo da seção */
+  position: relative;           /* Para que a TILS seja posicionada em relação a isso */
 }
 
 .column {
@@ -122,14 +124,13 @@ section {
 }
 
 #tils {
-    position: absolute;
-    top: 50%; /* Posiciona verticalmente no meio da tela */
-    transform: translateY(-50%); /* Ajusta para centralizar exatamente no meio */
-    background-color: lightgray; /* Adiciona um fundo para visualização */
-    padding: 10px;
-     display: flex;
-    justify-content: flex-end; /* Alinha o conteúdo à direita */
-    align-items: center;
+    position: absolute;           /* Posição absoluta em relação à .row */
+  right: 0;                     /* Alinha à direita da tela */
+  top: 50%;                     /* Centraliza verticalmente */
+  transform: translateY(-50%);  /* Ajusta a centralização vertical */
+  width: 150px;                 /* Tamanho ajustável da imagem */
+  height: auto;                 /* Mantém a proporção da imagem */
+  border-radius: 10px;   
 }
 
 /* Footer */
