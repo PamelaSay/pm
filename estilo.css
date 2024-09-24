@@ -122,10 +122,10 @@ section {
 }
 
 #tils {
-    top:30%; /* Posiciona verticalmente no meio da tela */
+    top:40%; /* Posiciona verticalmente no meio da tela */
     padding: 10px;
-    width:50%;
-    height:50%;
+    width:30%;
+    height:30%;
     
 }
 
