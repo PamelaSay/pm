@@ -129,11 +129,7 @@ footer {
 
 /* Responsividade */
 @media screen and (max-width: 768px) {
-    .menu{
-        display:inline;
-        padding: 5px 0px;
-    }
-    .row {
+ .row {
         flex-direction: column;
         padding: 40px;
     }
