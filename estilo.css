@@ -22,6 +22,9 @@ body {
     bottom: 0;
     width: 100%;
 }
+.menu a{
+   text-decoration: none; /* Remove o sublinhado */
+}
 
 /* Container para os botões "Costura" e "Jogos Matemáticos" */
 .row {
