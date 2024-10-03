@@ -11,7 +11,7 @@ body {
     background-repeat: no-repeat; /* Impede a repetição da imagem */
 }
 
-/*Menu
+/*Menu */
 .menu{
     display:flex;
     background-color: black;
