@@ -13,7 +13,6 @@ body {
 
 /*Menu */
 .menu {
-    display:flex;
     background-color: black;
     color: white;
     text-align: inline;
@@ -28,6 +27,9 @@ body {
     bottom: 0;
     text-decoration:none;
 }
+.menu ul li{
+    display: inline;<!para ficar em linha-->
+  }
 .menu a {   
     background-color: white;
     color: black;
