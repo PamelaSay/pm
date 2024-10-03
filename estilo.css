@@ -10,7 +10,9 @@ body {
     background-position: center;  /* Centraliza a imagem */
     background-repeat: no-repeat; /* Impede a repetição da imagem */
 }
-
+.logo{
+    
+}
 /*Menu */
 .menu { 
     background-color: black;
