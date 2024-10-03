@@ -13,6 +13,7 @@ body {
 
 /*Menu */
 .menu {
+    display:inline;
     background-color: black;
     color: white;
     text-align: inline;
