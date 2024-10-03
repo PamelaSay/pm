@@ -23,9 +23,8 @@ body {
     width: 100%;
     text-decoration:none;
 }
-.menu.a{
-   
-   text-decoration: none;/* Remove o sublinhado */
+.menu.a{   
+    text-decoration: none;/* Remove o sublinhado */
     border: 2px solid gold; /* Borda dourada */
     border-radius: 15px 60px; /* Bordas arredondadas */
     padding: 15px 60px; /* Espaçamento interno */
