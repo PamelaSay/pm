@@ -39,6 +39,10 @@ body {
     transition: background-color 0.3s, color 0.3s, transform 0.3s; /* Transição suave */
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra sutil */
 }
+.menu a:hover {
+    background-color: gold; /* Fundo dourado ao passar o mouse */
+    color: black;
+}
 
 /* Container para os botões "Costura" e "Jogos Matemáticos" */
 .row {
