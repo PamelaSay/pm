@@ -10,8 +10,11 @@ body {
     background-position: center;  /* Centraliza a imagem */
     background-repeat: no-repeat; /* Impede a repetição da imagem */
 }
-.logo{
-    
+.logo img{
+    vertical-align:middle;/* Centralizar verticalmente a imagem*/
+    margin-right: 20px;/* Margem a direita da imagem para separa-la do texto */
+    max-width: 30px;
+    max-height: 30px;
 }
 /*Menu */
 .menu { 
