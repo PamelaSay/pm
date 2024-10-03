@@ -16,7 +16,7 @@ body {
     display:inline;
     background-color: black;
     color: white;
-    text-align: inline;
+    text-align: center;
     padding: 5px 0px;
     position: relative;
     bottom: 0;
@@ -28,9 +28,6 @@ body {
     bottom: 0;
     text-decoration:none;
 }
-.menu ul li{
-    display: inline;<!para ficar em linha-->
-  }
 .menu a {   
     background-color: white;
     color: black;
