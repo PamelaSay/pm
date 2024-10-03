@@ -84,7 +84,7 @@ body {
 }
 
 .button:hover {
-    background-color: (darkgoldenrod, khaki, peru, sandybrown);
+   color: (darkgoldenrod, khaki, peru, sandybrown);
 }
 
 .button:active {
