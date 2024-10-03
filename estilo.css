@@ -136,6 +136,7 @@ footer {
     }
     .row {
         flex-direction: column;
+        padding: 40px;
     }
 
     #tils {
