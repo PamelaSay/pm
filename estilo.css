@@ -40,7 +40,7 @@ body {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra sutil */
 }
 .menu a:hover {
-    background-color: gold; /* Fundo dourado ao passar o mouse */
+    background-color:  linear-gradient(rgba(255, 255, 255, 0), rgba(255, 255, 255, 0)), linear-gradient(101deg, darkgoldenrod, khaki, peru, sandybrown); /* Fundo dourado ao passar o mouse */
     color: black;
 }
 
@@ -72,7 +72,7 @@ body {
 }
 
 .button:hover {
-    background-color: gold; /* Fundo dourado ao passar o mouse */
+    background-color:  linear-gradient(rgba(255, 255, 255, 0), rgba(255, 255, 255, 0)), linear-gradient(101deg, darkgoldenrod, khaki, peru, sandybrown);; /* Fundo dourado ao passar o mouse */
     color: black;
 }
 
