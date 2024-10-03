@@ -89,8 +89,8 @@ body {
 #tils {
   position: absolute;
   right:10px;
-  top: 10%; /* Subi a imagem */
-  width: 10%; /* Aumentei o tamanho da imagem */
+  top: 20%; /* Subi a imagem */
+  width: 25%; /* Aumentei o tamanho da imagem */
   height: auto;
   border-radius: 10px;
 }
