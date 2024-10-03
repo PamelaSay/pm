@@ -12,7 +12,7 @@ body {
 }
 
 /*Menu */
-.menu{
+.menu {
     display:inline-box;
     background-color: black;
     color: white;
@@ -23,7 +23,7 @@ body {
     width: 100%;
     text-decoration:none;
 }
-.menu.ul{   
+.menu.ul {   
     text-decoration: none;/* Remove o sublinhado */
     border: 2px solid gold; /* Borda dourada */
     border-radius: 15px 60px; /* Bordas arredondadas */
@@ -79,7 +79,7 @@ body {
 }
 
 /* Footer fixado na parte inferior */
-.footer {
+footer {
     background-color: black;
     color: white;
     text-align: center;
@@ -89,7 +89,7 @@ body {
     width: 100%;
 }
 
-.footer small {
+.footer .small {
     display: block;
 }
 
