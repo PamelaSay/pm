@@ -13,6 +13,7 @@ body {
 
 /*Menu */
 .menu{
+    display:inline-box;
     background-color: black;
     color: white;
     text-align: center;
@@ -23,7 +24,7 @@ body {
     text-decoration:none;
 }
 .menu.a{
-    display:inline;
+   
    text-decoration: none;/* Remove o sublinhado */
     border: 2px solid gold; /* Borda dourada */
     border-radius: 15px 60px; /* Bordas arredondadas */
