@@ -22,7 +22,7 @@ body {
     width: 100%;
     text-decoration:none;
 }
-.menu a{
+.menu.a{
    text-decoration: none; /* Remove o sublinhado */
 }
 
@@ -72,7 +72,7 @@ body {
 }
 
 /* Footer fixado na parte inferior */
-footer {
+.footer {
     background-color: black;
     color: white;
     text-align: center;
