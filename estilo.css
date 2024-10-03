@@ -111,6 +111,10 @@ footer {
 
 /* Responsividade */
 @media screen and (max-width: 768px) {
+    .menu{
+        display:flex;
+        padding: 5px 0px;
+    }
     .row {
         flex-direction: column;
     }
