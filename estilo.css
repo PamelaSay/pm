@@ -13,12 +13,12 @@ body {
 
 /*Menu
 .menu{
-    display:inline-box;
+    display:flex;
     background-color: black;
     color: white;
     text-align: center;
     padding: 10px 0px;
-    position: fixed;
+    position: relative;
     bottom: 0;
     width: 100%;
 }
