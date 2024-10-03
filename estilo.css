@@ -20,11 +20,12 @@ body {
 .logo img{
     vertical-align:middle;/* Centralizar verticalmente a imagem*/
     margin-right: 20px;/* Margem a direita da imagem para separa-la do texto */
-    max-width:70px;
-    max-height:70px;
+    max-width:90px;
+    max-height:90px;
 }
 /*Menu */
 .menu { 
+     background-color: black;
     text-align: center;
     padding: 5px 0px;
     position: relative;
@@ -32,6 +33,7 @@ body {
     text-decoration:none;
 }
 .menu ul { 
+    display:inline;
     text-align: center;
     padding: 5px 0px;
     position: relative;
@@ -39,7 +41,6 @@ body {
     text-decoration:none;
 }
 .menu li {
-     display:inline;
     padding: 5px 0px;
     position: relative;
 }
