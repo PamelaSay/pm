@@ -10,6 +10,12 @@ body {
     background-position: center;  /* Centraliza a imagem */
     background-repeat: no-repeat; /* Impede a repetição da imagem */
 }
+.header{
+    display:inline;
+    background-color: black;
+    color: white;
+
+}
 .logo img{
     vertical-align:middle;/* Centralizar verticalmente a imagem*/
     margin-right: 20px;/* Margem a direita da imagem para separa-la do texto */
@@ -18,9 +24,6 @@ body {
 }
 /*Menu */
 .menu { 
-    display:inline;
-    background-color: black;
-    color: white;
     text-align: center;
     padding: 5px 0px;
     position: relative;
