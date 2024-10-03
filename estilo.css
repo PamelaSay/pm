@@ -12,7 +12,7 @@ body {
 }
 
 /*Menu */
-.menu {
+.menu ul {
     background-color: black;
     color: white;
     text-align: center;
