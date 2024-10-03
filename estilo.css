@@ -79,7 +79,7 @@ body {
 }
 
 /* Footer fixado na parte inferior */
-footer {
+.footer {
     background-color: black;
     color: white;
     text-align: center;
