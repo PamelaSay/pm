@@ -13,7 +13,6 @@ body {
 
 /*Menu */
 .menu{
-    display:flex;
     background-color: black;
     color: white;
     text-align: center;
