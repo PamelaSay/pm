@@ -28,7 +28,6 @@ body {
     text-decoration:none;
 }
 .menu ul { 
-    display:inline;
     text-align: center;
     padding: 5px 0px;
     position: relative;
@@ -36,7 +35,7 @@ body {
     text-decoration:none;
 }
 .menu li {
-    padding: 5px 15px;
+    padding: 5px 10px;
     position: relative;
 }
 .menu a {  
@@ -45,7 +44,7 @@ body {
     text-decoration: none;/* Remove o sublinhado */
     border: 2px solid gold; /* Borda dourada */
     border-radius: 15px 60px; /* Bordas arredondadas */
-    padding: 9px 15px; /* Espaçamento interno */
+    padding: 9px 10px; /* Espaçamento interno */
     transition: background-color 0.3s, color 0.3s, transform 0.3s; /* Transição suave */
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra sutil */
 }
