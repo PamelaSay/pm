@@ -28,6 +28,7 @@ body {
     text-decoration:none;
 }
 .menu ul { 
+    display:inline;
     text-align: center;
     padding: 5px 0px;
     position: relative;
