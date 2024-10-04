@@ -24,17 +24,16 @@ body {
 }
 /*Menu */
 .menu { 
-    display:inline-block;
+    display:inline;
      background-color: black;
-    padding: 5px 15px;
+    padding: 5px 10px;
     position:static;
-    bottom: 0;
     text-decoration:none;
+    
    }
 .menu ul { 
-    padding: 5px 0px;
-    bottom: 0;
     text-decoration:none;
+    text-alins:center;
 }
 .menu a {  
     background-color: white;
