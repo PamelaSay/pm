@@ -13,9 +13,7 @@ body {
 .header{
     background-color: black;
     color: white;
-     padding: 5px 0px;
-
-}
+     }
 .logo img{
     vertical-align:middle;/* Centralizar verticalmente a imagem*/
     margin-right: 2px;/* Margem a direita da imagem para separa-la do texto */
