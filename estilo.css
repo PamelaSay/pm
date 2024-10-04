@@ -24,14 +24,15 @@ body {
 .menu { 
     background-color: black;
     padding: 5px 15px;
-    position:absolute;
     text-decoration:none;
     
    }
 .menu ul { 
+    display:inline-block;
     text-decoration:none;
     text-alins:center;
     top:2px;
+    
 }
 .menu a {  
     background-color: white;
