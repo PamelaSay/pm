@@ -26,7 +26,7 @@ body {
 .menu { 
     display:inline;
      background-color: black;
-    padding: 5px 0px;
+    padding: 5px 15px;
     position:static;
     bottom: 0;
     text-decoration:none;
