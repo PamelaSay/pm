@@ -24,7 +24,7 @@ body {
 }
 /*Menu */
 .menu { 
-    display:inline- block;
+    display:inline-block;
      background-color: black;
     padding: 5px 15px;
     position:static;
