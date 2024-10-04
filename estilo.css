@@ -31,6 +31,7 @@ body {
 .menu ul { 
     text-decoration:none;
     text-alins:center;
+    top:2px;
 }
 .menu a {  
     background-color: white;
