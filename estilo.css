@@ -24,14 +24,13 @@ body {
 .menu { 
     background-color: black;
     padding: 5px 15px;
-    position:static;
+    position:absolute;
     text-decoration:none;
     
    }
 .menu ul { 
     text-decoration:none;
     text-alins:center;
-    float:inline;
 }
 .menu a {  
     background-color: white;
@@ -44,7 +43,7 @@ body {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra sutil */
 }
 .menu a:hover {
-    background-color: linear-gradient(rgba(255, 255, 255, 0), rgba(255, 255, 255, 0)), linear-gradient(101deg, darkgoldenrod, khaki, peru, sandybrown); /* Fundo dourado ao passar o mouse */
+    background-color:  linear-gradient(101deg, darkgoldenrod, khaki, peru, sandybrown); /* Fundo dourado ao passar o mouse */
     color: black;
 }
 
