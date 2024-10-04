@@ -22,8 +22,7 @@ body {
 }
 /*Menu */
 .menu { 
-    display:inline;
-     background-color: black;
+    background-color: black;
     padding: 5px 15px;
     position:static;
     text-decoration:none;
@@ -32,6 +31,7 @@ body {
 .menu ul { 
     text-decoration:none;
     text-alins:center;
+    float:inline;
 }
 .menu a {  
     background-color: white;
