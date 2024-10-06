@@ -26,9 +26,8 @@ body {
 }
 .menu ul{
      top:2px;
-    padding: 10px 20px ;
-    
-    }
+     margin: 10px 20px ;
+     }
 
 .menu a {  
     background-color: white;
