@@ -39,7 +39,6 @@ body {
 }
 .menu a:hover {
     background-color:  linear-gradient(101deg, darkgoldenrod, khaki, peru, sandybrown); /* Fundo dourado ao passar o mouse */
-    color: black;
 }
 
 /* Container para os botões "Costura" e "Jogos Matemáticos" */
