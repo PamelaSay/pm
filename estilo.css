@@ -21,10 +21,13 @@ body {
 .menu { 
     background-color: black;
     text-decoration:none;
-    display:inline:
+    display:inline;
+    
 }
 .menu ul{
      top:2px;
+    padding: 10px 20px ;
+    
     }
 
 .menu a {  
