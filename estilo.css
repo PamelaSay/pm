@@ -11,6 +11,7 @@ body {
     background-repeat: no-repeat; /* Impede a repetição da imagem */
 }
 .logo img{
+    display:block;
     vertical-align:middle;/* Centralizar verticalmente a imagem*/
     margin-right: 2px;/* Margem a direita da imagem para separa-la do texto */
     max-width:90px;
