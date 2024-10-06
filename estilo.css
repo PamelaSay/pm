@@ -47,7 +47,7 @@ body {
   display: flex;
   justify-content: center;    /* Centraliza os botões horizontalmente */
   align-items: center;        /* Centraliza os botões verticalmente */
-  height: calc(100vh - 100px); /* Altura total da página, menos a altura do header */
+  height: calc(100vh - 70px); /* Altura total da página, menos a altura do header */
 }
 
 .column.middle {
