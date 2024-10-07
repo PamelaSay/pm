@@ -50,7 +50,7 @@ body {
     margin-right: 0; /* Remove o espaço do último item */
 }
 
-.ul li a {  
+.ul a {  
     background-color: white;
     color: black;
     text-decoration: none;/* Remove o sublinhado */
@@ -61,7 +61,7 @@ body {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra sutil */
     margin:10px;
 }
-.ul li a:hover {
+.ul a:hover {
     background-color:  linear-gradient(101deg, darkgoldenrod, khaki, peru, sandybrown); /* Fundo dourado ao passar o mouse */
  border-radius: 4px; /* Bordas arredondadas ao passar o mouse */
 }
