@@ -35,6 +35,7 @@ nav {
     flex-grow: 1; /* Permite o menu ocupar espaço */
     display: flex;
     justify-content: center; /* Centraliza os itens */
+    top:10px;
     
 }
 
