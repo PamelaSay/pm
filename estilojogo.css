@@ -109,6 +109,53 @@ nav {
     transform: scale(0.95); /* Efeito de clique ao pressionar */
 }
 
+.game-container {
+    display: flex;
+    flex-wrap: wrap; /* Permite que os itens quebrem linha se necessário */
+    justify-content: space-around; /* Distribui o espaço igualmente entre as colunas */
+    padding: 20px;
+}
+
+.game-item {
+    display: flex;
+    flex-direction: column; /* Organiza imagem, botão e descrição em coluna */
+    align-items: center; /* Centraliza os itens horizontalmente */
+    width: 200px; /* Largura de cada coluna de jogo */
+    margin-bottom: 20px; /* Espaçamento inferior entre os jogos */
+}
+
+.game-item img {
+    width: 100%; /* Imagem ocupa toda a largura do contêiner */
+    height: auto; /* Mantém a proporção da imagem */
+    margin-bottom: 10px; /* Espaçamento entre imagem e botão */
+}
+
+.game-item button {
+     font-size: 16px;
+    margin-bottom: 10px; /* Espaçamento entre o botão e a descrição */
+      
+    background-color: white; /* Fundo branco */
+    color: black; /* Cor do texto */
+    cursor: pointer;
+    border: 2px solid gold; /* Borda dourada */
+    border-radius: 15px 60px; /* Bordas arredondadas */
+    padding: 10px 20px; /* Espaçamento interno */
+    text-decoration: none; /* Remove o sublinhado */
+    transition: background-color 0.5s, color 0.3s, transform 0.3s; /* Transição suave */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra sutil */
+    text-align: center;
+}
+
+.game-item button:hover {
+    background-color: #0056b3;
+}
+
+.game-item p {
+    font-size: 14px;
+    text-align: center;
+    color: #555;
+}
+
 /* TILS posicionada à direita */
 #tils {
   position: absolute;
