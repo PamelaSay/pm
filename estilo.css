@@ -66,7 +66,7 @@ nav {
     margin:10px;
 }
 .menu ul a:hover {
-    background-color:  linear-gradient(101deg, darkgoldenrod, khaki, peru, sandybrown); /* Fundo dourado ao passar o mouse */
+    background-color: linear-gradient(rgba(255, 255, 255, 0), rgba(255, 255, 255, 0)), linear-gradient(101deg, darkgoldenrod, khaki, peru, sandybrown); /* Fundo dourado ao passar o mouse */
  border-radius: 15px 60px; /* Bordas arredondadas ao passar o mouse */
 }
 
@@ -98,7 +98,7 @@ nav {
 }
 
 .button:hover {
-   color: (darkgoldenrod, khaki, peru, sandybrown);
+   color: linear-gradient(rgba(255, 255, 255, 0), rgba(255, 255, 255, 0)), linear-gradient(101deg, darkgoldenrod, khaki, peru, sandybrown);;
 }
 
 .button:active {
