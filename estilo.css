@@ -35,7 +35,7 @@ nav {
     flex-grow: 1; /* Permite o menu ocupar espaço */
     display: flex;
     justify-content: center; /* Centraliza os itens */ 
-    top:5px;
+   
 }
 
 .menu ul {
@@ -44,7 +44,7 @@ nav {
     padding: 0;
     display: flex;
     text-decoration: none;
-    top:5px;
+    
 }
 .menu ul li {
     margin-right: 20px; /* Espaçamento entre os itens do menu */
@@ -55,6 +55,7 @@ nav {
 }
 
 .menu ul a {  
+    top:5px;
     background-color: white;
     color: black;
     text-decoration: none;/* Remove o sublinhado */
