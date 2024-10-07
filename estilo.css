@@ -34,9 +34,7 @@ nav {
 .menu {
     flex-grow: 1; /* Permite o menu ocupar espaço */
     display: flex;
-    justify-content: center; /* Centraliza os itens */
-    top:10px;
-    
+    justify-content: center; /* Centraliza os itens */   
 }
 
 .menu ul {
@@ -45,6 +43,7 @@ nav {
     padding: 0;
     display: flex;
     text-decoration: none;
+    top:5px;
 }
 .menu ul li {
     margin-right: 20px; /* Espaçamento entre os itens do menu */
@@ -102,7 +101,7 @@ nav {
 }
 
 .button:hover {
-   color: linear-gradient(rgba(255, 255, 255, 0), rgba(255, 255, 255, 0)), linear-gradient(101deg, darkgoldenrod, khaki, peru, sandybrown);;
+  background: linear-gradient(rgba(255, 255, 255, 0), rgba(255, 255, 255, 0)), linear-gradient(101deg, darkgoldenrod, khaki, peru, sandybrown);;
 }
 
 .button:active {
