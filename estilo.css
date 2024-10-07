@@ -34,6 +34,7 @@ nav {
     flex-grow: 1; /* Permite o menu ocupar espaço */
     display: flex;
     justify-content: center; /* Centraliza os itens */
+    
 }
 
 .menu ul {
@@ -41,6 +42,7 @@ nav {
     margin: 0;
     padding: 0;
     display: flex;
+    text-decoration: none;
 }
 .menu ul li {
     margin-right: 20px; /* Espaçamento entre os itens do menu */
