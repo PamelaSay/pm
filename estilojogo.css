@@ -1,0 +1,157 @@
+* {
+    box-sizing: border-box;
+    margin: 0px;
+    padding: 0px;
+}
+/* Estilos gerais do body */
+body {
+    background-image: url('transferir.jpg'); /* Certifique-se que o caminho da imagem está correto */
+    background-size: cover;  /* Faz a imagem cobrir o fundo */
+    background-position: center;  /* Centraliza a imagem */
+    background-repeat: no-repeat; /* Impede a repetição da imagem */
+}
+/*Menu */
+nav {
+    background-color:black; /* Cor de fundo do menu */
+    color: white;
+    padding: 10px 0;
+    align-items:center;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: left;
+    padding: 0 20px;
+}
+
+.logo img {
+    vertical-align:middle;/* Centralizar verticalmente a imagem*/
+    margin-right: 2px;/* Margem a direita da imagem para separa-la do texto */
+    max-width:90px;
+    max-height:90px;
+}
+.menu {
+    flex-grow: 1; /* Permite o menu ocupar espaço */
+    display: flex;
+    justify-content: center; /* Centraliza os itens */
+    top:10px;
+    
+}
+
+.menu ul {
+    list-style: none;
+    margin:5px;
+    padding: 0;
+    display: flex;
+    text-decoration: none;
+}
+.menu ul li {
+    margin-right: 20px; /* Espaçamento entre os itens do menu */
+}
+
+.menu ul li:last-child {
+    margin-right: 0; /* Remove o espaço do último item */
+}
+
+.menu ul a {  
+    background-color: white;
+    color: black;
+    text-decoration: none;/* Remove o sublinhado */
+    border: 2px solid gold; /* Borda dourada */
+    border-radius: 15px 60px; /* Bordas arredondadas */
+    padding: 15px 15px; /* Espaçamento interno */
+    transition: background-color 0.3s, color 0.3s, transform 0.3s; /* Transição suave */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra sutil */
+    margin:10px;
+}
+.menu ul a:hover {
+    background-color: linear-gradient(rgba(255, 255, 255, 0), rgba(255, 255, 255, 0)), linear-gradient(101deg, darkgoldenrod, khaki, peru, sandybrown); /* Fundo dourado ao passar o mouse */
+ border-radius: 15px 60px; /* Bordas arredondadas ao passar o mouse */
+}
+
+/* Container para os botões "Costura" e "Jogos Matemáticos" */
+.row {
+  display: flex;
+  justify-content: center;    /* Centraliza os botões horizontalmente */
+  align-items: center;        /* Centraliza os botões verticalmente */
+  height: calc(100vh - 70px); /* Altura total da página, menos a altura do header */
+}
+.column side{
+    display: block;
+    flex-direction: column;
+    gap: 20px; 
+}
+.column.middle {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;               /* Espaço entre os botões */
+}
+
+/* Botões de "Costura" e "Jogos Matemáticos" */
+.button {
+    background-color: white; /* Fundo branco */
+    color: black; /* Cor do texto */
+    border: 2px solid gold; /* Borda dourada */
+    border-radius: 15px 60px; /* Bordas arredondadas */
+    padding: 15px 45px; /* Espaçamento interno */
+    text-decoration: none; /* Remove o sublinhado */
+    transition: background-color 0.5s, color 0.3s, transform 0.3s; /* Transição suave */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra sutil */
+    text-align: center;
+}
+
+.button:hover {
+   color: linear-gradient(rgba(255, 255, 255, 0), rgba(255, 255, 255, 0)), linear-gradient(101deg, darkgoldenrod, khaki, peru, sandybrown);;
+}
+
+.button:active {
+    transform: scale(0.95); /* Efeito de clique ao pressionar */
+}
+
+/* TILS posicionada à direita */
+#tils {
+  position: absolute;
+  right:10px;
+  top: 20%; /* Subi a imagem */
+  width: 25%; /* Aumentei o tamanho da imagem */
+  height: auto;
+  border-radius: 10px;
+}
+
+/* Footer fixado na parte inferior */
+footer {
+    background-color: black;
+    color: white;
+    text-align: center;
+    padding: 10px 0px;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}
+
+.footer .small {
+    display: block;
+}
+
+.footer .social-links {
+    margin-top: 10px;
+}
+
+.footer .contacts {
+    margin-top: 5px;
+    color: white;
+}
+
+/* Responsividade */
+@media screen and (max-width: 768px) {
+ .row {
+        flex-direction: column;
+        padding: 40px;
+    }
+
+    #tils {
+        position: static;
+        margin-top: 20px;
+    }
+}
