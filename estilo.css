@@ -78,7 +78,7 @@ nav {
   height: calc(100vh - 70px); /* Altura total da página, menos a altura do header */
 }
 .column side{
-    display: flex;
+    display: block;
     flex-direction: column;
     gap: 20px; 
 }
