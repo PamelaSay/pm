@@ -66,7 +66,7 @@ nav {
 }
 .menu ul a:hover {
     background-color:  linear-gradient(101deg, darkgoldenrod, khaki, peru, sandybrown); /* Fundo dourado ao passar o mouse */
- border-radius: 4px; /* Bordas arredondadas ao passar o mouse */
+ border-radius: 15px 60px; /* Bordas arredondadas ao passar o mouse */
 }
 
 /* Container para os botões "Costura" e "Jogos Matemáticos" */
