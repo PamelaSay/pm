@@ -77,7 +77,11 @@ nav {
   align-items: center;        /* Centraliza os botões verticalmente */
   height: calc(100vh - 70px); /* Altura total da página, menos a altura do header */
 }
-
+.column side{
+    display: flex;
+    flex-direction: column;
+    gap: 20px; 
+}
 .column.middle {
     display: flex;
     flex-direction: column;
