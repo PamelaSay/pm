@@ -34,17 +34,17 @@ nav {
 .menu {
     flex-grow: 1; /* Permite o menu ocupar espaço */
     display: flex;
-    justify-content: center; /* Centraliza os itens */
-    top:10px;
-    
+    justify-content: center; /* Centraliza os itens */ 
+   
 }
 
 .menu ul {
     list-style: none;
-    margin:5px;
+    align-items: center;
     padding: 0;
     display: flex;
     text-decoration: none;
+    
 }
 .menu ul li {
     margin-right: 20px; /* Espaçamento entre os itens do menu */
@@ -66,10 +66,9 @@ nav {
     margin:10px;
 }
 .menu ul a:hover {
-    background-color: linear-gradient(rgba(255, 255, 255, 0), rgba(255, 255, 255, 0)), linear-gradient(101deg, darkgoldenrod, khaki, peru, sandybrown); /* Fundo dourado ao passar o mouse */
+    background: linear-gradient(rgba(255, 255, 255, 0), rgba(255, 255, 255, 0)), linear-gradient(101deg, darkgoldenrod, khaki, peru, sandybrown); /* Fundo dourado ao passar o mouse */
  border-radius: 15px 60px; /* Bordas arredondadas ao passar o mouse */
 }
-
 /* Container para os botões "Costura" e "Jogos Matemáticos" */
 .row {
   display: flex;
