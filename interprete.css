@@ -99,7 +99,7 @@ blockquote {
 }
 
 /* TILS posicionada à direita */
-#tils {
+.tils {
   position: absolute;
   right:10px;
   top: 20%; /* Subi a imagem */
