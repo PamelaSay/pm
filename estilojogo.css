@@ -69,6 +69,7 @@ nav {
     background: linear-gradient(rgba(255, 255, 255, 0), rgba(255, 255, 255, 0)), linear-gradient(101deg, darkgoldenrod, khaki, peru, sandybrown); /* Fundo dourado ao passar o mouse */
  border-radius: 15px 60px; /* Bordas arredondadas ao passar o mouse */
 }
+
 /* Container para os botões "Costura" e "Jogos Matemáticos" */
 .row {
   display: flex;
