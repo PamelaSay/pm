@@ -31,6 +31,7 @@ nav {
     max-width:90px;
     max-height:90px;
 }
+
 .menu {
     flex-grow: 1; /* Permite o menu ocupar espaço */
     display: flex;
