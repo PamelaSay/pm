@@ -75,7 +75,7 @@ nav {
   display: flex;
   justify-content: center;    /* Centraliza os botões horizontalmente */
   align-items: center;        /* Centraliza os botões verticalmente */
-  height: calc(100vh - 40px); /* Altura total da página, menos a altura do header */
+  height: calc(100vh - 20px); /* Altura total da página, menos a altura do header */
 }
 .column side{
     display: block;
