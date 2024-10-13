@@ -87,6 +87,7 @@ h2 {
 ul {
     margin-left: 20px;
     list-style-type: disc;
+    text-decoration:none;
 }
 
 blockquote {
