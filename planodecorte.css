@@ -52,9 +52,30 @@ button:hover {
 #tecido {
     position: relative;
     width: 100%;
-    height: 300px;
+    height: 400px; /* Maior altura para o plano */
     border: 1px solid #000;
     margin-top: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#tecido::before {
+    content: "Ourela (X)";
+    position: absolute;
+    top: 0;
+    left: 0;
+    font-weight: bold;
+    font-size: 14px;
+}
+
+#tecido::after {
+    content: "Comprimento (Y)";
+    position: absolute;
+    top: 0;
+    right: 0;
+    font-weight: bold;
+    font-size: 14px;
 }
 .plano-corte {
     border: 2px solid #ccc;
@@ -72,7 +93,23 @@ button:hover {
     background-color: rgba(0, 123, 255, 0.5);
     border: 1px solid #007bff;
     text-align: center;
-    padding: 4px;
+    padding: 4px;#tecido div.axis {
+    position: absolute;
+    color: #000;
+    font-size: 12px;
+}
+
+.axis-x {
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.axis-y {
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+}
     box-sizing: border-box;
 }
 
