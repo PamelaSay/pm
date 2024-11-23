@@ -8,29 +8,31 @@
 </head>
 <body>
     <div class="container">
-        <h1>Plano de Corte de Tecido</h1>
-        <form id="fabric-form">
-            <label for="fabricWidth">Largura do Tecido (m):</label>
-            <input type="number" id="fabricWidth" step="0.01" required>
-            
-            <label for="fabricLength">Comprimento do Tecido (m):</label>
-            <input type="number" id="fabricLength" step="0.01" required>
-            
-            <h3>Adicionar Peças:</h3>
-            <div id="pieces-container">
-                <div class="piece">
-                    <input type="number" placeholder="Largura da Peça (m)" step="0.01" required>
-                    <input type="number" placeholder="Altura da Peça (m)" step="0.01" required>
-                </div>
-            </div>
-            <button type="button" id="add-piece">Adicionar Outra Peça</button>
-            <button type="submit">Calcular Plano de Corte</button>
-        </form>
-        <div id="output">
-            <canvas id="cuttingCanvas"></canvas>
-            <p id="result"></p>
+        <h2>Plano de Corte de Tecido</h2>
+<form id="fabric-form">
+    <label for="fabricWidth">Largura do tecido (em metros):</label>
+    <input type="text" id="fabricWidth" placeholder="Ex: 1.40">
+    <br>
+    <label for="fabricLength">Comprimento do tecido (em metros):</label>
+    <input type="text" id="fabricLength" placeholder="Ex: 5">
+    <br>
+    <p>Adicione as peças necessárias (use vírgula para separação decimal):</p>
+    <div id="pieces-container">
+        <div class="piece">
+            <label>Peça 1 - Largura:</label>
+            <input type="text" class="piece-width" placeholder="Ex: 0,80">
+            <label>Altura:</label>
+            <input type="text" class="piece-height" placeholder="Ex: 1,20">
+            <button type="button" class="remove-piece">Remover</button>
         </div>
     </div>
+    <button type="button" id="add-piece">Adicionar Peça</button>
+    <br><br>
+    <button type="submit">Calcular Plano de Corte</button>
+    <button type="button" id="reset">Resetar</button>
+</form>
+<p id="result"></p>
+<canvas id="cuttingCanvas" style="border: 1px solid #000; display: block; margin-top: 20px;"></canvas>
     <script src="planodecorte.js"></script>
 </body>
 </html>
