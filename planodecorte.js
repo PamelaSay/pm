@@ -93,21 +93,15 @@ function atualizarPlano() {
                 // Atualiza as posições para a próxima peça
                 xOffset += peca.largura;
             } else {
-                alert(`A peça ${peca.nome} não cabe no tecido disponível.`);
+                alert("Não há espaço suficiente no tecido para adicionar essa peça.");
             }
         }
     });
 }
 
-function limparCampos() {
-    document.getElementById('nomePeca').value = '';
-    document.getElementById('comprimentoPeca').value = '';
-    document.getElementById('larguraPeca').value = '';
-}
-
 function listarPecas() {
-    let tabela = document.getElementById('tabelaPecas');
-    tabela.innerHTML = '';
+    const tabela = document.getElementById('tabelaPecas');
+    tabela.innerHTML = ''; // Limpar a tabela
     pecas.forEach((peca, index) => {
         let row = tabela.insertRow();
         row.insertCell(0).textContent = peca.nome;
@@ -123,4 +117,11 @@ function removerPeca(index) {
     pecas.splice(index, 1);
     atualizarPlano();
     listarPecas();
+}
+
+function limparCampos() {
+    document.getElementById('nomePeca').value = '';
+    document.getElementById('comprimentoPeca').value = '';
+    document.getElementById('larguraPeca').value = '';
+    document.getElementById('sentidoPeca').value = 'ourelas';
 }
