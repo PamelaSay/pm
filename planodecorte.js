@@ -35,8 +35,17 @@ function atualizarPlano() {
     pecas.forEach((peca) => {
         let pecaDiv = document.createElement('div');
         pecaDiv.classList.add('peca');
-        pecaDiv.style.width = peca.largura * 100 + 'px'; // A largura é multiplicada por 100 para visualização
-        pecaDiv.style.height = peca.comprimento * 100 + 'px'; // O mesmo para o comprimento
+        
+        // Ajuste do tamanho e posicionamento dependendo do sentido
+        if (peca.sentido === 'enviesado') {
+            pecaDiv.style.width = peca.largura * 100 + 'px';
+            pecaDiv.style.height = peca.comprimento * 100 + 'px';
+            pecaDiv.style.transform = "rotate(45deg)"; // Rotaciona a peça para o enviesado
+        } else {
+            pecaDiv.style.width = peca.largura * 100 + 'px'; // A largura é multiplicada por 100 para visualização
+            pecaDiv.style.height = peca.comprimento * 100 + 'px'; // O mesmo para o comprimento
+        }
+        
         pecaDiv.innerHTML = `${peca.nome}<br>${peca.comprimento}m x ${peca.largura}m`;
 
         // Ajustar a posição das peças
