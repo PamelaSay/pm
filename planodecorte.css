@@ -1,25 +1,44 @@
 body {
     font-family: Arial, sans-serif;
+    margin: 20px;
+}
+
+h1 {
+    text-align: center;
 }
 
 .container {
     display: flex;
-    margin: 20px;
+    justify-content: space-between;
+    margin-top: 20px;
 }
 
 #grafico {
     width: 200px;
     margin-right: 20px;
     text-align: center;
+    position: relative;
 }
 
 #graficoX, #graficoY {
-    display: block;
-    margin-bottom: 10px;
+    position: absolute;
     text-align: center;
 }
 
+#graficoX {
+    top: 50%;
+    left: -40px;
+    transform: translateY(-50%);
+}
+
+#graficoY {
+    top: -40px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
 #tecido {
+    width: 70%;
     border: 2px solid #000;
     position: relative;
     display: flex;
@@ -37,11 +56,13 @@ body {
 
 .tabela {
     margin-top: 20px;
+    width: 25%;
 }
 
 table {
     width: 100%;
     border-collapse: collapse;
+    margin-top: 20px;
 }
 
 th, td {
