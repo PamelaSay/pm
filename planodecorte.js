@@ -1,84 +1,42 @@
-let pecas = [];
-
-function adicionarPeca() {
-    const ourela = parseFloat(document.getElementById('ourela').value);
-    const nome = document.getElementById('nome').value;
-    const altura = parseFloat(document.getElementById('altura').value);
-    const largura = parseFloat(document.getElementById('largura').value);
-    const orientacao = document.getElementById('orientacao').value;
-
-    if (nome && altura && largura) {
-        const peca = { nome, altura, largura, orientacao };
-        pecas.push(peca);
-        atualizarTabela();
-        atualizarAreaCorte();
-        calcularTecidoNecessario();
-    } else {
-        alert('Por favor, preencha todos os campos.');
+function calcularMetragem() {
+    const ourela = parseFloat(document.getElementById("largura").value);
+    if (isNaN(ourela) || ourela <= 0) {
+        alert("Por favor, insira uma largura válida para a ourela do tecido.");
+        return;
     }
-}
 
-function atualizarTabela() {
-    const tabela = document.getElementById('tabela-pecas').getElementsByTagName('tbody')[0];
-    tabela.innerHTML = '';
-    pecas.forEach((peca, index) => {
-        const row = tabela.insertRow();
-        row.innerHTML = `
-            <td>${peca.nome}</td>
-            <td>${peca.altura}</td>
-            <td>${peca.largura}</td>
-            <td>${peca.orientacao}</td>
-            <td><button onclick="removerPeca(${index})">Remover</button></td>
-        `;
-    });
-}
+    let comprimentoTotal = 0; // Comprimento total necessário
+    let espacoDisponivel = ourela; // Largura disponível na camada atual
 
-function removerPeca(index) {
-    pecas.splice(index, 1);
-    atualizarTabela();
-    atualizarAreaCorte();
-    calcularTecidoNecessario();
-}
+    pecas.forEach((peca) => {
+        let larguraPeca, comprimentoPeca;
 
-function atualizarAreaCorte() {
-    const areaCorte = document.getElementById('area-corte');
-    areaCorte.innerHTML = '';
-    pecas.forEach(peca => {
-        const div = document.createElement('div');
-        div.classList.add('peca');
-
-        let larguraFinal = peca.largura;
-        let alturaFinal = peca.altura;
-
-        // Considerando o corte enviesado (45º)
-        if (peca.orientacao === 'enviesado') {
-            const diagonal = Math.sqrt(Math.pow(peca.largura, 2) + Math.pow(peca.altura, 2));
-            larguraFinal = alturaFinal = diagonal;  // A largura e altura aumentam na diagonal
+        // Ajusta dimensões com base no sentido
+        if (peca.sentido === "ourelha") {
+            larguraPeca = peca.largura;
+            comprimentoPeca = peca.comprimento;
+        } else if (peca.sentido === "trama") {
+            larguraPeca = peca.comprimento;
+            comprimentoPeca = peca.largura;
+        } else {
+            // Sentido enviesado (simplificação: considera ambas dimensões)
+            larguraPeca = Math.max(peca.largura, peca.comprimento);
+            comprimentoPeca = Math.max(peca.largura, peca.comprimento);
         }
 
-        div.style.width = `${larguraFinal * 100}%`;
-        div.style.height = `${alturaFinal * 100}%`;
-        div.innerHTML = `<p>${peca.nome}</p>`;
-        areaCorte.appendChild(div);
-    });
-}
-
-function calcularTecidoNecessario() {
-    const ourela = parseFloat(document.getElementById('ourela').value);
-    let totalArea = 0;
-    pecas.forEach(peca => {
-        let alturaFinal = peca.altura;
-        let larguraFinal = peca.largura;
-
-        // Para peças enviesadas, calculamos a área usando o diagonal
-        if (peca.orientacao === 'enviesado') {
-            const diagonal = Math.sqrt(Math.pow(peca.largura, 2) + Math.pow(peca.altura, 2));
-            alturaFinal = larguraFinal = diagonal;  // A largura e altura aumentam na diagonal
+        // Verifica se a peça cabe na largura disponível
+        if (larguraPeca <= espacoDisponivel) {
+            espacoDisponivel -= larguraPeca; // Usa o espaço restante na largura
+        } else {
+            // Começa uma nova camada (soma o comprimento da peça e reinicia a largura)
+            comprimentoTotal += comprimentoPeca;
+            espacoDisponivel = ourela - larguraPeca;
         }
-
-        totalArea += alturaFinal * larguraFinal;  // Área da peça em metros
     });
 
-    const totalTecido = totalArea / ourela;  // Dividido pela largura do tecido
-    document.getElementById('total-tecido').textContent = totalTecido.toFixed(2) + ' m';
+    // Adiciona a altura da última camada
+    comprimentoTotal += pecas[pecas.length - 1].comprimento;
+
+    const resultado = document.getElementById("resultado");
+    resultado.innerText = `Metragem total necessária: ${comprimentoTotal.toFixed(2)} metros.`;
 }
