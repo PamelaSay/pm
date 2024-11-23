@@ -64,7 +64,7 @@ function calcularMetragem() {
     let totalComprimento = 0;
 
     listaPecas.forEach((peca) => {
-        if (peca.sentido === "ourelha") {
+        if (peca.sentido === "ourela") {
             // Peça posicionada no sentido da ourela
             if (peca.largura > larguraTecido) {
                 alert(`A peça ${peca.nome} excede a largura do tecido no sentido ourela.`);
