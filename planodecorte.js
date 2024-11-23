@@ -3,6 +3,13 @@ let larguraTecido = 1.40; // Largura do tecido
 let comprimentoTecido = 1.00; // Comprimento do tecido
 let totalTecido = 0;
 
+// Vincula os eventos aos botões assim que a página carrega
+document.addEventListener("DOMContentLoaded", () => {
+    document.getElementById("adicionar-peça-btn").addEventListener("click", adicionarPeça);
+    document.getElementById("resetar-btn").addEventListener("click", resetar);
+    document.getElementById("imprimir-btn").addEventListener("click", imprimirPlano);
+});
+
 function adicionarPeça() {
     const largura = parseFloat(document.getElementById('largura').value);
     const altura = parseFloat(document.getElementById('altura').value);
@@ -77,6 +84,7 @@ function desenharPlanoDeCorte() {
         divPeça.style.left = `${xPos}px`;
         divPeça.style.top = `${yPos}px`;
         divPeça.innerText = peça.nome;
+
         planoCorte.appendChild(divPeça);
 
         xPos += (peça.largura * 100) + 10; // Aumenta a posição horizontal para a próxima peça
