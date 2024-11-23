@@ -5,18 +5,30 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Plano de Corte</title>
     <link rel="stylesheet" href="planodecorte.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 </head>
 <body>
     <h1>Plano de Corte para Tecido</h1>
 
     <div class="formulario">
-        <label for="largura">Largura (m):</label>
+        <label for="largura-tecido">Largura do tecido (m):</label>
+        <input type="number" id="largura-tecido" step="0.01" placeholder="Ex: 1.40">
+
+        <label for="comprimento-tecido">Comprimento do tecido (m):</label>
+        <input type="number" id="comprimento-tecido" step="0.01" placeholder="Ex: 1.00">
+
+        <label for="nome-peça">Nome da peça:</label>
+        <input type="text" id="nome-peça" placeholder="Ex: Peça 1">
+
+        <label for="largura">Largura da peça (m):</label>
         <input type="number" id="largura" step="0.01" placeholder="Ex: 0.80">
 
-        <label for="altura">Altura (m):</label>
+        <label for="altura">Altura da peça (m):</label>
         <input type="number" id="altura" step="0.01" placeholder="Ex: 1.34">
 
-        <button onclick="adicionarPeça()">Adicionar Peça</button>
+        <button onclick="adicionarPeça()">
+            <span class="material-icons">add</span> Adicionar Peça
+        </button>
     </div>
 
     <div id="peças-adicionadas">
@@ -32,8 +44,12 @@
     </div>
 
     <div class="botoes">
-        <button onclick="resetar()">Resetar</button>
-        <button onclick="imprimirPlano()">Imprimir ou Salvar</button>
+        <button onclick="resetar()">
+            <span class="material-icons">restart_alt</span> Resetar
+        </button>
+        <button onclick="imprimirPlano()">
+            <span class="material-icons">print</span> Imprimir ou Salvar
+        </button>
     </div>
 
     <script src="planodecorte.js"></script>
