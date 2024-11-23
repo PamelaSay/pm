@@ -57,25 +57,28 @@ h3 {
     margin-bottom: 10px;
 }
 
+
 .plano-corte {
-    border: 2px solid #ccc;
+    border: 2px solid #00796b; /* Deixe a borda mais visível */
     padding: 20px;
     margin-top: 20px;
     position: relative;
     min-height: 400px;
-    background-color: #e0f7fa;
+    background-color: #b2ebf2; /* Cor azul clara */
     display: flex;
     flex-wrap: wrap;
+    box-sizing: border-box;
 }
+
 .peca {
-    position: relative;
+    position: absolute; /* Permite posicionar as peças no plano */
     border: 2px solid #00796b;
-    background-color: rgba(0, 128, 128, 0.2);
+    background-color: rgba(0, 150, 136, 0.3);
     text-align: center;
     padding: 5px;
     font-size: 12px;
     box-sizing: border-box;
-    margin: 5px;
+    margin: 0; /* Remove margens que causam espaços */
 }
 
 .metragem {
