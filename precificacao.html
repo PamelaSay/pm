@@ -1,46 +1,41 @@
 <!DOCTYPE html>
-<html lang="pt-br">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="widt=device-width, initial-scale=1.0">
-        <link rel="stylesheet" href="styles.css">
-        <link rel="stylesheet" href="calculate.php"
-        
-    </head>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Plano de Corte de Tecido</title>
+    <link rel="stylesheet" href="planodecorte.css">
+</head>
 <body>
-        <div class="calculator">
-            <h1> Precificação de Venda PM</h1>
-            <form action="calculate.php" method="post">
-                <label for="horatrabalhada">Horas trabalhadas:</label>
-                <input type="number" name="prolabore" required>
-                
-                <label for="prolabore">Pro-laboré (R$):</label>
-                <input type="number" name="prolabore" required>
 
-                <label for="margem">Margem de Lucro(%):</label>
-                <input type="number" name="margem" required>
-               
-                <label for="custos">Custos Operacionais (R$):</label>
-                <input type="number" name="custos" required>
+    <h2>Plano de Corte de Tecido</h2>
 
-                <button type="submit">Calcular</button>
-            </form>
+    <label for="largura">Largura do tecido (em metros): </label>
+    <input type="number" id="largura" step="0.01" placeholder="Ex: 1.40" onchange="atualizarPlano()">
+    <br><br>
+
+    <h3>Adicionar Peças</h3>
+
+    <div id="pecas-list">
+        <div class="peça">
+            <label for="nome">Nome da peça:</label>
+            <input type="text" id="nome" placeholder="Ex: Assento, Braço, Fundo">
+            <label for="comprimento">Comprimento (m):</label>
+            <input type="number" id="comprimento" step="0.01" placeholder="Ex: 0.77">
+            <label for="larguraPeca">Largura (m):</label>
+            <input type="number" id="larguraPeca" step="0.01" placeholder="Ex: 1.07">
+            <button onclick="adicionarPeca()">Adicionar Peça</button>
         </div>
-</body>
-<br><br>
-<footer class="footer">
-    <small>
-      Obrigada pela sua visita!
-      <br>  © 2024 PM
-      <span style="color: red; font-size: 18px">&#10084;</span> by -
-      <a target="_blank" href="https://pamelete.rg"> Pamela Mendonça </a>
-    </small>
-    <br />
-    <div class="social-links">
-      <a href="https://github.com/azouaoui-med" target="_blank">
-        <i class="ri-github-fill ri-xl"></i>
-      </a>
-    
     </div>
-  </footer>
+
+    <h3>Plano de Corte</h3>
+    <div id="plano-corte">
+        <div id="tecido"></div>
+    </div>
+
+    <button onclick="calcularMetragem()">Calcular Metragem</button>
+    <p id="resultado"></p>
+
+    <script src="planodecorte.js"></script>
+</body>
 </html>
