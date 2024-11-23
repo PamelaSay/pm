@@ -29,36 +29,36 @@ function atualizarPlano() {
 
     planoTecido.innerHTML = ''; // Limpar o conteúdo anterior
 
-    let xOffset = 0; // Posição horizontal inicial
-    let yOffset = 0; // Posição vertical inicial
-    let alturaAtualLinha = 0; // Armazena a altura da maior peça da linha
+    let xOffset = 20; // Começa após a ourela
+    let yOffset = 20; // Começa após a trama
+    let alturaAtualLinha = 0;
 
     pecas.forEach((peca) => {
         let pecaDiv = document.createElement('div');
         pecaDiv.classList.add('peca');
         pecaDiv.innerHTML = `${peca.nome}<br>${peca.comprimento}m x ${peca.largura}m`;
 
-        // Define as dimensões considerando o sentido
+        // Define as dimensões
         let larguraPeca = peca.sentido === 'enviesado' ? peca.comprimento : peca.largura;
         let alturaPeca = peca.sentido === 'enviesado' ? peca.largura : peca.comprimento;
 
-        larguraPeca *= 100; // Escala para visualização
+        larguraPeca *= 100;
         alturaPeca *= 100;
 
-        // Verifica se a peça cabe na largura restante da linha
-        if (xOffset + larguraPeca > larguraTecido * 100) {
-            xOffset = 0; // Vai para o início da próxima linha
-            yOffset += alturaAtualLinha; // Move para baixo na altura da maior peça da linha
-            alturaAtualLinha = 0; // Reseta a altura da linha
+        // Verifica se cabe na linha atual
+        if (xOffset + larguraPeca > larguraTecido * 100 + 20) {
+            xOffset = 20; // Reposiciona para a próxima linha
+            yOffset += alturaAtualLinha;
+            alturaAtualLinha = 0;
         }
 
-        // Ajusta a posição e insere no plano
+        // Posiciona a peça
         pecaDiv.style.width = `${larguraPeca}px`;
         pecaDiv.style.height = `${alturaPeca}px`;
         pecaDiv.style.left = `${xOffset}px`;
         pecaDiv.style.top = `${yOffset}px`;
 
-        // Atualiza as margens horizontais e altura da linha
+        // Atualiza margens
         xOffset += larguraPeca;
         alturaAtualLinha = Math.max(alturaAtualLinha, alturaPeca);
 
