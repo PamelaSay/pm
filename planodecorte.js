@@ -37,7 +37,6 @@ function atualizarPlano() {
 
     let xOffset = 0;
     let yOffset = 0;
-    let maxY = 0;
 
     pecas.forEach((peca) => {
         // Verifica se a peça cabe na largura disponível do tecido
@@ -64,7 +63,6 @@ function atualizarPlano() {
 
             // Atualiza as posições para a próxima peça
             xOffset += peca.largura;
-            maxY = Math.max(maxY, yOffset + 1);
         } else {
             // Se não couber na largura, tenta adicionar abaixo
             if (xOffset > 0) {
@@ -99,8 +97,6 @@ function atualizarPlano() {
             }
         }
     });
-
-    calcularMetragem();
 }
 
 function limparCampos() {
@@ -112,17 +108,14 @@ function limparCampos() {
 function listarPecas() {
     let tabela = document.getElementById('tabelaPecas');
     tabela.innerHTML = '';
-
     pecas.forEach((peca, index) => {
-        let row = document.createElement('tr');
-        row.innerHTML = `
-            <td>${peca.nome}</td>
-            <td>${peca.comprimento}m</td>
-            <td>${peca.largura}m</td>
-            <td>${peca.sentido}</td>
-            <td><button onclick="removerPeca(${index})">Remover</button></td>
-        `;
-        tabela.appendChild(row);
+        let row = tabela.insertRow();
+        row.insertCell(0).textContent = peca.nome;
+        row.insertCell(1).textContent = peca.comprimento;
+        row.insertCell(2).textContent = peca.largura;
+        row.insertCell(3).textContent = peca.sentido;
+        let deleteCell = row.insertCell(4);
+        deleteCell.innerHTML = '<button onclick="removerPeca(' + index + ')">Remover</button>';
     });
 }
 
@@ -130,16 +123,4 @@ function removerPeca(index) {
     pecas.splice(index, 1);
     atualizarPlano();
     listarPecas();
-}
-
-function calcularMetragem() {
-    let totalComprimento = 0;
-    let totalLargura = 0;
-
-    pecas.forEach(peca => {
-        totalComprimento += peca.comprimento;
-        totalLargura += peca.largura;
-    });
-
-    console.log(`Metragem total de peças: ${totalComprimento.toFixed(2)} metros`);
 }
