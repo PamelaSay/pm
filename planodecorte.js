@@ -74,29 +74,35 @@ function desenharPlanoDeCorte() {
         divPeça.className = 'peça-visual';
         divPeça.style.width = (peça.largura * 100) + 'px'; // Convertendo para pixels
         divPeça.style.height = (peça.altura * 100) + 'px'; // Convertendo para pixels
-        divPeça.style.top = yPos + 'px'; // Posição vertical
-        divPeça.style.left = xPos + 'px'; // Posição horizontal
-        divPeça.innerText = `${peça.nome}: ${peça.largura}m x ${peça.altura}m`;
-
+        divPeça.style.left = `${xPos}px`;
+        divPeça.style.top = `${yPos}px`;
+        divPeça.innerText = peça.nome;
         planoCorte.appendChild(divPeça);
 
-        // Verifica se é necessário mover para a próxima linha
+        xPos += (peça.largura * 100) + 10; // Aumenta a posição horizontal para a próxima peça
+
+        // Se não caber na linha, vai para a linha de baixo
         if (xPos + (peça.largura * 100) > planoCorte.offsetWidth) {
             xPos = 10;
-            yPos += (peça.altura * 100) + 10; // Nova linha
-        } else {
-            xPos += (peça.largura * 100) + 10; // Coloca ao lado
+            yPos += (peça.altura * 100) + 10; // Muda para a próxima linha
         }
     });
 }
 
 function resetar() {
     peças = [];
+    document.getElementById('nome-peça').value = '';
+    document.getElementById('largura').value = '';
+    document.getElementById('altura').value = '';
     atualizarPeças();
     calcularTecido();
     desenharPlanoDeCorte();
 }
 
 function imprimirPlano() {
-    const content = document.getElementById('plano-corte').outerHTML;
-    const win = window.open('', '', 'height=600,width=800
+    const content = document.getElementById('plano-corte').innerHTML;
+    const win = window.open('', '', 'width=800,height=600');
+    win.document.write(content);
+    win.document.close();
+    win.print();
+}
