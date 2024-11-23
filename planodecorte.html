@@ -1,52 +1,47 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Plano de Corte</title>
+    <title>Plano de Corte de Tecido</title>
     <link rel="stylesheet" href="planodecorte.css">
 </head>
 <body>
     <div class="container">
-        <h1>Organizador de Corte de Tecido</h1>
+        <h1>Plano de Corte de Tecido</h1>
 
         <div class="input-container">
-            <label for="nomePeca">Nome da Peça:</label>
-            <input type="text" id="nomePeca" placeholder="Ex.: Manga, Frente">
-            
-            <label for="comprimentoPeca">Comprimento (m):</label>
-            <input type="number" id="comprimentoPeca" step="0.01" placeholder="0.00">
-            
-            <label for="larguraPeca">Largura (m):</label>
-            <input type="number" id="larguraPeca" step="0.01" placeholder="0.00">
-
-            <label for="posicionamento">Posicionamento do Fio:</label>
-            <select id="posicionamento">
-                <option value="ourela">Ourela</option>
-                <option value="enviezado">Enviezado (45°)</option>
-            </select>
-
-            <button onclick="adicionarPeca()">Adicionar Peça</button>
+            <label for="largura">Ourela do tecido (m):</label>
+            <input type="number" id="largura" placeholder="Ex: 1.40" min="0" step="0.01">
+            <button onclick="atualizarPlano()">Aplicar Ourela</button>
         </div>
 
         <div class="adicionar-peca">
-            <label for="largura">Ourela do tecido (m):</label>
-            <input type="number" id="largura" step="0.1" placeholder="Ex.: 1.40">
+            <h3>Adicionar Peça</h3>
+            <label for="nomePeca">Nome da Peça:</label>
+            <input type="text" id="nomePeca" placeholder="Ex: Descrição">
+            <label for="comprimentoPeca">Comprimento (m):</label>
+            <input type="number" id="comprimentoPeca" placeholder="Ex: 0.77" min="0" step="0.01">
+            <label for="larguraPeca">Largura (m):</label>
+            <input type="number" id="larguraPeca" placeholder="Ex: 1.07" min="0" step="0.01">
+            <label for="sentidoPeca">Sentido do Fio:</label>
+            <select id="sentidoPeca">
+                <option value="ourelha">Ourela</option>
+                <option value="trama">Trama</option>
+            </select>
+            <button onclick="adicionarPeca()">Adicionar Peça</button>
         </div>
 
-        <div id="pecas-lista"></div>
-
-        <div class="plano-corte" id="tecido"></div>
+        <div class="plano-corte">
+            <h3>Plano de Corte</h3>
+            <div id="tecido"></div>
+        </div>
 
         <div class="metragem">
+            <button onclick="calcularMetragem()">Calcular Metragem</button>
             <p id="resultado"></p>
         </div>
 
         <div class="impressao">
-            <button onclick="imprimirPlano()">Imprimir</button>
-        </div>
-    </div>
-
-    <script src="planodecorte.js"></script>
-</body>
-</html>
+            <button onclick="imprimirPlano()">Imprimir Plano de Corte</button>
+  
