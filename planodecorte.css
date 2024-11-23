@@ -77,15 +77,6 @@ h3 {
 }
 
 
-#ourelas {
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    width: 20px; /* Indicador fino para a ourela */
-    background-color: #e0f7fa;
-    left: 0;
-    border-right: 2px solid #00796b;
-}
 #tecido {
     position: relative;
     border: 2px solid #00796b;
