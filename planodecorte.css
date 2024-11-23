@@ -33,6 +33,12 @@ input[type="number"] {
     padding: 6px; /* Ajusta o espaço interno */
     font-size: 14px;
 }
+
+select {
+    width: 120px; /* Aumenta a largura do seletor */
+    padding: 6px; /* Ajusta o espaço interno */
+    font-size: 14px; /* Ajusta o tamanho da fonte para melhor visibilidade */
+}
 button {
     padding: 10px 20px;
     background-color: #4CAF50;
