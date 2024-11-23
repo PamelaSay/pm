@@ -72,3 +72,12 @@ function calcularMetragem() {
     // Exibir o resultado
     document.getElementById('resultado').innerHTML = `Você precisará de aproximadamente ${metragemNecessaria.toFixed(2)} metros de tecido.`;
 }
+
+// Função para imprimir o plano de corte
+function imprimirPlano() {
+    let originalContents = document.body.innerHTML;
+    let printContents = document.querySelector('.container').innerHTML;
+    document.body.innerHTML = printContents;
+    window.print();
+    document.body.innerHTML = originalContents;
+}
