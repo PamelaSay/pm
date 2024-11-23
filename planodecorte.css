@@ -1,54 +1,68 @@
-
 body {
     font-family: Arial, sans-serif;
-    padding: 20px;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
 }
 
-h1, h2 {
+h1 {
     text-align: center;
-}
-
-#inputForm {
-    margin-bottom: 20px;
-}
-
-input, select, button {
-    margin: 5px;
-}
-
-#tecidoContainer {
-    position: relative;
     margin-top: 20px;
-    background-color: #cfe2f3;
-    border: 2px solid #0078d4;
-    width: 800px;  /* Largura do tecido */
-    height: 400px; /* Altura do tecido */
 }
 
-#planoTecido {
-    position: absolute;
-    top: 0;
-    left: 0;
+.formulario {
+    margin: 20px;
+    text-align: left;
 }
 
-.peca {
-    position: absolute;
-    border: 2px solid #ff6347;
-    background-color: rgba(255, 99, 71, 0.3);
-    text-align: center;
-    font-size: 12px;
-    padding: 5px;
-    box-sizing: border-box;
+.input {
+    margin: 5px;
+    padding: 8px;
+    width: 150px;
 }
 
-#tabelaPecas {
+.botao {
+    padding: 10px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    margin-top: 10px;
+}
+
+.botao:hover {
+    background-color: #45a049;
+}
+
+.tabela {
     width: 100%;
     border-collapse: collapse;
     margin-top: 20px;
 }
 
-#tabelaPecas th, #tabelaPecas td {
-    border: 1px solid #ddd;
+.tabela th, .tabela td {
     padding: 8px;
     text-align: left;
+    border: 1px solid #ddd;
+}
+
+.area-corte {
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    height: 300px;
+    border: 1px solid #000;
+    margin-top: 20px;
+}
+
+.peca {
+    margin: 5px;
+    border: 1px solid #000;
+    text-align: center;
+    padding: 5px;
+}
+
+.peca p {
+    margin: 0;
 }
