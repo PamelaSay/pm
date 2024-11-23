@@ -67,4 +67,35 @@ function calcularMetragem() {
     let areaTotal = pecas.reduce((total, peca) => total + (peca.comprimento * peca.largura), 0);
     let metragemNecessaria = areaTotal / larguraTecido;
     
-    document.getElementById('resultado').innerHTML = `Você precisará de aproximadamente
+    document.getElementById('resultado').innerHTML = `Você precisará de aproximadamente ${metragemNecessaria.toFixed(2)} metros de tecido.`;
+}
+
+function listarPecas() {
+    let tabela = document.getElementById('tabelaPecas').getElementsByTagName('tbody')[0];
+    tabela.innerHTML = ''; // Limpar a tabela antes de inserir novos dados
+
+    pecas.forEach((peca, index) => {
+        let row = tabela.insertRow();
+        row.insertCell(0).textContent = peca.nome;
+        row.insertCell(1).textContent = peca.comprimento + "m";
+        row.insertCell(2).textContent = peca.largura + "m";
+        row.insertCell(3).textContent = peca.sentido;
+
+        let removerBtn = document.createElement('button');
+        removerBtn.textContent = 'Remover';
+        removerBtn.onclick = () => removerPeca(index);
+        row.insertCell(4).appendChild(removerBtn);
+    });
+}
+
+function removerPeca(index) {
+    pecas.splice(index, 1);
+    atualizarPlano();
+    listarPecas();
+}
+
+function imprimirPlano() {
+    window.print();
+}
+
+document.getElementById('largura').addEventListener('change', atualizarPlano);
