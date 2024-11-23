@@ -76,17 +76,6 @@ h3 {
     overflow-x: auto; /* Permite rolar se o tecido for maior que o plano */
 }
 
-#tecido {
-    position: relative;
-    border: 2px solid #00796b;
-    background-color: #b2ebf2; /* Representa o tecido */
-    margin-top: 20px;
-    width: 100%; /* Largura adaptável */
-    height: 400px; /* Altura inicial */
-    box-sizing: border-box;
-    display: flex;
-    flex-direction: column; /* Facilita o alinhamento */
-}
 
 #ourelas {
     position: absolute;
@@ -97,21 +86,24 @@ h3 {
     left: 0;
     border-right: 2px solid #00796b;
 }
+#tecido {
+    position: relative;
+    border: 2px solid #00796b;
+    background-color: #b2ebf2;
+    width: 100%; /* Largura do tecido */
+    height: 100px; /* Altura inicial (1 metro representado como 100px) */
+    overflow: visible; /* Permite peças ultrapassarem, caso necessário */
+    box-sizing: border-box;
+}
 
-#trama-indicator {
+#fio-indicator {
     position: absolute;
-    left: 20px; /* Após a ourela */
-    width: calc(100% - 40px); /* Espaço entre as ourelas */
     top: 0;
-    height: 20px; /* Linha fina para a trama */
-    background-color: rgba(0, 150, 136, 0.3);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: #00796b;
-    font-size: 14px;
-    font-weight: bold;
-    border-bottom: 2px solid #00796b;
+    left: 20px; /* Após a ourela */
+    width: 2px;
+    height: 100%; /* Sempre se estende pela altura do plano */
+    background-color: red; /* Cor de destaque */
+    z-index: 2; /* Fica acima do plano */
 }
 
 .peca {
@@ -124,6 +116,8 @@ h3 {
     box-sizing: border-box;
 }
 
+
+  
 
 .metragem {
     font-size: 16px;
