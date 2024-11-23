@@ -98,3 +98,63 @@ function imprimirPlano() {
 
     alert(`Plano de Corte:\n\n${planoCorte}`);
 }
+function imprimirPlano() {
+    if (listaPecas.length === 0) {
+        alert("Adicione peças ao plano antes de imprimir.");
+        return;
+    }
+
+    // Criação do conteúdo para impressão
+    let conteudoImpressao = `
+        <h1>Plano de Corte de Tecido</h1>
+        <p>Largura do Tecido: ${larguraTecido.toFixed(2)} metros</p>
+        <table border="1" style="width: 100%; border-collapse: collapse; text-align: left;">
+            <thead>
+                <tr>
+                    <th>Nome</th>
+                    <th>Comprimento (m)</th>
+                    <th>Largura (m)</th>
+                    <th>Sentido do Fio</th>
+                </tr>
+            </thead>
+            <tbody>
+    `;
+
+    listaPecas.forEach((peca) => {
+        conteudoImpressao += `
+            <tr>
+                <td>${peca.nome}</td>
+                <td>${peca.comprimento.toFixed(2)}</td>
+                <td>${peca.largura.toFixed(2)}</td>
+                <td>${peca.sentido}</td>
+            </tr>
+        `;
+    });
+
+    conteudoImpressao += `
+            </tbody>
+        </table>
+        <p>Metragem Total Necessária: ${document.getElementById("resultado").textContent}</p>
+    `;
+
+    // Abrir janela para impressão
+    const janelaImpressao = window.open("", "_blank");
+    janelaImpressao.document.write(`
+        <html>
+            <head>
+                <title>Plano de Corte</title>
+                <style>
+                    body { font-family: Arial, sans-serif; margin: 20px; }
+                    table { width: 100%; border: 1px solid black; border-collapse: collapse; }
+                    th, td { border: 1px solid black; padding: 8px; text-align: left; }
+                    th { background-color: #f2f2f2; }
+                </style>
+            </head>
+            <body>
+                ${conteudoImpressao}
+            </body>
+        </html>
+    `);
+    janelaImpressao.document.close();
+    janelaImpressao.print();
+}
