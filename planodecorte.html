@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,49 +7,49 @@
     <link rel="stylesheet" href="planodecorte.css">
 </head>
 <body>
-
     <h1>Plano de Corte</h1>
+    
+    <div class="formulario">
+        <label for="ourela">Valor da ourela (m):</label>
+        <input type="number" id="ourela" class="input" value="1.4" step="0.1"><br><br>
 
-    <div id="inputForm">
-        <label for="nomePeca">Nome da Peça:</label>
-        <input type="text" id="nomePeca" required>
+        <label for="nome">Nome da peça:</label>
+        <input type="text" id="nome" class="input"><br><br>
 
-        <label for="comprimentoPeca">Comprimento (m):</label>
-        <input type="number" id="comprimentoPeca" step="0.01" required>
+        <label for="altura">Altura (m):</label>
+        <input type="number" id="altura" class="input" step="0.1"><br><br>
 
-        <label for="larguraPeca">Largura (m):</label>
-        <input type="number" id="larguraPeca" step="0.01" required>
+        <label for="largura">Largura (m):</label>
+        <input type="number" id="largura" class="input" step="0.1"><br><br>
 
-        <label for="orientacaoPeca">Orientação:</label>
-        <select id="orientacaoPeca">
-            <option value="ouela">Na Ourela</option>
-            <option value="trama">Na Trama</option>
-            <option value="enviesado">Enviesado (45°)</option>
-        </select>
+        <label for="orientacao">Orientação:</label>
+        <select id="orientacao">
+            <option value="ourela">Ourel</option>
+            <option value="trama">Trama</option>
+            <option value="enviesado">Enviesado 45º</option>
+        </select><br><br>
 
-        <button onclick="adicionarPeca()">Adicionar Peça</button>
+        <button class="botao" onclick="adicionarPeca()">Adicionar</button>
     </div>
 
-    <div id="tecidoContainer">
-        <div id="planoTecido"></div>
-    </div>
-
-    <div id="resultado"></div>
-
-    <h2>Peças Adicionadas</h2>
-    <table id="tabelaPecas">
+    <h2>Peças Inseridas</h2>
+    <table class="tabela" id="tabela-pecas">
         <thead>
             <tr>
                 <th>Nome</th>
-                <th>Comprimento</th>
+                <th>Altura</th>
                 <th>Largura</th>
                 <th>Orientação</th>
                 <th>Ação</th>
             </tr>
         </thead>
-        <tbody>
-        </tbody>
+        <tbody></tbody>
     </table>
+
+    <h2>Área de Corte</h2>
+    <div class="area-corte" id="area-corte"></div>
+
+    <h2>Total de Tecido Necessário: <span id="total-tecido">0</span> m²</h2>
 
     <script src="planodecorte.js"></script>
 </body>
