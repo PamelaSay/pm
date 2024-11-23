@@ -27,7 +27,7 @@
             <label for="altura">Altura da peça (m):</label>
             <input type="number" id="altura" step="0.01" placeholder="Ex: 1.34">
 
-            <button onclick="adicionarPeça()">
+            <button id="adicionar-peça-btn">
                 <span class="material-icons">add</span> Adicionar Peça
             </button>
         </div>
@@ -46,10 +46,10 @@
     </div>
 
     <div class="botoes">
-        <button onclick="resetar()">
+        <button id="resetar-btn">
             <span class="material-icons">restart_alt</span> Resetar
         </button>
-        <button onclick="imprimirPlano()">
+        <button id="imprimir-btn">
             <span class="material-icons">print</span> Imprimir ou Salvar
         </button>
     </div>
