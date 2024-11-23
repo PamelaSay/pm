@@ -28,11 +28,10 @@ label {
     font-size: 14px;
 }
 
-input {
+input, select {
     padding: 8px;
     font-size: 14px;
     margin-bottom: 10px;
-    width: 150px;
     margin-right: 10px;
 }
 
@@ -54,7 +53,6 @@ button:hover {
     padding: 20px;
     margin-top: 20px;
     position: relative;
-    min-height: 400px;
     background-color: #e0f7fa;
 }
 
@@ -68,24 +66,7 @@ button:hover {
     box-sizing: border-box;
 }
 
-.peca button {
-    display: block;
-    margin-top: 5px;
-    background-color: red;
-    color: white;
-    border: none;
-    border-radius: 3px;
-    cursor: pointer;
-    font-size: 10px;
-    padding: 3px 5px;
-}
-
-
 .metragem {
     font-size: 16px;
-    text-align: center;
-}
-
-.impressao {
     text-align: center;
 }
