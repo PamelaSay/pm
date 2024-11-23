@@ -124,16 +124,6 @@ h3 {
     box-sizing: border-box;
 }
 
-.peca {
-    position: absolute; /* Permite posicionar as peças no plano */
-    border: 2px solid #00796b;
-    background-color: rgba(0, 150, 136, 0.3);
-    text-align: center;
-    padding: 5px;
-    font-size: 12px;
-    box-sizing: border-box;
-    margin: 0; /* Remove margens que causam espaços */
-}
 
 .metragem {
     font-size: 16px;
