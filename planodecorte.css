@@ -19,13 +19,6 @@ h1 {
     color: #333;
 }
 
-h3 {
-    color: #333;
-    font-size: 18px;
-    margin-bottom: 10px;
-}
-
-
 .input-container, .adicionar-peca, .metragem, .impressao {
     margin-bottom: 20px;
 }
@@ -56,6 +49,12 @@ button:hover {
     background-color: #45a049;
 }
 
+.plano-corte h3 {
+    color: #333;
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+
 .plano-corte {
     border: 2px solid #ccc;
     padding: 20px;
@@ -66,6 +65,7 @@ button:hover {
     display: flex;
     flex-wrap: wrap;
 }
+
 
 .peca {
     position: relative;
