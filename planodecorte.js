@@ -13,6 +13,12 @@ function adicionarPeca() {
         return;
     }
 
+    // Verificar se a peça cabe na largura do tecido (usando o sentido da ourela)
+    if (sentido === "ourelas" && largura > larguraTecido) {
+        alert("A peça não cabe na largura do tecido com este sentido. Tente cortar no sentido da trama ou enviesado.");
+        return;
+    }
+
     // Adicionar a peça ao array de peças
     pecas.push({ nome, comprimento, largura, sentido });
     atualizarPlano();
@@ -31,36 +37,67 @@ function atualizarPlano() {
 
     let xOffset = 0;
     let yOffset = 0;
+    let maxY = 0;
 
     pecas.forEach((peca) => {
-        let pecaDiv = document.createElement('div');
-        pecaDiv.classList.add('peca');
-        
-        // Ajuste do tamanho e posicionamento dependendo do sentido
-        if (peca.sentido === 'enviesado') {
-            pecaDiv.style.width = peca.largura * 100 + 'px';
-            pecaDiv.style.height = peca.comprimento * 100 + 'px';
-            pecaDiv.style.transform = "rotate(45deg)"; // Rotaciona a peça para o enviesado
-        } else {
-            pecaDiv.style.width = peca.largura * 100 + 'px'; // A largura é multiplicada por 100 para visualização
-            pecaDiv.style.height = peca.comprimento * 100 + 'px'; // O mesmo para o comprimento
-        }
-        
-        pecaDiv.innerHTML = `${peca.nome}<br>${peca.comprimento}m x ${peca.largura}m`;
-
-        // Ajustar a posição das peças para não sobrepor
+        // Verifica se a peça cabe na largura disponível do tecido
         if (xOffset + peca.largura <= larguraTecido) {
+            let pecaDiv = document.createElement('div');
+            pecaDiv.classList.add('peca');
+
+            // Ajuste do tamanho e posicionamento dependendo do sentido
+            if (peca.sentido === 'enviesado') {
+                pecaDiv.style.width = peca.largura * 100 + 'px';
+                pecaDiv.style.height = peca.comprimento * 100 + 'px';
+                pecaDiv.style.transform = "rotate(45deg)"; // Rotaciona a peça para o enviesado
+            } else {
+                pecaDiv.style.width = peca.largura * 100 + 'px';
+                pecaDiv.style.height = peca.comprimento * 100 + 'px';
+            }
+
+            pecaDiv.innerHTML = `${peca.nome}<br>${peca.comprimento}m x ${peca.largura}m`;
+
             pecaDiv.style.left = xOffset * 100 + 'px';
             pecaDiv.style.top = yOffset * 100 + 'px';
-            xOffset += peca.largura;
-        } else {
-            xOffset = peca.largura;
-            yOffset += 1;
-            pecaDiv.style.left = 0;
-            pecaDiv.style.top = yOffset * 100 + 'px';
-        }
 
-        planoTecido.appendChild(pecaDiv);
+            planoTecido.appendChild(pecaDiv);
+
+            // Atualiza as posições para a próxima peça
+            xOffset += peca.largura;
+            maxY = Math.max(maxY, yOffset + 1);
+        } else {
+            // Se não couber na largura, tenta adicionar abaixo
+            if (xOffset > 0) {
+                xOffset = 0;
+                yOffset += 1;
+            }
+            if (yOffset * 100 + peca.comprimento * 100 <= 400) {
+                let pecaDiv = document.createElement('div');
+                pecaDiv.classList.add('peca');
+
+                // Ajuste do tamanho e posicionamento
+                if (peca.sentido === 'enviesado') {
+                    pecaDiv.style.width = peca.largura * 100 + 'px';
+                    pecaDiv.style.height = peca.comprimento * 100 + 'px';
+                    pecaDiv.style.transform = "rotate(45deg)"; // Rotaciona a peça para o enviesado
+                } else {
+                    pecaDiv.style.width = peca.largura * 100 + 'px';
+                    pecaDiv.style.height = peca.comprimento * 100 + 'px';
+                }
+
+                pecaDiv.innerHTML = `${peca.nome}<br>${peca.comprimento}m x ${peca.largura}m`;
+
+                pecaDiv.style.left = xOffset * 100 + 'px';
+                pecaDiv.style.top = yOffset * 100 + 'px';
+
+                planoTecido.appendChild(pecaDiv);
+
+                // Atualiza as posições para a próxima peça
+                xOffset += peca.largura;
+            } else {
+                alert(`A peça ${peca.nome} não cabe no tecido disponível.`);
+            }
+        }
     });
 
     calcularMetragem();
@@ -75,7 +112,7 @@ function limparCampos() {
 function calcularMetragem() {
     let areaTotal = pecas.reduce((total, peca) => total + (peca.comprimento * peca.largura), 0);
     let metragemNecessaria = areaTotal / larguraTecido;
-    
+
     document.getElementById('resultado').innerHTML = `Você precisará de aproximadamente ${metragemNecessaria.toFixed(2)} metros de tecido.`;
 }
 
@@ -106,5 +143,3 @@ function removerPeca(index) {
 function imprimirPlano() {
     window.print();
 }
-
-document.getElementById('largura').addEventListener('change', atualizarPlano);
