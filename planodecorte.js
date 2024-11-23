@@ -1,12 +1,13 @@
 let pecas = [];
-let larguraTecido;
-let planoTecido = document.getElementById('tecido');
+let larguraTecido = 8; // Largura do tecido em metros
+let comprimentoTecido = 4; // Comprimento do tecido em metros
+let planoTecido = document.getElementById('planoTecido');
 
 function adicionarPeca() {
     let nome = document.getElementById('nomePeca').value;
     let comprimento = parseFloat(document.getElementById('comprimentoPeca').value);
     let largura = parseFloat(document.getElementById('larguraPeca').value);
-    let sentido = document.getElementById('sentidoPeca').value;
+    let orientacao = document.getElementById('orientacaoPeca').value;
 
     if (nome === '' || isNaN(comprimento) || isNaN(largura)) {
         alert("Por favor, insira todos os dados corretamente.");
@@ -14,82 +15,64 @@ function adicionarPeca() {
     }
 
     // Adicionar a peça ao array de peças
-    pecas.push({ nome, comprimento, largura, sentido });
+    pecas.push({ nome, comprimento, largura, orientacao });
     atualizarPlano();
     limparCampos();
     listarPecas();
 }
 
 function atualizarPlano() {
-    let larguraTecido = parseFloat(document.getElementById('largura').value);
-    if (isNaN(larguraTecido)) {
-        alert("Por favor, insira a largura do tecido.");
-        return;
-    }
+    planoTecido.innerHTML = ''; // Limpar o conteúdo anterior
 
-    let alturaTecido = 1; // Configuração inicial de 1 metro
-    planoTecido.style.width = larguraTecido * 100 + "px"; // Multiplica para visualização
-    planoTecido.style.height = alturaTecido * 100 + "px";
-
-    planoTecido.innerHTML = ''; // Limpar plano
-
-    // Reposicionar indicadores
-    let ourelas = document.createElement('div');
-    ourelas.id = 'ourelas';
-    planoTecido.appendChild(ourelas);
-
-    let trama = document.createElement('div');
-    trama.id = 'trama-indicator';
-    trama.innerHTML = `<span>Trama (sentido do fio)</span>`;
-    planoTecido.appendChild(trama);
-
-    let fio = document.createElement('div');
-    fio.id = 'fio-indicator';
-    planoTecido.appendChild(fio);
-
-    // Posicionar peças
-    let xOffset = 20; // Começa após a ourela
-    let yOffset = 20; // Começa após a trama
-    let alturaAtualLinha = 0;
+    let xOffset = 0;
+    let yOffset = 0;
 
     pecas.forEach((peca) => {
         let pecaDiv = document.createElement('div');
         pecaDiv.classList.add('peca');
-        pecaDiv.innerHTML = `${peca.nome}<br>${peca.comprimento}m x ${peca.largura}m`;
+        
+        // Ajuste do tamanho e posicionamento dependendo da orientação
+        let larguraFinal = peca.largura * 100; // Para visualização em pixels
+        let comprimentoFinal = peca.comprimento * 100; // Para visualização em pixels
 
-        // Define as dimensões da peça
-        let larguraPeca = peca.sentido === 'trama' ? peca.comprimento : peca.largura;
-        let alturaPeca = peca.sentido === 'trama' ? peca.largura : peca.comprimento;
-
-        larguraPeca *= 100;
-        alturaPeca *= 100;
-
-        // Verifica se cabe na linha atual
-        if (xOffset + larguraPeca > larguraTecido * 100 + 20) {
-            xOffset = 20; // Nova linha
-            yOffset += alturaAtualLinha;
-            alturaAtualLinha = 0;
+        switch (peca.orientacao) {
+            case 'ouela':
+                // Peça na ourela (orientação normal)
+                pecaDiv.style.width = larguraFinal + 'px';
+                pecaDiv.style.height = comprimentoFinal + 'px';
+                break;
+            case 'trama':
+                // Peça na trama (rotacionada 90º)
+                pecaDiv.style.width = comprimentoFinal + 'px';
+                pecaDiv.style.height = larguraFinal + 'px';
+                break;
+            case 'enviesado':
+                // Peça enviesada (rotacionada 45º)
+                pecaDiv.style.width = larguraFinal + 'px';
+                pecaDiv.style.height = comprimentoFinal + 'px';
+                pecaDiv.style.transform = "rotate(45deg)"; // Rotaciona a peça para o enviesado
+                break;
         }
 
-        // Posiciona a peça
-        pecaDiv.style.width = `${larguraPeca}px`;
-        pecaDiv.style.height = `${alturaPeca}px`;
-        pecaDiv.style.left = `${xOffset}px`;
-        pecaDiv.style.top = `${yOffset}px`;
+        pecaDiv.innerHTML = `${peca.nome}<br>${peca.comprimento}m x ${peca.largura}m`;
 
-        // Atualiza margens e altura do plano
-        xOffset += larguraPeca;
-        alturaAtualLinha = Math.max(alturaAtualLinha, alturaPeca);
+        // Ajustar a posição das peças no tecido (sem sobreposição)
+        if (xOffset + peca.largura <= larguraTecido) {
+            pecaDiv.style.left = xOffset * 100 + 'px';
+            pecaDiv.style.top = yOffset * 100 + 'px';
+            xOffset += peca.largura;
+        } else {
+            xOffset = peca.largura;
+            yOffset += 1;
+            pecaDiv.style.left = 0;
+            pecaDiv.style.top = yOffset * 100 + 'px';
+        }
 
         planoTecido.appendChild(pecaDiv);
     });
 
-    // Ajusta altura do tecido conforme necessário
-    planoTecido.style.height = `${Math.max(yOffset + alturaAtualLinha, alturaTecido * 100)}px`;
-
     calcularMetragem();
 }
-
 
 function limparCampos() {
     document.getElementById('nomePeca').value = '';
@@ -100,7 +83,7 @@ function limparCampos() {
 function calcularMetragem() {
     let areaTotal = pecas.reduce((total, peca) => total + (peca.comprimento * peca.largura), 0);
     let metragemNecessaria = areaTotal / larguraTecido;
-    
+
     document.getElementById('resultado').innerHTML = `Você precisará de aproximadamente ${metragemNecessaria.toFixed(2)} metros de tecido.`;
 }
 
@@ -113,7 +96,7 @@ function listarPecas() {
         row.insertCell(0).textContent = peca.nome;
         row.insertCell(1).textContent = peca.comprimento + "m";
         row.insertCell(2).textContent = peca.largura + "m";
-        row.insertCell(3).textContent = peca.sentido;
+        row.insertCell(3).textContent = peca.orientacao;
 
         let removerBtn = document.createElement('button');
         removerBtn.textContent = 'Remover';
@@ -127,9 +110,3 @@ function removerPeca(index) {
     atualizarPlano();
     listarPecas();
 }
-
-function imprimirPlano() {
-    window.print();
-}
-
-document.getElementById('largura').addEventListener('change', atualizarPlano);
