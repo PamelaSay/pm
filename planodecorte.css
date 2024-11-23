@@ -4,6 +4,7 @@ body {
     margin: 0;
     padding: 0;
 }
+
 .container {
     width: 80%;
     margin: 20px auto;
@@ -31,6 +32,7 @@ input, select {
     padding: 8px;
     font-size: 14px;
     margin-bottom: 10px;
+    width: 150px;
     margin-right: 10px;
 }
 
@@ -52,20 +54,62 @@ button:hover {
     padding: 20px;
     margin-top: 20px;
     position: relative;
+    min-height: 400px;
     background-color: #e0f7fa;
+    display: flex;
+    flex-wrap: wrap;
 }
 
 .peca {
-    position: absolute;
+    position: relative;
     border: 2px solid #00796b;
     background-color: rgba(0, 128, 128, 0.2);
     text-align: center;
     padding: 5px;
     font-size: 12px;
     box-sizing: border-box;
+    margin: 5px;
 }
 
 .metragem {
     font-size: 16px;
     text-align: center;
+}
+
+.impressao {
+    text-align: center;
+}
+
+.lista-pecas {
+    margin-top: 20px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+th, td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: center;
+}
+
+th {
+    background-color: #4CAF50;
+    color: white;
+}
+
+td button {
+    background-color: #f44336;
+    color: white;
+    padding: 5px 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+td button:hover {
+    background-color: #d32f2f;
 }
