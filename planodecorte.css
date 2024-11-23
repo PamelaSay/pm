@@ -70,6 +70,60 @@ h3 {
     box-sizing: border-box;
 }
 
+#tecido-container {
+    position: relative;
+    width: 100%;
+    overflow-x: auto; /* Permite rolar se o tecido for maior que o plano */
+}
+
+#tecido {
+    position: relative;
+    border: 2px solid #00796b;
+    background-color: #b2ebf2; /* Representa o tecido */
+    margin-top: 20px;
+    width: 100%; /* Largura adaptável */
+    height: 400px; /* Altura inicial */
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column; /* Facilita o alinhamento */
+}
+
+#ourelas {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 20px; /* Indicador fino para a ourela */
+    background-color: #e0f7fa;
+    left: 0;
+    border-right: 2px solid #00796b;
+}
+
+#trama-indicator {
+    position: absolute;
+    left: 20px; /* Após a ourela */
+    width: calc(100% - 40px); /* Espaço entre as ourelas */
+    top: 0;
+    height: 20px; /* Linha fina para a trama */
+    background-color: rgba(0, 150, 136, 0.3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #00796b;
+    font-size: 14px;
+    font-weight: bold;
+    border-bottom: 2px solid #00796b;
+}
+
+.peca {
+    position: absolute;
+    border: 2px solid #00796b;
+    background-color: rgba(0, 150, 136, 0.3);
+    text-align: center;
+    font-size: 12px;
+    padding: 5px;
+    box-sizing: border-box;
+}
+
 .peca {
     position: absolute; /* Permite posicionar as peças no plano */
     border: 2px solid #00796b;
