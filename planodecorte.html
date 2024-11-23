@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,32 +7,32 @@
     <link rel="stylesheet" href="planodecorte.css">
 </head>
 <body>
-    <div class="container">
-        <h2>Plano de Corte de Tecido</h2>
-<form id="fabric-form">
-    <label for="fabricWidth">Largura do tecido (em metros):</label>
-    <input type="text" id="fabricWidth" placeholder="Ex: 1.40">
-    <br>
-    <label for="fabricLength">Comprimento do tecido (em metros):</label>
-    <input type="text" id="fabricLength" placeholder="Ex: 5">
-    <br>
-    <p>Adicione as peças necessárias (use vírgula para separação decimal):</p>
-    <div id="pieces-container">
-        <div class="piece">
-            <label>Peça 1 - Largura:</label>
-            <input type="text" class="piece-width" placeholder="Ex: 0,80">
-            <label>Altura:</label>
-            <input type="text" class="piece-height" placeholder="Ex: 1,20">
-            <button type="button" class="remove-piece">Remover</button>
-        </div>
+    <h1>Plano de Corte para Tecido</h1>
+
+    <div class="formulario">
+        <label for="largura">Largura (m):</label>
+        <input type="number" id="largura" step="0.01" placeholder="Ex: 0.80">
+        
+        <label for="altura">Altura (m):</label>
+        <input type="number" id="altura" step="0.01" placeholder="Ex: 1.34">
+
+        <button onclick="adicionarPeça()">Adicionar Peça</button>
     </div>
-    <button type="button" id="add-piece">Adicionar Peça</button>
-    <br><br>
-    <button type="submit">Calcular Plano de Corte</button>
-    <button type="button" id="reset">Resetar</button>
-</form>
-<p id="result"></p>
-<canvas id="cuttingCanvas" style="border: 1px solid #000; display: block; margin-top: 20px;"></canvas>
+
+    <div id="peças-adicionadas">
+        <!-- Aqui vão aparecer as peças inseridas -->
+    </div>
+
+    <div class="resultado">
+        <h3>Total de Tecido Necessário: <span id="total-tecido"></span> metros</h3>
+    </div>
+
+    <div id="plano-corte">
+        <!-- Desenho do plano de corte será exibido aqui -->
+    </div>
+
+    <button onclick="imprimirPlano()">Imprimir Plano de Corte</button>
+
     <script src="planodecorte.js"></script>
 </body>
 </html>
