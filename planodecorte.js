@@ -46,8 +46,18 @@ function atualizarAreaCorte() {
     pecas.forEach(peca => {
         const div = document.createElement('div');
         div.classList.add('peca');
-        div.style.width = `${peca.largura * 100}%`;
-        div.style.height = `${peca.altura * 100}%`;
+
+        let larguraFinal = peca.largura;
+        let alturaFinal = peca.altura;
+
+        // Considerando o corte enviesado (45º)
+        if (peca.orientacao === 'enviesado') {
+            const diagonal = Math.sqrt(Math.pow(peca.largura, 2) + Math.pow(peca.altura, 2));
+            larguraFinal = alturaFinal = diagonal;  // A largura e altura aumentam na diagonal
+        }
+
+        div.style.width = `${larguraFinal * 100}%`;
+        div.style.height = `${alturaFinal * 100}%`;
         div.innerHTML = `<p>${peca.nome}</p>`;
         areaCorte.appendChild(div);
     });
@@ -55,7 +65,20 @@ function atualizarAreaCorte() {
 
 function calcularTecidoNecessario() {
     const ourela = parseFloat(document.getElementById('ourela').value);
-    const totalArea = pecas.reduce((total, peca) => total + (peca.largura * peca.altura), 0);
-    const totalTecido = totalArea / ourela;
-    document.getElementById('total-tecido').textContent = totalTecido.toFixed(2);
+    let totalArea = 0;
+    pecas.forEach(peca => {
+        let alturaFinal = peca.altura;
+        let larguraFinal = peca.largura;
+
+        // Para peças enviesadas, calculamos a área usando o diagonal
+        if (peca.orientacao === 'enviesado') {
+            const diagonal = Math.sqrt(Math.pow(peca.largura, 2) + Math.pow(peca.altura, 2));
+            alturaFinal = larguraFinal = diagonal;  // A largura e altura aumentam na diagonal
+        }
+
+        totalArea += alturaFinal * larguraFinal;  // Área da peça em metros
+    });
+
+    const totalTecido = totalArea / ourela;  // Dividido pela largura do tecido
+    document.getElementById('total-tecido').textContent = totalTecido.toFixed(2) + ' m';
 }
