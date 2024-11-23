@@ -81,36 +81,53 @@ function desenharPlanoDeCorte() {
         divPeça.className = 'peça-visual';
         divPeça.style.width = (peça.largura * 100) + 'px'; // Convertendo para pixels
         divPeça.style.height = (peça.altura * 100) + 'px'; // Convertendo para pixels
-        divPeça.style.left = `${xPos}px`;
-        divPeça.style.top = `${yPos}px`;
+        divPeça.style.left = xPos + 'px';
+        divPeça.style.top = yPos + 'px';
         divPeça.innerText = peça.nome;
 
         planoCorte.appendChild(divPeça);
 
-        xPos += (peça.largura * 100) + 10; // Aumenta a posição horizontal para a próxima peça
+        xPos += peça.largura * 100; // Incrementa a posição horizontal
 
-        // Se não caber na linha, vai para a linha de baixo
-        if (xPos + (peça.largura * 100) > planoCorte.offsetWidth) {
+        // Se não caber na linha, vai para a próxima
+        if (xPos + (peça.largura * 100) > larguraTecido * 100) {
             xPos = 10;
-            yPos += (peça.altura * 100) + 10; // Muda para a próxima linha
+            yPos += peça.altura * 100;
         }
     });
 }
 
 function resetar() {
     peças = [];
-    document.getElementById('nome-peça').value = '';
-    document.getElementById('largura').value = '';
-    document.getElementById('altura').value = '';
     atualizarPeças();
     calcularTecido();
     desenharPlanoDeCorte();
 }
 
 function imprimirPlano() {
-    const content = document.getElementById('plano-corte').innerHTML;
-    const win = window.open('', '', 'width=800,height=600');
-    win.document.write(content);
-    win.document.close();
-    win.print();
+    const planoCorte = document.getElementById('plano-corte');
+    const largura = planoCorte.offsetWidth;
+    const altura = planoCorte.offsetHeight;
+    const canvas = document.createElement('canvas');
+    canvas.width = largura;
+    canvas.height = altura;
+    const ctx = canvas.getContext('2d');
+
+    // Desenhar plano de corte no canvas
+    ctx.fillStyle = '#fff';
+    ctx.fillRect(0, 0, largura, altura);
+
+    // Adicionar peças no canvas
+    peças.forEach((peça) => {
+        const larguraPixels = peça.largura * 100;
+        const alturaPixels = peça.altura * 100;
+        ctx.fillStyle = '#f0f0f0';
+        ctx.fillRect(10, 10, larguraPixels, alturaPixels);  // Exemplo de posição, depois você pode ajustar para coordenadas
+    });
+
+    const dataUrl = canvas.toDataURL();
+    const link = document.createElement('a');
+    link.href = dataUrl;
+    link.download = 'plano_de_corte.png';
+    link.click();
 }
