@@ -1,32 +1,115 @@
-/* Tabela de peças */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f9;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    width: 80%;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+    text-align: center;
+    color: #333;
+}
+
+.input-container, .adicionar-peca, .metragem, .impressao {
+    margin-bottom: 20px;
+}
+
+label {
+    margin-right: 10px;
+    font-size: 14px;
+}
+
+input, select {
+    padding: 8px;
+    font-size: 14px;
+    margin-bottom: 10px;
+    width: 150px;
+    margin-right: 10px;
+}
+
+button {
+    padding: 10px 20px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #45a049;
+}
+
+.plano-corte {
+    border: 2px solid #ccc;
+    padding: 20px;
+    margin-top: 20px;
+    position: relative;
+    min-height: 400px;
+    background-color: #e0f7fa;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.peca {
+    position: relative;
+    border: 2px solid #00796b;
+    background-color: rgba(0, 128, 128, 0.2);
+    text-align: center;
+    padding: 5px;
+    font-size: 12px;
+    box-sizing: border-box;
+    margin: 5px;
+}
+
+.metragem {
+    font-size: 16px;
+    text-align: center;
+}
+
+.impressao {
+    text-align: center;
+}
+
+.lista-pecas {
+    margin-top: 20px;
+}
+
 table {
     width: 100%;
     border-collapse: collapse;
     margin-top: 20px;
 }
+
 th, td {
-    padding: 8px;
     border: 1px solid #ddd;
+    padding: 8px;
     text-align: center;
 }
+
 th {
-    background-color: #f4f4f4;
+    background-color: #4CAF50;
+    color: white;
 }
 
-/* Plano de Corte */
-#tecido {
-    position: relative;
-    width: 100%;
-    height: 300px;
-    border: 1px solid #000;
-    margin-top: 20px;
+td button {
+    background-color: #f44336;
+    color: white;
+    padding: 5px 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
 }
 
-.peca {
-    position: absolute;
-    background-color: rgba(0, 123, 255, 0.5);
-    border: 1px solid #007bff;
-    text-align: center;
-    padding: 4px;
-    box-sizing: border-box;
+td button:hover {
+    background-color: #d32f2f;
 }
