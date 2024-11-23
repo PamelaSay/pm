@@ -109,28 +109,20 @@ function limparCampos() {
     document.getElementById('larguraPeca').value = '';
 }
 
-function calcularMetragem() {
-    let areaTotal = pecas.reduce((total, peca) => total + (peca.comprimento * peca.largura), 0);
-    let metragemNecessaria = areaTotal / larguraTecido;
-
-    document.getElementById('resultado').innerHTML = `Você precisará de aproximadamente ${metragemNecessaria.toFixed(2)} metros de tecido.`;
-}
-
 function listarPecas() {
-    let tabela = document.getElementById('tabelaPecas').getElementsByTagName('tbody')[0];
-    tabela.innerHTML = ''; // Limpar a tabela antes de inserir novos dados
+    let tabela = document.getElementById('tabelaPecas');
+    tabela.innerHTML = '';
 
     pecas.forEach((peca, index) => {
-        let row = tabela.insertRow();
-        row.insertCell(0).textContent = peca.nome;
-        row.insertCell(1).textContent = peca.comprimento + "m";
-        row.insertCell(2).textContent = peca.largura + "m";
-        row.insertCell(3).textContent = peca.sentido;
-
-        let removerBtn = document.createElement('button');
-        removerBtn.textContent = 'Remover';
-        removerBtn.onclick = () => removerPeca(index);
-        row.insertCell(4).appendChild(removerBtn);
+        let row = document.createElement('tr');
+        row.innerHTML = `
+            <td>${peca.nome}</td>
+            <td>${peca.comprimento}m</td>
+            <td>${peca.largura}m</td>
+            <td>${peca.sentido}</td>
+            <td><button onclick="removerPeca(${index})">Remover</button></td>
+        `;
+        tabela.appendChild(row);
     });
 }
 
@@ -140,6 +132,14 @@ function removerPeca(index) {
     listarPecas();
 }
 
-function imprimirPlano() {
-    window.print();
+function calcularMetragem() {
+    let totalComprimento = 0;
+    let totalLargura = 0;
+
+    pecas.forEach(peca => {
+        totalComprimento += peca.comprimento;
+        totalLargura += peca.largura;
+    });
+
+    console.log(`Metragem total de peças: ${totalComprimento.toFixed(2)} metros`);
 }
