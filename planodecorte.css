@@ -1,80 +1,32 @@
-body {
-    font-family: Arial, sans-serif;
-    margin: 20px;
-}
-
-h1 {
-    text-align: center;
-}
-
-.container {
-    display: flex;
-    justify-content: space-between;
-    margin-top: 20px;
-}
-
-#grafico {
-    width: 200px;
-    margin-right: 20px;
-    text-align: center;
-    position: relative;
-}
-
-#graficoX, #graficoY {
-    position: absolute;
-    text-align: center;
-}
-
-#graficoX {
-    top: 50%;
-    left: -40px;
-    transform: translateY(-50%);
-}
-
-#graficoY {
-    top: -40px;
-    left: 50%;
-    transform: translateX(-50%);
-}
-
-#tecido {
-    width: 70%;
-    border: 2px solid #000;
-    position: relative;
-    display: flex;
-    flex-wrap: wrap;
-    margin-top: 20px;
-}
-
-.peca {
-    position: absolute;
-    border: 1px solid #000;
-    background-color: lightgray;
-    text-align: center;
-    padding: 5px;
-}
-
-.tabela {
-    margin-top: 20px;
-    width: 25%;
-}
-
+/* Tabela de peças */
 table {
     width: 100%;
     border-collapse: collapse;
     margin-top: 20px;
 }
-
 th, td {
     padding: 8px;
     border: 1px solid #ddd;
     text-align: center;
 }
+th {
+    background-color: #f4f4f4;
+}
 
-button {
-    padding: 5px;
-    background-color: red;
-    color: white;
-    border: none;
-    cursor: pointer;
+/* Plano de Corte */
+#tecido {
+    position: relative;
+    width: 100%;
+    height: 300px;
+    border: 1px solid #000;
+    margin-top: 20px;
+}
+
+.peca {
+    position: absolute;
+    background-color: rgba(0, 123, 255, 0.5);
+    border: 1px solid #007bff;
+    text-align: center;
+    padding: 4px;
+    box-sizing: border-box;
 }
