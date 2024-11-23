@@ -29,42 +29,45 @@ function atualizarPlano() {
 
     planoTecido.innerHTML = ''; // Limpar o conteúdo anterior
 
-    let xOffset = 0;
-    let yOffset = 0;
+    let xOffset = 0; // Posição horizontal inicial
+    let yOffset = 0; // Posição vertical inicial
+    let alturaAtualLinha = 0; // Armazena a altura da maior peça da linha
 
     pecas.forEach((peca) => {
         let pecaDiv = document.createElement('div');
         pecaDiv.classList.add('peca');
-        
-        // Ajuste do tamanho e posicionamento dependendo do sentido
-        if (peca.sentido === 'enviesado') {
-            pecaDiv.style.width = peca.largura * 100 + 'px';
-            pecaDiv.style.height = peca.comprimento * 100 + 'px';
-            pecaDiv.style.transform = "rotate(45deg)"; // Rotaciona a peça para o enviesado
-        } else {
-            pecaDiv.style.width = peca.largura * 100 + 'px'; // A largura é multiplicada por 100 para visualização
-            pecaDiv.style.height = peca.comprimento * 100 + 'px'; // O mesmo para o comprimento
-        }
-        
         pecaDiv.innerHTML = `${peca.nome}<br>${peca.comprimento}m x ${peca.largura}m`;
 
-        // Ajustar a posição das peças
-        if (xOffset + peca.largura <= larguraTecido) {
-            pecaDiv.style.left = xOffset * 100 + 'px';
-            pecaDiv.style.top = yOffset * 100 + 'px';
-            xOffset += peca.largura;
-        } else {
-            xOffset = peca.largura;
-            yOffset += 1;
-            pecaDiv.style.left = 0;
-            pecaDiv.style.top = yOffset * 100 + 'px';
+        // Define as dimensões considerando o sentido
+        let larguraPeca = peca.sentido === 'enviesado' ? peca.comprimento : peca.largura;
+        let alturaPeca = peca.sentido === 'enviesado' ? peca.largura : peca.comprimento;
+
+        larguraPeca *= 100; // Escala para visualização
+        alturaPeca *= 100;
+
+        // Verifica se a peça cabe na largura restante da linha
+        if (xOffset + larguraPeca > larguraTecido * 100) {
+            xOffset = 0; // Vai para o início da próxima linha
+            yOffset += alturaAtualLinha; // Move para baixo na altura da maior peça da linha
+            alturaAtualLinha = 0; // Reseta a altura da linha
         }
+
+        // Ajusta a posição e insere no plano
+        pecaDiv.style.width = `${larguraPeca}px`;
+        pecaDiv.style.height = `${alturaPeca}px`;
+        pecaDiv.style.left = `${xOffset}px`;
+        pecaDiv.style.top = `${yOffset}px`;
+
+        // Atualiza as margens horizontais e altura da linha
+        xOffset += larguraPeca;
+        alturaAtualLinha = Math.max(alturaAtualLinha, alturaPeca);
 
         planoTecido.appendChild(pecaDiv);
     });
 
     calcularMetragem();
 }
+
 
 function limparCampos() {
     document.getElementById('nomePeca').value = '';
