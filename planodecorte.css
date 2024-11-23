@@ -1,33 +1,39 @@
 body {
     font-family: Arial, sans-serif;
-    background-color: #f7f7f7;
+    background-color: #f4f4f9;
     margin: 0;
     padding: 0;
 }
 
 .container {
     width: 80%;
-    margin: 0 auto;
-    background-color: #ffffff;
+    margin: 20px auto;
     padding: 20px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    border-radius: 10px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-h1, h3 {
+h1 {
     text-align: center;
     color: #333;
 }
 
-.input-container, .adicionar-peca {
+.input-container, .adicionar-peca, .metragem, .impressao {
     margin-bottom: 20px;
 }
 
-.input-container input, .adicionar-peca input {
+label {
+    margin-right: 10px;
+    font-size: 14px;
+}
+
+input {
     padding: 8px;
+    font-size: 14px;
+    margin-bottom: 10px;
     width: 150px;
     margin-right: 10px;
-    margin-top: 5px;
 }
 
 button {
@@ -44,32 +50,29 @@ button:hover {
 }
 
 .plano-corte {
+    border: 2px solid #ccc;
+    padding: 20px;
     margin-top: 20px;
-    text-align: center;
-}
-
-#tecido {
-    width: 100%;
-    height: 300px;
-    border: 2px dashed #333;
     position: relative;
-    margin-top: 10px;
+    min-height: 400px;
+    background-color: #e0f7fa;
 }
 
 .peca {
-    border: 2px solid #000;
-    background-color: rgba(0, 128, 0, 0.1);
-    padding: 10px;
-    box-sizing: border-box;
     position: absolute;
+    border: 2px solid #00796b;
+    background-color: rgba(0, 128, 128, 0.2);
+    text-align: center;
+    padding: 5px;
+    font-size: 12px;
+    box-sizing: border-box;
 }
 
 .metragem {
+    font-size: 16px;
     text-align: center;
-    margin-top: 20px;
 }
 
-.metragem p {
-    font-size: 18px;
-    color: #333;
+.impressao {
+    text-align: center;
 }
