@@ -69,7 +69,40 @@ function desenharPlanoDeCorte() {
         
         planoCorte.appendChild(divPeça);
         yPos += (peça.altura * 100) + 10; // Atualiza a posição vertical para a próxima peça
+
+        // Permitir arrastar as peças
+        divPeça.setAttribute('draggable', true);
+        divPeça.addEventListener('dragstart', (e) => dragStart(e, index));
+        divPeça.addEventListener('dragover', dragOver);
+        divPeça.addEventListener('drop', (e) => drop(e, index));
     });
+}
+
+function dragStart(e, index) {
+    e.dataTransfer.setData('text', index);
+}
+
+function dragOver(e) {
+    e.preventDefault();
+}
+
+function drop(e, index) {
+    e.preventDefault();
+    const draggedIndex = e.dataTransfer.getData('text');
+    if (draggedIndex !== index) {
+        const temp = peças[index];
+        peças[index] = peças[draggedIndex];
+        peças[draggedIndex] = temp;
+        atualizarPeças();
+        desenharPlanoDeCorte();
+    }
+}
+
+function resetar() {
+    peças = [];
+    atualizarPeças();
+    calcularTecido();
+    desenharPlanoDeCorte();
 }
 
 function imprimirPlano() {
