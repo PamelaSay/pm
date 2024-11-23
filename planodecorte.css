@@ -53,4 +53,15 @@ button {
     background-color: rgba(0, 255, 0, 0.3);
     display: inline-block;
     padding: 5px;
+    text-align: center;
+    cursor: move;
+}
+
+.botoes {
+    margin-top: 20px;
+    text-align: center;
+}
+
+input[type="number"] {
+    width: 100px;
 }
