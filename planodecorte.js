@@ -21,14 +21,33 @@ function adicionarPeca() {
 }
 
 function atualizarPlano() {
-    larguraTecido = parseFloat(document.getElementById('largura').value);
+    let larguraTecido = parseFloat(document.getElementById('largura').value);
     if (isNaN(larguraTecido)) {
         alert("Por favor, insira a largura do tecido.");
         return;
     }
 
-    planoTecido.innerHTML = ''; // Limpar o conteúdo anterior
+    let alturaTecido = 1; // Configuração inicial de 1 metro
+    planoTecido.style.width = larguraTecido * 100 + "px"; // Multiplica para visualização
+    planoTecido.style.height = alturaTecido * 100 + "px";
 
+    planoTecido.innerHTML = ''; // Limpar plano
+
+    // Reposicionar indicadores
+    let ourelas = document.createElement('div');
+    ourelas.id = 'ourelas';
+    planoTecido.appendChild(ourelas);
+
+    let trama = document.createElement('div');
+    trama.id = 'trama-indicator';
+    trama.innerHTML = `<span>Trama (sentido do fio)</span>`;
+    planoTecido.appendChild(trama);
+
+    let fio = document.createElement('div');
+    fio.id = 'fio-indicator';
+    planoTecido.appendChild(fio);
+
+    // Posicionar peças
     let xOffset = 20; // Começa após a ourela
     let yOffset = 20; // Começa após a trama
     let alturaAtualLinha = 0;
@@ -38,16 +57,16 @@ function atualizarPlano() {
         pecaDiv.classList.add('peca');
         pecaDiv.innerHTML = `${peca.nome}<br>${peca.comprimento}m x ${peca.largura}m`;
 
-        // Define as dimensões
-        let larguraPeca = peca.sentido === 'enviesado' ? peca.comprimento : peca.largura;
-        let alturaPeca = peca.sentido === 'enviesado' ? peca.largura : peca.comprimento;
+        // Define as dimensões da peça
+        let larguraPeca = peca.sentido === 'trama' ? peca.comprimento : peca.largura;
+        let alturaPeca = peca.sentido === 'trama' ? peca.largura : peca.comprimento;
 
         larguraPeca *= 100;
         alturaPeca *= 100;
 
         // Verifica se cabe na linha atual
         if (xOffset + larguraPeca > larguraTecido * 100 + 20) {
-            xOffset = 20; // Reposiciona para a próxima linha
+            xOffset = 20; // Nova linha
             yOffset += alturaAtualLinha;
             alturaAtualLinha = 0;
         }
@@ -58,12 +77,15 @@ function atualizarPlano() {
         pecaDiv.style.left = `${xOffset}px`;
         pecaDiv.style.top = `${yOffset}px`;
 
-        // Atualiza margens
+        // Atualiza margens e altura do plano
         xOffset += larguraPeca;
         alturaAtualLinha = Math.max(alturaAtualLinha, alturaPeca);
 
         planoTecido.appendChild(pecaDiv);
     });
+
+    // Ajusta altura do tecido conforme necessário
+    planoTecido.style.height = `${Math.max(yOffset + alturaAtualLinha, alturaTecido * 100)}px`;
 
     calcularMetragem();
 }
