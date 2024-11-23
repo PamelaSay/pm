@@ -3,43 +3,41 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Calculadora de Metragem de Tecido</title>
+    <title>Plano de Corte de Tecido</title>
     <link rel="stylesheet" href="planodecorte.css">
 </head>
 <body>
+    <div class="container">
+        <h1>Plano de Corte de Tecido</h1>
 
-    <h2>Calculadora de Metragem de Tecido</h2>
-    <label for="largura">Largura do tecido (em metros): </label>
-    <input type="number" id="largura" step="0.01" placeholder="Ex: 1.40" required>
-    <br><br>
+        <div class="input-container">
+            <label for="largura">Largura do tecido (m): </label>
+            <input type="number" id="largura" placeholder="Ex: 1.40">
+            <button onclick="atualizarPlano()">Aplicar Largura</button>
+        </div>
 
-    <h3>Medidas das Peças (em metros)</h3>
+        <div class="adicionar-peca">
+            <h3>Adicionar Peça</h3>
+            <label for="nomePeca">Nome da Peça:</label>
+            <input type="text" id="nomePeca" placeholder="Ex: Assento">
+            <label for="comprimentoPeca">Comprimento (m):</label>
+            <input type="number" id="comprimentoPeca" placeholder="Ex: 0.77">
+            <label for="larguraPeca">Largura (m):</label>
+            <input type="number" id="larguraPeca" placeholder="Ex: 1.07">
+            <button onclick="adicionarPeca()">Adicionar</button>
+        </div>
 
-    <div class="peça" id="assento">
-        <span>Assento (comprimento x largura):</span>
-        <input type="number" id="assentoComprimento" placeholder="Ex: 0.77">
-        <input type="number" id="assentoLargura" placeholder="Ex: 1.07">
-        <button onclick="adicionarPeca('assento')">Adicionar</button>
-        <button onclick="removerPeca('assento')">Remover</button>
+        <div class="plano-corte">
+            <h3>Plano de Corte</h3>
+            <div id="tecido"></div>
+        </div>
+
+        <div class="metragem">
+            <button onclick="calcularMetragem()">Calcular Metragem Necessária</button>
+            <p id="resultado"></p>
+        </div>
     </div>
 
-    <div class="peça" id="bracos">
-        <span>Braços (comprimento x largura, para cada braço):</span>
-        <input type="number" id="bracosComprimento" placeholder="Ex: 0.75">
-        <input type="number" id="bracosLargura" placeholder="Ex: 0.96">
-        <button onclick="adicionarPeca('bracos')">Adicionar</button>
-        <button onclick="removerPeca('bracos')">Remover</button>
-    </div>
-
-    <div class="peça" id="fundo">
-        <span>Fundo (comprimento x largura):</span>
-        <input type="number" id="fundoComprimento" placeholder="Ex: 0.91">
-        <input type="number" id="fundoLargura" placeholder="Ex: 1.47">
-        <button onclick="adicionarPeca('fundo')">Adicionar</button>
-        <button onclick="removerPeca('fundo')">Remover</button>
-    </div>
-
-    <div class="peça" id="encosto">
-        <span>Encosto (comprimento x largura):</span>
-        <input type="number" id="encostoComprimento" placeholder="Ex: 0.79">
-  
+    <script src="planodecorte.js"></script>
+</body>
+</html>
