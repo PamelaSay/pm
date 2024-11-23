@@ -48,7 +48,7 @@ button {
 button:hover {
     background-color: #45a049;
 }
-.plano-corte h3 {
+h3 {
     color: #333;
     font-size: 18px;
     margin-bottom: 10px;
@@ -64,6 +64,7 @@ button:hover {
     display: flex;
     flex-wrap: wrap;
 }
+
 
 
 
