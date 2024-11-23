@@ -1,110 +1,118 @@
 let listaPecas = [];
 let larguraTecido = 0;
+let totalMetros = 0;
 
-// Atualiza a largura da ourela do tecido
 function atualizarPlano() {
-    const larguraInput = document.getElementById("largura").value;
-    if (larguraInput && larguraInput > 0) {
-        larguraTecido = parseFloat(larguraInput);
-        alert(`Largura do tecido ajustada para ${larguraTecido} metros.`);
-    } else {
+    const larguraInput = document.getElementById("largura");
+    larguraTecido = parseFloat(larguraInput.value);
+    
+    if (isNaN(larguraTecido) || larguraTecido <= 0) {
         alert("Por favor, insira uma largura válida para o tecido.");
+        return;
     }
+
+    // Atualizando a área de corte
+    const tecidoDiv = document.getElementById("tecido");
+    tecidoDiv.style.width = `${larguraTecido * 100}cm`; // Convertendo para cm
+    tecidoDiv.style.height = `400px`;
+    tecidoDiv.innerHTML = ''; // Limpando o plano de corte antes de adicionar novas peças
 }
 
-// Adiciona uma peça à lista
 function adicionarPeca() {
-    const nome = document.getElementById("nomePeca").value.trim();
+    const nome = document.getElementById("nomePeca").value;
     const comprimento = parseFloat(document.getElementById("comprimentoPeca").value);
     const largura = parseFloat(document.getElementById("larguraPeca").value);
     const sentido = document.getElementById("sentidoPeca").value;
 
-    if (!nome || comprimento <= 0 || largura <= 0) {
-        alert("Preencha corretamente todos os campos da peça.");
+    if (!nome || isNaN(comprimento) || isNaN(largura) || comprimento <= 0 || largura <= 0) {
+        alert("Por favor, preencha todos os campos corretamente.");
         return;
     }
 
-    const peca = { nome, comprimento, largura, sentido };
-    listaPecas.push(peca);
-    atualizarTabela();
+    // Calculando a metragem
+    let metrosNecessarios = comprimento * largura;
+
+    // Atualizando a lista de peças
+    listaPecas.push({ nome, comprimento, largura, sentido });
+    
+    // Exibindo na tabela
+    const tabela = document.getElementById("tabelaPecas").getElementsByTagName('tbody')[0];
+    const novaLinha = tabela.insertRow();
+    novaLinha.innerHTML = `
+        <td>${nome}</td>
+        <td>${comprimento.toFixed(2)}</td>
+        <td>${largura.toFixed(2)}</td>
+        <td>${sentido}</td>
+        <td><button onclick="removerPeca(this)">Remover</button></td>
+    `;
+    
+    // Exibindo as peças no plano de corte
+    exibirPecasNoPlano();
+
+    // Calculando e mostrando a metragem total necessária
+    totalMetros = listaPecas.reduce((acc, peca) => acc + (peca.comprimento * peca.largura), 0);
+    document.getElementById("resultado").textContent = `Metragem Total Necessária: ${totalMetros.toFixed(2)} metros`;
 }
 
-// Atualiza a tabela com a lista de peças
-function atualizarTabela() {
-    const tabela = document.getElementById("tabelaPecas").querySelector("tbody");
-    tabela.innerHTML = ""; // Limpa a tabela antes de recriá-la
+function removerPeca(botao) {
+    const linha = botao.closest("tr");
+    const nomePeca = linha.cells[0].textContent;
+    
+    listaPecas = listaPecas.filter(peca => peca.nome !== nomePeca);
+    linha.remove();
+    
+    // Atualizando o plano de corte e a metragem
+    exibirPecasNoPlano();
+    totalMetros = listaPecas.reduce((acc, peca) => acc + (peca.comprimento * peca.largura), 0);
+    document.getElementById("resultado").textContent = `Metragem Total Necessária: ${totalMetros.toFixed(2)} metros`;
+}
+
+function exibirPecasNoPlano() {
+    const tecidoDiv = document.getElementById("tecido");
+    tecidoDiv.innerHTML = ''; // Limpando antes de adicionar as peças
+
+    let posX = 0; // Posição horizontal no plano de corte
+    let posY = 0; // Posição vertical no plano de corte
 
     listaPecas.forEach((peca, index) => {
-        const row = document.createElement("tr");
+        // Definir a posição e dimensões com base no sentido da peça
+        let largura = peca.largura * 100; // Convertendo para centímetros
+        let comprimento = peca.comprimento * 100;
 
-        row.innerHTML = `
-            <td>${peca.nome}</td>
-            <td>${peca.comprimento.toFixed(2)}</td>
-            <td>${peca.largura.toFixed(2)}</td>
-            <td>${peca.sentido}</td>
-            <td><button onclick="removerPeca(${index})">Remover</button></td>
-        `;
-        tabela.appendChild(row);
-    });
-}
+        if (peca.sentido === "ourelha") {
+            // No sentido da ourela, a largura vai para o comprimento da peça
+            [largura, comprimento] = [comprimento, largura];
+        }
 
-// Remove uma peça da lista
-function removerPeca(index) {
-    listaPecas.splice(index, 1);
-    atualizarTabela();
-}
+        // Adicionar a peça ao plano de corte
+        const pecaDiv = document.createElement("div");
+        pecaDiv.classList.add("peca");
+        pecaDiv.style.width = `${largura}px`;
+        pecaDiv.style.height = `${comprimento}px`;
+        pecaDiv.style.top = `${posY}px`;
+        pecaDiv.style.left = `${posX}px`;
+        pecaDiv.innerHTML = `<strong>${peca.nome}</strong><br>${peca.comprimento.toFixed(2)} x ${peca.largura.toFixed(2)}m`;
 
-// Calcula a metragem necessária
-function calcularMetragem() {
-    if (larguraTecido <= 0) {
-        alert("Por favor, configure a largura da ourela do tecido antes de calcular.");
-        return;
-    }
+        tecidoDiv.appendChild(pecaDiv);
 
-    let totalComprimento = 0;
-
-    listaPecas.forEach((peca) => {
-        if (peca.sentido === "ourela") {
-            // Peça posicionada no sentido da ourela
-            if (peca.largura > larguraTecido) {
-                alert(`A peça ${peca.nome} excede a largura do tecido no sentido ourela.`);
-            } else {
-                totalComprimento += peca.comprimento;
-            }
+        // Atualiza a posição para a próxima peça
+        if (posX + largura > larguraTecido * 100) {
+            // Se a peça ultrapassar a largura, ir para a próxima linha
+            posX = 0;
+            posY += comprimento;
         } else {
-            // Peça posicionada no sentido da trama
-            if (peca.comprimento > larguraTecido) {
-                alert(`A peça ${peca.nome} excede a largura do tecido no sentido trama.`);
-            } else {
-                totalComprimento += peca.largura;
-            }
+            // Caso contrário, continuar na mesma linha
+            posX += largura;
         }
     });
-
-    const resultado = document.getElementById("resultado");
-    resultado.textContent = `Metragem necessária: ${totalComprimento.toFixed(2)} metros.`;
 }
 
-// Função para impressão (simula impressão)
 function imprimirPlano() {
     if (listaPecas.length === 0) {
         alert("Adicione peças ao plano antes de imprimir.");
         return;
     }
 
-    const planoCorte = listaPecas.map((peca, index) => 
-        `${index + 1}. ${peca.nome}: ${peca.comprimento.toFixed(2)}m x ${peca.largura.toFixed(2)}m (${peca.sentido})`
-    ).join("\n");
-
-    alert(`Plano de Corte:\n\n${planoCorte}`);
-}
-function imprimirPlano() {
-    if (listaPecas.length === 0) {
-        alert("Adicione peças ao plano antes de imprimir.");
-        return;
-    }
-
-    // Criação do conteúdo para impressão
     let conteudoImpressao = `
         <h1>Plano de Corte de Tecido</h1>
         <p>Largura do Tecido: ${larguraTecido.toFixed(2)} metros</p>
