@@ -48,7 +48,7 @@ function atualizarPlano() {
         
         pecaDiv.innerHTML = `${peca.nome}<br>${peca.comprimento}m x ${peca.largura}m`;
 
-        // Ajustar a posição das peças
+        // Ajustar a posição das peças para não sobrepor
         if (xOffset + peca.largura <= larguraTecido) {
             pecaDiv.style.left = xOffset * 100 + 'px';
             pecaDiv.style.top = yOffset * 100 + 'px';
