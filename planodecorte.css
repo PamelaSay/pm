@@ -1,164 +1,54 @@
 body {
     font-family: Arial, sans-serif;
-    background-color: #f4f4f9;
-    margin: 0;
-    padding: 0;
-}
-
-.container {
-    width: 80%;
-    margin: 20px auto;
     padding: 20px;
-    background-color: #fff;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-h1 {
+h1, h2 {
     text-align: center;
-    color: #333;
 }
 
-.input-container, .adicionar-peca, .metragem, .impressao {
+#inputForm {
     margin-bottom: 20px;
 }
 
-label {
-    margin-right: 10px;
-    font-size: 14px;
+input, select, button {
+    margin: 5px;
 }
 
-input[type="number"] {
-    width: 100px; /* Largura suficiente apenas para números */
-    padding: 6px; /* Ajusta o espaço interno */
-    font-size: 14px;
-}
-
-select {
-    width: 120px; /* Aumenta a largura do seletor */
-    padding: 8px; /* Ajusta o espaço interno */
-    font-size: 14px; /* Ajusta o tamanho da fonte para melhor visibilidade */
-}
-button {
-    padding: 10px 20px;
-    background-color: #4CAF50;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-}
-
-button:hover {
-    background-color: #45a049;
-}
-h3 {
-    color: #333;
-    font-size: 18px;
-    margin-bottom: 10px;
-}
-
-
-#tecido-container {
-    margin-top: 20px;
-    overflow: auto;
-    border: 1px solid #ccc;
-    background-color: #e0f7fa;
-    padding: 10px;
-}
-
-#tecido {
+#tecidoContainer {
     position: relative;
-    border: 2px solid #00796b;
-    background-color: #b2ebf2;
-    width: 100%; /* Ajustado pelo script */
-    height: 100px; /* Inicialmente 1 metro */
-    box-sizing: border-box;
+    margin-top: 20px;
+    background-color: #cfe2f3;
+    border: 2px solid #0078d4;
+    width: 800px;  /* Largura do tecido */
+    height: 400px; /* Altura do tecido */
 }
 
-#ourelas {
+#planoTecido {
     position: absolute;
+    top: 0;
     left: 0;
-    top: 0;
-    width: 10px;
-    height: 100%;
-    background-color: #004d40;
-}
-
-#trama-indicator {
-    position: absolute;
-    top: 0;
-    left: 10px;
-    width: 100%;
-    height: 20px;
-    background-color: #00796b;
-    color: #fff;
-    text-align: center;
-    font-size: 12px;
-    line-height: 20px;
-    z-index: 1;
-}
-
-#fio-indicator {
-    position: absolute;
-    top: 0;
-    left: 20px;
-    width: 2px;
-    height: 100%;
-    background-color: red;
-    z-index: 2;
 }
 
 .peca {
     position: absolute;
-    border: 2px solid #00796b;
-    background-color: rgba(0, 150, 136, 0.3);
+    border: 2px solid #ff6347;
+    background-color: rgba(255, 99, 71, 0.3);
     text-align: center;
     font-size: 12px;
-    box-sizing: border-box;
     padding: 5px;
+    box-sizing: border-box;
 }
 
-  
-
-.metragem {
-    font-size: 16px;
-    text-align: center;
-}
-
-.impressao {
-    text-align: center;
-}
-
-.lista-pecas {
-    margin-top: 20px;
-}
-
-table {
+#tabelaPecas {
     width: 100%;
     border-collapse: collapse;
     margin-top: 20px;
 }
 
-th, td {
+#tabelaPecas th, #tabelaPecas td {
     border: 1px solid #ddd;
     padding: 8px;
-    text-align: center;
+    text-align: left;
 }
 
-th {
-    background-color: #4CAF50;
-    color: white;
-}
-
-td button {
-    background-color: #f44336;
-    color: white;
-    padding: 5px 10px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-}
-
-td button:hover {
-    background-color: #d32f2f;
-}
