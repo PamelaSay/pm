@@ -32,12 +32,30 @@
     </select>
     <button onclick="adicionarPeca()">Adicionar Peça</button>
     </div>
+<div>
+    <h3>Lista de Peças</h3>
+    <table id="tabelaPecas">
+        <thead>
+            <tr>
+                <th>Nome da Peça</th>
+                <th>Comprimento</th>
+                <th>Largura</th>
+                <th>Sentido do Fio</th>
+                <th>Ações</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- As peças serão listadas aqui -->
+        </tbody>
+    </table>
+</div>
 
+<div>
+    <h3>Plano de Corte</h3>
+    <div id="tecido"></div>
+    <button onclick="imprimirPlano()">Imprimir Plano de Corte</button>
+</div>
 
-        <div class="plano-corte">
-            <h3>Plano de Corte</h3>
-            <div id="tecido"></div>
-        </div>
 
         <div class="metragem">
             <button onclick="calcularMetragem()">Calcular Metragem</button>
@@ -46,25 +64,6 @@
 
         <div class="impressao">
             <button onclick="imprimirPlano()">Imprimir Plano de Corte</button>
-        </div>
-
-        <!-- Tabela das peças -->
-        <div class="lista-pecas">
-            <h3>Lista das Peças</h3>
-            <table id="tabelaPecas">
-                <thead>
-                    <tr>
-                        <th>Nome</th>
-                        <th>Comprimento (m)</th>
-                        <th>Largura (m)</th>
-                        <th>Sentido do Fio</th>
-                        <th>Ações</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <!-- As linhas da tabela serão inseridas dinamicamente aqui -->
-                </tbody>
-            </table>
         </div>
     </div>
 
