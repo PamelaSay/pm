@@ -39,4 +39,40 @@ function atualizarPlano() {
 
         // Ajustar a posição das peças
         if (xOffset + peca.largura <= larguraTecido) {
-     
+            pecaDiv.style.left = xOffset * 100 + 'px';
+            pecaDiv.style.top = yOffset * 100 + 'px';
+            xOffset += peca.largura;
+        } else {
+            xOffset = peca.largura;
+            yOffset += 1;
+            pecaDiv.style.left = 0;
+            pecaDiv.style.top = yOffset * 100 + 'px';
+        }
+
+        planoTecido.appendChild(pecaDiv);
+    });
+
+    calcularMetragem();
+}
+
+function limparCampos() {
+    document.getElementById('nomePeca').value = '';
+    document.getElementById('comprimentoPeca').value = '';
+    document.getElementById('larguraPeca').value = '';
+}
+
+function calcularMetragem() {
+    let areaTotal = pecas.reduce((total, peca) => total + (peca.comprimento * peca.largura), 0);
+    let metragemNecessaria = areaTotal / larguraTecido;
+    
+    document.getElementById('resultado').innerHTML = `Você precisará de aproximadamente ${metragemNecessaria.toFixed(2)} metros de tecido.`;
+}
+
+// Função para imprimir o plano de corte
+function imprimirPlano() {
+    let originalContents = document.body.innerHTML;
+    let printContents = document.querySelector('.container').innerHTML;
+    document.body.innerHTML = printContents;
+    window.print();
+    document.body.innerHTML = originalContents;
+}
