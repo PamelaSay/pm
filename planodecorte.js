@@ -1,97 +1,83 @@
-document.getElementById('add-piece').addEventListener('click', function () {
-    const container = document.getElementById('pieces-container');
-    const pieceCount = container.children.length + 1;
+let peças = [];
+const larguraTecido = 1.40; // Largura fixa do tecido
+let totalTecido = 0;
 
-    const pieceDiv = document.createElement('div');
-    pieceDiv.className = 'piece';
-    pieceDiv.innerHTML = `
-        <label>Peça ${pieceCount} - Largura:</label>
-        <input type="text" class="piece-width" placeholder="Ex: 0,80">
-        <label>Altura:</label>
-        <input type="text" class="piece-height" placeholder="Ex: 1,20">
-        <button type="button" class="remove-piece">Remover</button>
-    `;
+function adicionarPeça() {
+    const largura = parseFloat(document.getElementById('largura').value);
+    const altura = parseFloat(document.getElementById('altura').value);
 
-    container.appendChild(pieceDiv);
-
-    // Adicionar funcionalidade de remoção
-    pieceDiv.querySelector('.remove-piece').addEventListener('click', function () {
-        pieceDiv.remove();
-    });
-});
-
-document.getElementById('fabric-form').addEventListener('submit', function (e) {
-    e.preventDefault();
-
-    const fabricWidth = parseFloat(document.getElementById('fabricWidth').value.replace(',', '.'));
-    const fabricLength = parseFloat(document.getElementById('fabricLength').value.replace(',', '.'));
-
-    const pieces = Array.from(document.querySelectorAll('.piece')).map((piece, index) => ({
-        width: parseFloat(piece.querySelector('.piece-width').value.replace(',', '.')),
-        height: parseFloat(piece.querySelector('.piece-height').value.replace(',', '.')),
-        id: index + 1
-    }));
-
-    const canvas = document.getElementById('cuttingCanvas');
-    const ctx = canvas.getContext('2d');
-
-    canvas.width = fabricWidth * 100;
-    canvas.height = fabricLength * 100;
-
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-    ctx.fillStyle = '#f0f0f0';
-    ctx.fillRect(0, 0, canvas.width, canvas.height);
-
-    let yOffset = 0;
-    let success = true;
-
-    pieces.forEach(piece => {
-        const scaledWidth = piece.width * 100;
-        const scaledHeight = piece.height * 100;
-
-        if (yOffset + scaledHeight > canvas.height) {
-            success = false;
-            return;
-        }
-
-        ctx.fillStyle = '#007bff';
-        ctx.fillRect(0, yOffset, scaledWidth, scaledHeight);
-
-        ctx.strokeStyle = '#000';
-        ctx.strokeRect(0, yOffset, scaledWidth, scaledHeight);
-
-        ctx.fillStyle = '#fff';
-        ctx.font = '12px Arial';
-        ctx.fillText(`${piece.width}m x ${piece.height}m`, 10, yOffset + 20);
-
-        yOffset += scaledHeight;
-    });
-
-    if (!success) {
-        document.getElementById('result').innerText = 'O tecido não comporta todas as peças. Ajuste o plano de corte ou aumente o tecido.';
-    } else {
-        const totalLength = pieces.reduce((acc, piece) => acc + piece.height, 0);
-        document.getElementById('result').innerText = `
-            Comprimento total necessário: ${totalLength.toFixed(2)} m
-            Unidades de tecido (1 m por unidade): ${Math.ceil(totalLength)}
-        `;
+    if (isNaN(largura) || isNaN(altura) || largura <= 0 || altura <= 0) {
+        alert("Por favor, insira valores válidos para largura e altura.");
+        return;
     }
-});
 
-document.getElementById('reset').addEventListener('click', () => {
-    const canvas = document.getElementById('cuttingCanvas');
-    const ctx = canvas.getContext('2d');
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-    document.getElementById('result').innerText = '';
-    const piecesContainer = document.getElementById('pieces-container');
-    piecesContainer.innerHTML = `
-        <div class="piece">
-            <label>Peça 1 - Largura:</label>
-            <input type="text" class="piece-width" placeholder="Ex: 0,80">
-            <label>Altura:</label>
-            <input type="text" class="piece-height" placeholder="Ex: 1,20">
-            <button type="button" class="remove-piece">Remover</button>
-        </div>
-    `;
-});
+    peças.push({ largura, altura });
+    atualizarPeças();
+    calcularTecido();
+    desenharPlanoDeCorte();
+}
 
+function atualizarPeças() {
+    const peçasAdicionadas = document.getElementById('peças-adicionadas');
+    peçasAdicionadas.innerHTML = '';
+    peças.forEach((peça, index) => {
+        const divPeça = document.createElement('div');
+        divPeça.className = 'peça';
+        divPeça.innerHTML = `Peça ${index + 1}: Largura = ${peça.largura}m, Altura = ${peça.altura}m <button onclick="removerPeça(${index})">Remover</button>`;
+        peçasAdicionadas.appendChild(divPeça);
+    });
+}
+
+function removerPeça(index) {
+    peças.splice(index, 1);
+    atualizarPeças();
+    calcularTecido();
+    desenharPlanoDeCorte();
+}
+
+function calcularTecido() {
+    totalTecido = 0;
+    let larguraTotal = 0;
+    let alturaTotal = 0;
+
+    // Calcular o tecido necessário
+    peças.forEach(peça => {
+        if (peça.largura > larguraTecido) {
+            alturaTotal += Math.ceil(peça.largura / larguraTecido) * peça.altura; // Aumenta o comprimento
+        } else {
+            alturaTotal += peça.altura;
+        }
+    });
+
+    totalTecido = alturaTotal / 1.00; // Calculando o comprimento total do tecido necessário
+    document.getElementById('total-tecido').innerText = totalTecido.toFixed(2);
+}
+
+function desenharPlanoDeCorte() {
+    const planoCorte = document.getElementById('plano-corte');
+    planoCorte.innerHTML = ''; // Limpa o plano de corte existente
+
+    let yPos = 10; // Inicia no topo do plano de corte
+    peças.forEach((peça, index) => {
+        const divPeça = document.createElement('div');
+        divPeça.className = 'peça-visual';
+        divPeça.style.width = (peça.largura * 100) + 'px'; // Convertendo para pixels
+        divPeça.style.height = (peça.altura * 100) + 'px'; // Convertendo para pixels
+        divPeça.style.top = yPos + 'px'; // Posição vertical
+        divPeça.style.left = '10px'; // Posição horizontal fixada
+        divPeça.innerText = `P${index + 1}: ${peça.largura}m x ${peça.altura}m`;
+        
+        planoCorte.appendChild(divPeça);
+        yPos += (peça.altura * 100) + 10; // Atualiza a posição vertical para a próxima peça
+    });
+}
+
+function imprimirPlano() {
+    const content = document.getElementById('plano-corte').outerHTML;
+    const win = window.open('', '', 'height=600,width=800');
+    win.document.write('<html><head><title>Plano de Corte</title></head><body>');
+    win.document.write(content);
+    win.document.write('</body></html>');
+    win.document.close();
+    win.print();
+}
