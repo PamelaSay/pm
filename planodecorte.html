@@ -1,12 +1,11 @@
-
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Plano de Corte</title>
-    <link rel="stylesheet" href="planodecorte.css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="planodecorte.css">
 </head>
 <body>
     <h1>Plano de Corte para Tecido</h1>
@@ -18,18 +17,20 @@
         <label for="comprimento-tecido">Comprimento do tecido (m):</label>
         <input type="number" id="comprimento-tecido" step="0.01" placeholder="Ex: 1.00">
 
-        <label for="nome-peça">Nome da peça:</label>
-        <input type="text" id="nome-peça" placeholder="Ex: Peça 1">
+        <div class="campo-peça">
+            <label for="nome-peça">Nome da peça:</label>
+            <input type="text" id="nome-peça" placeholder="Ex: Peça 1">
 
-        <label for="largura">Largura da peça (m):</label>
-        <input type="number" id="largura" step="0.01" placeholder="Ex: 0.80">
+            <label for="largura">Largura da peça (m):</label>
+            <input type="number" id="largura" step="0.01" placeholder="Ex: 0.80">
 
-        <label for="altura">Altura da peça (m):</label>
-        <input type="number" id="altura" step="0.01" placeholder="Ex: 1.34">
+            <label for="altura">Altura da peça (m):</label>
+            <input type="number" id="altura" step="0.01" placeholder="Ex: 1.34">
 
-        <button onclick="adicionarPeça()">
-            <span class="material-icons">add</span> Adicionar Peça
-        </button>
+            <button onclick="adicionarPeça()">
+                <span class="material-icons">add</span> Adicionar Peça
+            </button>
+        </div>
     </div>
 
     <div id="peças-adicionadas">
@@ -37,7 +38,7 @@
     </div>
 
     <div class="resultado">
-        <h3>Total de Tecido Necessário: <span id="total-tecido"></span> metros</h3>
+        <h3>Total de Tecido Necessário: <span id="total-tecido">0.00</span> metros</h3>
     </div>
 
     <div id="plano-corte">
