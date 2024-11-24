@@ -31,10 +31,11 @@ label {
 .input-container input,
 .adicionar-peca input,
 .adicionar-peca select {
-    width: 90px; /* Ajusta o tamanho de acordo com o conteúdo */
+    width: auto; /* Ajusta o tamanho de acordo com o conteúdo */
     padding: 6px;
     font-size: 14px;
     margin-bottom: 10px; /* Espaço entre os campos */
+    max-width: 150px; /* Define a largura máxima para os campos */
 }
 
 .input-container {
@@ -62,13 +63,22 @@ label {
     display: flex;
     align-items: center;
     margin-bottom: 10px;
+    flex-wrap: wrap; /* Garante que os itens não ultrapassem a largura disponível */
 }
 
 .adicionar-peca .linha label {
     margin-right: 10px;
 }
 
-.adicionar-peca button {
+.adicionar-peca input,
+.adicionar-peca select {
+    margin-right: 10px;
+    margin-bottom: 0;
+    width: auto; /* Ajusta o tamanho dinamicamente */
+}
+
+.adicionar-peca button,
+.input-container button {
     margin-top: 10px;
     padding: 10px 20px;
     background-color: #4CAF50;
@@ -76,9 +86,11 @@ label {
     border: none;
     border-radius: 5px;
     cursor: pointer;
+    font-size: 14px;
 }
 
-.adicionar-peca button:hover {
+.adicionar-peca button:hover,
+.input-container button:hover {
     background-color: #45a049;
 }
 
