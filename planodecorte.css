@@ -1,21 +1,29 @@
 body {
     font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
     margin: 0;
     padding: 0;
-    background-color: #f4f4f4;
 }
 
 .container {
     width: 80%;
-    margin: 0 auto;
+    margin: 20px auto;
+    background-color: #fff;
     padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-h1, h3 {
+h1 {
     text-align: center;
+    color: #333;
 }
 
-form, div {
+h3 {
+    color: #333;
+}
+
+.formulario, .dimensoes, .resultado, .impressao {
     margin-bottom: 20px;
 }
 
@@ -36,6 +44,8 @@ button {
     color: white;
     cursor: pointer;
     border: none;
+    padding: 10px;
+    font-size: 16px;
 }
 
 button:hover {
@@ -75,14 +85,7 @@ th, td {
     padding: 5px;
 }
 
-button {
-    padding: 10px;
-    background-color: #ff4d4d;
-    border: none;
-    color: white;
-    cursor: pointer;
-}
-
-button:hover {
-    background-color: #cc0000;
+.impressao {
+    text-align: center;
+    margin-top: 20px;
 }
