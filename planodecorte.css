@@ -1,165 +1,61 @@
+/* Estilos gerais */
 body {
     font-family: Arial, sans-serif;
-    background-color: #f4f4f9;
     margin: 0;
     padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #f4f4f9;
 }
 
 .container {
-    width: 80%;
-    margin: 20px auto;
+    background: white;
     padding: 20px;
-    background-color: #fff;
     border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    width: 400px;
 }
 
-h1 {
+h1, h2 {
     text-align: center;
     color: #333;
 }
 
-.input-container, .adicionar-peca, .metragem, .impressao {
-    margin-bottom: 20px;
-    max-width:200px;
-}
-
-label {
-    margin-right: 10px;
+/* Inputs compactos */
+.input-pequeno {
+    width: 80px;
+    padding: 5px;
     font-size: 14px;
+    text-align: center;
+    margin: 5px 0;
+    box-sizing: border-box;
 }
 
-.input-container input,
-.adicionar-peca input,
-.adicionar-peca select {
-    width: auto;
-    padding: 6px;
-    font-size: 14px;
-    margin-bottom: 10px;
-}
-
-.input-container {
-    display: flex;
-    align-items: center;
-}
-
-.adicionar-peca {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
+/* Botões */
+.botao {
+    background-color: #28a745; /* Verde */
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
     margin-top: 10px;
 }
 
-.adicionar-peca .linha {
-    display: flex;
-    align-items: center;
-    margin-bottom: 10px;
-    flex-wrap: wrap;
+.botao:hover {
+    background-color: #218838;
 }
 
-.adicionar-peca .linha label {
-    margin-right: 10px;
-}
-
-.plano-corte {
-    border: 2px solid #00796b;
-    padding: 20px;
-    margin-top: 20px;
-    position: relative;
-    min-height: 400px;
-    background-color: #b2ebf2;
-    display: flex;
-    flex-wrap: wrap;
-    box-sizing: border-box;
-    overflow: hidden;
-}
-
-#tecido {
-    position: relative;
-    background-color: #f9f9f9;
-    border: 1px solid #ccc;
-    margin: 20px auto;
-    overflow: hidden;
-    display: flex;
-    flex-direction: column;
-}
-
-.orientacao-horizontal {
-    position: absolute;
-    top: 0;
-    left: 0;
-    height: 30px;
-    width: 100%;
-    background-color: #eef;
-    text-align: center;
-    line-height: 30px;
-    font-size: 12px;
-    font-weight: bold;
-}
-
-.orientacao-vertical {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 40px;
-    height: 100%;
-    background-color: #eef;
-    text-align: center;
-    font-size: 12px;
-    font-weight: bold;
-    writing-mode: vertical-rl;
-    transform: rotate(180deg);
-}
-
-.peca {
-    position: absolute;
-    border: 2px solid #00796b;
-    background-color: rgba(0, 150, 136, 0.3);
-    text-align: center;
-    padding: 5px;
-    font-size: 12px;
-    box-sizing: border-box;
-}
-
-.metragem {
-    font-size: 16px;
-    text-align: center;
-}
-
-.impressao {
-    text-align: center;
-}
-
-.lista-pecas {
+#resultado {
     margin-top: 20px;
 }
 
-table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-top: 20px;
-}
-
-th, td {
+#pecas {
     border: 1px solid #ddd;
-    padding: 8px;
-    text-align: center;
-}
-
-th {
-    background-color: #4CAF50;
-    color: white;
-}
-
-td button {
-    background-color: #f44336;
-    color: white;
-    padding: 5px 10px;
-    border: none;
+    padding: 10px;
     border-radius: 5px;
-    cursor: pointer;
-}
-
-td button:hover {
-    background-color: #d32f2f;
+    background-color: #f9f9f9;
 }
