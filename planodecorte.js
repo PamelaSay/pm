@@ -1,35 +1,85 @@
-// Seleção dos elementos do formulário e lista de peças
-const larguraInput = document.getElementById('largura');
-const alturaInput = document.getElementById('altura');
-const quantidadeInput = document.getElementById('quantidade');
-const adicionarBtn = document.getElementById('adicionar');
-const pecasDiv = document.getElementById('pecas');
+let larguraTecido = 0;
+const comprimentoTecido = 1.00; // Comprimento fixo
+let pecas = [];
 
-// Função para adicionar peças ao plano de corte
-adicionarBtn.addEventListener('click', () => {
-    const largura = parseFloat(larguraInput.value);
-    const altura = parseFloat(alturaInput.value);
-    const quantidade = parseInt(quantidadeInput.value);
-
-    // Validação dos valores inseridos
-    if (isNaN(largura) || isNaN(altura) || isNaN(quantidade) || largura <= 0 || altura <= 0 || quantidade <= 0) {
-        alert('Por favor, insira valores válidos para largura, altura e quantidade.');
+function atualizarPlano() {
+    larguraTecido = parseFloat(document.getElementById('largura').value);
+    if (isNaN(larguraTecido) || larguraTecido <= 0) {
+        alert("Por favor, insira uma largura válida para o tecido.");
         return;
     }
 
-    // Criando o elemento da peça e adicionando ao plano de corte
-    const peca = document.createElement('div');
-    peca.className = 'peca';
-    peca.innerHTML = `
-        <p>Largura: ${largura.toFixed(2)} m</p>
-        <p>Altura: ${altura.toFixed(2)} m</p>
-        <p>Quantidade: ${quantidade}</p>
-    `;
+    // Atualiza a exibição do plano de corte
+    document.getElementById("tecido").style.width = larguraTecido * 100 + "px";  // Largura do tecido
+    document.getElementById("tecido").style.height = comprimentoTecido * 100 + "px"; // Comprimento fixo
+}
 
-    pecasDiv.appendChild(peca);
+function adicionarPeca() {
+    const nomePeca = document.getElementById('nomePeca').value;
+    const comprimentoPeca = parseFloat(document.getElementById('comprimentoPeca').value);
+    const larguraPeca = parseFloat(document.getElementById('larguraPeca').value);
+    const sentidoPeca = document.getElementById('sentidoPeca').value;
+    const quantidadePeca = parseInt(document.getElementById('quantidadePeca').value);
 
-    // Limpando os campos após adicionar a peça
-    larguraInput.value = '';
-    alturaInput.value = '';
-    quantidadeInput.value = '';
-});
+    if (isNaN(comprimentoPeca) || comprimentoPeca <= 0 || isNaN(larguraPeca) || larguraPeca <= 0 || !nomePeca) {
+        alert("Por favor, preencha todos os campos corretamente.");
+        return;
+    }
+
+    // Adiciona as peças à lista
+    pecas.push({ nome: nomePeca, comprimento: comprimentoPeca, largura: larguraPeca, sentido: sentidoPeca, quantidade: quantidadePeca });
+    atualizarTabela();
+    atualizarPlanoDeCorte();
+}
+
+function atualizarTabela() {
+    const tabela = document.getElementById('tabelaPecas').getElementsByTagName('tbody')[0];
+    tabela.innerHTML = ''; // Limpa a tabela antes de atualizar
+
+    pecas.forEach((peca, index) => {
+        const linha = tabela.insertRow();
+        linha.innerHTML = `
+            <td>${peca.nome}</td>
+            <td>${peca.comprimento}m</td>
+            <td>${peca.largura}m</td>
+            <td>${peca.sentido}</td>
+            <td>${peca.quantidade}</td>
+            <td><button onclick="removerPeca(${index})">Remover</button></td>
+        `;
+    });
+}
+
+function removerPeca(index) {
+    pecas.splice(index, 1); // Remove a peça do array
+    atualizarTabela();
+    atualizarPlanoDeCorte();
+}
+
+function atualizarPlanoDeCorte() {
+    const tecidoDiv = document.getElementById("tecido");
+    tecidoDiv.innerHTML = ''; // Limpa o plano de corte antes de atualizar
+
+    pecas.forEach(peca => {
+        for (let i = 0; i < peca.quantidade; i++) {
+            const pecaDiv = document.createElement('div');
+            pecaDiv.classList.add('peca');
+            pecaDiv.style.width = peca.largura * 100 + 'px'; // Largura da peça
+            pecaDiv.style.height = peca.comprimento * 100 + 'px'; // Comprimento da peça
+            tecidoDiv.appendChild(pecaDiv);
+        }
+    });
+}
+
+function calcularMetragem() {
+    let metragemTotal = 0;
+    pecas.forEach(peca => {
+        metragemTotal += peca.comprimento * peca.largura * peca.quantidade;
+    });
+
+    document.getElementById('resultado').textContent = `Metragem total necessária: ${metragemTotal.toFixed(2)} metros quadrados.`;
+}
+
+function imprimirPlano() {
+    window.print();
+}
+
