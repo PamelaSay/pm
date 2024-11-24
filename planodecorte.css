@@ -1,124 +1,99 @@
-body {
-    font-family: Arial, sans-serif;
-    background-color: #f4f4f9;
+/* Resetando margens e preenchimentos */
+* {
     margin: 0;
     padding: 0;
+    box-sizing: border-box;
 }
 
-.container {
-    width: 80%;
-    margin: 20px auto;
+/* Estilo geral */
+body {
+    font-family: Arial, sans-serif;
     padding: 20px;
-    background-color: #fff;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    background-color: #f4f4f4;
 }
 
-h1 {
-    text-align: center;
-    color: #333;
+/* Container principal */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
 }
 
-.input-container, .adicionar-peca, .metragem, .impressao {
+/* Seção de entrada de dados */
+.inputs {
     margin-bottom: 20px;
 }
 
 label {
-    margin-right: 10px;
-    font-size: 14px;
+    display: block;
+    margin-bottom: 5px;
 }
 
-input[type="number"] {
-    width: 100px; /* Largura suficiente apenas para números */
-    padding: 6px; /* Ajusta o espaço interno */
-    font-size: 14px;
+input, select {
+    margin-bottom: 10px;
+    padding: 8px;
+    width: 100%;
+    border: 1px solid #ccc;
+    border-radius: 4px;
 }
 
-select {
-    width: 120px; /* Aumenta a largura do seletor */
-    padding: 8px; /* Ajusta o espaço interno */
-    font-size: 14px; /* Ajusta o tamanho da fonte para melhor visibilidade */
+/* Plano de corte */
+.tecido {
+    width: 100%;
+    height: 500px; /* Tamanho fixo para visualização */
+    position: relative;
+    border: 2px solid #333;
+    margin-top: 20px;
+    background-color: #e1e1e1; /* Cor de fundo para o tecido */
 }
+
+/* Peças no plano de corte */
+.peca {
+    position: absolute;
+    background-color: rgba(0, 128, 255, 0.3);
+    border: 1px solid #0080ff;
+    text-align: center;
+    padding: 5px;
+    box-sizing: border-box;
+}
+
+/* Estilo da tabela de peças */
+table {
+    width: 100%;
+    margin-top: 20px;
+    border-collapse: collapse;
+}
+
+table, th, td {
+    border: 1px solid #ddd;
+}
+
+th, td {
+    padding: 10px;
+    text-align: left;
+}
+
+/* Estilo do formulário de adicionar peça */
+.adicionar-peca {
+    margin-top: 20px;
+}
+
 button {
-    padding: 10px 20px;
     background-color: #4CAF50;
     color: white;
     border: none;
-    border-radius: 5px;
+    padding: 10px 20px;
     cursor: pointer;
 }
 
 button:hover {
     background-color: #45a049;
 }
-h3 {
+
+/* Resultado da metragem */
+#resultado {
+    margin-top: 20px;
+    font-weight: bold;
+    font-size: 1.2em;
     color: #333;
-    font-size: 18px;
-    margin-bottom: 10px;
 }
-
-
-.plano-corte {
-    border: 2px solid #00796b; /* Deixe a borda mais visível */
-    padding: 20px;
-    margin-top: 20px;
-    position: relative;
-    min-height: 400px;
-    background-color: #b2ebf2; /* Cor azul clara */
-    display: flex;
-    flex-wrap: wrap;
-    box-sizing: border-box;
-}
-
-.peca {
-    position: absolute; /* Permite posicionar as peças no plano */
-    border: 2px solid #00796b;
-    background-color: rgba(0, 150, 136, 0.3);
-    text-align: center;
-    padding: 5px;
-    font-size: 12px;
-    box-sizing: border-box;
-    margin: 0; /* Remove margens que causam espaços */
-}
-
-.metragem {
-    font-size: 16px;
-    text-align: center;
-}
-
-.impressao {
-    text-align: center;
-}
-
-.lista-pecas {
-    margin-top: 20px;
-}
-
-table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-top: 20px;
-}
-
-th, td {
-    border: 1px solid #ddd;
-    padding: 8px;
-    text-align: center;
-}
-
-th {
-    background-color: #4CAF50;
-    color: white;
-}
-
-td button {
-    background-color: #f44336;
-    color: white;
-    padding: 5px 10px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-}
-
-td button:hover {
-    background-color: #d32f2f;
