@@ -102,18 +102,24 @@ label {
 }
 
 .plano-corte {
-    border: 2px solid #00796b;
-    padding: 20px;
-    margin-top: 20px;
     position: relative;
+    border: 2px solid #000; /* Representa a borda do tecido */
     background-color: #b2ebf2;
-    display: flex;
-    flex-wrap: wrap;
-    box-sizing: border-box;
-    width: 100%; /* A largura do plano de corte será a largura da ourela do tecido */
-    height: 100%; /* A altura vai depender da quantidade de peças e da quantidade de tecido necessário */
-    border: 2px solid #000; /* Borda para representar o tecido */
+    overflow: hidden; /* Garante que as peças não saiam dos limites */
 }
+
+.peça {
+    position: absolute;
+    border: 1px solid #666;
+    background-color: rgba(0, 128, 0, 0.3);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 12px;
+    color: #000;
+    text-align: center;
+}
+
 
 .peça {
     width: 50px; /* Teste inicial com largura fixa */
