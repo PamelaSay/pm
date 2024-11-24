@@ -116,14 +116,13 @@ label {
 }
 
 .peça {
-    position: absolute; /* As peças serão posicionadas no plano de corte com absolute */
-    border: 1px solid #ccc; /* Borda das peças */
-    background-color: rgba(0, 128, 0, 0.2); /* Cor semitransparente */
-    cursor: pointer; /* Cursor para indicar que pode ser movida */
-    padding: 5px;
-    box-sizing: border-box; /* Não deixa o tamanho ultrapassar a borda */
+    width: 50px; /* Teste inicial com largura fixa */
+    height: 50px; /* Teste inicial com altura fixa */
+    position: absolute;
+    border: 1px solid #ccc;
+    background-color: rgba(0, 128, 0, 0.2);
+    cursor: pointer;
 }
-
 
 .metragem {
     font-size: 16px;
