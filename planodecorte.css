@@ -35,7 +35,7 @@ label {
     padding: 6px;
     font-size: 14px;
     margin-bottom: 10px;
-    max-width: 150px;
+    max-width: 120px;
 }
 
 .input-container {
@@ -105,9 +105,6 @@ label {
     transform: none;
     line-height: 30px;
 }
-
-
-
 .peca {
     position: absolute;
     border: 2px solid #00796b;
