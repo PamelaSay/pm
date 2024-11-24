@@ -29,7 +29,7 @@ label {
 }
 
 input[type="number"], input[type="text"], select {
-    width: 100%;
+    width: 120px;
     padding: 6px;
     font-size: 14px;
 }
