@@ -1,6 +1,6 @@
 body {
     font-family: Arial, sans-serif;
-    background-color: #f4f4f4;
+    background-color: #f4f4f9;
     margin: 0;
     padding: 0;
 }
@@ -8,9 +8,9 @@ body {
 .container {
     width: 80%;
     margin: 20px auto;
-    background-color: #fff;
     padding: 20px;
-    border-radius: 10px;
+    background-color: #fff;
+    border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
@@ -19,37 +19,74 @@ h1 {
     color: #333;
 }
 
-h3 {
-    color: #333;
-}
-
-.formulario, .dimensoes, .resultado, .impressao {
+.input-container, .adicionar-peca, .metragem, .impressao {
     margin-bottom: 20px;
 }
 
 label {
-    display: block;
-    margin-top: 10px;
+    margin-right: 10px;
+    font-size: 14px;
 }
 
-input, select, button {
-    width: 120px;
-    padding: 8px;
-    margin: 5px 0;
-    box-sizing: border-box;
+input[type="number"], input[type="text"], select {
+    width: 100%;
+    padding: 6px;
+    font-size: 14px;
 }
 
 button {
+    padding: 10px 20px;
     background-color: #4CAF50;
     color: white;
-    cursor: pointer;
     border: none;
-    padding: 10px;
-    font-size: 16px;
+    border-radius: 5px;
+    cursor: pointer;
 }
 
 button:hover {
     background-color: #45a049;
+}
+
+h3 {
+    color: #333;
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+
+.plano-corte {
+    border: 2px solid #00796b;
+    padding: 20px;
+    margin-top: 20px;
+    position: relative;
+    min-height: 400px;
+    background-color: #b2ebf2;
+    display: flex;
+    flex-wrap: wrap;
+    box-sizing: border-box;
+}
+
+.peca {
+    position: absolute;
+    border: 2px solid #00796b;
+    background-color: rgba(0, 150, 136, 0.3);
+    text-align: center;
+    padding: 5px;
+    font-size: 12px;
+    box-sizing: border-box;
+    margin: 0;
+}
+
+.metragem {
+    font-size: 16px;
+    text-align: center;
+}
+
+.impressao {
+    text-align: center;
+}
+
+.lista-pecas {
+    margin-top: 20px;
 }
 
 table {
@@ -58,34 +95,26 @@ table {
     margin-top: 20px;
 }
 
-table, th, td {
-    border: 1px solid #ddd;
-}
-
 th, td {
+    border: 1px solid #ddd;
     padding: 8px;
     text-align: center;
 }
 
-#tecido {
-    position: relative;
-    background-color: #e0e0e0;
-    border: 2px solid #000;
-    margin-top: 20px;
-    width: 100%;
-    height: 300px;
-}
-
-.peca {
-    position: absolute;
-    background-color: rgba(0, 128, 0, 0.5);
-    border: 1px solid #000;
+th {
+    background-color: #4CAF50;
     color: white;
-    text-align: center;
-    padding: 5px;
 }
 
-.impressao {
-    text-align: center;
-    margin-top: 20px;
+td button {
+    background-color: #f44336;
+    color: white;
+    padding: 5px 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+td button:hover {
+    background-color: #d32f2f;
 }
