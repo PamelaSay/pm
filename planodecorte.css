@@ -29,9 +29,12 @@ label {
 }
 
 input[type="number"], input[type="text"], select {
-    width: 90px;
     padding: 6px;
     font-size: 14px;
+    width: auto;
+    min-width: 80px; /* Garante que o campo tenha um tamanho mínimo */
+    max-width: 200px; /* Garante que o campo não ultrapasse um tamanho máximo */
+    box-sizing: border-box;
 }
 
 button {
@@ -136,7 +139,7 @@ td button:hover {
 .adicionar-peca select, 
 .adicionar-peca button {
     flex-basis: 30%;
-    min-width: 150px;
+    min-width: 120px;
 }
 
 .adicionar-peca input[type="number"], 
@@ -148,4 +151,11 @@ td button:hover {
 .adicionar-peca button {
     align-self: flex-end;
     margin-top: 20px;
+}
+
+/* Ajuste específico para o campo de Ourela */
+.input-container input {
+    width: auto; /* Deixa a largura do campo adaptável */
+    min-width: 60px; /* Garante que o campo não fique menor que o necessário para o texto */
+    max-width: 150px; /* Limita o campo a um tamanho razoável */
 }
