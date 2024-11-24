@@ -35,7 +35,7 @@ label {
     padding: 6px;
     font-size: 14px;
     margin-bottom: 10px; /* Espaço entre os campos */
-    max-width: 120px; /* Define a largura máxima para os campos */
+    max-width: 150px; /* Define a largura máxima para os campos */
 }
 
 .input-container {
@@ -78,7 +78,9 @@ label {
 }
 
 .adicionar-peca button,
-.input-container button {
+.input-container button,
+.metragem button,
+.impressao button {
     margin-top: 10px;
     padding: 10px 20px;
     background-color: #4CAF50;
@@ -87,10 +89,14 @@ label {
     border-radius: 5px;
     cursor: pointer;
     font-size: 14px;
+    width: auto; /* Garante que o botão ocupe apenas o espaço necessário */
+    max-width: 200px; /* Limita a largura máxima do botão */
 }
 
 .adicionar-peca button:hover,
-.input-container button:hover {
+.input-container button:hover,
+.metragem button:hover,
+.impressao button:hover {
     background-color: #45a049;
 }
 
