@@ -33,7 +33,7 @@ label {
 }
 
 input, select, button {
-    width: 100%;
+    width: 120px;
     padding: 8px;
     margin: 5px 0;
     box-sizing: border-box;
