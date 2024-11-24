@@ -1,80 +1,76 @@
-document.addEventListener("DOMContentLoaded", () => {
-    const planoCorte = document.querySelector('.plano-corte');
-    const adicionarPecaBtn = document.getElementById('adicionarPecaBtn');
+// Configuração inicial
+let listaPecas = [];
+let larguraOurela = 140; // Tamanho padrão da ourela (em centímetros)
 
-    // Dimensões do plano de corte (ajustável)
-    const larguraPlano = 1200; // Largura em mm (ajustar conforme necessário)
-    const alturaPlano = 2000; // Altura em mm (ajustar conforme necessário)
-    planoCorte.style.width = `${larguraPlano / 10}px`; // Escala 1:10
-    planoCorte.style.height = `${alturaPlano / 10}px`;
+// Adicionar peça à lista
+function adicionarPeca() {
+    const nome = document.getElementById('nomePeca').value;
+    const comprimento = parseFloat(document.getElementById('comprimentoPeca').value);
+    const largura = parseFloat(document.getElementById('larguraPeca').value);
+    const quantidade = parseInt(document.getElementById('quantidadePeca').value);
+    const sentido = document.getElementById('sentidoPeca').value;
 
-    // Adicionar peça ao plano de corte
-    adicionarPecaBtn.addEventListener("click", () => {
-        const nomePeca = document.getElementById("nomePeca").value.trim();
-        const larguraPeca = parseFloat(document.getElementById("larguraPeca").value);
-        const comprimentoPeca = parseFloat(document.getElementById("comprimentoPeca").value);
-        const quantidadePeca = parseInt(document.getElementById("quantidadePeca").value, 10);
+    if (!nome || !comprimento || !largura || !quantidade || !sentido) {
+        alert("Preencha todos os campos!");
+        return;
+    }
 
-        if (!nomePeca || isNaN(larguraPeca) || isNaN(comprimentoPeca) || isNaN(quantidadePeca) || quantidadePeca < 1) {
-            alert("Preencha todos os campos corretamente.");
-            return;
-        }
+    listaPecas.push({ nome, comprimento, largura, quantidade, sentido });
+    atualizarListaPecas();
+    desenharPlanoDeCorte();
+}
 
-        for (let i = 0; i < quantidadePeca; i++) {
-            const novaPeca = document.createElement("div");
-            novaPeca.classList.add("peça");
-            novaPeca.style.width = `${larguraPeca * 10}px`; // Escala 1:10
-            novaPeca.style.height = `${comprimentoPeca * 10}px`;
-            novaPeca.textContent = nomePeca; // Nome da peça no centro
+// Atualizar lista de peças
+function atualizarListaPecas() {
+    const tabela = document.getElementById('tabelaPecas');
+    tabela.innerHTML = '';
 
-            // Posicionamento automático
-            const posicao = encontrarPosicaoDisponivel(planoCorte, novaPeca);
-            if (posicao) {
-                novaPeca.style.left = `${posicao.x}px`;
-                novaPeca.style.top = `${posicao.y}px`;
-                planoCorte.appendChild(novaPeca);
-            } else {
-                alert(`Sem espaço suficiente para a peça "${nomePeca}".`);
-                break;
-            }
+    listaPecas.forEach((peca, index) => {
+        const linha = document.createElement('tr');
+
+        linha.innerHTML = `
+            <td>${peca.nome}</td>
+            <td>${peca.comprimento} cm</td>
+            <td>${peca.largura} cm</td>
+            <td>${peca.quantidade}</td>
+            <td>${peca.sentido}</td>
+            <td><button onclick="removerPeca(${index})">Remover</button></td>
+        `;
+        tabela.appendChild(linha);
+    });
+}
+
+// Remover peça da lista
+function removerPeca(index) {
+    listaPecas.splice(index, 1);
+    atualizarListaPecas();
+    desenharPlanoDeCorte();
+}
+
+// Desenhar plano de corte
+function desenharPlanoDeCorte() {
+    const planoCorte = document.getElementById('planoCorte');
+    planoCorte.innerHTML = '';
+    planoCorte.style.width = `${larguraOurela}px`; // Define a largura como a ourela
+    let alturaNecessaria = 0;
+
+    listaPecas.forEach((peca) => {
+        for (let i = 0; i < peca.quantidade; i++) {
+            const divPeca = document.createElement('div');
+            divPeca.className = 'peca';
+            divPeca.style.width = `${peca.largura}px`;
+            divPeca.style.height = `${peca.comprimento}px`;
+            divPeca.style.top = `${alturaNecessaria}px`;
+            divPeca.style.left = `0px`; // Ajustar posicionamento conforme necessário
+
+            planoCorte.appendChild(divPeca);
+
+            alturaNecessaria += peca.comprimento; // Incrementa a altura necessária
         }
     });
 
-    // Função para encontrar posição disponível
-    function encontrarPosicaoDisponivel(plano, peca) {
-        const planoWidth = plano.offsetWidth;
-        const planoHeight = plano.offsetHeight;
-        const pecaWidth = parseFloat(peca.style.width);
-        const pecaHeight = parseFloat(peca.style.height);
+    planoCorte.style.height = `${alturaNecessaria}px`; // Define a altura do plano
+}
 
-        for (let y = 0; y <= planoHeight - pecaHeight; y += 10) {
-            for (let x = 0; x <= planoWidth - pecaWidth; x += 10) {
-                if (!verificarColisao(plano, x, y, pecaWidth, pecaHeight)) {
-                    return { x, y };
-                }
-            }
-        }
-        return null; // Sem espaço disponível
-    }
-
-    // Verifica colisão com outras peças
-    function verificarColisao(plano, x, y, largura, altura) {
-        const pecas = plano.querySelectorAll(".peça");
-        for (const peca of pecas) {
-            const pecaX = parseFloat(peca.style.left);
-            const pecaY = parseFloat(peca.style.top);
-            const pecaWidth = parseFloat(peca.style.width);
-            const pecaHeight = parseFloat(peca.style.height);
-
-            if (
-                x < pecaX + pecaWidth &&
-                x + largura > pecaX &&
-                y < pecaY + pecaHeight &&
-                y + altura > pecaY
-            ) {
-                return true; // Há colisão
-            }
-        }
-        return false; // Sem colisão
-    }
-});
+// Inicialização
+document.getElementById('botaoAdicionar').addEventListener('click', adicionarPeca);
