@@ -1,67 +1,51 @@
-/* Resetando margens e preenchimentos */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-/* Estilo geral */
 body {
     font-family: Arial, sans-serif;
-    padding: 20px;
+    margin: 0;
+    padding: 0;
     background-color: #f4f4f4;
 }
 
-/* Container principal */
 .container {
-    max-width: 1200px;
+    width: 80%;
     margin: 0 auto;
     padding: 20px;
 }
 
-/* Seção de entrada de dados */
-.inputs {
+h1, h3 {
+    text-align: center;
+}
+
+form, div {
     margin-bottom: 20px;
 }
 
 label {
     display: block;
-    margin-bottom: 5px;
+    margin-top: 10px;
 }
 
-input, select {
-    margin-bottom: 10px;
+input, select, button {
+    width: 100%;
     padding: 8px;
-    width: 100%;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-}
-
-/* Plano de corte */
-.tecido {
-    width: 100%;
-    height: 500px; /* Tamanho fixo para visualização */
-    position: relative;
-    border: 2px solid #333;
-    margin-top: 20px;
-    background-color: #e1e1e1; /* Cor de fundo para o tecido */
-}
-
-/* Peças no plano de corte */
-.peca {
-    position: absolute;
-    background-color: rgba(0, 128, 255, 0.3);
-    border: 1px solid #0080ff;
-    text-align: center;
-    padding: 5px;
+    margin: 5px 0;
     box-sizing: border-box;
 }
 
-/* Estilo da tabela de peças */
+button {
+    background-color: #4CAF50;
+    color: white;
+    cursor: pointer;
+    border: none;
+}
+
+button:hover {
+    background-color: #45a049;
+}
+
 table {
     width: 100%;
-    margin-top: 20px;
     border-collapse: collapse;
+    margin-top: 20px;
 }
 
 table, th, td {
@@ -69,31 +53,36 @@ table, th, td {
 }
 
 th, td {
-    padding: 10px;
-    text-align: left;
+    padding: 8px;
+    text-align: center;
 }
 
-/* Estilo do formulário de adicionar peça */
-.adicionar-peca {
+#tecido {
+    position: relative;
+    background-color: #e0e0e0;
+    border: 2px solid #000;
     margin-top: 20px;
+    width: 100%;
+    height: 300px;
+}
+
+.peca {
+    position: absolute;
+    background-color: rgba(0, 128, 0, 0.5);
+    border: 1px solid #000;
+    color: white;
+    text-align: center;
+    padding: 5px;
 }
 
 button {
-    background-color: #4CAF50;
-    color: white;
+    padding: 10px;
+    background-color: #ff4d4d;
     border: none;
-    padding: 10px 20px;
+    color: white;
     cursor: pointer;
 }
 
 button:hover {
-    background-color: #45a049;
-}
-
-/* Resultado da metragem */
-#resultado {
-    margin-top: 20px;
-    font-weight: bold;
-    font-size: 1.2em;
-    color: #333;
+    background-color: #cc0000;
 }
