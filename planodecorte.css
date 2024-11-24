@@ -40,6 +40,7 @@ label {
 
 .input-container {
     display: flex;
+    gap: 10px;
     align-items: center;
 }
 
@@ -113,18 +114,16 @@ label {
     height: 100%; /* A altura vai depender da quantidade de peças e da quantidade de tecido necessário */
     border: 2px solid #000; /* Borda para representar o tecido */
 }
+
+.peça {
+    position: absolute; /* As peças serão posicionadas no plano de corte com absolute */
+    border: 1px solid #ccc; /* Borda das peças */
+    background-color: rgba(0, 128, 0, 0.2); /* Cor semitransparente */
+    cursor: pointer; /* Cursor para indicar que pode ser movida */
+    padding: 5px;
+    box-sizing: border-box; /* Não deixa o tamanho ultrapassar a borda */
 }
 
-.peca {
-    position: absolute;
-    border: 2px solid #00796b;
-    background-color: rgba(0, 150, 136, 0.3);
-    text-align: center;
-    padding: 5px;
-    font-size: 12px;
-    box-sizing: border-box;
-    margin: 0;
-}
 
 .metragem {
     font-size: 16px;
