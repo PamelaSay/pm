@@ -80,31 +80,37 @@ label {
     border: 1px solid #ccc;
     margin: 20px auto;
     overflow: hidden;
+    display: flex;
+    flex-direction: column;
 }
 
-.orientacao {
+.orientacao-horizontal {
     position: absolute;
     top: 0;
     left: 0;
-    height: 100%;
+    height: 30px;
+    width: 100%;
+    background-color: #eef;
+    text-align: center;
+    line-height: 30px;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+.orientacao-vertical {
+    position: absolute;
+    top: 0;
+    left: 0;
     width: 40px;
+    height: 100%;
     background-color: #eef;
     text-align: center;
     font-size: 12px;
-    line-height: 1.2;
+    font-weight: bold;
     writing-mode: vertical-rl;
     transform: rotate(180deg);
 }
 
-.orientacao.vertical {
-    left: auto;
-    right: 0;
-    width: 100%;
-    height: 30px;
-    writing-mode: horizontal-tb;
-    transform: none;
-    line-height: 30px;
-}
 .peca {
     position: absolute;
     border: 2px solid #00796b;
