@@ -3,21 +3,24 @@ let alturaTecido = 0;
 const pecas = [];
 
 function atualizarPlano() {
+    // Pega os valores de largura e altura inseridos
     larguraTecido = parseFloat(document.getElementById('largura').value);
-    if (isNaN(larguraTecido) || larguraTecido <= 0) {
-        alert("Por favor, insira uma largura válida para o tecido.");
+    alturaTecido = parseFloat(document.getElementById('altura').value);
+
+    // Verifica se os valores são válidos
+    if (isNaN(larguraTecido) || larguraTecido <= 0 || isNaN(alturaTecido) || alturaTecido <= 0) {
+        alert("Por favor, insira uma largura e altura válidas para o tecido.");
         return;
     }
 
-    // Calcula a largura e altura do tecido com base nas peças adicionadas
+    // Calcula a largura do tecido com base nas peças
     const dimensoes = calcularDimensoesTecido();
     larguraTecido = dimensoes.largura;
-    alturaTecido = dimensoes.altura;
 
-    // Atualiza a exibição do plano de corte
+    // Atualiza a exibição do plano de corte (com a altura fixada no valor inserido)
     const tecidoDiv = document.getElementById("tecido");
     tecidoDiv.style.width = larguraTecido * 100 + "px";  // Largura do tecido
-    tecidoDiv.style.height = alturaTecido * 100 + "px"; // Altura do tecido
+    tecidoDiv.style.height = alturaTecido * 100 + "px"; // Altura do tecido (valor inserido)
 }
 
 function adicionarPeca() {
@@ -41,19 +44,17 @@ function adicionarPeca() {
 
 function calcularDimensoesTecido() {
     let larguraTotal = 0;
-    let alturaTotal = 0;
 
+    // Calcula a largura total com base nas peças
     pecas.forEach(peca => {
         if (peca.sentido === "horizontal") {
             larguraTotal += peca.largura * peca.quantidade;
-            alturaTotal = Math.max(alturaTotal, peca.comprimento); // A altura é a maior altura de peça
         } else {
             larguraTotal = Math.max(larguraTotal, peca.largura); // A largura é a maior largura de peça
-            alturaTotal += peca.comprimento * peca.quantidade;
         }
     });
 
-    return { largura: larguraTotal, altura: alturaTotal };
+    return { largura: larguraTotal };
 }
 
 function atualizarTabela() {
