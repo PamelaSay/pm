@@ -120,16 +120,6 @@ label {
     text-align: center;
 }
 
-
-.peça {
-    width: 50px; /* Teste inicial com largura fixa */
-    height: 50px; /* Teste inicial com altura fixa */
-    position: absolute;
-    border: 1px solid #ccc;
-    background-color: rgba(0, 128, 0, 0.2);
-    cursor: pointer;
-}
-
 .metragem {
     font-size: 16px;
     text-align: center;
