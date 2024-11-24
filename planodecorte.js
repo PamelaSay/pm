@@ -10,13 +10,13 @@ function atualizarPlano() {
     }
 
     const tecido = document.getElementById("tecido");
-    tecido.style.width = larguraTecido * 100 + "px"; // Largura do tecido
-    tecido.style.height = alturaTecidoPadrao * 100 + "px"; // Altura inicial
+    tecido.style.width = larguraTecido * 100 + "px"; // Largura (horizontal - trama)
+    tecido.style.height = alturaTecidoPadrao * 100 + "px"; // Altura (vertical - ourela)
 
     // Adiciona orientação ao plano de corte
     tecido.innerHTML = `
-        <div class="orientacao">OURELA</div>
-        <div class="orientacao vertical">TRAMA</div>
+        <div class="orientacao-horizontal">TRAMA</div>
+        <div class="orientacao-vertical">OURELA</div>
     `;
 }
 
@@ -87,8 +87,8 @@ function removerPeca(index) {
 function atualizarPlanoDeCorte() {
     const tecidoDiv = document.getElementById('tecido');
     tecidoDiv.innerHTML = `
-        <div class="orientacao">OURELA</div>
-        <div class="orientacao vertical">TRAMA</div>
+        <div class="orientacao-horizontal">TRAMA</div>
+        <div class="orientacao-vertical">OURELA</div>
     `; // Limpa o plano de corte com as orientações
 
     let posX = 0; // Posição inicial no eixo X
