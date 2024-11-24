@@ -1,83 +1,30 @@
 <!DOCTYPE html>
-<html lang="pt">
+<html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Plano de Corte de Tecido</title>
+    <title>Plano de Corte</title>
     <link rel="stylesheet" href="planodecorte.css">
 </head>
 <body>
     <div class="container">
-        <h1>Plano de Corte de Tecido</h1>
+        <h1>Planejador de Corte de Tecido</h1>
+        <div class="form">
+            <label for="largura">Largura (em metros):</label>
+            <input type="number" id="largura" class="input-pequeno" step="0.01" min="0">
 
-        <!-- Seção de Ourela -->
-        <div class="input-container">
-            <label for="largura">Ourela do tecido (m):</label>
-            <input type="number" id="largura" placeholder="Ex: 1.40" min="0" step="0.01">
-            <button onclick="atualizarPlano()">Aplicar Ourela</button>
+            <label for="altura">Altura (em metros):</label>
+            <input type="number" id="altura" class="input-pequeno" step="0.01" min="0">
+
+            <label for="quantidade">Quantidade:</label>
+            <input type="number" id="quantidade" class="input-pequeno" min="1" max="999">
+
+            <button id="adicionar" class="botao">Adicionar Peça</button>
         </div>
 
-        <!-- Seção de Adicionar Peça -->
-        <div class="adicionar-peca">
-            <h3>Adicionar Peça</h3>
-            <div class="linha">
-                <label for="nomePeca">Nome da Peça:</label>
-                <input type="text" id="nomePeca" placeholder="Descrição">
-                
-                <label for="comprimentoPeca">Comprimento (m):</label>
-                <input type="number" id="comprimentoPeca" placeholder="Ex: 0.77" min="0" step="0.01">
-
-                <label for="larguraPeca">Largura (m):</label>
-                <input type="number" id="larguraPeca" placeholder="Ex: 1.07" min="0" step="0.01">
-
-                <label for="quantidadePeca">Quant.:</label>
-                <input type="number" id="quantidadePeca" placeholder="Ex: 1" min="1">
-                
-                <label for="sentidoPeca">Sentido do Fio:</label>
-                <select id="sentidoPeca">
-                    <option value="ourelha">Ourela</option>
-                    <option value="trama">Trama</option>
-                    <option value="enviesado">Enviesado</option>
-                </select>
-            </div>
-            <button onclick="adicionarPeca()">Adicionar Peça</button>
-        </div>
-
-        <!-- Lista das Peças -->
-        <div class="lista-pecas">
-            <h3>Lista das Peças</h3>
-            <table id="tabelaPecas">
-                <thead>
-                    <tr>
-                        <th>Nome</th>
-                        <th>Comprimento (m)</th>
-                        <th>Largura (m)</th>
-                        <th>Sentido do Fio</th>
-                        <th>Quantidade</th>
-                        <th>Ações</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <!-- As linhas da tabela serão inseridas dinamicamente aqui -->
-                </tbody>
-            </table>
-        </div>
-
-        <!-- Plano de Corte -->
-        <h3>Plano de Corte</h3>
-        <div class="plano-corte">
-            <div id="tecido"></div>
-        </div>
-
-        <!-- Calcular Metragem -->
-        <div class="metragem">
-            <button onclick="calcularMetragem()">Calcular Metragem</button>
-            <p id="resultado"></p>
-        </div>
-
-        <!-- Imprimir Plano -->
-        <div class="impressao">
-            <button onclick="imprimirPlano()">Imprimir Plano de Corte</button>
+        <div id="resultado">
+            <h2>Plano de Corte</h2>
+            <div id="pecas"></div>
         </div>
     </div>
 
