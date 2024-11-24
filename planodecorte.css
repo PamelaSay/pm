@@ -165,3 +165,11 @@ td button {
 td button:hover {
     background-color: #d32f2f;
 }
+@media print {
+    body * {
+        visibility: hidden;
+    }
+    #tecido, #tecido * {
+        visibility: visible;
+    }
+}
