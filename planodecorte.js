@@ -1,16 +1,19 @@
 document.addEventListener("DOMContentLoaded", () => {
     const planoCorte = document.querySelector('.plano-corte');
     const adicionarPecaBtn = document.getElementById('adicionarPecaBtn');
-    
-    const alturaInicialFixa = 2000; // Altura fixa do tecido (em milímetros, ajustável)
-    planoCorte.style.height = `${alturaInicialFixa / 10}px`; // Altura convertida para pixel (escala de 1:10)
 
-    // Função para adicionar peças
-    adicionarPecaBtn.addEventListener('click', () => {
-        const nomePeca = document.getElementById('nomePeca').value.trim();
-        const larguraPeca = parseFloat(document.getElementById('larguraPeca').value);
-        const comprimentoPeca = parseFloat(document.getElementById('comprimentoPeca').value);
-        const quantidadePeca = parseInt(document.getElementById('quantidadePeca').value, 10);
+    // Dimensões do plano de corte
+    const larguraPlano = 1200; // 1200 mm de largura (ajustável)
+    const alturaPlano = 2000; // 2000 mm de altura (ajustável)
+    planoCorte.style.width = `${larguraPlano / 10}px`;
+    planoCorte.style.height = `${alturaPlano / 10}px`;
+
+    // Adiciona uma nova peça ao clicar no botão
+    adicionarPecaBtn.addEventListener("click", () => {
+        const nomePeca = document.getElementById("nomePeca").value.trim();
+        const larguraPeca = parseFloat(document.getElementById("larguraPeca").value);
+        const comprimentoPeca = parseFloat(document.getElementById("comprimentoPeca").value);
+        const quantidadePeca = parseInt(document.getElementById("quantidadePeca").value, 10);
 
         if (!nomePeca || !larguraPeca || !comprimentoPeca || quantidadePeca < 1) {
             alert("Preencha todos os campos corretamente.");
@@ -18,27 +21,26 @@ document.addEventListener("DOMContentLoaded", () => {
         }
 
         for (let i = 0; i < quantidadePeca; i++) {
-            const novaPeca = document.createElement('div');
-            novaPeca.classList.add('peça');
-            novaPeca.style.width = `${larguraPeca * 10}px`; // Largura em escala 1:10
-            novaPeca.style.height = `${comprimentoPeca * 10}px`; // Comprimento em escala 1:10
-            novaPeca.style.backgroundColor = `rgba(${Math.random() * 255}, ${Math.random() * 255}, ${Math.random() * 255}, 0.5)`; // Cor aleatória para diferenciação
-            novaPeca.setAttribute('title', nomePeca); // Tooltip com o nome da peça
+            const novaPeca = document.createElement("div");
+            novaPeca.classList.add("peça");
+            novaPeca.style.width = `${larguraPeca * 10}px`; // Escala 1:10
+            novaPeca.style.height = `${comprimentoPeca * 10}px`;
+            novaPeca.textContent = nomePeca; // Nome da peça como texto interno
 
-            // Posiciona automaticamente sem sobreposição
+            // Posicionamento automático
             const posicao = encontrarPosicaoDisponivel(planoCorte, novaPeca);
             if (posicao) {
                 novaPeca.style.left = `${posicao.x}px`;
                 novaPeca.style.top = `${posicao.y}px`;
                 planoCorte.appendChild(novaPeca);
             } else {
-                alert("Não há espaço suficiente no plano de corte para esta peça.");
+                alert(`Sem espaço suficiente para a peça ${nomePeca}.`);
                 break;
             }
         }
     });
 
-    // Função para encontrar espaço disponível no plano de corte
+    // Função para encontrar a posição disponível no plano
     function encontrarPosicaoDisponivel(plano, peca) {
         const planoWidth = plano.offsetWidth;
         const planoHeight = plano.offsetHeight;
@@ -55,9 +57,9 @@ document.addEventListener("DOMContentLoaded", () => {
         return null; // Sem espaço disponível
     }
 
-    // Função para verificar se há colisão entre peças
+    // Verifica se uma peça colide com outra
     function verificarColisao(plano, x, y, largura, altura) {
-        const pecas = plano.querySelectorAll('.peça');
+        const pecas = plano.querySelectorAll(".peça");
         for (const peca of pecas) {
             const pecaX = parseFloat(peca.style.left);
             const pecaY = parseFloat(peca.style.top);
@@ -70,9 +72,9 @@ document.addEventListener("DOMContentLoaded", () => {
                 y < pecaY + pecaHeight &&
                 y + altura > pecaY
             ) {
-                return true;
+                return true; // Há colisão
             }
         }
-        return false;
+        return false; // Sem colisão
     }
 });
