@@ -64,7 +64,7 @@ function desenharPlanoDeCorte() {
     });
 }
 
-// Função para adicionar peça à lista
+// Função para adicionar uma peça
 function adicionarPeca() {
     const nome = document.getElementById('nomePeca').value;
     const comprimento = parseFloat(document.getElementById('comprimentoPeca').value);
