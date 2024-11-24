@@ -34,14 +34,13 @@ function adicionarPeca() {
 
 function atualizarTabela() {
     const tabela = document.getElementById('tabelaPecas').getElementsByTagName('tbody')[0];
-    tabela.innerHTML = ''; // Limpa a tabela antes de atualizar
-
+    tabela.innerHTML = ''; // Limpa a tabela
     pecas.forEach((peca, index) => {
-        const linha = tabela.insertRow();
-        linha.innerHTML = `
+        const row = tabela.insertRow();
+        row.innerHTML = `
             <td>${peca.nome}</td>
-            <td>${peca.comprimento}m</td>
-            <td>${peca.largura}m</td>
+            <td>${peca.comprimento} m</td>
+            <td>${peca.largura} m</td>
             <td>${peca.sentido}</td>
             <td>${peca.quantidade}</td>
             <td><button onclick="removerPeca(${index})">Remover</button></td>
@@ -50,36 +49,42 @@ function atualizarTabela() {
 }
 
 function removerPeca(index) {
-    pecas.splice(index, 1); // Remove a peça do array
+    pecas.splice(index, 1);
     atualizarTabela();
     atualizarPlanoDeCorte();
 }
 
 function atualizarPlanoDeCorte() {
-    const tecidoDiv = document.getElementById("tecido");
-    tecidoDiv.innerHTML = ''; // Limpa o plano de corte antes de atualizar
+    const tecidoDiv = document.getElementById('tecido');
+    tecidoDiv.innerHTML = ''; // Limpa o plano de corte
 
     pecas.forEach(peca => {
         for (let i = 0; i < peca.quantidade; i++) {
             const pecaDiv = document.createElement('div');
             pecaDiv.classList.add('peca');
-            pecaDiv.style.width = peca.largura * 100 + 'px'; // Largura da peça
-            pecaDiv.style.height = peca.comprimento * 100 + 'px'; // Comprimento da peça
+            pecaDiv.style.width = peca.largura * 100 + "px";
+            pecaDiv.style.height = peca.comprimento * 100 + "px";
+            pecaDiv.textContent = peca.nome;
+
+            // Posicionamento das peças no plano de corte
+            let left = (i % 5) * (peca.largura * 100 + 10); // Exemplo de distribuição
+            let top = Math.floor(i / 5) * (peca.comprimento * 100 + 10);
+            pecaDiv.style.left = left + "px";
+            pecaDiv.style.top = top + "px";
+
             tecidoDiv.appendChild(pecaDiv);
         }
     });
 }
 
 function calcularMetragem() {
-    let metragemTotal = 0;
+    let totalArea = 0;
     pecas.forEach(peca => {
-        metragemTotal += peca.comprimento * peca.largura * peca.quantidade;
+        totalArea += peca.comprimento * peca.largura * peca.quantidade;
     });
-
-    document.getElementById('resultado').textContent = `Metragem total necessária: ${metragemTotal.toFixed(2)} metros quadrados.`;
+    document.getElementById('resultado').textContent = `A metragem total necessária é ${totalArea.toFixed(2)} m²`;
 }
 
 function imprimirPlano() {
     window.print();
 }
-
