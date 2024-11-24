@@ -11,7 +11,7 @@
         <h1>Plano de Corte de Tecido</h1>
 
         <!-- Formulário para adicionar peças -->
-        <div>
+        <div class="formulario">
             <h3>Adicionar Peça</h3>
             <form id="formPeca">
                 <label for="nomePeca">Nome da Peça:</label>
@@ -37,8 +37,8 @@
             </form>
         </div>
 
-        <!-- Tabela de peças adicionadas -->
-        <div>
+        <!-- Tabela de peças -->
+        <div class="tabela">
             <h3>Lista de Peças</h3>
             <table id="tabelaPecas">
                 <thead>
@@ -52,13 +52,13 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <!-- As peças serão adicionadas aqui -->
+                    <!-- Peças serão adicionadas aqui -->
                 </tbody>
             </table>
         </div>
 
-        <!-- Formulário para definir as dimensões do tecido -->
-        <div>
+        <!-- Dimensões do Tecido -->
+        <div class="dimensoes">
             <h3>Dimensões do Tecido</h3>
             <label for="largura">Largura (m) - Ourela:</label>
             <input type="number" step="0.01" id="largura" value="1.40" onchange="atualizarPlano()">
@@ -69,20 +69,20 @@
             <button type="button" onclick="atualizarPlano()">Atualizar Plano de Corte</button>
         </div>
 
-        <!-- Exibição do plano de corte -->
-        <div id="planoDeCorte">
+        <!-- Plano de Corte -->
+        <div class="plano-de-corte" id="planoDeCorte">
             <h3>Plano de Corte</h3>
             <div id="tecido"></div>
         </div>
 
-        <!-- Exibição do cálculo da metragem -->
-        <div>
+        <!-- Resultado do Cálculo -->
+        <div class="resultado">
             <h3>Resultado do Cálculo</h3>
             <p id="resultado">Metragem Total Necessária: 0.00 metros</p>
         </div>
 
-        <!-- Botão de impressão -->
-        <div>
+        <!-- Botão de Impressão -->
+        <div class="impressao">
             <button onclick="imprimirPlano()">Imprimir Plano de Corte</button>
         </div>
     </div>
