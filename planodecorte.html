@@ -1,49 +1,87 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Plano de Corte</title>
+    <title>Plano de Corte de Tecido</title>
     <link rel="stylesheet" href="planodecorte.css">
 </head>
 <body>
     <div class="container">
         <h1>Plano de Corte de Tecido</h1>
 
-        <!-- Configuração da ourela -->
+        <!-- Seção de Ourela -->
         <div class="input-container">
-            <label for="larguraOurela">Largura da Ourela (cm):</label>
-            <input id="larguraOurela" type="number" value="140">
-            <button id="botaoAtualizarOurela">Atualizar Ourela</button>
+            <label for="largura">Ourela do tecido (m):</label>
+            <input type="number" id="largura" placeholder="Ex: 1.40" min="0" step="0.01">
+            <button onclick="atualizarPlano()">Aplicar Ourela</button>
         </div>
 
-        <!-- Adicionar peça -->
+        <!-- Seção de Adicionar Peça -->
         <div class="adicionar-peca">
             <h3>Adicionar Peça</h3>
+            
+            <!-- Linha para o Nome da Peça, Comprimento, Largura, Quantidade e Sentido -->
             <div class="linha">
-                <label for="nomePeca">Nome:</label>
-                <input id="nomePeca" type="text">
-                <label for="comprimentoPeca">Comprimento:</label>
-                <input id="comprimentoPeca" type="number">
-                <label for="larguraPeca">Largura:</label>
-                <input id="larguraPeca" type="number">
-                <label for="quantidadePeca">Quantidade:</label>
-                <input id="quantidadePeca" type="number">
-                <label for="sentidoPeca">Sentido:</label>
+                <label for="nomePeca">Nome da Peça:</label>
+                <input type="text" id="nomePeca" placeholder="Descrição">
+                
+                <label for="comprimentoPeca">Comprimento (m):</label>
+                <input type="number" id="comprimentoPeca" placeholder="Ex: 0.77" min="0" step="0.01">
+
+                <label for="larguraPeca">Largura (m):</label>
+                <input type="number" id="larguraPeca" placeholder="Ex: 1.07" min="0" step="0.01">
+
+                <label for="quantidadePeca">Quant.:</label>
+                <input type="number" id="quantidadePeca" placeholder="Ex: 1" min="1">
+                
+                <label for="sentidoPeca">Sentido do Fio:</label>
                 <select id="sentidoPeca">
-                    <option value="ourelado">Ourela</option>
+                    <option value="ourelha">Ourela</option>
                     <option value="trama">Trama</option>
                     <option value="enviesado">Enviesado</option>
                 </select>
-                <button id="botaoAdicionar">Adicionar</button>
             </div>
+            
+            <button onclick="adicionarPeca()">Adicionar Peça</button>
         </div>
 
-        <!-- Tabela de peças -->
-        <table id="tabelaPecas" class="lista-pecas"></table>
+        <!-- Lista das Peças -->
+        <div class="lista-pecas">
+            <h3>Lista das Peças</h3>
+            <table id="tabelaPecas">
+                <thead>
+                    <tr>
+                        <th>Nome</th>
+                        <th>Comprimento (m)</th>
+                        <th>Largura (m)</th>
+                        <th>Sentido do Fio</th>
+                        <th>Quantidade</th>
+                        <th>Ações</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- As linhas da tabela serão inseridas dinamicamente aqui -->
+                </tbody>
+            </table>
+        </div>
 
-        <!-- Plano de corte -->
-        <div id="planoCorte" class="plano-corte"></div>
+        <!-- Plano de Corte -->
+        <h3>Plano de Corte</h3>
+        <div class="plano-corte">
+            <div id="tecido"></div>
+        </div>
+
+        <!-- Calcular Metragem -->
+        <div class="metragem">
+            <button onclick="calcularMetragem()">Calcular Metragem</button>
+            <p id="resultado"></p>
+        </div>
+
+        <!-- Imprimir Plano -->
+        <div class="impressao">
+            <button onclick="imprimirPlano()">Imprimir Plano de Corte</button>
+        </div>
     </div>
 
     <script src="planodecorte.js"></script>
