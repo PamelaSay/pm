@@ -35,7 +35,7 @@ label {
     padding: 6px;
     font-size: 14px;
     margin-bottom: 10px; /* Espaço entre os campos */
-    max-width: 150px; /* Define a largura máxima para os campos */
+    max-width: 120px; /* Define a largura máxima para os campos */
 }
 
 .input-container {
