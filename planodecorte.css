@@ -28,13 +28,24 @@ label {
     font-size: 14px;
 }
 
-input[type="number"], input[type="text"], select {
+input[type="number"],
+input[type="text"] {
+    width: auto; /* Ajusta o tamanho de acordo com o conteúdo */
     padding: 6px;
     font-size: 14px;
-    width: auto;
-    min-width: 80px; /* Garante que o campo tenha um tamanho mínimo */
-    max-width: 200px; /* Garante que o campo não ultrapasse um tamanho máximo */
-    box-sizing: border-box;
+    margin-bottom: 10px; /* Espaço entre os campos */
+}
+
+select {
+    width: auto; /* Ajusta o tamanho de acordo com o conteúdo */
+    padding: 6px;
+    font-size: 14px;
+    margin-bottom: 10px; /* Espaço entre os campos */
+}
+
+.adicionar-peca label {
+    display: block; /* Faz com que os rótulos fiquem acima dos campos */
+    margin-top: 10px;
 }
 
 button {
@@ -120,42 +131,4 @@ td button {
 
 td button:hover {
     background-color: #d32f2f;
-}
-
-/* Adicionar Peça */
-.adicionar-peca {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 20px;
-}
-
-.adicionar-peca label {
-    margin-right: 0;
-    flex-basis: 20%;
-    min-width: 150px;
-}
-
-.adicionar-peca input, 
-.adicionar-peca select, 
-.adicionar-peca button {
-    flex-basis: 30%;
-    min-width: 120px;
-}
-
-.adicionar-peca input[type="number"], 
-.adicionar-peca input[type="text"], 
-.adicionar-peca select {
-    padding: 6px;
-}
-
-.adicionar-peca button {
-    align-self: flex-end;
-    margin-top: 20px;
-}
-
-/* Ajuste específico para o campo de Ourela */
-.input-container input {
-    width: auto; /* Deixa a largura do campo adaptável */
-    min-width: 60px; /* Garante que o campo não fique menor que o necessário para o texto */
-    max-width: 150px; /* Limita o campo a um tamanho razoável */
 }
