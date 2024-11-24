@@ -74,7 +74,7 @@ label {
 .adicionar-peca select {
     margin-right: 10px;
     margin-bottom: 0;
-    width: auto; /* Ajusta o tamanho dinamicamente */
+    max-width: 100px; /* Ajusta o tamanho dinamicamente */
 }
 
 .adicionar-peca button,
