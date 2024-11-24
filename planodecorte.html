@@ -1,87 +1,77 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Plano de Corte</title>
+    <title>Plano de Corte de Tecido</title>
     <link rel="stylesheet" href="planodecorte.css">
 </head>
 <body>
     <div class="container">
         <h1>Plano de Corte de Tecido</h1>
 
-        <!-- Formulário para adicionar peças -->
-        <div class="formulario">
-            <h3>Adicionar Peça</h3>
-            <form id="formPeca">
-                <label for="nomePeca">Nome da Peça:</label>
-                <input type="text" id="nomePeca" required>
-                
-                <label for="comprimentoPeca">Comprimento (m):</label>
-                <input type="number" step="0.01" id="comprimentoPeca" required>
-                
-                <label for="larguraPeca">Largura (m):</label>
-                <input type="number" step="0.01" id="larguraPeca" required>
-                
-                <label for="quantidadePeca">Quantidade:</label>
-                <input type="number" id="quantidadePeca" required>
-                
-                <label for="sentidoPeca">Sentido:</label>
-                <select id="sentidoPeca">
-                    <option value="ourela">Ourela</option>
-                    <option value="trama">Trama</option>
-                    <option value="enviesado">Enviesado</option>
-                </select>
-                
-                <button type="button" onclick="adicionarPeca()">Adicionar Peça</button>
-            </form>
+        <!-- Dimensões do Tecido -->
+        <div class="input-container">
+            <label for="largura">Ourela do tecido (m):</label>
+            <input type="number" id="largura" placeholder="Ex: 1.40" min="0" step="0.01">
+            <label for="comprimento">Comprimento do tecido (m):</label>
+            <input type="number" id="comprimento" placeholder="Ex: 10.00" min="0" step="0.01">
+            <button onclick="atualizarPlano()">Aplicar Ourela</button>
         </div>
 
-        <!-- Tabela de peças -->
-        <div class="tabela">
-            <h3>Lista de Peças</h3>
+        <!-- Adicionar Peça -->
+        <div class="adicionar-peca">
+            <h3>Adicionar Peça</h3>
+            <label for="nomePeca">Nome da Peça:</label>
+            <input type="text" id="nomePeca" placeholder="Ex: Descrição">
+            <label for="comprimentoPeca">Comprimento (m):</label>
+            <input type="number" id="comprimentoPeca" placeholder="Ex: 0.77" min="0" step="0.01">
+            <label for="larguraPeca">Largura (m):</label>
+            <input type="number" id="larguraPeca" placeholder="Ex: 1.07" min="0" step="0.01">
+            <label for="quantidadePeca">Quantidade:</label>
+            <input type="number" id="quantidadePeca" placeholder="Ex: 1" min="1">
+            <label for="sentidoPeca">Sentido do Fio:</label>
+            <select id="sentidoPeca">
+                <option value="ourelha">Ourela</option>
+                <option value="trama">Trama</option>
+                <option value="enviesado">Enviesado</option>
+            </select>
+            <button onclick="adicionarPeca()">Adicionar Peça</button>
+        </div>
+
+        <!-- Lista das Peças -->
+        <div class="lista-pecas">
+            <h3>Lista das Peças</h3>
             <table id="tabelaPecas">
                 <thead>
                     <tr>
                         <th>Nome</th>
                         <th>Comprimento (m)</th>
                         <th>Largura (m)</th>
+                        <th>Sentido do Fio</th>
                         <th>Quantidade</th>
-                        <th>Sentido</th>
                         <th>Ações</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <!-- Peças serão adicionadas aqui -->
+                    <!-- As linhas da tabela serão inseridas dinamicamente aqui -->
                 </tbody>
             </table>
         </div>
 
-        <!-- Dimensões do Tecido -->
-        <div class="dimensoes">
-            <h3>Dimensões do Tecido</h3>
-            <label for="largura">Largura (m) - Ourela:</label>
-            <input type="number" step="0.01" id="largura" value="1.40" onchange="atualizarPlano()">
-            
-            <label for="comprimento">Comprimento (m) - Trama:</label>
-            <input type="number" step="0.01" id="comprimento" value="1.00" onchange="atualizarPlano()">
-            
-            <button type="button" onclick="atualizarPlano()">Atualizar Plano de Corte</button>
-        </div>
-
         <!-- Plano de Corte -->
-        <div class="plano-de-corte" id="planoDeCorte">
-            <h3>Plano de Corte</h3>
+        <h3>Plano de Corte</h3>
+        <div class="plano-corte">
             <div id="tecido"></div>
         </div>
 
-        <!-- Resultado do Cálculo -->
-        <div class="resultado">
-            <h3>Resultado do Cálculo</h3>
-            <p id="resultado">Metragem Total Necessária: 0.00 metros</p>
+        <!-- Calcular Metragem -->
+        <div class="metragem">
+            <button onclick="calcularMetragem()">Calcular Metragem</button>
+            <p id="resultado"></p>
         </div>
 
-        <!-- Botão de Impressão -->
+        <!-- Impressão -->
         <div class="impressao">
             <button onclick="imprimirPlano()">Imprimir Plano de Corte</button>
         </div>
