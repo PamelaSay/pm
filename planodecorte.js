@@ -1,19 +1,21 @@
 // Variáveis globais
-let planoCorte = []; // Para armazenar as peças adicionadas
+let planoCorte = []; // Para armazenar as peças
 let larguraTecido = 1.40; // Largura do tecido (Ourela)
 let comprimentoTecido = 1.00; // Comprimento do tecido (Trama)
 let totalMetragem = 0; // Total de metragem necessária
 
-// Função para atualizar o plano de corte com as dimensões do tecido
+// Função para atualizar o plano com as dimensões do tecido
 function atualizarPlano() {
+    // Obtém os valores de largura e comprimento do tecido
     larguraTecido = parseFloat(document.getElementById('largura').value);
     comprimentoTecido = parseFloat(document.getElementById('comprimento').value);
-    totalMetragem = 0; // Resetar o total de metragem
-    
+
+    totalMetragem = 0; // Reseta o total de metragem
+
     // Limpa o plano de corte
     document.getElementById('tecido').innerHTML = '';
-    
-    // Recalcular o total de metragem
+
+    // Recalcula e redesenha o plano de corte
     recalcularMetragem();
     desenharPlanoDeCorte();
 }
@@ -24,7 +26,7 @@ function recalcularMetragem() {
     planoCorte.forEach(peca => {
         totalMetragem += peca.comprimento * peca.largura * peca.quantidade;
     });
-    
+
     // Atualiza o valor no resultado
     document.getElementById('resultado').textContent = `Metragem Total Necessária: ${totalMetragem.toFixed(2)} metros`;
 }
@@ -32,7 +34,7 @@ function recalcularMetragem() {
 // Função para desenhar o plano de corte
 function desenharPlanoDeCorte() {
     const tecidoElement = document.getElementById('tecido');
-    
+
     // Representa o tecido (1.40m de largura e 1.00m de comprimento)
     tecidoElement.style.width = `${larguraTecido * 100}vw`; // Largura do tecido
     tecidoElement.style.height = `${comprimentoTecido * 100}vh`; // Comprimento do tecido
@@ -42,8 +44,8 @@ function desenharPlanoDeCorte() {
         for (let i = 0; i < peca.quantidade; i++) {
             const pecaElement = document.createElement('div');
             pecaElement.classList.add('peca');
-            
-            // Largura e comprimento das peças
+
+            // Calcula a largura e comprimento com base no sentido escolhido
             const largura = peca.sentido === 'ourela' ? peca.largura : peca.comprimento;
             const comprimento = peca.sentido === 'ourela' ? peca.comprimento : peca.largura;
 
@@ -51,7 +53,6 @@ function desenharPlanoDeCorte() {
             pecaElement.style.height = `${comprimento * 100}vh`;
 
             // Posição das peças no plano de corte
-            // Tentamos dispor as peças da forma mais otimizada possível
             const posicaoX = (i * largura) % larguraTecido;
             const posicaoY = Math.floor(i * largura * comprimento / larguraTecido);
 
@@ -63,7 +64,7 @@ function desenharPlanoDeCorte() {
     });
 }
 
-// Função para adicionar uma nova peça
+// Função para adicionar peça à lista
 function adicionarPeca() {
     const nome = document.getElementById('nomePeca').value;
     const comprimento = parseFloat(document.getElementById('comprimentoPeca').value);
@@ -71,67 +72,57 @@ function adicionarPeca() {
     const quantidade = parseInt(document.getElementById('quantidadePeca').value);
     const sentido = document.getElementById('sentidoPeca').value;
 
-    // Validação de dados
-    if (isNaN(comprimento) || isNaN(largura) || isNaN(quantidade) || nome.trim() === '') {
-        alert('Por favor, preencha todos os campos corretamente!');
-        return;
-    }
+    // Adiciona a peça ao plano
+    planoCorte.push({
+        nome,
+        comprimento,
+        largura,
+        quantidade,
+        sentido
+    });
 
-    // Adiciona a peça ao plano de corte
-    const peca = {
-        nome: nome,
-        comprimento: comprimento,
-        largura: largura,
-        quantidade: quantidade,
-        sentido: sentido,
-    };
-    
-    planoCorte.push(peca);
+    // Atualiza a tabela de peças
+    atualizarTabela();
 
-    // Adiciona a peça à tabela
-    const tabelaPecas = document.getElementById('tabelaPecas').getElementsByTagName('tbody')[0];
-    const row = tabelaPecas.insertRow();
-    row.innerHTML = `
-        <td>${nome}</td>
-        <td>${comprimento}</td>
-        <td>${largura}</td>
-        <td>${quantidade}</td>
-        <td>${sentido}</td>
-        <td><button onclick="removerPeca(this)">Remover</button></td>
-    `;
-
-    // Recalcula a metragem total e atualiza o plano
-    recalcularMetragem();
-    desenharPlanoDeCorte();
+    // Atualiza o plano de corte
+    atualizarPlano();
 }
 
-// Função para remover uma peça
-function removerPeca(button) {
-    const row = button.parentNode.parentNode;
-    const nomePeca = row.cells[0].textContent;
+// Função para atualizar a tabela de peças
+function atualizarTabela() {
+    const tabelaPecas = document.getElementById('tabelaPecas').getElementsByTagName('tbody')[0];
+    tabelaPecas.innerHTML = '';
 
-    // Remove a peça do plano de corte
-    planoCorte = planoCorte.filter(peca => peca.nome !== nomePeca);
-    
-    // Remove a linha da tabela
-    row.remove();
+    planoCorte.forEach((peca, index) => {
+        const row = tabelaPecas.insertRow();
 
-    // Recalcula a metragem total e atualiza o plano
-    recalcularMetragem();
-    desenharPlanoDeCorte();
+        row.insertCell(0).textContent = peca.nome;
+        row.insertCell(1).textContent = peca.comprimento;
+        row.insertCell(2).textContent = peca.largura;
+        row.insertCell(3).textContent = peca.quantidade;
+        row.insertCell(4).textContent = peca.sentido;
+        const deleteCell = row.insertCell(5);
+        const deleteButton = document.createElement('button');
+        deleteButton.textContent = 'Excluir';
+        deleteButton.onclick = () => excluirPeca(index);
+        deleteCell.appendChild(deleteButton);
+    });
+}
+
+// Função para excluir uma peça
+function excluirPeca(index) {
+    planoCorte.splice(index, 1);
+    atualizarTabela();
+    atualizarPlano();
 }
 
 // Função para imprimir o plano de corte
 function imprimirPlano() {
-    const divParaImprimir = document.querySelector('.container');
-    const janelaImpressao = window.open('', '', 'height=800,width=800');
-    janelaImpressao.document.write('<html><head><title>Plano de Corte</title>');
-    janelaImpressao.document.write('<style>body { font-family: Arial, sans-serif; }</style></head><body>');
-    janelaImpressao.document.write(divParaImprimir.innerHTML);
+    const conteúdo = document.getElementById('planoDeCorte').innerHTML;
+    const janelaImpressao = window.open('', '', 'width=800, height=600');
+    janelaImpressao.document.write('<html><body>');
+    janelaImpressao.document.write(conteúdo);
     janelaImpressao.document.write('</body></html>');
     janelaImpressao.document.close();
     janelaImpressao.print();
 }
-
-// Inicializa o plano de corte com as dimensões padrão
-atualizarPlano();
