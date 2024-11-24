@@ -1,5 +1,5 @@
 let larguraTecido = 0;
-const comprimentoTecido = 1.00; // Comprimento fixo
+const alturaTecido = 1.00; // Comprimento fixo
 let pecas = [];
 
 // Atualiza o plano de corte com base na largura do tecido
