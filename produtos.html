@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Galeria de Produtos Educativos</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background-color: #f4f4f9;
+        }
+
+        .gallery {
+            max-width: 1200px;
+            margin: 20px auto;
+            padding: 10px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+        }
+
+        .gallery-item {
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            overflow: hidden;
+            background-color: #fff;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .gallery-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: auto;
+        }
+
+        .gallery-item .description {
+            padding: 10px;
+            text-align: center;
+        }
+
+        .gallery-item .description h3 {
+            margin: 10px 0;
+            font-size: 1.2em;
+            color: #333;
+        }
+
+        .gallery-item .description p {
+            font-size: 0.9em;
+            color: #666;
+        }
+    </style>
+</head>
+<body>
+    <div class="gallery">
+        <div class="gallery-item">
+            <img src="product1.jpg" alt="Produto 1">
+            <div class="description">
+                <h3>Produto Educativo 1</h3>
+                <p>Descrição do produto educativo 1.</p>
+            </div>
+        </div>
+        <div class="gallery-item">
+            <img src="product2.jpg" alt="Produto 2">
+            <div class="description">
+                <h3>Produto Educativo 2</h3>
+                <p>Descrição do produto educativo 2.</p>
+            </div>
+        </div>
+        <div class="gallery-item">
+            <img src="product3.jpg" alt="Produto 3">
+            <div class="description">
+                <h3>Produto Educativo 3</h3>
+                <p>Descrição do produto educativo 3.</p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
