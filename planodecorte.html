@@ -18,7 +18,7 @@
             <label for="alturaTecidoInput">Altura/Comprimento do Tecido (m):</label>
             <input type="number" id="alturaTecidoInput" placeholder="Ex: 2.00" min="0" step="0.01">
 
-            <button onclick="atualizarPlano()">Aplicar Tecido</button>
+            <button onclick="atualizarPlano()">Definir Tecido</button>
         </div>
 
         <!-- Seção de Adicionar Peça -->
@@ -40,9 +40,9 @@
                 
                 <label for="sentidoPeca">Sentido do Fio:</label>
                 <select id="sentidoPeca">
-                    <option value="ourelha">Ourela</option>
+                    <option value="ourelha">Ourela (Normal)</option>
                     <option value="trama">Trama</option>
-                    <option value="enviesado">Enviesado</option>
+                    <option value="enviesado">Enviesado (Girar)</option>
                 </select>
             </div>
             
@@ -69,10 +69,12 @@
             </table>
         </div>
 
-        <!-- Plano de Corte -->
+        <!-- Plano de Corte (O próprio tecido) -->
         <h3>Plano de Corte</h3>
-        <div class="plano-corte">
-            <div id="tecido"></div>
+        <div class="plano-corte-wrapper">
+            <div id="tecido">
+                <!-- As peças são posicionadas diretamente aqui -->
+            </div>
         </div>
 
         <!-- Calcular Metragem -->
