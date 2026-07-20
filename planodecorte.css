@@ -1,7 +1,7 @@
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     background-color: #f7f5f0;
-    color: #4a4a4a;
+    color: #2b2b2b;
     margin: 0;
     padding: 0;
 }
@@ -13,21 +13,20 @@ body {
     padding: 30px;
     background-color: #ffffff;
     border-radius: 12px;
-    box-shadow: 0 6px 20px rgba(135, 175, 205, 0.15);
-    border: 1px solid #eae5dc;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+    border: 1px solid #e2dcd0;
 }
 
 h1 {
     text-align: center;
-    color: #2c4a6f;
+    color: #1a2530; /* Preto suave / Chumbo */
     font-weight: 600;
     margin-bottom: 25px;
-    letter-spacing: 0.5px;
 }
 
 h3 {
-    color: #3b597c;
-    border-bottom: 2px solid #eef2f6;
+    color: #2c3e50;
+    border-bottom: 2px solid #d4af37; /* Detalhe em dourado */
     padding-bottom: 8px;
     margin-top: 0;
 }
@@ -37,36 +36,36 @@ h3 {
 }
 
 .input-container {
-    background-color: #f0f4f8;
+    background-color: #f0f4f8; /* Azul claro suave */
     padding: 15px 20px;
     border-radius: 8px;
     display: flex;
     align-items: center;
     flex-wrap: wrap;
-    border: 1px solid #d4e2ed;
+    border: 1px solid #c9d8e8;
     gap: 10px;
 }
 
 label {
     font-size: 14px;
     font-weight: 500;
-    color: #3b4d61;
+    color: #2c3e50;
 }
 
 input, select {
     padding: 8px 12px;
     font-size: 14px;
-    border: 1px solid #ccd6e0;
+    border: 1px solid #b8c9d9;
     border-radius: 6px;
     background-color: #fff;
-    color: #333;
+    color: #1a2530;
     outline: none;
     transition: all 0.3s;
 }
 
 input:focus, select:focus {
-    border-color: #7ab2d3;
-    box-shadow: 0 0 5px rgba(122, 178, 211, 0.3);
+    border-color: #d4af37; /* Foco em dourado */
+    box-shadow: 0 0 5px rgba(212, 175, 55, 0.3);
 }
 
 .input-container input {
@@ -74,10 +73,10 @@ input:focus, select:focus {
 }
 
 .adicionar-peca {
-    background-color: #fdfcf9;
+    background-color: #faf8f5;
     padding: 20px;
     border-radius: 8px;
-    border: 1px solid #eae5dc;
+    border: 1px solid #e8e3d9;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
@@ -100,71 +99,81 @@ input:focus, select:focus {
     max-width: 180px;
 }
 
+/* Botões com detalhe em Dourado elegante */
 button {
     padding: 9px 18px;
-    background-color: #7ab2d3;
-    color: white;
-    border: none;
+    background-color: #1a2530; /* Preto sofisticado */
+    color: #d4af37; /* Texto em Dourado */
+    border: 1px solid #d4af37;
     border-radius: 6px;
     cursor: pointer;
     font-size: 14px;
     font-weight: 600;
     transition: all 0.2s ease;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
 }
 
 button:hover {
-    background-color: #5c9bc2;
-    transform: translateY(-1px);
+    background-color: #d4af37;
+    color: #1a2530;
 }
 
 .impressao button {
-    background-color: #94a3b8;
+    background-color: #4a5568;
+    color: #ffffff;
+    border: none;
 }
 .impressao button:hover {
-    background-color: #64748b;
+    background-color: #2d3748;
 }
 
-.plano-corte {
-    border: 2px solid #b8d0e5;
-    padding: 15px;
-    margin-top: 20px;
-    position: relative;
-    min-height: 400px;
-    background-color: #ffffff;
-    border-radius: 8px;
+/* --- ÁREA DO PLANO DE CORTE (O TECIDO É O PRÓPRIO QUADRO) --- */
+.plano-corte-wrapper {
+    width: 100%;
+    max-height: 500px;
     overflow: auto;
-    box-shadow: inset 0 2px 4px rgba(0,0,0,0.02);
+    border: 2px solid #1a2530;
+    border-radius: 6px;
+    margin-top: 15px;
+    background-color: #e5edf5; /* Fundo ao redor caso haja scroll */
+    padding: 10px;
+    box-sizing: border-box;
 }
 
 #tecido {
     position: relative;
-    background-color: #f4f7fa;
-    border: 1px dashed #7ab2d3;
+    background-color: #f7fbff; /* Cor base do tecido (Azul claro clarinho) */
+    border: 1px solid #9bbcd9;
+    box-sizing: border-box;
+    margin: 0 auto;
 }
 
+/* Estilo individual de cada peça no tecido */
 .peca {
     position: absolute;
-    border: 1px solid #4a7c9d;
-    background-color: rgba(122, 178, 211, 0.2);
+    border: 1px solid #1a2530;
+    background-color: rgba(122, 178, 211, 0.35); /* Azul translúcido */
     text-align: center;
     padding: 4px;
     font-size: 11px;
-    font-weight: 500;
-    color: #2c4a6f;
+    font-weight: 600;
+    color: #1a2530;
     box-sizing: border-box;
     border-radius: 3px;
     overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .metragem {
     font-size: 15px;
     text-align: center;
-    background-color: #f7fafc;
+    background-color: #f0f4f8;
     padding: 15px;
     border-radius: 8px;
-    border: 1px solid #e2e8f0;
-    color: #2c4a6f;
+    border: 1px solid #c9d8e8;
+    color: #1a2530;
     font-weight: 500;
 }
 
@@ -188,28 +197,31 @@ table {
 }
 
 th, td {
-    border: 1px solid #edf2f7;
+    border: 1px solid #e2e8f0;
     padding: 10px 12px;
     text-align: center;
     font-size: 14px;
 }
 
 th {
-    background-color: #7ab2d3;
-    color: white;
+    background-color: #1a2530;
+    color: #d4af37; /* Dourado nos títulos da tabela */
     font-weight: 600;
 }
 
 tr:nth-child(even) {
-    background-color: #f9fbff;
+    background-color: #f8fafc;
 }
 
 td button {
-    background-color: #e28787;
+    background-color: #a03232; /* Tom de alerta para exclusão */
+    color: white;
+    border: none;
     padding: 5px 10px;
     font-size: 12px;
 }
 
 td button:hover {
-    background-color: #d16666;
+    background-color: #822828;
+    color: white;
 }
