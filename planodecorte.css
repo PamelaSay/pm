@@ -1,102 +1,91 @@
-body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background-color: #f7f5f0;
-    color: #2b2b2b;
+/* Estilos Gerais */
+* {
+    box-sizing: border-box;
     margin: 0;
     padding: 0;
 }
 
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f7fafc;
+    color: #2d3748;
+    padding: 20px;
+}
+
 .container {
-    width: 85%;
-    max-width: 1100px;
-    margin: 30px auto;
+    max-width: 1000px;
+    margin: 0 auto;
+    background: #ffffff;
     padding: 30px;
-    background-color: #ffffff;
     border-radius: 12px;
-    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
-    border: 1px solid #e2dcd0;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
 }
 
 h1 {
+    font-size: 1.8rem;
+    margin-bottom: 20px;
+    color: #1a202c;
     text-align: center;
-    color: #1a2530;
-    font-weight: 600;
-    margin-bottom: 25px;
 }
 
 h3 {
-    color: #2c3e50;
-    border-bottom: 2px solid #d4af37;
-    padding-bottom: 8px;
-    margin-top: 0;
+    font-size: 1.2rem;
+    margin-bottom: 15px;
+    color: #4a5568;
 }
 
-.input-container, .adicionar-peca, .metragem-destaque, .impressao {
-    margin-bottom: 20px;
-}
-
-.input-container {
-    background-color: #f0f4f8;
-    padding: 15px 20px;
+/* Formulários e Entradas */
+.input-container, .adicionar-peca {
+    background: #edf2f7;
+    padding: 20px;
     border-radius: 8px;
+    margin-bottom: 25px;
+}
+
+.linha {
     display: flex;
-    align-items: center;
     flex-wrap: wrap;
-    border: 1px solid #c9d8e8;
-    gap: 10px;
+    gap: 15px;
+    align-items: flex-end;
+    margin-bottom: 15px;
+}
+
+.linha div, .linha > * {
+    flex: 1;
+    min-width: 120px;
 }
 
 label {
-    font-size: 14px;
-    font-weight: 500;
-    color: #2c3e50;
+    display: block;
+    font-size: 0.85rem;
+    font-weight: 600;
+    margin-bottom: 5px;
+    color: #4a5568;
 }
 
 input, select {
-    padding: 8px 12px;
-    font-size: 14px;
-    border: 1px solid #b8c9d9;
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #cbd5e0;
     border-radius: 6px;
-    background-color: #fff;
-    color: #1a2530;
-    outline: none;
-    transition: all 0.3s;
+    font-size: 0.95rem;
+    background: #fff;
 }
 
-input:focus, select:focus {
-    border-color: #d4af37;
-    box-shadow: 0 0 5px rgba(212, 175, 55, 0.3);
+button {
+    background-color: #3182ce;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 0.95rem;
+    font-weight: 600;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.2s;
 }
 
-.input-container input {
-    max-width: 120px;
-}
-
-.adicionar-peca {
-    background-color: #faf8f5;
-    padding: 20px;
-    border-radius: 8px;
-    border: 1px solid #e8e3d9;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-}
-
-.adicionar-peca .linha {
-    display: flex;
-    align-items: center;
-    margin-bottom: 12px;
-    flex-wrap: wrap;
-    gap: 10px;
-}
-
-.adicionar-peca input,
-.adicionar-peca select {
-    max-width: 110px;
-}
-
-#nomePeca {
-    max-width: 180px;
+button:hover {
+    background-color: #2b6cb0;
 }
 
 .botoes-form {
@@ -104,77 +93,73 @@ input:focus, select:focus {
     gap: 10px;
 }
 
-button {
-    padding: 9px 18px;
-    background-color: #1a2530;
-    color: #d4af37;
-    border: 1px solid #d4af37;
-    border-radius: 6px;
-    cursor: pointer;
-    font-size: 14px;
-    font-weight: 600;
-    transition: all 0.2s ease;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+/* Tabela de Peças */
+.lista-pecas {
+    margin-bottom: 30px;
+    overflow-x: auto;
 }
 
-button:hover {
-    background-color: #d4af37;
-    color: #1a2530;
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
 }
 
-.impressao button {
-    background-color: #4a5568;
-    color: #ffffff;
-    border: none;
-}
-.impressao button:hover {
-    background-color: #2d3748;
+th, td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid #e2e8f0;
+    font-size: 0.9rem;
 }
 
-/* --- ESTRUTURA DO TECIDO E OURELAS --- */
+th {
+    background-color: #edf2f7;
+    color: #4a5568;
+}
+
+td button {
+    padding: 6px 10px;
+    font-size: 0.8rem;
+    margin-right: 5px;
+}
+
+/* Simulação Visual do Tecido */
 .plano-corte-wrapper {
     width: 100%;
-    max-height: 500px;
-    overflow-y: auto;
     overflow-x: auto;
-    border: none;
-    border-radius: 6px;
-    margin-top: 15px;
-    background-color: transparent;
-    position: relative;
-    box-sizing: border-box;
-    display: flex;
-    justify-content: center;
+    background: #edf2f7;
+    padding: 20px;
+    border-radius: 8px;
+    margin-bottom: 20px;
 }
 
 #tecido {
     position: relative;
-    background-color: #f7fbff;
-    border: 2px solid #1a2530;
-    box-sizing: border-box;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    background-color: #fefcbf; /* Cor simulando tecido cru/algodão */
+    border: 2px dashed #d69e2e;
+    margin: 0 auto;
+    transition: width 0.3s ease;
 }
 
-/* Faixas laterais fixas de Ourela */
+/* Ourelas nas laterais */
 .faixa-ourelha {
     position: absolute;
     top: 0;
     width: 32px;
-    height: 100%;
-    background-color: #e2e8f0;
-    border-left: 1px dashed #94a3b8;
-    border-right: 1px dashed #94a3b8;
-    font-size: 10px;
-    font-weight: bold;
-    color: #475569;
+    background-color: rgba(214, 158, 46, 0.2);
+    border-left: 1px dashed #b7791f;
+    border-right: 1px dashed #b7791f;
+    font-size: 0.65rem;
     writing-mode: vertical-rl;
-    text-align: center;
+    text-orientation: mixed;
     display: flex;
     align-items: center;
     justify-content: center;
+    color: #744210;
+    font-weight: bold;
     letter-spacing: 2px;
-    z-index: 10;
     user-select: none;
+    z-index: 2;
 }
 
 .faixa-ourelha.esquerda {
@@ -187,177 +172,87 @@ button:hover {
 
 #conteudo-tecido {
     position: relative;
-    width: 100%;
-    height: 100%;
-    margin-left: 32px; /* Afasta o conteúdo para respeitar a ourela esquerda */
-    box-sizing: border-box;
+    margin-left: 32px; /* Espaço da ourela esquerda */
+    margin-right: 32px; /* Espaço da ourela direita */
+    background-color: transparent;
 }
 
-/* Estilo individual de cada peça contida no tecido */
+/* Estilo das Peças Renderizadas */
 .peca {
     position: absolute;
-    border: 1.5px dashed #1a2530;
-    background-color: rgba(122, 178, 211, 0.4);
-    text-align: center;
-    font-size: 11px;
-    font-weight: 600;
-    color: #1a2530;
-    box-sizing: border-box;
-    border-radius: 3px;
+    background-color: rgba(49, 130, 206, 0.25);
+    border: 2px solid #3182ce;
+    border-radius: 4px;
     display: flex;
     align-items: center;
     justify-content: center;
-    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+    font-size: 0.8rem;
+    font-weight: bold;
+    color: #2b6cb0;
+    text-align: center;
     padding: 4px;
+    box-sizing: border-box;
     overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
 }
 
 .peca.enviesado {
-    transform: rotate(45deg);
-    transform-origin: center center;
-    background-color: rgba(212, 175, 55, 0.35);
-    border: 1.5px dashed #b7791f;
+    border-style: dotted;
+    background-color: rgba(221, 107, 32, 0.25);
+    border-color: #dd6b20;
+    color: #c05621;
 }
 
-/* --- METRAGEM EM DESTAQUE --- */
+/* Metragem em Destaque */
 .metragem-destaque {
-    font-size: 16px;
-    text-align: center;
-    background-color: #1a2530;
-    color: #ffffff;
-    padding: 18px 20px;
-    border-radius: 8px;
-    border: 2px solid #d4af37;
-    margin-top: 20px;
-    margin-bottom: 15px;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
     display: flex;
     align-items: center;
-    justify-content: center;
     gap: 12px;
+    background-color: #ebf8ff;
+    border: 1px solid #90cdf4;
+    padding: 15px 20px;
+    border-radius: 8px;
+    font-size: 1.05rem;
+    color: #2b6cb0;
+    margin-bottom: 20px;
 }
 
 .metragem-destaque i {
-    color: #d4af37;
-    font-size: 20px;
+    font-size: 1.4rem;
 }
 
-#resultado {
-    font-weight: 600;
-    letter-spacing: 0.3px;
-    margin: 0;
-}
-
+/* Impressão */
 .impressao {
     text-align: center;
-    margin-top: 15px;
 }
 
-.lista-pecas {
-    margin-top: 25px;
-}
-
-table {
+.impressao button {
+    background-color: #38a169;
     width: 100%;
-    border-collapse: collapse;
-    margin-top: 10px;
-    background-color: #fff;
-    border-radius: 8px;
-    overflow: hidden;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.02);
+    padding: 12px;
+    font-size: 1rem;
 }
 
-th, td {
-    border: 1px solid #e2e8f0;
-    padding: 10px 12px;
-    text-align: center;
-    font-size: 14px;
+.impressao button:hover {
+    background-color: #2f855a;
 }
 
-th {
-    background-color: #1a2530;
-    color: #d4af37;
-    font-weight: 600;
-}
-
-tr:nth-child(even) {
-    background-color: #f8fafc;
-}
-
-/* Botões de Ação por Ícones */
-.btn-acao {
-    background: none;
-    border: none;
-    cursor: pointer;
-    font-size: 15px;
-    padding: 5px 8px;
-    margin: 0 2px;
-    border-radius: 4px;
-    transition: background 0.2s;
-    box-shadow: none;
-}
-
-.btn-editar {
-    color: #3182ce;
-}
-.btn-editar:hover {
-    background-color: #ebf8ff;
-    color: #2b6cb0;
-}
-
-.btn-duplicar {
-    color: #d69e2e;
-}
-.btn-duplicar:hover {
-    background-color: #fefcbf;
-    color: #b7791f;
-}
-
-.btn-remover {
-    color: #e53e3e;
-}
-.btn-remover:hover {
-    background-color: #fff5f5;
-    color: #c53030;
-}
-
-/* --- CONFIGURAÇÃO PARA A HORA DA IMPRESSÃO --- */
 @media print {
-    body {
-        background-color: #ffffff;
-    }
-    
-    .container {
-        width: 100%;
-        max-width: 100%;
-        margin: 0;
-        padding: 0;
-        box-shadow: none;
-        border: none;
-    }
-
     .noprint {
         display: none !important;
     }
-
-    .plano-corte-wrapper {
-        max-height: none;
-        overflow: visible;
-        border: none;
-        display: block;
+    body {
+        background: white;
+        padding: 0;
     }
-
-    #tecido {
-        border: 2px solid #000 !important;
+    .container {
         box-shadow: none;
-        margin: 0 auto;
+        padding: 0;
     }
-
-    .metragem-destaque {
-        background-color: #f0f4f8 !important;
-        color: #000 !important;
-        border: 1px solid #000 !important;
-        -webkit-print-color-adjust: exact;
-        print-color-adjust: exact;
+    .plano-corte-wrapper {
+        background: white;
+        padding: 0;
+        overflow: visible;
     }
 }
