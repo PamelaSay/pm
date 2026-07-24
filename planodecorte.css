@@ -74,7 +74,7 @@ input:focus, select:focus {
 
 .adicionar-peca {
     background-color: #faf8f5;
-    padding: 20px;
+    padding: 15px;
     border-radius: 8px;
     border: 1px solid #e8e3d9;
     display: flex;
@@ -82,34 +82,36 @@ input:focus, select:focus {
     align-items: flex-start;
 }
 
-/* Deixa todos os campos na mesma linha e reduz o tamanho dos quadradinhos */
 .adicionar-peca .linha {
     display: flex;
     align-items: center;
-    flex-wrap: nowrap; /* Impede que quebrem de linha */
-    gap: 8px;          /* Espaçamento compacto entre os campos */
+    flex-wrap: nowrap; /* Força tudo a ficar na mesma linha horizontal */
+    gap: 6px;          /* Espaço menor entre os campos para economizar espaço */
     width: 100%;
 }
 
-/* Reduz o tamanho da largura dos campos (quadrados de texto) */
+/* Reduz o tamanho de todos os inputs e selects da linha */
 .adicionar-peca input,
 .adicionar-peca select {
-    padding: 5px 7px;
-    font-size: 13px;
-    max-width: 80px;   /* Diminui a largura máxima dos inputs */
+    padding: 6px 6px;
+    font-size: 12px;
+    max-width: 75px;   /* Deixa os quadradinhos bem compactos */
 }
 
-/* Deixa o campo do Nome um pouco maior que os outros para caber a descrição */
+/* Tamanho específico reduzido para o campo Nome */
 #nomePeca {
-    max-width: 140px;
+    max-width: 110px;
 }
 
-/* Ajusta o tamanho das etiquetas (rótulos) para economizar espaço */
+/* Tamanho específico para o select do Sentido do Fio não estourar a linha */
+#sentidoPeca {
+    max-width: 110px;
+}
+
 .adicionar-peca label {
-    font-size: 13px;
-    white-space: nowrap; /* Evita que o texto do rótulo quebre em duas linhas */
+    font-size: 12px;
+    white-space: nowrap; /* Impede que o texto do rótulo quebre */
 }
-
 .botoes-form {
     display: flex;
     gap: 10px;
