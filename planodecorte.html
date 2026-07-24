@@ -15,10 +15,10 @@
         <!-- Seção de Ourela (Largura Fixa) -->
         <div class="input-container noprint">
             <label for="larguraTecido">Ourela do Tecido (Largura em metros):</label>
-            <div style="display: flex; gap: 10px; align-items: center;">
-                <input type="number" id="larguraTecido" placeholder="Ex: 1.40" min="0" step="0.01" style="flex: 2;">
-                <button type="button" id="btnDefinirOurela" style="flex: 1; padding: 10px 15px;">Definir Ourela</button>
-                <button type="button" id="btnNovoPlano" style="flex: 1; background-color: #2d3748; color: white; padding: 10px 15px;" title="Iniciar novo plano"><i class="fa-solid fa-rotate-right"></i> Novo</button>
+            <div class="linha-ourelha">
+                <input type="number" id="larguraTecido" placeholder="Ex: 1.40" min="0" step="0.01">
+                <button type="button" id="btnDefinirOurela">Definir Ourela</button>
+                <button type="button" id="btnNovoPlano" title="Iniciar novo plano"><i class="fa-solid fa-rotate-right"></i> Novo</button>
             </div>
         </div>
 
@@ -54,9 +54,9 @@
                 </div>
             </div>
             
-            <div class="botoes-form" style="margin-top: 15px;">
+            <div class="botoes-form">
                 <button type="button" id="btnSalvar">Adicionar Peça</button>
-                <button type="button" id="btnCancelar" style="display:none; background-color: #718096; color: white;">Cancelar</button>
+                <button type="button" id="btnCancelar" class="btn-cancelar-escondido">Cancelar</button>
             </div>
         </div>
 
@@ -84,8 +84,8 @@
         <h3>Plano de Corte e Aproveitamento</h3>
         <div class="plano-corte-wrapper">
             <div id="tecido">
-                <div class="faixa-ourelha esquerda">OURELA</div>
-                <div class="faixa-ourelha direita">OURELA</div>
+                <div class="faixa-ourela esquerda">OURELA</div>
+                <div class="faixa-ourela direita">OURELA</div>
                 <div id="conteudo-tecido">
                     <!-- As peças ficam estritamente dentro da área útil delimitada pelas ourelas -->
                 </div>
@@ -106,4 +106,5 @@
 
     <script src="planodecorte.js"></script>
 </body>
+<footer>@2024_ Criado por Pamela Mendonça</footer>
 </html>
