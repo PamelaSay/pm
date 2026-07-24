@@ -49,7 +49,7 @@ function atualizarPlanoDeCorte() {
     // Se não houver peças na lista, define uma altura mínima inicial limpa
     if (pecas.length === 0) {
         conteudoDiv.style.height = "50px";
-        const faixasOurela = tecidoDiv.querySelectorAll('.faixa-ourelha');
+        const faixasOurela = tecidoDiv.querySelectorAll('.faixa-ourela');
         faixasOurela.forEach(faixa => faixa.style.height = "50px");
         if (resultadoDiv) {
             resultadoDiv.innerText = "Nenhuma peça adicionada ao plano.";
@@ -112,7 +112,7 @@ function atualizarPlanoDeCorte() {
     // Aplica a altura calculada no conteúdo e nas ourelas laterais
     conteudoDiv.style.height = alturaTotalNecessariaPx + "px";
     
-    const faixasOurela = tecidoDiv.querySelectorAll('.faixa-ourelha');
+    const faixasOurela = tecidoDiv.querySelectorAll('.faixa-ourela');
     faixasOurela.forEach(faixa => {
         faixa.style.height = alturaTotalNecessariaPx + "px";
     });
@@ -164,7 +164,7 @@ function salvarPeca(event) {
     alturaInput.value = "";
     larguraInput.value = "";
     quantidadeInput.value = "1";
-    if (sentidoInput) sentidoInput.value = "ourelha";
+    if (sentidoInput) sentidoInput.value = "ourela";
 
     atualizarTabelaPecas();
     atualizarPlanoDeCorte();
@@ -223,7 +223,7 @@ function cancelarEdicao() {
     document.getElementById("alturaPeca").value = "";
     document.getElementById("larguraPeca").value = "";
     document.getElementById("quantidadePeca").value = "1";
-    document.getElementById("sentidoPeca").value = "ourelha";
+    document.getElementById("sentidoPeca").value = "ourela";
 
     document.getElementById("tituloFormulario").innerText = "Adicionar Peça";
     document.getElementById("btnSalvar").innerText = "Adicionar Peça";
