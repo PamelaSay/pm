@@ -1,11 +1,8 @@
-// Variáveis globais para armazenar os dados do plano de corte
 let larguraTecido = 0; 
-let MARGEM_SEGURANÇA = 0.02; // 2 cm de margem padrão
+let MARGEM_SEGURANÇA = 0.02; 
 let pecas = [];
 
-// Inicialização segura após o carregamento completo da página
 document.addEventListener("DOMContentLoaded", () => {
-    // Atrelando os eventos aos botões via JavaScript (evita erros de escopo)
     document.getElementById("btnDefinirOurela").addEventListener("click", atualizarTecido);
     document.getElementById("btnNovoPlano").addEventListener("click", novoPlano);
     document.getElementById("btnSalvar").addEventListener("click", salvarPeca);
@@ -13,7 +10,6 @@ document.addEventListener("DOMContentLoaded", () => {
     document.getElementById("btnImprimir").addEventListener("click", () => window.print());
 });
 
-// Função para atualizar as dimensões principais do tecido
 function atualizarTecido() {
     const inputLargura = document.getElementById("larguraTecido");
     if (inputLargura) {
@@ -22,7 +18,6 @@ function atualizarTecido() {
     atualizarPlanoDeCorte();
 }
 
-// Função para resetar e iniciar um novo plano do zero
 function novoPlano() {
     if (confirm("Deseja realmente limpar todas as peças e reiniciar o plano de corte?")) {
         pecas = [];
@@ -37,7 +32,6 @@ function novoPlano() {
     }
 }
 
-// Função principal que renderiza o plano de corte e calcula o posicionamento das peças
 function atualizarPlanoDeCorte() {
     const tecidoDiv = document.getElementById("tecido");
     const conteudoDiv = document.getElementById("conteudo-tecido");
@@ -56,7 +50,7 @@ function atualizarPlanoDeCorte() {
         return;
     }
 
-    const escala = 120; // Escala visual (1 metro = 120px)
+    const escala = 120; 
     const larguraTelaTecido = larguraTecido * escala;
     
     tecidoDiv.style.width = (larguraTelaTecido + 64) + "px";
@@ -141,7 +135,6 @@ function atualizarPlanoDeCorte() {
     }
 }
 
-// Função para salvar (Adicionar ou Atualizar) peça
 function salvarPeca(event) {
     if (event) event.preventDefault();
 
@@ -184,7 +177,6 @@ function salvarPeca(event) {
     atualizarPlanoDeCorte();
 }
 
-// Atualiza a tabela HTML com a lista de peças cadastradas
 function atualizarTabelaPecas() {
     const tbody = document.querySelector("#tabelaPecas tbody");
     if (!tbody) return;
@@ -194,7 +186,7 @@ function atualizarTabelaPecas() {
     pecas.forEach((peca, index) => {
         const tr = document.createElement("tr");
 
-        let textoSentido = "Normal (Urdume)";
+        let textoSentido = "Normal (Ourela / Urdume)";
         if (peca.sentido === "trama") textoSentido = "Trama (Transversal)";
         if (peca.sentido === "enviesado") textoSentido = "Enviesado (45°)";
 
@@ -212,7 +204,6 @@ function atualizarTabelaPecas() {
         tbody.appendChild(tr);
     });
 
-    // Atrelando eventos aos botões criados dinamicamente na tabela
     document.querySelectorAll(".btn-editar").forEach(btn => {
         btn.addEventListener("click", (e) => editarPeca(e.currentTarget.dataset.index));
     });
@@ -221,7 +212,6 @@ function atualizarTabelaPecas() {
     });
 }
 
-// Carrega os dados de uma peça na tela para edição
 function editarPeca(index) {
     const peca = pecas[index];
     if (!peca) return;
@@ -238,7 +228,6 @@ function editarPeca(index) {
     document.getElementById("btnCancelar").style.display = "inline-block";
 }
 
-// Cancela o modo de edição
 function cancelarEdicao() {
     document.getElementById("indiceEdicao").value = "";
     document.getElementById("nomePeca").value = "";
@@ -252,7 +241,6 @@ function cancelarEdicao() {
     document.getElementById("btnCancelar").style.display = "none";
 }
 
-// Remove uma peça da lista
 function removerPeca(index) {
     pecas.splice(index, 1);
     atualizarTabelaPecas();
