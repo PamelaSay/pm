@@ -156,41 +156,29 @@ button:hover {
     display: flex;
 }
 
-/* Faixas indicativas da ourela nas laterais */
+/* Faixas laterais fixas indicando a ourela */
 .faixa-ourelha {
-    position: absolute;
-    top: 0;
-    width: 25px;
-    height: 100%;
+    width: 35px;
     background-color: #e2e8f0;
-    border-left: 1px dashed #cbd5e1;
-    border-right: 1px dashed #cbd5e1;
-    font-size: 9px;
+    border-left: 1px dashed #94a3b8;
+    border-right: 1px dashed #94a3b8;
+    font-size: 10px;
     font-weight: bold;
-    color: #64748b;
+    color: #475569;
     writing-mode: vertical-rl;
     text-align: center;
     display: flex;
     align-items: center;
     justify-content: center;
-    letter-spacing: 1px;
-    z-index: 5;
+    letter-spacing: 2px;
+    flex-shrink: 0;
     user-select: none;
-}
-
-.faixa-ourelha.esquerda {
-    left: 0;
-}
-
-.faixa-ourelha.direita {
-    right: 0;
 }
 
 #conteudo-tecido {
     position: relative;
-    width: 100%;
-    height: 100%;
-    margin: 0 25px; /* Compensa o espaço das ourelas laterais */
+    flex-grow: 1;
+    min-height: 400px;
 }
 
 /* Estilo individual de cada peça contida no tecido */
@@ -212,7 +200,6 @@ button:hover {
     overflow: hidden;
 }
 
-/* Peça enviesada mantendo proporção exata e encaixada dentro da área */
 .peca.enviesado {
     transform: rotate(45deg);
     transform-origin: center center;
