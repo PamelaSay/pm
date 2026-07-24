@@ -19,14 +19,14 @@ body {
 
 h1 {
     text-align: center;
-    color: #1a2530; /* Preto suave / Chumbo */
+    color: #1a2530;
     font-weight: 600;
     margin-bottom: 25px;
 }
 
 h3 {
     color: #2c3e50;
-    border-bottom: 2px solid #d4af37; /* Detalhe em dourado */
+    border-bottom: 2px solid #d4af37;
     padding-bottom: 8px;
     margin-top: 0;
 }
@@ -36,7 +36,7 @@ h3 {
 }
 
 .input-container {
-    background-color: #f0f4f8; /* Azul claro suave */
+    background-color: #f0f4f8;
     padding: 15px 20px;
     border-radius: 8px;
     display: flex;
@@ -64,7 +64,7 @@ input, select {
 }
 
 input:focus, select:focus {
-    border-color: #d4af37; /* Foco em dourado */
+    border-color: #d4af37;
     box-shadow: 0 0 5px rgba(212, 175, 55, 0.3);
 }
 
@@ -99,11 +99,15 @@ input:focus, select:focus {
     max-width: 180px;
 }
 
-/* Botões com detalhe em Dourado elegante */
+.botoes-form {
+    display: flex;
+    gap: 10px;
+}
+
 button {
     padding: 9px 18px;
-    background-color: #1a2530; /* Preto sofisticado */
-    color: #d4af37; /* Texto em Dourado */
+    background-color: #1a2530;
+    color: #d4af37;
     border: 1px solid #d4af37;
     border-radius: 6px;
     cursor: pointer;
@@ -127,43 +131,50 @@ button:hover {
     background-color: #2d3748;
 }
 
-/* --- ÁREA DO PLANO DE CORTE (O TECIDO É O PRÓPRIO QUADRO) --- */
+/* --- ÁREA DO PLANO DE CORTE --- */
 .plano-corte-wrapper {
     width: 100%;
     max-height: 500px;
-    overflow: auto;
+    overflow-y: auto;
+    overflow-x: hidden;
     border: 2px solid #1a2530;
     border-radius: 6px;
     margin-top: 15px;
-    background-color: #e5edf5; /* Fundo ao redor caso haja scroll */
-    padding: 10px;
+    background-color: #f7fbff;
+    position: relative;
     box-sizing: border-box;
 }
 
 #tecido {
     position: relative;
-    background-color: #f7fbff; /* Cor base do tecido (Azul claro clarinho) */
-    border: 1px solid #9bbcd9;
+    width: 100%;
+    min-height: 400px;
     box-sizing: border-box;
-    margin: 0 auto;
 }
 
 /* Estilo individual de cada peça no tecido */
 .peca {
     position: absolute;
-    border: 1px solid #1a2530;
-    background-color: rgba(122, 178, 211, 0.35); /* Azul translúcido */
+    border: 1.5px dashed #1a2530;
+    background-color: rgba(122, 178, 211, 0.4);
     text-align: center;
-    padding: 4px;
     font-size: 11px;
     font-weight: 600;
     color: #1a2530;
     box-sizing: border-box;
     border-radius: 3px;
-    overflow: hidden;
     display: flex;
     align-items: center;
     justify-content: center;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+    padding: 4px;
+}
+
+/* Classe aplicada quando o corte for enviesado (rotação de 45°) */
+.peca.enviesado {
+    transform: rotate(45deg);
+    background-color: rgba(212, 175, 55, 0.35); /* Dourado translúcido para destacar o viés */
+    border: 1.5px dashed #b7791f;
 }
 
 .metragem {
@@ -205,7 +216,7 @@ th, td {
 
 th {
     background-color: #1a2530;
-    color: #d4af37; /* Dourado nos títulos da tabela */
+    color: #d4af37;
     font-weight: 600;
 }
 
@@ -213,15 +224,39 @@ tr:nth-child(even) {
     background-color: #f8fafc;
 }
 
-td button {
-    background-color: #a03232; /* Tom de alerta para exclusão */
-    color: white;
+/* Botões de Ação por Ícones */
+.btn-acao {
+    background: none;
     border: none;
-    padding: 5px 10px;
-    font-size: 12px;
+    cursor: pointer;
+    font-size: 15px;
+    padding: 5px 8px;
+    margin: 0 2px;
+    border-radius: 4px;
+    transition: background 0.2s;
+    box-shadow: none;
 }
 
-td button:hover {
-    background-color: #822828;
-    color: white;
+.btn-editar {
+    color: #3182ce;
+}
+.btn-editar:hover {
+    background-color: #ebf8ff;
+    color: #2b6cb0;
+}
+
+.btn-duplicar {
+    color: #d69e2e;
+}
+.btn-duplicar:hover {
+    background-color: #fefcbf;
+    color: #b7791f;
+}
+
+.btn-remover {
+    color: #e53e3e;
+}
+.btn-remover:hover {
+    background-color: #fff5f5;
+    color: #c53030;
 }
