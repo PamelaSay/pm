@@ -16,18 +16,6 @@ document.addEventListener("DOMContentLoaded", () => {
     if (btnImprimir) btnImprimir.addEventListener("click", () => window.print());
 });
 
-function duplicarPeca(index) {
-    const peca = pecas[index];
-    if (!peca) return;
-
-    // Cria uma cópia exata do objeto da peça
-    const novaPeca = { ...peca, nome: `${peca.nome} (Cópia)` };
-    pecas.push(novaPeca);
-
-    atualizarTabelaPecas();
-    atualizarPlanoDeCorte();
-}
-
 function atualizarTecido() {
     const inputLargura = document.getElementById("larguraTecido");
     if (inputLargura) {
@@ -233,6 +221,7 @@ function atualizarTabelaPecas() {
         btn.addEventListener("click", (e) => removerPeca(e.currentTarget.dataset.index));
     });
 }
+
 function editarPeca(index) {
     const peca = pecas[index];
     if (!peca) return;
@@ -247,6 +236,23 @@ function editarPeca(index) {
     document.getElementById("tituloFormulario").innerText = "Editar Peça";
     document.getElementById("btnSalvar").innerText = "Salvar Alterações";
     document.getElementById("btnCancelar").style.display = "inline-block";
+}
+
+function duplicarPeca(index) {
+    const peca = pecas[index];
+    if (!peca) return;
+
+    const novaPeca = { 
+        nome: `${peca.nome} (Cópia)`, 
+        altura: peca.altura, 
+        largura: peca.largura, 
+        quantidade: peca.quantidade, 
+        sentido: peca.sentido 
+    };
+
+    pecas.push(novaPeca);
+    atualizarTabelaPecas();
+    atualizarPlanoDeCorte();
 }
 
 function cancelarEdicao() {
