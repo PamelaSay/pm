@@ -198,26 +198,26 @@ function atualizarPlanoDeCorte() {
             conteudoDiv.appendChild(pecaDiv);
         }
     });
-
-   // Calcula a altura exata considerando apenas o final da última peça alocada
-    let alturaTotalNecessariaPx = posY + maiorAlturaNaLinha;
-
-    // Remove a margem extra inferior para o tecido colar exatamente na última peça
-    // (subtraímos metade da margem de segurança que estava sendo somada na última linha)
-    alturaTotalNecessariaPx -= (margemPx / 2);
-
-    if (alturaTotalNecessariaPx < 50) {
+// Pega a altura exata da última peça adicionada, sem sobras de margem inferior
+    let alturaTotalNecessariaPx = 0;
+    
+    if (pecas.length > 0 && conteudoDiv.lastElementChild) {
+        const ultimaPeca = conteudoDiv.lastElementChild;
+        // A altura total é a posição do topo da última peça mais a altura dela própria
+        alturaTotalNecessariaPx = ultimaPeca.offsetTop + ultimaPeca.offsetHeight;
+    } else {
         alturaTotalNecessariaPx = 50;
     }
 
+    // Aplica o tamanho exato no tecido e nas ourelas
     conteudoDiv.style.height = alturaTotalNecessariaPx + "px";
     
     const faixasOurela = tecidoDiv.querySelectorAll('.faixa-ourelha');
     faixasOurela.forEach(faixa => {
         faixa.style.height = alturaTotalNecessariaPx + "px";
     });
-
 }
+
             
 function atualizarMetragemAutomatica() {
     const resultado = document.getElementById('resultado');
