@@ -3,13 +3,28 @@ let larguraTecido = 0; // Largura padrão inicial de ourela a ourela em metros
 let MARGEM_SEGURANÇA = 0.02; // 2 cm de margem padrão
 let pecas = [];
 
-// Função para atualizar as dimensões principais do tecido a partir do HTML
-function atualizarPlano() {
-    const inputLargura = document.getElementById("largura");
+// Função para atualizar as dimensões principais do tecido a partir do input correto
+function atualizarTecido() {
+    const inputLargura = document.getElementById("larguraTecido");
     if (inputLargura) {
         larguraTecido = parseFloat(inputLargura.value) || 0;
     }
     atualizarPlanoDeCorte();
+}
+
+// Função para resetar e iniciar um novo plano do zero sem precisar recarregar a página
+function novoPlano() {
+    if (confirm("Deseja realmente limpar todas as peças e reiniciar o plano de corte?")) {
+        pecas = [];
+        larguraTecido = 0;
+        
+        const inputLargura = document.getElementById("larguraTecido");
+        if (inputLargura) inputLargura.value = "";
+        
+        cancelarEdicao();
+        atualizarTabelaPecas();
+        atualizarPlanoDeCorte();
+    }
 }
 
 // Função principal que renderiza o plano de corte e calcula o posicionamento das peças
@@ -49,10 +64,10 @@ function atualizarPlanoDeCorte() {
     // Se não houver peças na lista, define uma altura mínima inicial limpa
     if (pecas.length === 0) {
         conteudoDiv.style.height = "50px";
-        const faixasOurela = tecidoDiv.querySelectorAll('.faixa-ourela');
+        const faixasOurela = tecidoDiv.querySelectorAll('.faixa-ourelha');
         faixasOurela.forEach(faixa => faixa.style.height = "50px");
         if (resultadoDiv) {
-            resultadoDiv.innerText = "Nenhuma peça adicionada ao plano.";
+            resultadoDiv.innerText = `Largura da ourela definida: ${larguraTecido}m. Adicione peças para calcular a metragem.`;
         }
         return;
     }
@@ -112,7 +127,7 @@ function atualizarPlanoDeCorte() {
     // Aplica a altura calculada no conteúdo e nas ourelas laterais
     conteudoDiv.style.height = alturaTotalNecessariaPx + "px";
     
-    const faixasOurela = tecidoDiv.querySelectorAll('.faixa-ourela');
+    const faixasOurela = tecidoDiv.querySelectorAll('.faixa-ourelha');
     faixasOurela.forEach(faixa => {
         faixa.style.height = alturaTotalNecessariaPx + "px";
     });
@@ -164,7 +179,7 @@ function salvarPeca(event) {
     alturaInput.value = "";
     larguraInput.value = "";
     quantidadeInput.value = "1";
-    if (sentidoInput) sentidoInput.value = "ourela";
+    if (sentidoInput) sentidoInput.value = "ourelha";
 
     atualizarTabelaPecas();
     atualizarPlanoDeCorte();
@@ -223,7 +238,7 @@ function cancelarEdicao() {
     document.getElementById("alturaPeca").value = "";
     document.getElementById("larguraPeca").value = "";
     document.getElementById("quantidadePeca").value = "1";
-    document.getElementById("sentidoPeca").value = "ourela";
+    document.getElementById("sentidoPeca").value = "ourelha";
 
     document.getElementById("tituloFormulario").innerText = "Adicionar Peça";
     document.getElementById("btnSalvar").innerText = "Adicionar Peça";
