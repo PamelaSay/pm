@@ -198,9 +198,18 @@ function atualizarPlanoDeCorte() {
         }
     });
 
-    // A altura total agora cresce estritamente com base na altura real das peças alocadas
-    let alturaTotalNecessariaPx = posY + maiorAlturaNaLinha;
+    // Pega a altura exata da última peça adicionada, sem sobras de margem inferior
+    let alturaTotalNecessariaPx = 0;
+    
+    if (pecas.length > 0 && conteudoDiv.lastElementChild) {
+        const ultimaPeca = conteudoDiv.lastElementChild;
+        // A altura total é a posição do topo da última peça mais a altura dela própria
+        alturaTotalNecessariaPx = ultimaPeca.offsetTop + ultimaPeca.offsetHeight;
+    } else {
+        alturaTotalNecessariaPx = 50;
+    }
 
+    // Aplica o tamanho exato no tecido e nas ourelas
     conteudoDiv.style.height = alturaTotalNecessariaPx + "px";
     
     const faixasOurela = tecidoDiv.querySelectorAll('.faixa-ourelha');
