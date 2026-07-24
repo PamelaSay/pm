@@ -199,8 +199,16 @@ function atualizarPlanoDeCorte() {
         }
     });
 
-    // A altura total agora cresce estritamente com base na altura real das peças alocadas
+   // Calcula a altura exata considerando apenas o final da última peça alocada
     let alturaTotalNecessariaPx = posY + maiorAlturaNaLinha;
+
+    // Remove a margem extra inferior para o tecido colar exatamente na última peça
+    // (subtraímos metade da margem de segurança que estava sendo somada na última linha)
+    alturaTotalNecessariaPx -= (margemPx / 2);
+
+    if (alturaTotalNecessariaPx < 50) {
+        alturaTotalNecessariaPx = 50;
+    }
 
     conteudoDiv.style.height = alturaTotalNecessariaPx + "px";
     
@@ -208,6 +216,7 @@ function atualizarPlanoDeCorte() {
     faixasOurela.forEach(faixa => {
         faixa.style.height = alturaTotalNecessariaPx + "px";
     });
+
 }
             
 function atualizarMetragemAutomatica() {
