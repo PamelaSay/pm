@@ -212,7 +212,7 @@ function atualizarTabelaPecas() {
             <td>${peca.nome}</td>
             <td>${peca.altura}</td>
             <td>${peca.largura}</td>
-            <td>${texto.sentido}</td>
+            <td>${textoSentido}</td>
             <td>${peca.quantidade}</td>
             <td>
                 <button type="button" class="btn-editar" data-index="${index}" title="Editar"><i class="fa-solid fa-pen"></i></button>
