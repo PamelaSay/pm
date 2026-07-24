@@ -16,6 +16,18 @@ document.addEventListener("DOMContentLoaded", () => {
     if (btnImprimir) btnImprimir.addEventListener("click", () => window.print());
 });
 
+function duplicarPeca(index) {
+    const peca = pecas[index];
+    if (!peca) return;
+
+    // Cria uma cópia exata do objeto da peça
+    const novaPeca = { ...peca, nome: `${peca.nome} (Cópia)` };
+    pecas.push(novaPeca);
+
+    atualizarTabelaPecas();
+    atualizarPlanoDeCorte();
+}
+
 function atualizarTecido() {
     const inputLargura = document.getElementById("larguraTecido");
     if (inputLargura) {
