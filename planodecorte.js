@@ -10,6 +10,7 @@ function atualizarPlano() {
     }
 
     atualizarPlanoDeCorte();
+    atualizarMetragemAutomatica();
 }
 
 function salvarPeca() {
@@ -42,6 +43,7 @@ function salvarPeca() {
 
     atualizarTabela();
     atualizarPlanoDeCorte();
+    atualizarMetragemAutomatica();
     limparFormulario();
 }
 
@@ -108,13 +110,16 @@ function duplicarPeca(index) {
     pecas.push(duplicada);
     atualizarTabela();
     atualizarPlanoDeCorte();
+    atualizarMetragemAutomatica();
 }
 
 function removerPeca(index) {
     pecas.splice(index, 1);
     atualizarTabela();
     atualizarPlanoDeCorte();
+    atualizarMetragemAutomatica();
 }
+
 function atualizarPlanoDeCorte() {
     const tecidoDiv = document.getElementById("tecido");
     tecidoDiv.innerHTML = ''; 
@@ -125,10 +130,8 @@ function atualizarPlanoDeCorte() {
         return;
     }
 
-    // Definimos uma escala fixa realista: 1 metro = 200 pixels na tela (para dar uma visualização nítida e proporcional)
-    const escala = 200; 
+    const escala = 200; // 1 metro = 200px
     const larguraTelaTecido = larguraTecido * escala;
-    
     tecidoDiv.style.width = larguraTelaTecido + "px";
 
     let posX = 0;
@@ -149,6 +152,7 @@ function atualizarPlanoDeCorte() {
             } 
             else if (peca.sentido === "enviesado") {
                 pecaDiv.classList.add('enviesado');
+                // No viés, o espaço ocupado considera o enquadramento seguro dentro do tecido
                 let diagonal = Math.sqrt(Math.pow(peca.largura, 2) + Math.pow(peca.altura, 2));
                 larguraFinal = diagonal;
                 alturaFinal = diagonal;
@@ -161,8 +165,8 @@ function atualizarPlanoDeCorte() {
             pecaDiv.style.height = alturaPx + "px";
             pecaDiv.innerText = `${peca.nome}`;
 
-            // Quebra de linha exata se a peça ultrapassar a largura real da ourela
-            if (posX + larguraPx > larguraTelaTecido + 1) { // +1 pixel de tolerância para arredondamento
+            // Quebra de linha exata se estourar a ourela
+            if (posX + larguraPx > larguraTelaTecido + 1) {
                 posX = 0;
                 posY += maiorAlturaNaLinha;
                 maiorAlturaNaLinha = 0;
@@ -184,22 +188,26 @@ function atualizarPlanoDeCorte() {
     if (alturaTotalNecessariaPx < 400) alturaTotalNecessariaPx = 400;
     tecidoDiv.style.height = alturaTotalNecessariaPx + "px";
 }
-function calcularMetragem() {
+
+function atualizarMetragemAutomatica() {
+    const resultado = document.getElementById('resultado');
+    
+    if (larguraTecido <= 0) {
+        resultado.innerText = `Por favor, defina primeiro a largura da ourela do tecido.`;
+        return;
+    }
+
+    if (pecas.length === 0) {
+        resultado.innerText = `Nenhuma peça adicionada. Adicione peças para calcular a metragem automaticamente.`;
+        return;
+    }
+
     let areaTotalPecas = 0;
     pecas.forEach(peca => {
-        let fatorViés = (peca.sentido === "enviesado") ? 1.41 : 1.0; // Considera folga geométrica do viés a 45°
+        let fatorViés = (peca.sentido === "enviesado") ? 1.41 : 1.0;
         areaTotalPecas += ((peca.altura * peca.largura) * fatorViés) * peca.quantidade;
     });
 
-    const resultado = document.getElementById('resultado');
-    if (larguraTecido > 0) {
-        let comprimentoEstimado = (areaTotalPecas / larguraTecido) * 1.10; // 10% margem de segurança de corte
-        resultado.innerText = `Para uma ourela de ${larguraTecido}m, você precisará comprar aproximadamente ${comprimentoEstimado.toFixed(2)} metros de tecido.`;
-    } else {
-        resultado.innerText = `Por favor, defina primeiro a largura da ourela do tecido.`;
-    }
-}
-
-function imprimirPlano() {
-    window.print();
+    let comprimentoEstimado = (areaTotalPecas / larguraTecido) * 1.10; // 10% margem de segurança
+    resultado.innerText = `Para uma ourela de ${larguraTecido}m, você precisa comprar aproximadamente ${comprimentoEstimado.toFixed(2)} metros de tecido.`;
 }
