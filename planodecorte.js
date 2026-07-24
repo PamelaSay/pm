@@ -121,22 +121,21 @@ function removerPeca(index) {
     atualizarPlanoDeCorte();
     atualizarMetragemAutomatica();
 }
-
 function atualizarPlanoDeCorte() {
     const tecidoDiv = document.getElementById("tecido");
     const conteudoDiv = document.getElementById("conteudo-tecido");
+    
     conteudoDiv.innerHTML = ''; 
 
     if (larguraTecido <= 0) {
         tecidoDiv.style.width = "100%";
-        conteudoDiv.style.height = "400px";
+        conteudoDiv.style.height = "50px"; // Começa zerado/baixo se não houver largura
         return;
     }
 
-    const escala = 200; // 1 metro = 200px
+    const escala = 120; // Use a escala que você ajustou (ex: 100 ou 120)
     const larguraTelaTecido = larguraTecido * escala;
     
-    // Largura total do tecido na tela considera a área útil + 64px das duas ourelas (32px cada)
     tecidoDiv.style.width = (larguraTelaTecido + 64) + "px";
     conteudoDiv.style.width = larguraTelaTecido + "px";
 
@@ -146,6 +145,14 @@ function atualizarPlanoDeCorte() {
     let posX = 0;
     let posY = 0;
     let maiorAlturaNaLinha = 0;
+
+    // Se não houver peças na lista, define uma altura inicial limpa (quase zero/mínima)
+    if (pecas.length === 0) {
+        conteudoDiv.style.height = "50px";
+        const faixasOurela = tecidoDiv.querySelectorAll('.faixa-ourelha');
+        faixasOurela.forEach(faixa => faixa.style.height = "50px");
+        return;
+    }
 
     pecas.forEach(peca => {
         for (let i = 0; i < peca.quantidade; i++) {
@@ -166,7 +173,6 @@ function atualizarPlanoDeCorte() {
             const larguraPx = larguraRealPeca * escala;
             const alturaPx = alturaRealPeca * escala;
 
-            // Espaço total ocupado na tela considerando a margem
             const larguraComMargemPx = larguraPx + margemPx;
             const alturaComMargemPx = alturaPx + margemPx;
 
@@ -174,7 +180,6 @@ function atualizarPlanoDeCorte() {
             pecaDiv.style.height = alturaPx + "px";
             pecaDiv.innerText = `${peca.nome}`;
 
-            // Quebra de linha se passar da largura útil da ourela
             if (posX + larguraComMargemPx > larguraUtilPx + 1) {
                 posX = 0;
                 posY += maiorAlturaNaLinha;
@@ -193,9 +198,15 @@ function atualizarPlanoDeCorte() {
         }
     });
 
-    let alturaTotalNecessariaPx = posY + maiorAlturaNaLinha + 40;
-    if (alturaTotalNecessariaPx < 400) alturaTotalNecessariaPx = 400;
+    // A altura total agora cresce estritamente com base na altura real das peças alocadas
+    let alturaTotalNecessariaPx = posY + maiorAlturaNaLinha;
+
     conteudoDiv.style.height = alturaTotalNecessariaPx + "px";
+    
+    const faixasOurela = tecidoDiv.querySelectorAll('.faixa-ourelha');
+    faixasOurela.forEach(faixa => {
+        faixa.style.height = alturaTotalNecessariaPx + "px";
+    });
 }
 
 function atualizarMetragemAutomatica() {
