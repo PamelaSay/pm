@@ -126,16 +126,15 @@ function atualizarPlanoDeCorte() {
     const tecidoDiv = document.getElementById("tecido");
     const conteudoDiv = document.getElementById("conteudo-tecido");
     
-    // Mantém as ourelas e a marca d'água intactas, limpando apenas o conteúdo interno das peças
     conteudoDiv.innerHTML = ''; 
 
     if (larguraTecido <= 0) {
         tecidoDiv.style.width = "100%";
-        conteudoDiv.style.height = "400px";
+        conteudoDiv.style.height = "50px"; // Começa zerado/baixo se não houver largura
         return;
     }
 
-    const escala = 200; // 1 metro = 200px
+    const escala = 120; // Use a escala que você ajustou (ex: 100 ou 120)
     const larguraTelaTecido = larguraTecido * escala;
     
     tecidoDiv.style.width = (larguraTelaTecido + 64) + "px";
@@ -147,6 +146,14 @@ function atualizarPlanoDeCorte() {
     let posX = 0;
     let posY = 0;
     let maiorAlturaNaLinha = 0;
+
+    // Se não houver peças na lista, define uma altura inicial limpa (quase zero/mínima)
+    if (pecas.length === 0) {
+        conteudoDiv.style.height = "50px";
+        const faixasOurela = tecidoDiv.querySelectorAll('.faixa-ourelha');
+        faixasOurela.forEach(faixa => faixa.style.height = "50px");
+        return;
+    }
 
     pecas.forEach(peca => {
         for (let i = 0; i < peca.quantidade; i++) {
@@ -192,24 +199,17 @@ function atualizarPlanoDeCorte() {
         }
     });
 
-   // Soma rigorosamente a altura acumulada de todas as linhas de peças posicionadas
+    // A altura total agora cresce estritamente com base na altura real das peças alocadas
     let alturaTotalNecessariaPx = posY + maiorAlturaNaLinha;
-    
-    // Se não houver peças adicionadas, mantém uma altura padrão para a área não sumir
-    if (alturaTotalNecessariaPx >0) {
-        alturaTotalNecessariaPx = 400;
-    }
 
-    // Aplica a altura calculada exatamente no conteúdo do tecido
     conteudoDiv.style.height = alturaTotalNecessariaPx + "px";
     
-    // Força as ourelas laterais a acompanharem perfeitamente a altura exata do corte
     const faixasOurela = tecidoDiv.querySelectorAll('.faixa-ourelha');
     faixasOurela.forEach(faixa => {
         faixa.style.height = alturaTotalNecessariaPx + "px";
     });
 }
-
+            
 function atualizarMetragemAutomatica() {
     const resultado = document.getElementById('resultado');
     
