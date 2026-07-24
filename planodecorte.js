@@ -72,7 +72,7 @@ function atualizarPlanoDeCorte() {
 
     if (pecas.length === 0) {
         conteudoDiv.style.height = "50px";
-        const faixasOurela = tecidoDiv.querySelectorAll('.faixa-ourelha');
+        const faixasOurela = tecidoDiv.querySelectorAll('.faixa-ourela');
         faixasOurela.forEach(faixa => faixa.style.height = "50px");
         if (resultadoDiv) {
             resultadoDiv.innerText = `Largura da ourela definida: ${larguraTecido}m. Adicione peças para calcular a metragem.`;
@@ -200,7 +200,7 @@ function atualizarTabelaPecas() {
             <td>${peca.nome}</td>
             <td>${peca.altura}</td>
             <td>${peca.largura}</td>
-            <td>${textoSentido}</td>
+            <td>${texto.Sentido}</td>
             <td>${peca.quantidade}</td>
             <td>
                 <button type="button" class="btn-editar" data-index="${index}" title="Editar"><i class="fa-solid fa-pen"></i></button>
