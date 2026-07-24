@@ -96,7 +96,7 @@ input:focus, select:focus {
 .adicionar-peca select {
     padding: 6px 6px;
     font-size: 12px;
-    max-width: 55px;   /* Deixa os quadradinhos bem compactos */
+    max-width: 75px;   /* Deixa os quadradinhos bem compactos */
 }
 
 /* Tamanho específico reduzido para o campo Nome */
