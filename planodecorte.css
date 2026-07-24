@@ -131,32 +131,32 @@ button:hover {
     background-color: #2d3748;
 }
 
-/* --- ÁREA DO PLANO DE CORTE (Proporção Real 1:1) --- */
+/* --- O QUADRANTE É O PRÓPRIO TECIDO --- */
 .plano-corte-wrapper {
     width: 100%;
     max-height: 500px;
     overflow-y: auto;
-    overflow-x: auto; /* Permite rolar caso ultrapasse */
-    border: 2px solid #1a2530;
+    overflow-x: auto;
+    border: none;
     border-radius: 6px;
     margin-top: 15px;
-    background-color: #e2e8f0; /* Fundo neutro ao redor do tecido */
+    background-color: transparent; /* Removemos o fundo cinza externo */
     position: relative;
     box-sizing: border-box;
-    padding: 15px;
     display: flex;
     justify-content: center;
 }
 
 #tecido {
     position: relative;
-    background-color: #f7fbff; /* Representa exatamente o tecido */
-    border: 1px solid #1a2530;
+    background-color: #f7fbff; /* O tecido é o próprio quadrante branco/azulado limpo */
+    border: 2px solid #1a2530;
     box-sizing: border-box;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    overflow: hidden; /* Garante que nada saia para fora do tecido */
 }
 
-/* Estilo individual de cada peça no tecido */
+/* Estilo individual de cada peça contida no tecido */
 .peca {
     position: absolute;
     border: 1.5px dashed #1a2530;
@@ -175,14 +175,13 @@ button:hover {
     overflow: hidden;
 }
 
+/* Peça enviesada contida estritamente sem vazar pontas */
 .peca.enviesado {
     transform: rotate(45deg);
+    transform-origin: center center;
     background-color: rgba(212, 175, 55, 0.35);
     border: 1.5px dashed #b7791f;
 }
-
-
-
 
 .metragem {
     font-size: 15px;
