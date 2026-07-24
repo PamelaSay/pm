@@ -131,25 +131,54 @@ button:hover {
     background-color: #2d3748;
 }
 
-/* --- ÁREA DO PLANO DE CORTE --- */
+/* --- ÁREA DO PLANO DE CORTE (Proporção Real 1:1) --- */
 .plano-corte-wrapper {
     width: 100%;
     max-height: 500px;
     overflow-y: auto;
-    overflow-x: hidden;
+    overflow-x: auto; /* Permite rolar caso ultrapasse */
     border: 2px solid #1a2530;
     border-radius: 6px;
     margin-top: 15px;
-    background-color: #f7fbff;
+    background-color: #e2e8f0; /* Fundo neutro ao redor do tecido */
     position: relative;
     box-sizing: border-box;
+    padding: 15px;
+    display: flex;
+    justify-content: center;
 }
 
 #tecido {
     position: relative;
-    width: 100%;
-    min-height: 400px;
+    background-color: #f7fbff; /* Representa exatamente o tecido */
+    border: 1px solid #1a2530;
     box-sizing: border-box;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+}
+
+/* Estilo individual de cada peça no tecido */
+.peca {
+    position: absolute;
+    border: 1.5px dashed #1a2530;
+    background-color: rgba(122, 178, 211, 0.4);
+    text-align: center;
+    font-size: 11px;
+    font-weight: 600;
+    color: #1a2530;
+    box-sizing: border-box;
+    border-radius: 3px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+    padding: 4px;
+    overflow: hidden;
+}
+
+.peca.enviesado {
+    transform: rotate(45deg);
+    background-color: rgba(212, 175, 55, 0.35);
+    border: 1.5px dashed #b7791f;
 }
 
 /* Estilo individual de cada peça no tecido */
