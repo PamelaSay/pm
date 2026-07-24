@@ -125,6 +125,8 @@ function removerPeca(index) {
 function atualizarPlanoDeCorte() {
     const tecidoDiv = document.getElementById("tecido");
     const conteudoDiv = document.getElementById("conteudo-tecido");
+    
+    // Mantém as ourelas e a marca d'água intactas, limpando apenas o conteúdo interno das peças
     conteudoDiv.innerHTML = ''; 
 
     if (larguraTecido <= 0) {
@@ -136,7 +138,6 @@ function atualizarPlanoDeCorte() {
     const escala = 200; // 1 metro = 200px
     const larguraTelaTecido = larguraTecido * escala;
     
-    // Largura total do tecido na tela considera a área útil + 64px das duas ourelas (32px cada)
     tecidoDiv.style.width = (larguraTelaTecido + 64) + "px";
     conteudoDiv.style.width = larguraTelaTecido + "px";
 
@@ -166,7 +167,6 @@ function atualizarPlanoDeCorte() {
             const larguraPx = larguraRealPeca * escala;
             const alturaPx = alturaRealPeca * escala;
 
-            // Espaço total ocupado na tela considerando a margem
             const larguraComMargemPx = larguraPx + margemPx;
             const alturaComMargemPx = alturaPx + margemPx;
 
@@ -174,7 +174,6 @@ function atualizarPlanoDeCorte() {
             pecaDiv.style.height = alturaPx + "px";
             pecaDiv.innerText = `${peca.nome}`;
 
-            // Quebra de linha se passar da largura útil da ourela
             if (posX + larguraComMargemPx > larguraUtilPx + 1) {
                 posX = 0;
                 posY += maiorAlturaNaLinha;
@@ -197,6 +196,7 @@ function atualizarPlanoDeCorte() {
     if (alturaTotalNecessariaPx < 400) alturaTotalNecessariaPx = 400;
     conteudoDiv.style.height = alturaTotalNecessariaPx + "px";
 }
+
 
 function atualizarMetragemAutomatica() {
     const resultado = document.getElementById('resultado');
