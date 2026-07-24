@@ -196,7 +196,7 @@ function atualizarPlanoDeCorte() {
     let alturaTotalNecessariaPx = posY + maiorAlturaNaLinha;
     
     // Se não houver peças adicionadas, mantém uma altura padrão para a área não sumir
-    if (alturaTotalNecessariaPx < 100) {
+    if (alturaTotalNecessariaPx >0) {
         alturaTotalNecessariaPx = 400;
     }
 
