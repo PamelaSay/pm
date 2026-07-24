@@ -1,51 +1,56 @@
 let larguraTecido = 0;
-let alturaTecido = 0;
 const pecas = [];
 
 function atualizarPlano() {
     larguraTecido = parseFloat(document.getElementById('largura').value);
-    alturaTecido = parseFloat(document.getElementById('alturaTecidoInput').value);
 
-    if (isNaN(larguraTecido) || larguraTecido <= 0 || isNaN(alturaTecido) || alturaTecido <= 0) {
-        alert("Por favor, insira uma largura e altura válidas para o tecido.");
+    if (isNaN(larguraTecido) || larguraTecido <= 0) {
+        alert("Por favor, insira uma largura de ourela válida.");
         return;
     }
-
-    const tecidoDiv = document.getElementById("tecido");
-    tecidoDiv.style.width = (larguraTecido * 100) + "px"; 
-    tecidoDiv.style.height = (alturaTecido * 100) + "px"; 
 
     atualizarPlanoDeCorte();
 }
 
-function adicionarPeca() {
+function salvarPeca() {
     const nomePeca = document.getElementById('nomePeca').value;
     const alturaPeca = parseFloat(document.getElementById('alturaPeca').value);
     const larguraPeca = parseFloat(document.getElementById('larguraPeca').value);
     const sentidoPeca = document.getElementById('sentidoPeca').value;
     const quantidadePeca = parseInt(document.getElementById('quantidadePeca').value);
+    const indiceEdicao = document.getElementById('indiceEdicao').value;
 
     if (isNaN(alturaPeca) || alturaPeca <= 0 || isNaN(larguraPeca) || larguraPeca <= 0 || !nomePeca || isNaN(quantidadePeca)) {
         alert("Por favor, preencha todos os campos da peça corretamente.");
         return;
     }
 
-    pecas.push({ 
+    const novaPeca = { 
         nome: nomePeca, 
         altura: alturaPeca, 
         largura: larguraPeca, 
         sentido: sentidoPeca, 
         quantidade: quantidadePeca 
-    });
+    };
+
+    if (indiceEdicao === "") {
+        pecas.push(novaPeca);
+    } else {
+        pecas[parseInt(indiceEdicao)] = novaPeca;
+        cancelarEdicao();
+    }
 
     atualizarTabela();
     atualizarPlanoDeCorte();
-    
-    // Limpar campos de input da peça após adicionar
+    limparFormulario();
+}
+
+function limparFormulario() {
     document.getElementById('nomePeca').value = '';
     document.getElementById('alturaPeca').value = '';
     document.getElementById('larguraPeca').value = '';
     document.getElementById('quantidadePeca').value = '1';
+    document.getElementById('sentidoPeca').value = 'ourelha';
 }
 
 function atualizarTabela() {
@@ -60,9 +65,49 @@ function atualizarTabela() {
             <td>${peca.largura}m</td>
             <td>${peca.sentido}</td>
             <td>${peca.quantidade}</td>
-            <td><button onclick="removerPeca(${index})">Remover</button></td>
+            <td>
+                <button class="btn-acao btn-editar" title="Editar" onclick="editarPeca(${index})"><i class="fa-solid fa-pen-to-square"></i></button>
+                <button class="btn-acao btn-duplicar" title="Duplicar" onclick="duplicarPeca(${index})"><i class="fa-solid fa-copy"></i></button>
+                <button class="btn-acao btn-remover" title="Remover" onclick="removerPeca(${index})"><i class="fa-solid fa-trash-can"></i></button>
+            </td>
         `;
     });
+}
+
+function editarPeca(index) {
+    const peca = pecas[index];
+    document.getElementById('nomePeca').value = peca.nome;
+    document.getElementById('alturaPeca').value = peca.altura;
+    document.getElementById('larguraPeca').value = peca.largura;
+    document.getElementById('sentidoPeca').value = peca.sentido;
+    document.getElementById('quantidadePeca').value = peca.quantidade;
+    document.getElementById('indiceEdicao').value = index;
+
+    document.getElementById('tituloFormulario').innerText = "Editar Peça";
+    document.getElementById('btnSalvar').innerText = "Salvar Alterações";
+    document.getElementById('btnCancelar').style.display = "inline-block";
+}
+
+function cancelarEdicao() {
+    document.getElementById('indiceEdicao').value = "";
+    document.getElementById('tituloFormulario').innerText = "Adicionar Peça";
+    document.getElementById('btnSalvar').innerText = "Adicionar Peça";
+    document.getElementById('btnCancelar').style.display = "none";
+    limparFormulario();
+}
+
+function duplicarPeca(index) {
+    const p = pecas[index];
+    const duplicada = { 
+        nome: p.nome + " (Cópia)", 
+        altura: p.altura, 
+        largura: p.largura, 
+        sentido: p.sentido, 
+        quantidade: p.quantidade 
+    };
+    pecas.push(duplicada);
+    atualizarTabela();
+    atualizarPlanoDeCorte();
 }
 
 function removerPeca(index) {
@@ -75,7 +120,13 @@ function atualizarPlanoDeCorte() {
     const tecidoDiv = document.getElementById("tecido");
     tecidoDiv.innerHTML = ''; 
 
-    if (larguraTecido <= 0 || alturaTecido <= 0) return;
+    if (larguraTecido <= 0) {
+        tecidoDiv.style.height = "400px";
+        return;
+    }
+
+    const larguraTelaTecido = larguraTecido * 100; // 1 metro = 100px
+    tecidoDiv.style.width = larguraTelaTecido + "px";
 
     let posX = 0;
     let posY = 0;
@@ -86,19 +137,32 @@ function atualizarPlanoDeCorte() {
             const pecaDiv = document.createElement('div');
             pecaDiv.classList.add('peca');
             
-            // Estilos básicos para visualizar os blocos no tecido
-            pecaDiv.style.position = 'absolute';
-            pecaDiv.style.width = (peca.largura * 100) + "px";
-            pecaDiv.style.height = (peca.altura * 100) + "px";
-            pecaDiv.style.border = '1px dashed #333';
-            pecaDiv.style.backgroundColor = 'rgba(200, 220, 240, 0.6)';
-            pecaDiv.style.boxSizing = 'border-box';
-            pecaDiv.style.fontSize = '12px';
-            pecaDiv.style.padding = '2px';
+            let larguraFinal = peca.largura;
+            let alturaFinal = peca.altura;
+
+            // Se for trama, inverte dimensões (90 graus)
+            if (peca.sentido === "trama") {
+                larguraFinal = peca.altura;
+                alturaFinal = peca.largura;
+            } 
+            // Se for enviesado, aplica classe especial de rotação de 45°
+            else if (peca.sentido === "enviesado") {
+                pecaDiv.classList.add('enviesado');
+                // No viés real, a diagonal ocupa uma área proporcional maior de espaçamento geométrico
+                let diagonal = Math.sqrt(Math.pow(peca.largura, 2) + Math.pow(peca.altura, 2));
+                larguraFinal = diagonal;
+                alturaFinal = diagonal;
+            }
+
+            const larguraPx = larguraFinal * 100;
+            const alturaPx = alturaFinal * 100;
+
+            pecaDiv.style.width = larguraPx + "px";
+            pecaDiv.style.height = alturaPx + "px";
             pecaDiv.innerText = `${peca.nome}`;
 
-            // Quebra de linha simples baseada na largura do tecido da ourela
-            if (posX + (peca.largura * 100) > larguraTecido * 100) {
+            // Quebra de linha se estourar a ourela
+            if (posX + larguraPx > larguraTelaTecido) {
                 posX = 0;
                 posY += maiorAlturaNaLinha;
                 maiorAlturaNaLinha = 0;
@@ -107,28 +171,33 @@ function atualizarPlanoDeCorte() {
             pecaDiv.style.left = posX + "px";
             pecaDiv.style.top = posY + "px";
 
-            if ((peca.altura * 100) > maiorAlturaNaLinha) {
-                maiorAlturaNaLinha = peca.altura * 100;
+            if (alturaPx > maiorAlturaNaLinha) {
+                maiorAlturaNaLinha = alturaPx;
             }
 
-            posX += peca.largura * 100;
+            posX += larguraPx;
             tecidoDiv.appendChild(pecaDiv);
         }
     });
+
+    let alturaTotalNecessariaPx = posY + maiorAlturaNaLinha + 50;
+    if (alturaTotalNecessariaPx < 400) alturaTotalNecessariaPx = 400;
+    tecidoDiv.style.height = alturaTotalNecessariaPx + "px";
 }
 
 function calcularMetragem() {
     let areaTotalPecas = 0;
     pecas.forEach(peca => {
-        areaTotalPecas += (peca.altura * peca.largura) * peca.quantidade;
+        let fatorViés = (peca.sentido === "enviesado") ? 1.41 : 1.0; // Considera folga geométrica do viés a 45°
+        areaTotalPecas += ((peca.altura * peca.largura) * fatorViés) * peca.quantidade;
     });
 
     const resultado = document.getElementById('resultado');
     if (larguraTecido > 0) {
-        let comprimentoEstimado = areaTotalPecas / larguraTecido;
-        resultado.innerText = `Área total das peças: ${areaTotalPecas.toFixed(2)} m². Comprimento linear aproximado necessário na largura de ${larguraTecido}m: ${comprimentoEstimado.toFixed(2)} metros.`;
+        let comprimentoEstimado = (areaTotalPecas / larguraTecido) * 1.10; // 10% margem de segurança de corte
+        resultado.innerText = `Para uma ourela de ${larguraTecido}m, você precisará comprar aproximadamente ${comprimentoEstimado.toFixed(2)} metros de tecido.`;
     } else {
-        resultado.innerText = `Área total das peças: ${areaTotalPecas.toFixed(2)} m². Defina a largura do tecido para calcular o comprimento.`;
+        resultado.innerText = `Por favor, defina primeiro a largura da ourela do tecido.`;
     }
 }
 
