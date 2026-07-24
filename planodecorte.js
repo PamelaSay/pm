@@ -7,7 +7,7 @@ let pecas = [];
 function atualizarTecido() {
     const inputLargura = document.getElementById("larguraTecido");
     if (inputLargura) {
-        larguraTecido = parseFloat(inputLargura.value) || 1.50;
+        larguraTecido = parseFloat(inputLargura.value) || 0;
     }
     atualizarPlanoDeCorte();
 }
