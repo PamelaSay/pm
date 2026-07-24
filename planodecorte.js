@@ -204,6 +204,7 @@ function atualizarTabelaPecas() {
             <td>${peca.quantidade}</td>
             <td>
                 <button type="button" class="btn-editar" data-index="${index}" title="Editar"><i class="fa-solid fa-pen"></i></button>
+                <button type="button" class="btn-duplicar" data-index="${index}" title="Duplicar" style="background-color: #b3e0ff; color: #1a202c;"><i class="fa-solid fa-copy"></i></button>
                 <button type="button" class="btn-excluir" data-index="${index}" title="Excluir"><i class="fa-solid fa-trash"></i></button>
             </td>
         `;
@@ -213,11 +214,13 @@ function atualizarTabelaPecas() {
     document.querySelectorAll(".btn-editar").forEach(btn => {
         btn.addEventListener("click", (e) => editarPeca(e.currentTarget.dataset.index));
     });
+    document.querySelectorAll(".btn-duplicar").forEach(btn => {
+        btn.addEventListener("click", (e) => duplicarPeca(e.currentTarget.dataset.index));
+    });
     document.querySelectorAll(".btn-excluir").forEach(btn => {
         btn.addEventListener("click", (e) => removerPeca(e.currentTarget.dataset.index));
     });
 }
-
 function editarPeca(index) {
     const peca = pecas[index];
     if (!peca) return;
