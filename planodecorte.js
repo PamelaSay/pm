@@ -69,16 +69,10 @@ function atualizarPlanoDeCorte() {
             const larguraPx = larguraRealPeca * escala;
             const alturaPx = alturaRealPeca * escala;
 
-            const margemVisualPeca = 8; 
-            let larguraComMargemPx = larguraPx + margemPx + margemVisualPeca;
-            let alturaComMargemPx = alturaPx + margemPx + margemVisualPeca;
-
-            // Espaçamento extra e exclusivo para o enviesado (evita sobreposição das pontas)
-            if (peca.sentido === "enviesado") {
-                const extraEnviesado = Math.max(larguraPx, alturaPx) * 0.4;
-                larguraComMargemPx += extraEnviesado;
-                alturaComMargemPx += extraEnviesado;
-            }
+            // Se for enviesado, aplica uma margem visual maior para afastar as peças vizinhas
+            const margemVisualPeca = (peca.sentido === "enviesado") ? 120 : 6;
+            const larguraComMargemPx = larguraPx + margemPx + margemVisualPeca;
+            const alturaComMargemPx = alturaPx + margemPx + margemVisualPeca;
 
             pecaDiv.style.width = larguraPx + "px";
             pecaDiv.style.height = alturaPx + "px";
@@ -92,8 +86,8 @@ function atualizarPlanoDeCorte() {
             }
 
             // Posiciona a peça no plano
-            pecaDiv.style.left = (posX + (margemPx / 2) + 4) + "px";
-            pecaDiv.style.top = (posY + (margemPx / 2) + 4) + "px";
+            pecaDiv.style.left = (posX + (margemPx / 2) + 3) + "px";
+            pecaDiv.style.top = (posY + (margemPx / 2) + 3) + "px";
 
             if (alturaComMargemPx > maiorAlturaNaLinha) {
                 maiorAlturaNaLinha = alturaComMargemPx;
@@ -109,7 +103,7 @@ function atualizarPlanoDeCorte() {
     
     if (pecas.length > 0 && conteudoDiv.lastElementChild) {
         const ultimaPeca = conteudoDiv.lastElementChild;
-        alturaTotalNecessariaPx = ultimaPeca.offsetTop + ultimaPeca.offsetHeight + 10;
+        alturaTotalNecessariaPx = ultimaPeca.offsetTop + ultimaPeca.offsetHeight + 15;
     } else {
         alturaTotalNecessariaPx = 50;
     }
