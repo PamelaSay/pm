@@ -115,17 +115,20 @@ function removerPeca(index) {
     atualizarTabela();
     atualizarPlanoDeCorte();
 }
-
 function atualizarPlanoDeCorte() {
     const tecidoDiv = document.getElementById("tecido");
     tecidoDiv.innerHTML = ''; 
 
     if (larguraTecido <= 0) {
+        tecidoDiv.style.width = "100%";
         tecidoDiv.style.height = "400px";
         return;
     }
 
-    const larguraTelaTecido = larguraTecido * 100; // 1 metro = 100px
+    // Definimos uma escala fixa realista: 1 metro = 200 pixels na tela (para dar uma visualização nítida e proporcional)
+    const escala = 200; 
+    const larguraTelaTecido = larguraTecido * escala;
+    
     tecidoDiv.style.width = larguraTelaTecido + "px";
 
     let posX = 0;
@@ -140,29 +143,26 @@ function atualizarPlanoDeCorte() {
             let larguraFinal = peca.largura;
             let alturaFinal = peca.altura;
 
-            // Se for trama, inverte dimensões (90 graus)
             if (peca.sentido === "trama") {
                 larguraFinal = peca.altura;
                 alturaFinal = peca.largura;
             } 
-            // Se for enviesado, aplica classe especial de rotação de 45°
             else if (peca.sentido === "enviesado") {
                 pecaDiv.classList.add('enviesado');
-                // No viés real, a diagonal ocupa uma área proporcional maior de espaçamento geométrico
                 let diagonal = Math.sqrt(Math.pow(peca.largura, 2) + Math.pow(peca.altura, 2));
                 larguraFinal = diagonal;
                 alturaFinal = diagonal;
             }
 
-            const larguraPx = larguraFinal * 100;
-            const alturaPx = alturaFinal * 100;
+            const larguraPx = larguraFinal * escala;
+            const alturaPx = alturaFinal * escala;
 
             pecaDiv.style.width = larguraPx + "px";
             pecaDiv.style.height = alturaPx + "px";
             pecaDiv.innerText = `${peca.nome}`;
 
-            // Quebra de linha se estourar a ourela
-            if (posX + larguraPx > larguraTelaTecido) {
+            // Quebra de linha exata se a peça ultrapassar a largura real da ourela
+            if (posX + larguraPx > larguraTelaTecido + 1) { // +1 pixel de tolerância para arredondamento
                 posX = 0;
                 posY += maiorAlturaNaLinha;
                 maiorAlturaNaLinha = 0;
@@ -180,11 +180,10 @@ function atualizarPlanoDeCorte() {
         }
     });
 
-    let alturaTotalNecessariaPx = posY + maiorAlturaNaLinha + 50;
+    let alturaTotalNecessariaPx = posY + maiorAlturaNaLinha + 40;
     if (alturaTotalNecessariaPx < 400) alturaTotalNecessariaPx = 400;
     tecidoDiv.style.height = alturaTotalNecessariaPx + "px";
 }
-
 function calcularMetragem() {
     let areaTotalPecas = 0;
     pecas.forEach(peca => {
