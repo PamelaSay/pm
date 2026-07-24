@@ -39,7 +39,7 @@
                 
                 <label for="sentidoPeca">Sentido do Fio:</label>
                 <select id="sentidoPeca">
-                    <option value="ourelha">Ourela (Normal)</option>
+                    <option value="ourela">Ourela (Normal)</option>
                     <option value="trama">Trama (Transversal)</option>
                     <option value="enviesado">Enviesado (45° Diagonal)</option>
                 </select>
@@ -71,18 +71,17 @@
             </table>
         </div>
 
-        <!-- Plano de Corte (O próprio scroll é o tecido) -->
+        <!-- Plano de Corte (O próprio quadrante é o tecido contido) -->
         <h3>Plano de Corte e Aproveitamento</h3>
         <div class="plano-corte-wrapper">
             <div id="tecido">
-                <!-- As peças são posicionadas diretamente no tecido -->
+                <!-- As peças ficam estritamente dentro da área útil do tecido -->
             </div>
         </div>
 
-        <!-- Calcular Metragem (Apenas Metros Lineares) -->
+        <!-- Metragem Automática -->
         <div class="metragem">
-            <button onclick="calcularMetragem()">Calcular Metragem Necessária</button>
-            <p id="resultado"></p>
+            <p id="resultado">Defina a largura da ourela e adicione as peças para ver a metragem necessária.</p>
         </div>
 
         <!-- Imprimir Plano -->
