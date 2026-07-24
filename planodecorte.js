@@ -1,5 +1,6 @@
 let larguraTecido = 0;
 const pecas = [];
+const MARGEM_SEGURANCA = 0.02; // 2 cm de distância entre as peças
 
 function atualizarPlano() {
     larguraTecido = parseFloat(document.getElementById('largura').value);
@@ -134,6 +135,8 @@ function atualizarPlanoDeCorte() {
     const larguraTelaTecido = larguraTecido * escala;
     tecidoDiv.style.width = larguraTelaTecido + "px";
 
+    const margemPx = MARGEM_SEGURANCA * escala;
+
     let posX = 0;
     let posY = 0;
     let maiorAlturaNaLinha = 0;
@@ -143,43 +146,44 @@ function atualizarPlanoDeCorte() {
             const pecaDiv = document.createElement('div');
             pecaDiv.classList.add('peca');
             
-            let larguraFinal = peca.largura;
-            let alturaFinal = peca.altura;
+            let larguraRealPeca = peca.largura;
+            let alturaRealPeca = peca.altura;
 
             if (peca.sentido === "trama") {
-                larguraFinal = peca.altura;
-                alturaFinal = peca.largura;
+                larguraRealPeca = peca.altura;
+                alturaRealPeca = peca.largura;
             } 
             else if (peca.sentido === "enviesado") {
                 pecaDiv.classList.add('enviesado');
-                // No viés, o espaço ocupado considera o enquadramento seguro dentro do tecido
                 let diagonal = Math.sqrt(Math.pow(peca.largura, 2) + Math.pow(peca.altura, 2));
-                larguraFinal = diagonal;
-                alturaFinal = diagonal;
+                larguraRealPeca = diagonal;
+                alturaRealPeca = diagonal;
             }
 
-            const larguraPx = larguraFinal * escala;
-            const alturaPx = alturaFinal * escala;
+            // Adiciona a margem de segurança física para visualização do espaço ocupado
+            const larguraComMargemPx = (larguraRealPeca + MARGEM_SEGURANCA) * escala;
+            const alturaComMargemPx = (alturaRealPeca + MARGEM_SEGURANCA) * escala;
 
-            pecaDiv.style.width = larguraPx + "px";
-            pecaDiv.style.height = alturaPx + "px";
+            pecaDiv.style.width = (larguraRealPeca * escala) + "px";
+            pecaDiv.style.height = (alturaRealPeca * escala) + "px";
             pecaDiv.innerText = `${peca.nome}`;
 
-            // Quebra de linha exata se estourar a ourela
-            if (posX + larguraPx > larguraTelaTecido + 1) {
+            // Quebra de linha exata se estourar a ourela (considerando a margem)
+            if (posX + larguraComMargemPx > larguraTelaTecido + 1) {
                 posX = 0;
                 posY += maiorAlturaNaLinha;
                 maiorAlturaNaLinha = 0;
             }
 
-            pecaDiv.style.left = posX + "px";
-            pecaDiv.style.top = posY + "px";
+            // Posiciona respeitando a margem interna
+            pecaDiv.style.left = (posX + (margemPx / 2)) + "px";
+            pecaDiv.style.top = (posY + (margemPx / 2)) + "px";
 
-            if (alturaPx > maiorAlturaNaLinha) {
-                maiorAlturaNaLinha = alturaPx;
+            if (alturaComMargemPx > maiorAlturaNaLinha) {
+                maiorAlturaNaLinha = alturaComMargemPx;
             }
 
-            posX += larguraPx;
+            posX += larguraComMargemPx;
             tecidoDiv.appendChild(pecaDiv);
         }
     });
@@ -202,20 +206,27 @@ function atualizarMetragemAutomatica() {
         return;
     }
 
-    let areaTotalPecas = 0;
+    let areaTotalComMargem = 0;
+    
     pecas.forEach(peca => {
+        let larguraReal = peca.largura;
+        let alturaReal = peca.altura;
+
+        if (peca.sentido === "trama") {
+            larguraReal = peca.altura;
+            alturaReal = peca.largura;
+        }
+
         let fatorViés = (peca.sentido === "enviesado") ? 1.41 : 1.0;
-        areaTotalPecas += ((peca.altura * peca.largura) * fatorViés) * peca.quantidade;
+        
+        // Adiciona os 2cm de margem de segurança diretamente nas dimensões de cada peça para o cálculo linear
+        let larguraComFolga = larguraReal + MARGEM_SEGURANCA;
+        let alturaComFolga = alturaReal + MARGEM_SEGURANCA;
+
+        areaTotalComMargem += ((alturaComFolga * larguraComFolga) * fatorViés) * peca.quantidade;
     });
 
-    let comprimentoEstimado = (areaTotalPecas / larguraTecido) * 1.10; // 10% margem de segurança
-    resultado.innerHTML = `Metragem recomendada para compra: <strong style="color: #d4af37; font-size: 18px;">${comprimentoEstimado.toFixed(2)} metros</strong> (considerando ourela de ${larguraTecido}m e margem de segurança).`;
-}
-
-function imprimirPlano() {
-    if (larguraTecido <= 0 || pecas.length === 0) {
-        alert("Defina a ourela e adicione pelo menos uma peça antes de imprimir.");
-        return;
-    }
-    window.print();
+    let comprimentoEstimado = areaTotalComMargem / larguraTecido;
+    
+    resultado.innerHTML = `Metragem recomendada para compra: <strong style="color: #d4af37; font-size: 18px;">${comprimentoEstimado.toFixed(2)} metros</strong> (incluindo ourela de ${larguraTecido}m e 2cm de margem de segurança entre as peças).`;
 }
