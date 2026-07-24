@@ -94,9 +94,9 @@ input:focus, select:focus {
 /* Reduz o tamanho da largura dos campos (quadrados de texto) */
 .adicionar-peca input,
 .adicionar-peca select {
-    padding: 6px 8px;
+    padding: 5px 7px;
     font-size: 13px;
-    max-width: 90px;   /* Diminui a largura máxima dos inputs */
+    max-width: 80px;   /* Diminui a largura máxima dos inputs */
 }
 
 /* Deixa o campo do Nome um pouco maior que os outros para caber a descrição */
