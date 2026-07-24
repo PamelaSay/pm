@@ -113,6 +113,18 @@ input:focus, select:focus {
     font-size: 12px;
     white-space: nowrap; /* Impede que o texto do rótulo quebre */
 }
+
+#conteudo-tecido {
+    /* ... outros estilos ... */
+    position: relative;
+    background-color: white;
+    border-left: 1.5px solid #1a2530;
+    border-right: 1.5px solid #1a2530;
+    /* Adiciona um pequeno espaço interno (respiro) em todas as bordas */
+    padding: 10px; 
+    box-sizing: border-box; /* Essencial para o padding não aumentar o tamanho total */
+}
+
 .botoes-form {
     display: flex;
     gap: 10px;
