@@ -181,30 +181,8 @@ button:hover {
     border: 1.5px dashed #b7791f;
 }
 
-/* Estilo individual de cada peça no tecido */
-.peca {
-    position: absolute;
-    border: 1.5px dashed #1a2530;
-    background-color: rgba(122, 178, 211, 0.4);
-    text-align: center;
-    font-size: 11px;
-    font-weight: 600;
-    color: #1a2530;
-    box-sizing: border-box;
-    border-radius: 3px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
-    padding: 4px;
-}
 
-/* Classe aplicada quando o corte for enviesado (rotação de 45°) */
-.peca.enviesado {
-    transform: rotate(45deg);
-    background-color: rgba(212, 175, 55, 0.35); /* Dourado translúcido para destacar o viés */
-    border: 1.5px dashed #b7791f;
-}
+
 
 .metragem {
     font-size: 15px;
