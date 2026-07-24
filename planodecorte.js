@@ -1,9 +1,19 @@
 // Variáveis globais para armazenar os dados do plano de corte
-let larguraTecido = 0; // Largura padrão inicial de ourela a ourela em metros
+let larguraTecido = 0; 
 let MARGEM_SEGURANÇA = 0.02; // 2 cm de margem padrão
 let pecas = [];
 
-// Função para atualizar as dimensões principais do tecido a partir do input correto
+// Inicialização segura após o carregamento completo da página
+document.addEventListener("DOMContentLoaded", () => {
+    // Atrelando os eventos aos botões via JavaScript (evita erros de escopo)
+    document.getElementById("btnDefinirOurela").addEventListener("click", atualizarTecido);
+    document.getElementById("btnNovoPlano").addEventListener("click", novoPlano);
+    document.getElementById("btnSalvar").addEventListener("click", salvarPeca);
+    document.getElementById("btnCancelar").addEventListener("click", cancelarEdicao);
+    document.getElementById("btnImprimir").addEventListener("click", () => window.print());
+});
+
+// Função para atualizar as dimensões principais do tecido
 function atualizarTecido() {
     const inputLargura = document.getElementById("larguraTecido");
     if (inputLargura) {
@@ -12,7 +22,7 @@ function atualizarTecido() {
     atualizarPlanoDeCorte();
 }
 
-// Função para resetar e iniciar um novo plano do zero sem precisar recarregar a página
+// Função para resetar e iniciar um novo plano do zero
 function novoPlano() {
     if (confirm("Deseja realmente limpar todas as peças e reiniciar o plano de corte?")) {
         pecas = [];
@@ -37,7 +47,6 @@ function atualizarPlanoDeCorte() {
 
     conteudoDiv.innerHTML = ''; 
 
-    // Se a largura for inválida, reseta
     if (larguraTecido <= 0) {
         tecidoDiv.style.width = "100%";
         conteudoDiv.style.height = "50px"; 
@@ -61,7 +70,6 @@ function atualizarPlanoDeCorte() {
     let posY = 0;
     let maiorAlturaNaLinha = 0;
 
-    // Se não houver peças na lista, define uma altura mínima inicial limpa
     if (pecas.length === 0) {
         conteudoDiv.style.height = "50px";
         const faixasOurela = tecidoDiv.querySelectorAll('.faixa-ourelha');
@@ -80,7 +88,6 @@ function atualizarPlanoDeCorte() {
             let larguraRealPeca = peca.largura;
             let alturaRealPeca = peca.altura;
 
-            // Tratamento para o sentido do fio
             if (peca.sentido === "trama") {
                 larguraRealPeca = peca.altura;
                 alturaRealPeca = peca.largura;
@@ -95,14 +102,12 @@ function atualizarPlanoDeCorte() {
             const larguraComMargemPx = larguraPx + margemPx;
             const alturaComMargemPx = alturaPx + margemPx;
 
-            // Quebra de linha se ultrapassar a largura útil do tecido
             if (posX + larguraComMargemPx > larguraUtilPx + 0.1) {
                 posX = 0;
                 posY += maiorAlturaNaLinha;
                 maiorAlturaNaLinha = 0;
             }
 
-            // Posiciona a peça no plano
             pecaDiv.style.width = larguraPx + "px";
             pecaDiv.style.height = alturaPx + "px";
             pecaDiv.style.left = (posX + metadeMargem) + "px";
@@ -118,13 +123,11 @@ function atualizarPlanoDeCorte() {
         }
     });
 
-    // Calcula a altura total necessária
     let alturaTotalNecessariaPx = posY + maiorAlturaNaLinha;
     if (alturaTotalNecessariaPx < 50) {
         alturaTotalNecessariaPx = 50;
     }
 
-    // Aplica a altura calculada no conteúdo e nas ourelas laterais
     conteudoDiv.style.height = alturaTotalNecessariaPx + "px";
     
     const faixasOurela = tecidoDiv.querySelectorAll('.faixa-ourelha');
@@ -132,14 +135,13 @@ function atualizarPlanoDeCorte() {
         faixa.style.height = alturaTotalNecessariaPx + "px";
     });
 
-    // Converte altura de pixels para metros para exibir no rodapé
     const metrosNecessarios = (alturaTotalNecessariaPx / escala).toFixed(2);
     if (resultadoDiv) {
         resultadoDiv.innerHTML = `Metragem linear necessária de tecido: <strong>${metrosNecessarios} metros</strong> (com largura de ${larguraTecido}m).`;
     }
 }
 
-// Função para salvar (Adicionar ou Atualizar) peça a partir do formulário
+// Função para salvar (Adicionar ou Atualizar) peça
 function salvarPeca(event) {
     if (event) event.preventDefault();
 
@@ -166,15 +168,12 @@ function salvarPeca(event) {
     const indice = indiceInput.value;
 
     if (indice === "") {
-        // Adiciona nova peça
         pecas.push({ nome, altura, largura, quantidade, sentido });
     } else {
-        // Atualiza peça existente
         pecas[parseInt(indice)] = { nome, altura, largura, quantidade, sentido };
         cancelarEdicao();
     }
 
-    // Limpa os campos após salvar
     nomeInput.value = "";
     alturaInput.value = "";
     larguraInput.value = "";
@@ -206,11 +205,19 @@ function atualizarTabelaPecas() {
             <td>${textoSentido}</td>
             <td>${peca.quantidade}</td>
             <td>
-                <button onclick="editarPeca(${index})" title="Editar"><i class="fa-solid fa-pen"></i></button>
-                <button onclick="removerPeca(${index})" title="Excluir" style="background-color: #e53e3e; color: white;"><i class="fa-solid fa-trash"></i></button>
+                <button type="button" class="btn-editar" data-index="${index}" title="Editar"><i class="fa-solid fa-pen"></i></button>
+                <button type="button" class="btn-excluir" data-index="${index}" title="Excluir" style="background-color: #e53e3e; color: white;"><i class="fa-solid fa-trash"></i></button>
             </td>
         `;
         tbody.appendChild(tr);
+    });
+
+    // Atrelando eventos aos botões criados dinamicamente na tabela
+    document.querySelectorAll(".btn-editar").forEach(btn => {
+        btn.addEventListener("click", (e) => editarPeca(e.currentTarget.dataset.index));
+    });
+    document.querySelectorAll(".btn-excluir").forEach(btn => {
+        btn.addEventListener("click", (e) => removerPeca(e.currentTarget.dataset.index));
     });
 }
 
@@ -250,9 +257,4 @@ function removerPeca(index) {
     pecas.splice(index, 1);
     atualizarTabelaPecas();
     atualizarPlanoDeCorte();
-}
-
-// Função de impressão do plano
-function imprimirPlano() {
-    window.print();
 }
