@@ -211,3 +211,11 @@ function atualizarMetragemAutomatica() {
     let comprimentoEstimado = (areaTotalPecas / larguraTecido) * 1.10; // 10% margem de segurança
     resultado.innerHTML = `Metragem recomendada para compra: <strong style="color: #d4af37; font-size: 18px;">${comprimentoEstimado.toFixed(2)} metros</strong> (considerando ourela de ${larguraTecido}m e margem de segurança).`;
 }
+
+function imprimirPlano() {
+    if (larguraTecido <= 0 || pecas.length === 0) {
+        alert("Defina a ourela e adicione pelo menos uma peça antes de imprimir.");
+        return;
+    }
+    window.print();
+}
