@@ -7,8 +7,8 @@
 
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background-color: #f7fafc;
-    color: #2d3748;
+    background-color: #fcfbf9; /* Fundo bege bem clarinho/clean */
+    color: #1a202c; /* Preto suave para texto */
     padding: 20px;
 }
 
@@ -18,7 +18,8 @@ body {
     background: #ffffff;
     padding: 30px;
     border-radius: 12px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    box-shadow: 0 4px 15px rgba(212, 175, 55, 0.15); /* Sutil toque dourado na sombra */
+    border: 1px solid #f0ead6;
 }
 
 h1 {
@@ -26,20 +27,23 @@ h1 {
     margin-bottom: 20px;
     color: #1a202c;
     text-align: center;
+    border-bottom: 2px solid #d4af37; /* Dourado */
+    padding-bottom: 10px;
 }
 
 h3 {
     font-size: 1.2rem;
     margin-bottom: 15px;
-    color: #4a5568;
+    color: #2d3748;
 }
 
 /* Formulários e Entradas */
 .input-container, .adicionar-peca {
-    background: #edf2f7;
+    background: #fdfcf7; /* Fundo bege */
     padding: 20px;
     border-radius: 8px;
     margin-bottom: 25px;
+    border: 1px solid #e2dcc8;
 }
 
 .linha {
@@ -60,7 +64,7 @@ label {
     font-size: 0.85rem;
     font-weight: 600;
     margin-bottom: 5px;
-    color: #4a5568;
+    color: #1a202c;
 }
 
 input, select {
@@ -70,22 +74,30 @@ input, select {
     border-radius: 6px;
     font-size: 0.95rem;
     background: #fff;
+    color: #1a202c;
+}
+
+input:focus, select:focus {
+    outline: none;
+    border-color: #d4af37; /* Dourado no foco */
+    box-shadow: 0 0 5px rgba(212, 175, 55, 0.3);
 }
 
 button {
-    background-color: #3182ce;
-    color: white;
+    background-color: #d4af37; /* Dourado principal */
+    color: #1a202c; /* Texto preto para contraste elegante */
     border: none;
     padding: 10px 20px;
     font-size: 0.95rem;
-    font-weight: 600;
+    font-weight: 700;
     border-radius: 6px;
     cursor: pointer;
-    transition: background-color 0.2s;
+    transition: all 0.2s;
 }
 
 button:hover {
-    background-color: #2b6cb0;
+    background-color: #c59b27;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
 }
 
 .botoes-form {
@@ -108,13 +120,14 @@ table {
 th, td {
     padding: 12px;
     text-align: left;
-    border-bottom: 1px solid #e2e8f0;
+    border-bottom: 1px solid #e2dcc8;
     font-size: 0.9rem;
 }
 
 th {
-    background-color: #edf2f7;
-    color: #4a5568;
+    background-color: #fdfcf7;
+    color: #1a202c;
+    border-bottom: 2px solid #d4af37;
 }
 
 td button {
@@ -123,20 +136,35 @@ td button {
     margin-right: 5px;
 }
 
-/* Simulação Visual do Tecido (Cores Originais Restauradas) */
+td button.btn-editar {
+    background-color: #b3e0ff; /* Azul claro */
+    color: #1a202c;
+}
+
+td button.btn-excluir {
+    background-color: #1a202c; /* Preto */
+    color: #ffffff;
+}
+
+td button:hover {
+    opacity: 0.85;
+}
+
+/* Simulação Visual do Tecido */
 .plano-corte-wrapper {
     width: 100%;
     overflow-x: auto;
-    background: #edf2f7;
+    background: #fdfcf7;
     padding: 20px;
     border-radius: 8px;
     margin-bottom: 20px;
+    border: 1px solid #e2dcc8;
 }
 
 #tecido {
     position: relative;
-    background-color: #fefcbf; /* Cor simulando tecido cru/algodão */
-    border: 2px dashed #d69e2e;
+    background-color: #fbf9f1; /* Tom bege simulando o tecido */
+    border: 2px dashed #d4af37; /* Dourado */
     margin: 0 auto;
     transition: width 0.3s ease;
 }
@@ -146,9 +174,9 @@ td button {
     position: absolute;
     top: 0;
     width: 32px;
-    background-color: rgba(214, 158, 46, 0.2);
-    border-left: 1px dashed #b7791f;
-    border-right: 1px dashed #b7791f;
+    background-color: rgba(212, 175, 55, 0.15);
+    border-left: 1px dashed #d4af37;
+    border-right: 1px dashed #d4af37;
     font-size: 0.65rem;
     writing-mode: vertical-rl;
     text-orientation: mixed;
@@ -177,18 +205,18 @@ td button {
     background-color: transparent;
 }
 
-/* Estilo das Peças Renderizadas */
+/* Estilo das Peças Renderizadas (Azul Claro) */
 .peca {
     position: absolute;
-    background-color: rgba(49, 130, 206, 0.25);
-    border: 2px solid #3182ce;
+    background-color: rgba(179, 224, 255, 0.6); /* Azul claro translúcido */
+    border: 2px solid #2b6cb0;
     border-radius: 4px;
     display: flex;
     align-items: center;
     justify-content: center;
     font-size: 0.8rem;
     font-weight: bold;
-    color: #2b6cb0;
+    color: #1a202c; /* Preto para máxima legibilidade */
     text-align: center;
     padding: 4px;
     box-sizing: border-box;
@@ -199,9 +227,9 @@ td button {
 
 .peca.enviesado {
     border-style: dotted;
-    background-color: rgba(221, 107, 32, 0.25);
-    border-color: #dd6b20;
-    color: #c05621;
+    background-color: rgba(212, 175, 55, 0.3); /* Toque de dourado para enviesado */
+    border-color: #d4af37;
+    color: #1a202c;
 }
 
 /* Metragem em Destaque */
@@ -209,33 +237,36 @@ td button {
     display: flex;
     align-items: center;
     gap: 12px;
-    background-color: #ebf8ff;
-    border: 1px solid #90cdf4;
+    background-color: #fdfcf7;
+    border: 1px solid #d4af37;
     padding: 15px 20px;
     border-radius: 8px;
     font-size: 1.05rem;
-    color: #2b6cb0;
+    color: #1a202c;
     margin-bottom: 20px;
 }
 
 .metragem-destaque i {
     font-size: 1.4rem;
+    color: #d4af37;
 }
 
-/* Impressão */
+/* Impressao */
 .impressao {
     text-align: center;
 }
 
 .impressao button {
-    background-color: #38a169;
+    background-color: #1a202c; /* Botão em preto elegante */
+    color: #ffffff;
     width: 100%;
     padding: 12px;
     font-size: 1rem;
+    border: 1px solid #d4af37;
 }
 
 .impressao button:hover {
-    background-color: #2f855a;
+    background-color: #2d3748;
 }
 
 @media print {
@@ -249,10 +280,12 @@ td button {
     .container {
         box-shadow: none;
         padding: 0;
+        border: none;
     }
     .plano-corte-wrapper {
         background: white;
         padding: 0;
         overflow: visible;
+        border: none;
     }
 }
