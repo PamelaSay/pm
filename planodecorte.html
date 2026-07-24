@@ -15,10 +15,10 @@
         <!-- Seção de Ourela (Largura Fixa) -->
         <div class="input-container noprint">
             <label for="larguraTecido">Ourela do Tecido (Largura em metros):</label>
-            <input type="number" id="larguraTecido" placeholder="Ex: 1.40" min="0" step="0.01">
-            <div style="display: flex; gap: 10px; margin-top: 10px;">
-                <button type="button" id="btnDefinirOurela" style="flex: 2;">Definir Ourela</button>
-                <button type="button" id="btnNovoPlano" style="flex: 1; background-color: #e53e3e;" title="Limpar tudo e iniciar novo plano"><i class="fa-solid fa-rotate-right"></i> Novo Plano</button>
+            <div style="display: flex; gap: 10px; align-items: center;">
+                <input type="number" id="larguraTecido" placeholder="Ex: 1.40" min="0" step="0.01" style="flex: 2;">
+                <button type="button" id="btnDefinirOurela" style="flex: 1; padding: 10px 15px;">Definir Ourela</button>
+                <button type="button" id="btnNovoPlano" style="flex: 1; background-color: #718096; color: white; padding: 10px 15px;" title="Iniciar novo plano"><i class="fa-solid fa-rotate-right"></i> Novo</button>
             </div>
         </div>
 
@@ -84,8 +84,8 @@
         <h3>Plano de Corte e Aproveitamento</h3>
         <div class="plano-corte-wrapper">
             <div id="tecido">
-                <div class="faixa-ourela esquerda">OURELA / URDUME</div>
-                <div class="faixa-ourela direita">OURELA / URDUME</div>
+                <div class="faixa-ourelha esquerda">OURELA</div>
+                <div class="faixa-ourelha direita">OURELA</div>
                 <div id="conteudo-tecido">
                     <!-- As peças ficam estritamente dentro da área útil delimitada pelas ourelas -->
                 </div>
