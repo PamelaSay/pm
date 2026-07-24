@@ -86,7 +86,7 @@ input:focus, select:focus {
     display: flex;
     align-items: center;
     flex-wrap: nowrap; /* Força tudo a ficar na mesma linha horizontal */
-    gap: 6px;          /* Espaço menor entre os campos para economizar espaço */
+    gap: 4px;          /* Espaço menor entre os campos para economizar espaço */
     width: 100%;
 }
 
