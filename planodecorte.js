@@ -69,7 +69,6 @@ function atualizarPlanoDeCorte() {
             const larguraPx = larguraRealPeca * escala;
             const alturaPx = alturaRealPeca * escala;
 
-            // Se for enviesado, aplica uma margem visual maior para afastar as peças vizinhas
             const margemVisualPeca = (peca.sentido === "enviesado") ? 120 : 6;
             const larguraComMargemPx = larguraPx + margemPx + margemVisualPeca;
             const alturaComMargemPx = alturaPx + margemPx + margemVisualPeca;
@@ -98,17 +97,18 @@ function atualizarPlanoDeCorte() {
         }
     });
 
-    // Calcula a altura exata da última peça adicionada para colar o tecido perfeitamente nela
+    // Pega a altura exata da última peça adicionada, sem sobras de margem inferior
     let alturaTotalNecessariaPx = 0;
     
     if (pecas.length > 0 && conteudoDiv.lastElementChild) {
         const ultimaPeca = conteudoDiv.lastElementChild;
-        alturaTotalNecessariaPx = ultimaPeca.offsetTop + ultimaPeca.offsetHeight + 15;
+        // A altura total é a posição do topo da última peça mais a altura dela própria
+        alturaTotalNecessariaPx = ultimaPeca.offsetTop + ultimaPeca.offsetHeight;
     } else {
         alturaTotalNecessariaPx = 50;
     }
 
-    // Aplica a altura calculada rigorosamente no conteúdo e nas ourelas laterais
+    // Aplica o tamanho exato no tecido e nas ourelas
     conteudoDiv.style.height = alturaTotalNecessariaPx + "px";
     
     const faixasOurela = tecidoDiv.querySelectorAll('.faixa-ourelha');
@@ -149,4 +149,23 @@ function adicionarPeca(event) {
     quantidadeInput.value = "1";
 
     atualizarPlanoDeCorte();
+}
+
+// Função para limpar todo o plano de corte e iniciar um novo
+function novoPlanoDeCorte() {
+    if (confirm("Deseja iniciar um novo plano de corte? Isso apagará todas as peças atuais.")) {
+        pecas = [];
+
+        const nomeInput = document.getElementById("nomePeca");
+        const alturaInput = document.getElementById("alturaPeca");
+        const larguraInput = document.getElementById("larguraPeca");
+        const quantidadeInput = document.getElementById("quantidadePeca");
+
+        if (nomeInput) nomeInput.value = "";
+        if (alturaInput) alturaInput.value = "";
+        if (larguraInput) larguraInput.value = "";
+        if (quantidadeInput) quantidadeInput.value = "1";
+
+        atualizarPlanoDeCorte();
+    }
 }
