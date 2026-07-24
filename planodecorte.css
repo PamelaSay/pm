@@ -194,6 +194,35 @@ button:hover {
     font-weight: 500;
 }
 
+/* --- METRAGEM EM DESTAQUE --- */
+.metragem-destaque {
+    font-size: 16px;
+    text-align: center;
+    background-color: #1a2530; /* Fundo preto sofisticado */
+    color: #ffffff;
+    padding: 18px 20px;
+    border-radius: 8px;
+    border: 2px solid #d4af37; /* Borda em Dourado elegante */
+    margin-top: 20px;
+    margin-bottom: 15px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+}
+
+.metragem-destaque i {
+    color: #d4af37;
+    font-size: 20px;
+}
+
+#resultado {
+    font-weight: 600;
+    letter-spacing: 0.3px;
+    margin: 0;
+}
+
 .impressao {
     text-align: center;
     margin-top: 15px;
