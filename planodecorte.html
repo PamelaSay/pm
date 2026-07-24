@@ -17,8 +17,8 @@
             <label for="larguraTecido">Ourela do Tecido (Largura em metros):</label>
             <input type="number" id="larguraTecido" placeholder="Ex: 1.40" min="0" step="0.01">
             <div style="display: flex; gap: 10px; margin-top: 10px;">
-                <button onclick="atualizarTecido()" style="flex: 2;">Definir Ourela</button>
-                <button onclick="novoPlano()" style="flex: 1; background-color: #e53e3e;" title="Limpar tudo e iniciar novo plano"><i class="fa-solid fa-rotate-right"></i> Novo Plano</button>
+                <button type="button" id="btnDefinirOurela" style="flex: 2;">Definir Ourela</button>
+                <button type="button" id="btnNovoPlano" style="flex: 1; background-color: #e53e3e;" title="Limpar tudo e iniciar novo plano"><i class="fa-solid fa-rotate-right"></i> Novo Plano</button>
             </div>
         </div>
 
@@ -55,8 +55,8 @@
             </div>
             
             <div class="botoes-form" style="margin-top: 15px;">
-                <button onclick="salvarPeca(event)" id="btnSalvar">Adicionar Peça</button>
-                <button onclick="cancelarEdicao()" id="btnCancelar" style="display:none; background-color: #718096; color: white;">Cancelar</button>
+                <button type="button" id="btnSalvar">Adicionar Peça</button>
+                <button type="button" id="btnCancelar" style="display:none; background-color: #718096; color: white;">Cancelar</button>
             </div>
         </div>
 
@@ -100,10 +100,11 @@
 
         <!-- Imprimir Plano -->
         <div class="impressao noprint">
-            <button onclick="imprimirPlano()">Imprimir Plano de Corte</button>
+            <button type="button" id="btnImprimir">Imprimir Plano de Corte</button>
         </div>
     </div>
 
+    <!-- Script carregado no final garantindo que os elementos existam -->
     <script src="planodecorte.js"></script>
 </body>
 </html>
