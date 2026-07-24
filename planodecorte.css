@@ -90,6 +90,11 @@ input:focus, select:focus {
     width: 100%;
 }
 
+/* Deixa o campo de quantidade bem pequeno, do tamanho exato de um número */
+#quantidadePeca {
+    max-width: 45px;
+    text-align: center;
+}
 /* Reduz o tamanho de todos os inputs e selects da linha */
 .adicionar-peca input,
 .adicionar-peca select {
