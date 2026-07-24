@@ -82,21 +82,32 @@ input:focus, select:focus {
     align-items: flex-start;
 }
 
+/* Deixa todos os campos na mesma linha e reduz o tamanho dos quadradinhos */
 .adicionar-peca .linha {
     display: flex;
     align-items: center;
-    margin-bottom: 12px;
-    flex-wrap: wrap;
-    gap: 10px;
+    flex-wrap: nowrap; /* Impede que quebrem de linha */
+    gap: 8px;          /* Espaçamento compacto entre os campos */
+    width: 100%;
 }
 
+/* Reduz o tamanho da largura dos campos (quadrados de texto) */
 .adicionar-peca input,
 .adicionar-peca select {
-    max-width: 110px;
+    padding: 6px 8px;
+    font-size: 13px;
+    max-width: 90px;   /* Diminui a largura máxima dos inputs */
 }
 
+/* Deixa o campo do Nome um pouco maior que os outros para caber a descrição */
 #nomePeca {
-    max-width: 180px;
+    max-width: 140px;
+}
+
+/* Ajusta o tamanho das etiquetas (rótulos) para economizar espaço */
+.adicionar-peca label {
+    font-size: 13px;
+    white-space: nowrap; /* Evita que o texto do rótulo quebre em duas linhas */
 }
 
 .botoes-form {
