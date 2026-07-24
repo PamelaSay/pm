@@ -1,5 +1,5 @@
 // Variáveis globais para armazenar os dados do plano de corte
-let larguraTecido = 1.40; // Largura padrão inicial de ourela a ourela em metros
+let larguraTecido = 1.50; // Largura padrão inicial de ourela a ourela em metros
 let MARGEM_SEGURANÇA = 0.02; // 2 cm de margem padrão
 let pecas = [];
 
@@ -69,10 +69,16 @@ function atualizarPlanoDeCorte() {
             const larguraPx = larguraRealPeca * escala;
             const alturaPx = alturaRealPeca * escala;
 
-            // Considera a margem de segurança e o respiro visual (8px totais definidos no CSS)
             const margemVisualPeca = 8; 
-            const larguraComMargemPx = larguraPx + margemPx + margemVisualPeca;
-            const alturaComMargemPx = alturaPx + margemPx + margemVisualPeca;
+            let larguraComMargemPx = larguraPx + margemPx + margemVisualPeca;
+            let alturaComMargemPx = alturaPx + margemPx + margemVisualPeca;
+
+            // Espaçamento extra e exclusivo para o enviesado (evita sobreposição das pontas)
+            if (peca.sentido === "enviesado") {
+                const extraEnviesado = Math.max(larguraPx, alturaPx) * 0.4;
+                larguraComMargemPx += extraEnviesado;
+                alturaComMargemPx += extraEnviesado;
+            }
 
             pecaDiv.style.width = larguraPx + "px";
             pecaDiv.style.height = alturaPx + "px";
