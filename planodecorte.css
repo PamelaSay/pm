@@ -321,6 +321,26 @@ tr:nth-child(even) {
     color: #c53030;
 }
 
+/* --- MARCA D'ÁGUA DE PROTEÇÃO --- */
+.marca-dagua-tecido {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) rotate(-25deg);
+    font-size: 24px;
+    font-weight: 800;
+    color: rgba(212, 175, 55, 0.15); /* Dourado bem suave e transparente */
+    letter-spacing: 4px;
+    pointer-events: none;
+    z-index: 1;
+    white-space: nowrap;
+    user-select: none;
+}
+
+.rodape-impressao {
+    display: none; /* Oculto na tela normal */
+}
+
 /* --- CONFIGURAÇÃO PARA A HORA DA IMPRESSÃO --- */
 @media print {
     body {
@@ -351,6 +371,25 @@ tr:nth-child(even) {
         border: 2px solid #000 !important;
         box-shadow: none;
         margin: 0 auto;
+    }
+
+    /* Torna a marca d'água legível e presente no papel impresso */
+    .marca-dagua-tecido {
+        color: rgba(150, 150, 150, 0.25) !important;
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+    }
+
+    /* Exibe o rodapé de autoria na folha impressa */
+    .rodape-impressao {
+        display: block !important;
+        text-align: center;
+        font-size: 11px;
+        font-weight: bold;
+        color: #4a5568;
+        margin-top: 20px;
+        border-top: 1px solid #cbd5e1;
+        padding-top: 8px;
     }
 
     .metragem-destaque {
