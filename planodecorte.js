@@ -192,11 +192,23 @@ function atualizarPlanoDeCorte() {
         }
     });
 
-    let alturaTotalNecessariaPx = posY + maiorAlturaNaLinha + 40;
-    if (alturaTotalNecessariaPx < 400) alturaTotalNecessariaPx = 400;
-    conteudoDiv.style.height = alturaTotalNecessariaPx + "px";
-}
+   // Calcula a altura exata ocupada pelas linhas de peças + margens
+    let alturaTotalNecessariaPx = posY + maiorAlturaNaLinha;
+    
+    // Se não houver peças, mantém um tamanho padrão visível
+    if (alturaTotalNecessariaPx < 100) {
+        alturaTotalNecessariaPx = 400;
+    }
 
+    // Aplica a altura exata no conteúdo e nas ourelas laterais para que o tecido termine logo abaixo das peças
+    conteudoDiv.style.height = alturaTotalNecessariaPx + "px";
+    
+    // Garante que as ourelas laterais tenham exatamente a mesma altura do tecido
+    const faixasOurela = tecidoDiv.querySelectorAll('.faixa-ourelha');
+    faixasOurela.forEach(faixa => {
+        faixa.style.height = alturaTotalNecessariaPx + "px";
+    });
+}
 
 function atualizarMetragemAutomatica() {
     const resultado = document.getElementById('resultado');
