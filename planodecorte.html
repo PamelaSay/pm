@@ -3,27 +3,26 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Plano de Corte de Tecido</title>
+    <title>Plano de Corte de Tecido - Pamelete</title>
+    <!-- FontAwesome para os ícones de ação -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="planodecorte.css">
 </head>
 <body>
     <div class="container">
         <h1>Plano de Corte de Tecido</h1>
 
-        <!-- Seção de Ourela e Altura do Tecido -->
+        <!-- Seção de Ourela (Largura Fixa) -->
         <div class="input-container">
-            <label for="largura">Largura do Tecido (Ourela) (m):</label>
+            <label for="largura">Ourela do Tecido (Largura em metros):</label>
             <input type="number" id="largura" placeholder="Ex: 1.40" min="0" step="0.01">
-            
-            <label for="alturaTecidoInput">Altura/Comprimento do Tecido (m):</label>
-            <input type="number" id="alturaTecidoInput" placeholder="Ex: 2.00" min="0" step="0.01">
-
-            <button onclick="atualizarPlano()">Definir Tecido</button>
+            <button onclick="atualizarPlano()">Definir Ourela</button>
         </div>
 
         <!-- Seção de Adicionar Peça -->
         <div class="adicionar-peca">
-            <h3>Adicionar Peça</h3>
+            <h3 id="tituloFormulario">Adicionar Peça</h3>
+            <input type="hidden" id="indiceEdicao" value="">
             
             <div class="linha">
                 <label for="nomePeca">Nome:</label>
@@ -41,12 +40,15 @@
                 <label for="sentidoPeca">Sentido do Fio:</label>
                 <select id="sentidoPeca">
                     <option value="ourelha">Ourela (Normal)</option>
-                    <option value="trama">Trama</option>
-                    <option value="enviesado">Enviesado (Girar)</option>
+                    <option value="trama">Trama (Transversal)</option>
+                    <option value="enviesado">Enviesado (45° Diagonal)</option>
                 </select>
             </div>
             
-            <button onclick="adicionarPeca()">Adicionar Peça</button>
+            <div class="botoes-form">
+                <button onclick="salvarPeca()" id="btnSalvar">Adicionar Peça</button>
+                <button onclick="cancelarEdicao()" id="btnCancelar" style="display:none; background-color: #718096; color: white;">Cancelar</button>
+            </div>
         </div>
 
         <!-- Lista das Peças -->
@@ -69,17 +71,17 @@
             </table>
         </div>
 
-        <!-- Plano de Corte (O próprio tecido) -->
+        <!-- Plano de Corte (O próprio scroll é o tecido) -->
         <h3>Plano de Corte</h3>
         <div class="plano-corte-wrapper">
             <div id="tecido">
-                <!-- As peças são posicionadas diretamente aqui -->
+                <!-- As peças são posicionadas diretamente no tecido -->
             </div>
         </div>
 
-        <!-- Calcular Metragem -->
+        <!-- Calcular Metragem (Apenas Metros Lineares) -->
         <div class="metragem">
-            <button onclick="calcularMetragem()">Calcular Metragem</button>
+            <button onclick="calcularMetragem()">Calcular Metragem Necessária</button>
             <p id="resultado"></p>
         </div>
 
