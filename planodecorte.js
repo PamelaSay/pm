@@ -1,6 +1,6 @@
 let larguraTecido = 0;
 const pecas = [];
-const MARGEM_SEGURANCA = 0.02; // 2 cm de distância entre as peças
+const MARGEM_SEGURANCA = 0.02; // 2 cm de margem
 
 function atualizarPlano() {
     larguraTecido = parseFloat(document.getElementById('largura').value);
@@ -123,18 +123,22 @@ function removerPeca(index) {
 
 function atualizarPlanoDeCorte() {
     const tecidoDiv = document.getElementById("tecido");
-    tecidoDiv.innerHTML = ''; 
+    const conteudoDiv = document.getElementById("conteudo-tecido");
+    conteudoDiv.innerHTML = ''; 
 
     if (larguraTecido <= 0) {
         tecidoDiv.style.width = "100%";
-        tecidoDiv.style.height = "400px";
+        conteudoDiv.style.height = "400px";
         return;
     }
 
     const escala = 200; // 1 metro = 200px
     const larguraTelaTecido = larguraTecido * escala;
-    tecidoDiv.style.width = larguraTelaTecido + "px";
+    
+    // O tecido agora inclui os 50px totais das duas ourelas laterais (25px cada)
+    tecidoDiv.style.width = (larguraTelaTecido + 50) + "px";
 
+    const larguraUtilPx = larguraTelaTecido;
     const margemPx = MARGEM_SEGURANCA * escala;
 
     let posX = 0;
@@ -155,27 +159,25 @@ function atualizarPlanoDeCorte() {
             } 
             else if (peca.sentido === "enviesado") {
                 pecaDiv.classList.add('enviesado');
-                let diagonal = Math.sqrt(Math.pow(peca.largura, 2) + Math.pow(peca.altura, 2));
-                larguraRealPeca = diagonal;
-                alturaRealPeca = diagonal;
             }
 
-            // Adiciona a margem de segurança física para visualização do espaço ocupado
-            const larguraComMargemPx = (larguraRealPeca + MARGEM_SEGURANCA) * escala;
-            const alturaComMargemPx = (alturaRealPeca + MARGEM_SEGURANCA) * escala;
+            const larguraPx = larguraRealPeca * escala;
+            const alturaPx = alturaRealPeca * escala;
 
-            pecaDiv.style.width = (larguraRealPeca * escala) + "px";
-            pecaDiv.style.height = (alturaRealPeca * escala) + "px";
+            const larguraComMargemPx = larguraPx + margemPx;
+            const alturaComMargemPx = alturaPx + margemPx;
+
+            pecaDiv.style.width = larguraPx + "px";
+            pecaDiv.style.height = alturaPx + "px";
             pecaDiv.innerText = `${peca.nome}`;
 
-            // Quebra de linha exata se estourar a ourela (considerando a margem)
-            if (posX + larguraComMargemPx > larguraTelaTecido + 1) {
+            // Quebra de linha se estourar a largura útil entre as ourelas
+            if (posX + larguraComMargemPx > larguraUtilPx + 1) {
                 posX = 0;
                 posY += maiorAlturaNaLinha;
                 maiorAlturaNaLinha = 0;
             }
 
-            // Posiciona respeitando a margem interna
             pecaDiv.style.left = (posX + (margemPx / 2)) + "px";
             pecaDiv.style.top = (posY + (margemPx / 2)) + "px";
 
@@ -184,13 +186,13 @@ function atualizarPlanoDeCorte() {
             }
 
             posX += larguraComMargemPx;
-            tecidoDiv.appendChild(pecaDiv);
+            conteudoDiv.appendChild(pecaDiv);
         }
     });
 
     let alturaTotalNecessariaPx = posY + maiorAlturaNaLinha + 40;
     if (alturaTotalNecessariaPx < 400) alturaTotalNecessariaPx = 400;
-    tecidoDiv.style.height = alturaTotalNecessariaPx + "px";
+    conteudoDiv.style.height = alturaTotalNecessariaPx + "px";
 }
 
 function atualizarMetragemAutomatica() {
@@ -219,7 +221,6 @@ function atualizarMetragemAutomatica() {
 
         let fatorViés = (peca.sentido === "enviesado") ? 1.41 : 1.0;
         
-        // Adiciona os 2cm de margem de segurança diretamente nas dimensões de cada peça para o cálculo linear
         let larguraComFolga = larguraReal + MARGEM_SEGURANCA;
         let alturaComFolga = alturaReal + MARGEM_SEGURANCA;
 
