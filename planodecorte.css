@@ -72,6 +72,16 @@ input:focus, select:focus {
     max-width: 120px;
 }
 
+
+.peca {
+    /* ... estilos existentes ... */
+    box-sizing: border-box;
+    /* Adiciona uma margem de 5px ao redor de cada peça para criar "respiro" */
+    margin: 5px; 
+    /* Ajuste para que o cálculo de posição do JS não precise ser refeito drasticamente */
+    left: calc(attr(style) + 5px); /* Isso é só ilustrativo, a margem deve ser considerada no JS */
+}
+
 .adicionar-peca {
     background-color: #faf8f5;
     padding: 15px;
