@@ -50,7 +50,7 @@ h3 {
     margin-bottom: 15px;
 }
 
-.linha div, .linha > * {
+.linha div {
     flex: 1;
     min-width: 120px;
 }
@@ -123,7 +123,7 @@ td button {
     margin-right: 5px;
 }
 
-/* Simulação Visual do Tecido */
+/* Simulação Visual do Tecido (Cores Originais Restauradas) */
 .plano-corte-wrapper {
     width: 100%;
     overflow-x: auto;
@@ -172,8 +172,8 @@ td button {
 
 #conteudo-tecido {
     position: relative;
-    margin-left: 32px; /* Espaço da ourela esquerda */
-    margin-right: 32px; /* Espaço da ourela direita */
+    margin-left: 32px; 
+    margin-right: 32px; 
     background-color: transparent;
 }
 
