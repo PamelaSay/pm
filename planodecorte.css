@@ -295,3 +295,48 @@ tr:nth-child(even) {
     background-color: #fff5f5;
     color: #c53030;
 }
+
+/* --- CONFIGURAÇÃO PARA A HORA DA IMPRESSÃO --- */
+@media print {
+    body {
+        background-color: #ffffff;
+    }
+    
+    .container {
+        width: 100%;
+        max-width: 100%;
+        margin: 0;
+        padding: 0;
+        box-shadow: none;
+        border: none;
+    }
+
+    /* Oculta os inputs, botões de ação, formulários e botão de imprimir na folha impressa */
+    .input-container,
+    .adicionar-peca,
+    .impressao,
+    .btn-acao,
+    th:last-child,
+    td:last-child {
+        display: none !important;
+    }
+
+    .plano-corte-wrapper {
+        max-height: none;
+        overflow: visible;
+        border: none;
+    }
+
+    #tecido {
+        border: 2px solid #000 !important;
+        box-shadow: none;
+    }
+
+    .metragem-destaque {
+        background-color: #f0f4f8 !important;
+        color: #000 !important;
+        border: 1px solid #000 !important;
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+    }
+}
