@@ -72,19 +72,9 @@ input:focus, select:focus {
     max-width: 120px;
 }
 
-
-.peca {
-    /* ... estilos existentes ... */
-    box-sizing: border-box;
-    /* Adiciona uma margem de 5px ao redor de cada peça para criar "respiro" */
-    margin: 5px; 
-    /* Ajuste para que o cálculo de posição do JS não precise ser refeito drasticamente */
-    left: calc(attr(style) + 5px); /* Isso é só ilustrativo, a margem deve ser considerada no JS */
-}
-
 .adicionar-peca {
     background-color: #faf8f5;
-    padding: 15px;
+    padding: 20px;
     border-radius: 8px;
     border: 1px solid #e8e3d9;
     display: flex;
@@ -95,44 +85,18 @@ input:focus, select:focus {
 .adicionar-peca .linha {
     display: flex;
     align-items: center;
-    flex-wrap: nowrap; /* Força tudo a ficar na mesma linha horizontal */
-    gap: 4px;          /* Espaço menor entre os campos para economizar espaço */
-    width: 100%;
+    margin-bottom: 12px;
+    flex-wrap: wrap;
+    gap: 10px;
 }
 
-
-/* Reduz o tamanho de todos os inputs e selects da linha */
 .adicionar-peca input,
 .adicionar-peca select {
-    padding: 6px 6px;
-    font-size: 12px;
-    max-width: 75px;   /* Deixa os quadradinhos bem compactos */
+    max-width: 110px;
 }
 
-/* Tamanho específico reduzido para o campo Nome */
 #nomePeca {
-    max-width: 110px;
-}
-
-/* Tamanho específico para o select do Sentido do Fio não estourar a linha */
-#sentidoPeca {
-    max-width: 110px;
-}
-
-.adicionar-peca label {
-    font-size: 12px;
-    white-space: nowrap; /* Impede que o texto do rótulo quebre */
-}
-
-#conteudo-tecido {
-    /* ... outros estilos ... */
-    position: relative;
-    background-color: white;
-    border-left: 1.5px solid #1a2530;
-    border-right: 1.5px solid #1a2530;
-    /* Adiciona um pequeno espaço interno (respiro) em todas as bordas */
-    padding: 10px; 
-    box-sizing: border-box; /* Essencial para o padding não aumentar o tamanho total */
+    max-width: 180px;
 }
 
 .botoes-form {
@@ -357,26 +321,6 @@ tr:nth-child(even) {
     color: #c53030;
 }
 
-/* --- MARCA D'ÁGUA DE PROTEÇÃO --- */
-.marca-dagua-tecido {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%) rotate(-25deg);
-    font-size: 24px;
-    font-weight: 800;
-    color: rgba(212, 175, 55, 0.15); /* Dourado bem suave e transparente */
-    letter-spacing: 4px;
-    pointer-events: none;
-    z-index: 1;
-    white-space: nowrap;
-    user-select: none;
-}
-
-.rodape-impressao {
-    display: none; /* Oculto na tela normal */
-}
-
 /* --- CONFIGURAÇÃO PARA A HORA DA IMPRESSÃO --- */
 @media print {
     body {
@@ -407,25 +351,6 @@ tr:nth-child(even) {
         border: 2px solid #000 !important;
         box-shadow: none;
         margin: 0 auto;
-    }
-
-    /* Torna a marca d'água legível e presente no papel impresso */
-    .marca-dagua-tecido {
-        color: rgba(150, 150, 150, 0.25) !important;
-        -webkit-print-color-adjust: exact;
-        print-color-adjust: exact;
-    }
-
-    /* Exibe o rodapé de autoria na folha impressa */
-    .rodape-impressao {
-        display: block !important;
-        text-align: center;
-        font-size: 11px;
-        font-weight: bold;
-        color: #4a5568;
-        margin-top: 20px;
-        border-top: 1px solid #cbd5e1;
-        padding-top: 8px;
     }
 
     .metragem-destaque {
