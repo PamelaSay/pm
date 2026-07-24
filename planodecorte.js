@@ -192,18 +192,18 @@ function atualizarPlanoDeCorte() {
         }
     });
 
-   // Calcula a altura exata ocupada pelas linhas de peças + margens
+   // Soma rigorosamente a altura acumulada de todas as linhas de peças posicionadas
     let alturaTotalNecessariaPx = posY + maiorAlturaNaLinha;
     
-    // Se não houver peças, mantém um tamanho padrão visível
+    // Se não houver peças adicionadas, mantém uma altura padrão para a área não sumir
     if (alturaTotalNecessariaPx < 100) {
         alturaTotalNecessariaPx = 400;
     }
 
-    // Aplica a altura exata no conteúdo e nas ourelas laterais para que o tecido termine logo abaixo das peças
+    // Aplica a altura calculada exatamente no conteúdo do tecido
     conteudoDiv.style.height = alturaTotalNecessariaPx + "px";
     
-    // Garante que as ourelas laterais tenham exatamente a mesma altura do tecido
+    // Força as ourelas laterais a acompanharem perfeitamente a altura exata do corte
     const faixasOurela = tecidoDiv.querySelectorAll('.faixa-ourelha');
     faixasOurela.forEach(faixa => {
         faixa.style.height = alturaTotalNecessariaPx + "px";
