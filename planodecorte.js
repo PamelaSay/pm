@@ -3,11 +3,17 @@ let MARGEM_SEGURANÇA = 0.02;
 let pecas = [];
 
 document.addEventListener("DOMContentLoaded", () => {
-    document.getElementById("btnDefinirOurela").addEventListener("click", atualizarTecido);
-    document.getElementById("btnNovoPlano").addEventListener("click", novoPlano);
-    document.getElementById("btnSalvar").addEventListener("click", salvarPeca);
-    document.getElementById("btnCancelar").addEventListener("click", cancelarEdicao);
-    document.getElementById("btnImprimir").addEventListener("click", () => window.print());
+    const btnDefinirOurela = document.getElementById("btnDefinirOurela");
+    const btnNovoPlano = document.getElementById("btnNovoPlano");
+    const btnSalvar = document.getElementById("btnSalvar");
+    const btnCancelar = document.getElementById("btnCancelar");
+    const btnImprimir = document.getElementById("btnImprimir");
+
+    if (btnDefinirOurela) btnDefinirOurela.addEventListener("click", atualizarTecido);
+    if (btnNovoPlano) btnNovoPlano.addEventListener("click", novoPlano);
+    if (btnSalvar) btnSalvar.addEventListener("click", salvarPeca);
+    if (btnCancelar) btnCancelar.addEventListener("click", cancelarEdicao);
+    if (btnImprimir) btnImprimir.addEventListener("click", () => window.print());
 });
 
 function atualizarTecido() {
@@ -151,7 +157,7 @@ function salvarPeca(event) {
     const altura = parseFloat(alturaInput.value);
     const largura = parseFloat(larguraInput.value);
     const quantidade = parseInt(quantidadeInput.value) || 1;
-    const sentido = sentidoInput ? sentidoInput.value : "ourelha";
+    const sentido = sentidoInput ? sentidoInput.value : "ourela";
 
     if (isNaN(altura) || isNaN(largura) || altura <= 0 || largura <= 0) {
         alert("Por favor, insira medidas válidas de altura e largura.");
@@ -171,7 +177,7 @@ function salvarPeca(event) {
     alturaInput.value = "";
     larguraInput.value = "";
     quantidadeInput.value = "1";
-    if (sentidoInput) sentidoInput.value = "ourelha";
+    if (sentidoInput) sentidoInput.value = "ourela";
 
     atualizarTabelaPecas();
     atualizarPlanoDeCorte();
@@ -198,7 +204,7 @@ function atualizarTabelaPecas() {
             <td>${peca.quantidade}</td>
             <td>
                 <button type="button" class="btn-editar" data-index="${index}" title="Editar"><i class="fa-solid fa-pen"></i></button>
-                <button type="button" class="btn-excluir" data-index="${index}" title="Excluir" style="background-color: #e53e3e; color: white;"><i class="fa-solid fa-trash"></i></button>
+                <button type="button" class="btn-excluir" data-index="${index}" title="Excluir"><i class="fa-solid fa-trash"></i></button>
             </td>
         `;
         tbody.appendChild(tr);
@@ -234,7 +240,7 @@ function cancelarEdicao() {
     document.getElementById("alturaPeca").value = "";
     document.getElementById("larguraPeca").value = "";
     document.getElementById("quantidadePeca").value = "1";
-    document.getElementById("sentidoPeca").value = "ourelha";
+    document.getElementById("sentidoPeca").value = "ourela";
 
     document.getElementById("tituloFormulario").innerText = "Adicionar Peça";
     document.getElementById("btnSalvar").innerText = "Adicionar Peça";
