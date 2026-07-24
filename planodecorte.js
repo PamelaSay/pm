@@ -1,6 +1,6 @@
 let larguraTecido = 0;
 const pecas = [];
-const MARGEM_SEGURANCA = 0.02; // 2 cm de margem de segurança fixa entre peças
+const MARGEM_SEGURANCA = 0.04; // 2 cm de margem de segurança fixa entre peças
 
 function atualizarPlano() {
     larguraTecido = parseFloat(document.getElementById('largura').value);
