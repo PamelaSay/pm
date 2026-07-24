@@ -209,5 +209,5 @@ function atualizarMetragemAutomatica() {
     });
 
     let comprimentoEstimado = (areaTotalPecas / larguraTecido) * 1.10; // 10% margem de segurança
-    resultado.innerText = `Para uma ourela de ${larguraTecido}m, você precisa comprar aproximadamente ${comprimentoEstimado.toFixed(2)} metros de tecido.`;
+    resultado.innerHTML = `Metragem recomendada para compra: <strong style="color: #d4af37; font-size: 18px;">${comprimentoEstimado.toFixed(2)} metros</strong> (considerando ourela de ${larguraTecido}m e margem de segurança).`;
 }
