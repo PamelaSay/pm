@@ -131,7 +131,7 @@ button:hover {
     background-color: #2d3748;
 }
 
-/* --- O QUADRANTE É O PRÓPRIO TECIDO --- */
+/* --- ESTRUTURA DO TECIDO E OURELAS --- */
 .plano-corte-wrapper {
     width: 100%;
     max-height: 500px;
@@ -153,7 +153,44 @@ button:hover {
     border: 2px solid #1a2530;
     box-sizing: border-box;
     box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-    overflow: hidden;
+    display: flex;
+}
+
+/* Faixas indicativas da ourela nas laterais */
+.faixa-ourelha {
+    position: absolute;
+    top: 0;
+    width: 25px;
+    height: 100%;
+    background-color: #e2e8f0;
+    border-left: 1px dashed #cbd5e1;
+    border-right: 1px dashed #cbd5e1;
+    font-size: 9px;
+    font-weight: bold;
+    color: #64748b;
+    writing-mode: vertical-rl;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    letter-spacing: 1px;
+    z-index: 5;
+    user-select: none;
+}
+
+.faixa-ourelha.esquerda {
+    left: 0;
+}
+
+.faixa-ourelha.direita {
+    right: 0;
+}
+
+#conteudo-tecido {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    margin: 0 25px; /* Compensa o espaço das ourelas laterais */
 }
 
 /* Estilo individual de cada peça contida no tecido */
@@ -175,7 +212,7 @@ button:hover {
     overflow: hidden;
 }
 
-/* Peça enviesada contida estritamente sem vazar pontas */
+/* Peça enviesada mantendo proporção exata e encaixada dentro da área */
 .peca.enviesado {
     transform: rotate(45deg);
     transform-origin: center center;
