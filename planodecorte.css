@@ -153,12 +153,14 @@ button:hover {
     border: 2px solid #1a2530;
     box-sizing: border-box;
     box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-    display: flex;
 }
 
-/* Faixas laterais fixas indicando a ourela */
+/* Faixas laterais fixas de Ourela */
 .faixa-ourelha {
-    width: 35px;
+    position: absolute;
+    top: 0;
+    width: 32px;
+    height: 100%;
     background-color: #e2e8f0;
     border-left: 1px dashed #94a3b8;
     border-right: 1px dashed #94a3b8;
@@ -171,14 +173,24 @@ button:hover {
     align-items: center;
     justify-content: center;
     letter-spacing: 2px;
-    flex-shrink: 0;
+    z-index: 10;
     user-select: none;
+}
+
+.faixa-ourelha.esquerda {
+    left: 0;
+}
+
+.faixa-ourelha.direita {
+    right: 0;
 }
 
 #conteudo-tecido {
     position: relative;
-    flex-grow: 1;
-    min-height: 400px;
+    width: 100%;
+    height: 100%;
+    margin-left: 32px; /* Afasta o conteúdo para respeitar a ourela esquerda */
+    box-sizing: border-box;
 }
 
 /* Estilo individual de cada peça contida no tecido */
@@ -324,12 +336,7 @@ tr:nth-child(even) {
         border: none;
     }
 
-    .input-container,
-    .adicionar-peca,
-    .impressao,
-    .btn-acao,
-    th:last-child,
-    td:last-child {
+    .noprint {
         display: none !important;
     }
 
@@ -337,11 +344,13 @@ tr:nth-child(even) {
         max-height: none;
         overflow: visible;
         border: none;
+        display: block;
     }
 
     #tecido {
         border: 2px solid #000 !important;
         box-shadow: none;
+        margin: 0 auto;
     }
 
     .metragem-destaque {
