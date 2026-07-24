@@ -1,6 +1,6 @@
 let larguraTecido = 0;
 const pecas = [];
-const MARGEM_SEGURANCA = 0.02; // 2 cm de margem fixa entre peças
+const MARGEM_SEGURANCA = 0.02; // 2 cm de margem de segurança fixa entre peças
 
 function atualizarPlano() {
     larguraTecido = parseFloat(document.getElementById('largura').value);
@@ -78,6 +78,7 @@ function atualizarTabela() {
 }
 
 function editarPeca(index) {
+    const pecas = window.pecas || pecas; // Referência segura
     const peca = pecas[index];
     document.getElementById('nomePeca').value = peca.nome;
     document.getElementById('alturaPeca').value = peca.altura;
@@ -135,8 +136,9 @@ function atualizarPlanoDeCorte() {
     const escala = 200; // 1 metro = 200px
     const larguraTelaTecido = larguraTecido * escala;
     
-    // Largura total do bloco do tecido na tela
-    tecidoDiv.style.width = (larguraTelaTecido + 70) + "px"; // 70px correspondem às duas ourelas laterais (35px cada)
+    // Largura total do tecido na tela considera a área útil + 64px das duas ourelas (32px cada)
+    tecidoDiv.style.width = (larguraTelaTecido + 64) + "px";
+    conteudoDiv.style.width = larguraTelaTecido + "px";
 
     const larguraUtilPx = larguraTelaTecido;
     const margemPx = MARGEM_SEGURANCA * escala;
@@ -164,7 +166,7 @@ function atualizarPlanoDeCorte() {
             const larguraPx = larguraRealPeca * escala;
             const alturaPx = alturaRealPeca * escala;
 
-            // Inclui rigorosamente a margem de segurança no espaço ocupado por cada bloco
+            // Espaço total ocupado na tela considerando a margem
             const larguraComMargemPx = larguraPx + margemPx;
             const alturaComMargemPx = alturaPx + margemPx;
 
@@ -172,7 +174,7 @@ function atualizarPlanoDeCorte() {
             pecaDiv.style.height = alturaPx + "px";
             pecaDiv.innerText = `${peca.nome}`;
 
-            // Quebra de linha exata se estourar a largura útil entre as ourelas
+            // Quebra de linha se passar da largura útil da ourela
             if (posX + larguraComMargemPx > larguraUtilPx + 1) {
                 posX = 0;
                 posY += maiorAlturaNaLinha;
@@ -213,7 +215,7 @@ function atualizarMetragemAutomatica() {
     let larguraAtualNaLinha = 0;
     let maiorAlturaNaLinhaAtual = 0;
 
-    // Simulação exata de encaixe linear para somar a metragem somando a margem de segurança em cada peça
+    // Cálculo exato de encaixe somando rigorosamente a margem de segurança de 2cm por peça
     pecas.forEach(peca => {
         for (let i = 0; i < peca.quantidade; i++) {
             let larguraReal = peca.largura;
@@ -224,11 +226,11 @@ function atualizarMetragemAutomatica() {
                 alturaReal = peca.largura;
             }
 
-            // Soma a margem de segurança diretamente nas dimensões reais da peça
+            // Soma direta da margem de segurança nas dimensões
             let larguraComFolga = larguraReal + MARGEM_SEGURANCA;
             let alturaComFolga = alturaReal + MARGEM_SEGURANCA;
 
-            // Se ultrapassar a largura útil da ourela, quebra para a próxima linha de corte
+            // Se a peça estourar a largura da ourela, quebra para o metro seguinte
             if (larguraAtualNaLinha + larguraComFolga > larguraTecido) {
                 comprimentoTotalLinear += maiorAlturaNaLinhaAtual;
                 larguraAtualNaLinha = 0;
@@ -242,7 +244,7 @@ function atualizarMetragemAutomatica() {
         }
     });
 
-    // Adiciona a última linha pendente
+    // Adiciona o restante da última linha pendente
     if (maiorAlturaNaLinhaAtual > 0) {
         comprimentoTotalLinear += maiorAlturaNaLinhaAtual;
     }
