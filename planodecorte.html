@@ -39,7 +39,7 @@
                 
                 <label for="sentidoPeca">Sentido do Fio:</label>
                 <select id="sentidoPeca">
-                    <option value="ourela">Ourela (Normal)</option>
+                    <option value="ourelha">Ourela / Urdume (Normal)</option>
                     <option value="trama">Trama (Transversal)</option>
                     <option value="enviesado">Enviesado (45° Diagonal)</option>
                 </select>
@@ -71,11 +71,15 @@
             </table>
         </div>
 
-        <!-- Plano de Corte (O próprio quadrante é o tecido contido) -->
+        <!-- Plano de Corte com as Ourelas demarcadas -->
         <h3>Plano de Corte e Aproveitamento</h3>
         <div class="plano-corte-wrapper">
             <div id="tecido">
-                <!-- As peças ficam estritamente dentro da área útil do tecido -->
+                <div class="faixa-ourelha esquerda">OURELA / URDUME</div>
+                <div class="faixa-ourelha direita">OURELA / URDUME</div>
+                <div id="conteudo-tecido">
+                    <!-- As peças ficam estritamente dentro da área útil -->
+                </div>
             </div>
         </div>
 
