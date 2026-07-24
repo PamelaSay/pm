@@ -1,6 +1,6 @@
 let larguraTecido = 0;
 const pecas = [];
-const MARGEM_SEGURANCA = 0.02; // 2 cm de margem
+const MARGEM_SEGURANCA = 0.02; // 2 cm de margem fixa entre peças
 
 function atualizarPlano() {
     larguraTecido = parseFloat(document.getElementById('largura').value);
@@ -135,8 +135,8 @@ function atualizarPlanoDeCorte() {
     const escala = 200; // 1 metro = 200px
     const larguraTelaTecido = larguraTecido * escala;
     
-    // O tecido agora inclui os 50px totais das duas ourelas laterais (25px cada)
-    tecidoDiv.style.width = (larguraTelaTecido + 50) + "px";
+    // Largura total do bloco do tecido na tela
+    tecidoDiv.style.width = (larguraTelaTecido + 70) + "px"; // 70px correspondem às duas ourelas laterais (35px cada)
 
     const larguraUtilPx = larguraTelaTecido;
     const margemPx = MARGEM_SEGURANCA * escala;
@@ -164,6 +164,7 @@ function atualizarPlanoDeCorte() {
             const larguraPx = larguraRealPeca * escala;
             const alturaPx = alturaRealPeca * escala;
 
+            // Inclui rigorosamente a margem de segurança no espaço ocupado por cada bloco
             const larguraComMargemPx = larguraPx + margemPx;
             const alturaComMargemPx = alturaPx + margemPx;
 
@@ -171,7 +172,7 @@ function atualizarPlanoDeCorte() {
             pecaDiv.style.height = alturaPx + "px";
             pecaDiv.innerText = `${peca.nome}`;
 
-            // Quebra de linha se estourar a largura útil entre as ourelas
+            // Quebra de linha exata se estourar a largura útil entre as ourelas
             if (posX + larguraComMargemPx > larguraUtilPx + 1) {
                 posX = 0;
                 posY += maiorAlturaNaLinha;
@@ -208,26 +209,51 @@ function atualizarMetragemAutomatica() {
         return;
     }
 
-    let areaTotalComMargem = 0;
-    
+    let comprimentoTotalLinear = 0;
+    let larguraAtualNaLinha = 0;
+    let maiorAlturaNaLinhaAtual = 0;
+
+    // Simulação exata de encaixe linear para somar a metragem somando a margem de segurança em cada peça
     pecas.forEach(peca => {
-        let larguraReal = peca.largura;
-        let alturaReal = peca.altura;
+        for (let i = 0; i < peca.quantidade; i++) {
+            let larguraReal = peca.largura;
+            let alturaReal = peca.altura;
 
-        if (peca.sentido === "trama") {
-            larguraReal = peca.altura;
-            alturaReal = peca.largura;
+            if (peca.sentido === "trama") {
+                larguraReal = peca.altura;
+                alturaReal = peca.largura;
+            }
+
+            // Soma a margem de segurança diretamente nas dimensões reais da peça
+            let larguraComFolga = larguraReal + MARGEM_SEGURANCA;
+            let alturaComFolga = alturaReal + MARGEM_SEGURANCA;
+
+            // Se ultrapassar a largura útil da ourela, quebra para a próxima linha de corte
+            if (larguraAtualNaLinha + larguraComFolga > larguraTecido) {
+                comprimentoTotalLinear += maiorAlturaNaLinhaAtual;
+                larguraAtualNaLinha = 0;
+                maiorAlturaNaLinhaAtual = 0;
+            }
+
+            larguraAtualNaLinha += larguraComFolga;
+            if (alturaComFolga > maiorAlturaNaLinhaAtual) {
+                maiorAlturaNaLinhaAtual = alturaComFolga;
+            }
         }
-
-        let fatorViés = (peca.sentido === "enviesado") ? 1.41 : 1.0;
-        
-        let larguraComFolga = larguraReal + MARGEM_SEGURANCA;
-        let alturaComFolga = alturaReal + MARGEM_SEGURANCA;
-
-        areaTotalComMargem += ((alturaComFolga * larguraComFolga) * fatorViés) * peca.quantidade;
     });
 
-    let comprimentoEstimado = areaTotalComMargem / larguraTecido;
-    
-    resultado.innerHTML = `Metragem recomendada para compra: <strong style="color: #d4af37; font-size: 18px;">${comprimentoEstimado.toFixed(2)} metros</strong> (incluindo ourela de ${larguraTecido}m e 2cm de margem de segurança entre as peças).`;
+    // Adiciona a última linha pendente
+    if (maiorAlturaNaLinhaAtual > 0) {
+        comprimentoTotalLinear += maiorAlturaNaLinhaAtual;
+    }
+
+    resultado.innerHTML = `Metragem recomendada para compra: <strong style="color: #d4af37; font-size: 18px;">${comprimentoTotalLinear.toFixed(2)} metros</strong> (considerando ourela de ${larguraTecido}m e 2cm de margem de segurança).`;
+}
+
+function imprimirPlano() {
+    if (larguraTecido <= 0 || pecas.length === 0) {
+        alert("Defina a ourela e adicione pelo menos uma peça antes de imprimir.");
+        return;
+    }
+    window.print();
 }
