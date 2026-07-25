@@ -203,3 +203,535 @@ FORMULÁRIOS
     box-shadow:0 0 5px rgba(212,175,55,.35);
 
 }
+/*======================================
+BOTÕES
+=======================================*/
+
+.botoes,
+.acoes{
+
+    display:flex;
+
+    flex-wrap:wrap;
+
+    gap:15px;
+
+    margin-top:20px;
+
+}
+
+button{
+
+    border:none;
+
+    cursor:pointer;
+
+    padding:12px 22px;
+
+    border-radius:8px;
+
+    font-size:15px;
+
+    font-weight:600;
+
+    transition:.25s;
+
+    display:flex;
+
+    align-items:center;
+
+    gap:8px;
+
+}
+
+#btnAdicionar,
+#btnCalcular{
+
+    background:var(--azul);
+
+    color:white;
+
+}
+
+#btnAdicionar:hover,
+#btnCalcular:hover{
+
+    background:#21496f;
+
+    transform:translateY(-2px);
+
+}
+
+#btnCancelar,
+#btnLimpar{
+
+    background:#d63031;
+
+    color:white;
+
+}
+
+#btnCancelar:hover,
+#btnLimpar:hover{
+
+    background:#b71c1c;
+
+}
+
+#btnSalvarProjeto{
+
+    background:var(--verde);
+
+    color:white;
+
+}
+
+#btnSalvarProjeto:hover{
+
+    background:#16964a;
+
+}
+
+#btnImprimir{
+
+    background:var(--dourado);
+
+    color:black;
+
+}
+
+#btnImprimir:hover{
+
+    filter:brightness(.95);
+
+}
+
+/*======================================
+TABELA
+=======================================*/
+
+.tabela-container{
+
+    overflow:auto;
+
+}
+
+table{
+
+    width:100%;
+
+    border-collapse:collapse;
+
+    min-width:900px;
+
+}
+
+thead{
+
+    background:var(--azul);
+
+    color:white;
+
+}
+
+th{
+
+    padding:14px;
+
+    font-weight:600;
+
+}
+
+td{
+
+    padding:12px;
+
+    text-align:center;
+
+    border-bottom:1px solid #ECECEC;
+
+}
+
+tbody tr:nth-child(even){
+
+    background:#fafafa;
+
+}
+
+tbody tr:hover{
+
+    background:#eef6ff;
+
+}
+
+/*======================================
+PLANO DE CORTE
+=======================================*/
+
+.painel-tecido{
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:stretch;
+
+    margin-top:20px;
+
+}
+
+.ourela{
+
+    width:45px;
+
+    background:#d8d8d8;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    writing-mode:vertical-rl;
+
+    font-weight:bold;
+
+    letter-spacing:3px;
+
+    color:#444;
+
+}
+
+#tecido{
+
+    background:white;
+
+    border:2px solid var(--azul);
+
+    min-height:700px;
+
+    width:100%;
+
+    position:relative;
+
+    overflow:auto;
+
+}
+
+#areaCorte{
+
+    position:relative;
+
+    min-height:700px;
+
+    min-width:100%;
+
+}
+
+/*======================================
+PEÇAS
+=======================================*/
+
+.peca{
+
+    position:absolute;
+
+    background:#8ecae6;
+
+    border:2px solid var(--azul);
+
+    border-radius:6px;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    text-align:center;
+
+    font-size:13px;
+
+    font-weight:bold;
+
+    color:#0f172a;
+
+    overflow:hidden;
+
+    user-select:none;
+
+}
+
+.peca.enviesado{
+
+    background:#ffe9a8;
+
+    border-color:#c79500;
+
+}
+
+.peca.selecionada{
+
+    outline:4px solid var(--verde);
+
+}
+/*======================================
+PAINEL DE RESULTADOS
+=======================================*/
+
+.cardsResultado{
+
+    display:grid;
+
+    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+
+    gap:20px;
+
+}
+
+.resultado{
+
+    background:linear-gradient(135deg,#16324F,#21496f);
+
+    color:white;
+
+    padding:25px;
+
+    border-radius:12px;
+
+    text-align:center;
+
+    box-shadow:0 5px 15px rgba(0,0,0,.15);
+
+    transition:.3s;
+
+}
+
+.resultado:hover{
+
+    transform:translateY(-4px);
+
+}
+
+.resultado span{
+
+    display:block;
+
+    font-size:14px;
+
+    opacity:.9;
+
+    margin-bottom:10px;
+
+}
+
+.resultado h3{
+
+    font-size:30px;
+
+    color:var(--dourado);
+
+    margin:0;
+
+}
+
+/*======================================
+RODAPÉ
+=======================================*/
+
+footer{
+
+    margin-top:40px;
+
+    padding:20px;
+
+    text-align:center;
+
+    color:#666;
+
+    font-size:14px;
+
+}
+
+/*======================================
+SCROLL
+=======================================*/
+
+::-webkit-scrollbar{
+
+    width:10px;
+
+    height:10px;
+
+}
+
+::-webkit-scrollbar-track{
+
+    background:#ececec;
+
+}
+
+::-webkit-scrollbar-thumb{
+
+    background:var(--azul);
+
+    border-radius:20px;
+
+}
+
+::-webkit-scrollbar-thumb:hover{
+
+    background:#21496f;
+
+}
+
+/*======================================
+ANIMAÇÕES
+=======================================*/
+
+.card{
+
+    animation:fade .5s ease;
+
+}
+
+@keyframes fade{
+
+    from{
+
+        opacity:0;
+
+        transform:translateY(15px);
+
+    }
+
+    to{
+
+        opacity:1;
+
+        transform:translateY(0);
+
+    }
+
+}
+
+/*======================================
+RESPONSIVO
+=======================================*/
+
+@media(max-width:900px){
+
+.logo{
+
+    flex-direction:column;
+
+    text-align:center;
+
+}
+
+.linha-form{
+
+    flex-direction:column;
+
+}
+
+.botoes{
+
+    flex-direction:column;
+
+}
+
+.acoes{
+
+    flex-direction:column;
+
+}
+
+button{
+
+    width:100%;
+
+    justify-content:center;
+
+}
+
+.cardsResultado{
+
+    grid-template-columns:1fr;
+
+}
+
+.painel-tecido{
+
+    overflow:auto;
+
+}
+
+#tecido{
+
+    min-width:700px;
+
+}
+
+}
+
+/*======================================
+IMPRESSÃO
+=======================================*/
+
+@media print{
+
+header{
+
+    box-shadow:none;
+
+}
+
+.botoes,
+.acoes{
+
+    display:none;
+
+}
+
+body{
+
+    background:white;
+
+}
+
+.card{
+
+    box-shadow:none;
+
+    border:1px solid #ccc;
+
+    break-inside:avoid;
+
+}
+
+#tecido{
+
+    border:2px solid black;
+
+}
+
+.resultado{
+
+    background:white !important;
+
+    color:black;
+
+    border:1px solid black;
+
+}
+
+footer{
+
+    margin-top:20px;
+
+    font-size:12px;
+
+}
+
+}
