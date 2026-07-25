@@ -116,65 +116,71 @@ FORMULÁRIOS
 =======================================*/
 
 .linha-form{
-
     display:flex;
-
     gap:10px;
-
     flex-wrap:wrap;
-
     margin-bottom:18px;
-
 }
 
 .campo{
-
     display:flex;
-
     flex-direction:column;
-
-    flex:1;
-
 }
 
+.campo.nome{
+    flex:2.5;
+}
+
+.campo.medida{
+    width:90px;
+    flex:none;
+}
+
+.campo.quantidade{
+    width:70px;
+    flex:none;
+}
+
+.campo.sentido{
+    width:150px;
+    flex:none;
+}
+
+.campo.espelho{
+    width:110px;
+    flex:none;
+}
+
+
+
+
+
+
+
 .campo.grande{
-
     flex:2;
-
 }
 
 .campo label{
-
     font-size:13px;
-
     margin-bottom:6px;
-
     font-weight:600;
 
 }
 
 .campo input,
 .campo select{
-
     padding:11px;
-
     border:1px solid var(--borda);
-
     border-radius:8px;
-
     font-size:15px;
-
     transition:.25s;
-
 }
 
 .campo input:focus,
 .campo select:focus{
-
     outline:none;
-
     border-color:var(--dourado);
-
     box-shadow:0 0 5px rgba(212,175,55,.35);
 
 }
