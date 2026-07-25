@@ -125,10 +125,9 @@ FORMULÁRIOS
 .campo{
     display:flex;
     flex-direction:column;
-}
-
  width:220px;
     flex:none;
+}
 
 .campo.medida{
     width:90px;
