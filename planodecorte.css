@@ -154,16 +154,17 @@ FORMULÁRIOS
 
 .campo label{
     font-size:13px;
-    margin-bottom:6px;
     font-weight:600;
+   margin-bottom:4px;
 }
 
 .campo input,
 .campo select{
-    padding:8px;
+    padding:7px 10px;
     border:1px solid var(--borda);
     border-radius:8px;
-    font-size:15px;
+    height:36px;
+    font-size:14px;
     transition:.25s;
 }
 
