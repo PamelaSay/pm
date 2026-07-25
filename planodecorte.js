@@ -7,7 +7,7 @@ const pecas = [];
 
 const ESCALA = 200; // 1 metro = 200 pixels
 
-let larguraTecido = 1.50;
+let larguraTecido = 0;
 
 /*====================================================
     ELEMENTOS
