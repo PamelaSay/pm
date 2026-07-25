@@ -374,25 +374,18 @@ PLANO DE CORTE
 }
 
 #tecido{
-
     background:white;
-
     border:2px solid var(--azul);
-
-    min-height:700px;
-
+   height:250px;
     width:100%;
-
     position:relative;
-
     overflow:auto;
 
 }
 
 #areaCorte{
 position:relative;
-height:65vh;
-min-height:500px; 
+height:250px;
 min-width:100%;
 }
 
