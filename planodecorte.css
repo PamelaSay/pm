@@ -8,7 +8,7 @@
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     background-color: #fcfbf9; /* Fundo bege bem clarinho/clean */
-    color: #1a202c; /* Preto suave para texto */
+    color: #2d3748; /*  suave para texto */
     padding: 20px;
 }
 
@@ -18,7 +18,7 @@ body {
     background: #ffffff;
     padding: 30px;
     border-radius: 12px;
-    box-shadow: 0 4px 15px rgba(212, 175, 55, 0.15); /* Sutil toque dourado na sombra */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05); /* Sutil toque dourado na sombra */
     border: 1px solid #f0ead6;
 }
 
@@ -34,12 +34,12 @@ h1 {
 h3 {
     font-size: 1.2rem;
     margin-bottom: 15px;
-    color: #2d3748;
+    color: #4a5568;
 }
 
 /* Formulários e Entradas */
 .input-container, .adicionar-peca {
-    background: #fdfcf7; /* Fundo bege */
+    background: #edf2f7; /* Fundo  */
     padding: 20px;
     border-radius: 8px;
     margin-bottom: 25px;
@@ -154,7 +154,7 @@ td button:hover {
 .plano-corte-wrapper {
     width: 100%;
     overflow-x: auto;
-    background: #fdfcf7;
+    background: #edf2f7;
     padding: 20px;
     border-radius: 8px;
     margin-bottom: 20px;
@@ -164,19 +164,19 @@ td button:hover {
 #tecido {
     position: relative;
     background-color: #fbf9f1; /* Tom bege simulando o tecido */
-    border: 2px dashed #d4af37; /* Dourado */
+    border: 2px dashed #d69e2e; /* Dourado */
     margin: 0 auto;
     transition: width 0.3s ease;
 }
 
 /* Ourelas nas laterais */
-.faixa-ourelha {
+.faixa-ourela {
     position: absolute;
     top: 0;
     width: 32px;
-    background-color: rgba(212, 175, 55, 0.15);
-    border-left: 1px dashed #d4af37;
-    border-right: 1px dashed #d4af37;
+    background-color: rgba(214, 158, 46, 0.2);
+    border-left: 1px dashed #b7791f;
+    border-right: 1px dashed #b7791f;
     font-size: 0.65rem;
     writing-mode: vertical-rl;
     text-orientation: mixed;
@@ -190,11 +190,11 @@ td button:hover {
     z-index: 2;
 }
 
-.faixa-ourelha.esquerda {
+.faixa-ourela.esquerda {
     left: 0;
 }
 
-.faixa-ourelha.direita {
+.faixa-ourela.direita {
     right: 0;
 }
 
@@ -208,7 +208,7 @@ td button:hover {
 /* Estilo das Peças Renderizadas (Azul Claro) */
 .peca {
     position: absolute;
-    background-color: rgba(179, 224, 255, 0.6); /* Azul claro translúcido */
+    background-color: rgba(49,130, 206, 0.25); /* Azul claro translúcido */
     border: 2px solid #2b6cb0;
     border-radius: 4px;
     display: flex;
