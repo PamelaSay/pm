@@ -1,171 +1,128 @@
-// Variáveis globais para armazenar os dados do plano de corte
-let larguraTecido = 0; // Largura padrão inicial de ourela a ourela em metros
-let MARGEM_SEGURANÇA = 0.02; // 2 cm de margem padrão
 let pecas = [];
+const MARGEM_COSTURA = 2; // 2 cm ao redor
 
-// Função para atualizar as dimensões principais do tecido
-function atualizarTecido() {
-    const inputLargura = document.getElementById("larguraTecido");
-    if (inputLargura) {
-        larguraTecido = parseFloat(inputLargura.value) || 1.50;
-    }
-    atualizarPlanoDeCorte();
-}
-
-// Função principal que renderiza o plano de corte e calcula o posicionamento das peças
-function atualizarPlanoDeCorte() {
-    const tecidoDiv = document.getElementById("tecido");
-    const conteudoDiv = document.getElementById("conteudo-tecido");
-    
-    if (!conteudoDiv || !tecidoDiv) return;
-
-    conteudoDiv.innerHTML = ''; 
-
-    // Se a largura for inválida, reseta
-    if (larguraTecido <= 0) {
-        tecidoDiv.style.width = "100%";
-        conteudoDiv.style.height = "50px"; 
-        return;
-    }
-
-    const escala = 120; // Escala visual (1 metro = 120px)
-    const larguraTelaTecido = larguraTecido * escala;
-    
-    tecidoDiv.style.width = (larguraTelaTecido + 64) + "px";
-    conteudoDiv.style.width = larguraTelaTecido + "px";
-
-    const larguraUtilPx = larguraTelaTecido;
-    const margemPx = MARGEM_SEGURANÇA * escala;
-
-    let posX = 0;
-    let posY = 0;
-    let maiorAlturaNaLinha = 0;
-
-    // Se não houver peças na lista, define uma altura mínima inicial limpa
-    if (pecas.length === 0) {
-        conteudoDiv.style.height = "50px";
-        const faixasOurela = tecidoDiv.querySelectorAll('.faixa-ourelha');
-        faixasOurela.forEach(faixa => faixa.style.height = "50px");
-        return;
-    }
-
-    pecas.forEach(peca => {
-        for (let i = 0; i < peca.quantidade; i++) {
-            const pecaDiv = document.createElement('div');
-            pecaDiv.classList.add('peca');
-            
-            let larguraRealPeca = peca.largura;
-            let alturaRealPeca = peca.altura;
-
-            // Tratamento para o sentido do fio
-            if (peca.sentido === "trama") {
-                larguraRealPeca = peca.altura;
-                alturaRealPeca = peca.largura;
-            } 
-            else if (peca.sentido === "enviesado") {
-                pecaDiv.classList.add('enviesado');
-            }
-
-            const larguraPx = larguraRealPeca * escala;
-            const alturaPx = alturaRealPeca * escala;
-
-            // Espaçamento extra seguro para o enviesado não sobrepor as vizinhas
-            const margemVisualPeca = (peca.sentido === "enviesado") ? 120 : 6;
-            const larguraComMargemPx = larguraPx + margemPx + margemVisualPeca;
-            const alturaComMargemPx = alturaPx + margemPx + margemVisualPeca;
-
-            pecaDiv.style.width = larguraPx + "px";
-            pecaDiv.style.height = alturaPx + "px";
-            pecaDiv.innerText = `${peca.nome}`;
-
-            // Quebra de linha se ultrapassar a largura útil do tecido
-            if (posX + larguraComMargemPx > larguraUtilPx + 1) {
-                posX = 0;
-                posY += maiorAlturaNaLinha;
-                maiorAlturaNaLinha = 0;
-            }
-
-            // Posiciona a peça no plano
-            pecaDiv.style.left = (posX + (margemPx / 2) + 3) + "px";
-            pecaDiv.style.top = (posY + (margemPx / 2) + 3) + "px";
-
-            if (alturaComMargemPx > maiorAlturaNaLinha) {
-                maiorAlturaNaLinha = alturaComMargemPx;
-            }
-
-            posX += larguraComMargemPx;
-            conteudoDiv.appendChild(pecaDiv);
-        }
-    });
-
-    // Pega a altura exata da última peça adicionada para colar o tecido perfeitamente nela
-    let alturaTotalNecessariaPx = 0;
-    
-    if (pecas.length > 0 && conteudoDiv.lastElementChild) {
-        const ultimaPeca = conteudoDiv.lastElementChild;
-        alturaTotalNecessariaPx = ultimaPeca.offsetTop + ultimaPeca.offsetHeight;
-    } else {
-        alturaTotalNecessariaPx = 50;
-    }
-
-    // Aplica o tamanho exato no tecido e nas ourelas
-    conteudoDiv.style.height = alturaTotalNecessariaPx + "px";
-    
-    const faixasOurela = tecidoDiv.querySelectorAll('.faixa-ourelha');
-    faixasOurela.forEach(faixa => {
-        faixa.style.height = alturaTotalNecessariaPx + "px";
-    });
-}
-
-// Função para adicionar nova peça capturando os dados do formulário
-function adicionarPeca(event) {
-    if (event) event.preventDefault();
-
-    const nomeInput = document.getElementById("nomePeca");
-    const alturaInput = document.getElementById("alturaPeca");
-    const larguraInput = document.getElementById("larguraPeca");
-    const quantidadeInput = document.getElementById("quantidadePeca");
-    const sentidoInput = document.getElementById("sentidoPeca");
-
-    if (!nomeInput || !alturaInput || !larguraInput || !quantidadeInput) return;
-
-    const nome = nomeInput.value.trim() || "Peça";
-    const altura = parseFloat(alturaInput.value);
-    const largura = parseFloat(larguraInput.value);
-    const quantidade = parseInt(quantidadeInput.value) || 1;
-    const sentido = sentidoInput ? sentidoInput.value : "urdume";
-
-    if (isNaN(altura) || isNaN(largura) || altura <= 0 || largura <= 0) {
-        alert("Por favor, insira medidas válidas de altura e largura.");
-        return;
-    }
-
-    pecas.push({ nome, altura, largura, quantidade, sentido });
-
-    // Limpa os campos de texto após adicionar
-    nomeInput.value = "";
-    alturaInput.value = "";
-    larguraInput.value = "";
-    quantidadeInput.value = "1";
-
-    atualizarPlanoDeCorte();
-}
-
-// Função para limpar todo o plano de corte e iniciar um novo
-function novoPlanoDeCorte() {
-    if (confirm("Deseja iniciar um novo plano de corte? Isso apagará todas as peças atuais.")) {
+function gerarNovoPlano() {
+    if(confirm("Deseja limpar todas as peças e iniciar um novo plano?")) {
         pecas = [];
-
-        const nomeInput = document.getElementById("nomePeca");
-        const alturaInput = document.getElementById("alturaPeca");
-        const larguraInput = document.getElementById("larguraPeca");
-        const quantidadeInput = document.getElementById("quantidadePeca");
-
-        if (nomeInput) nomeInput.value = "";
-        if (alturaInput) alturaInput.value = "";
-        if (larguraInput) larguraInput.value = "";
-        if (quantidadeInput) quantidadeInput.value = "1";
-
-        atualizarPlanoDeCorte();
+        document.getElementById('larguraTecido').value = 140;
+        atualizarInterface();
     }
+}
+
+function salvarPeca() {
+    const nome = document.getElementById('nomePeca').value;
+    const largura = parseFloat(document.getElementById('larguraPeca').value);
+    const altura = parseFloat(document.getElementById('alturaPeca').value);
+    const sentido = document.getElementById('sentidoFio').value;
+    const editIndex = parseInt(document.getElementById('editIndex').value);
+
+    if(!nome || !largura || !altura) {
+        alert("Por favor, preencha todos os campos da peça.");
+        return;
+    }
+
+    const pecaObj = { nome, largura, altura, sentido };
+
+    if(editIndex === -1) {
+        pecas.push(pecaObj);
+    } else {
+        pecas[editIndex] = pecaObj;
+        document.getElementById('editIndex').value = -1;
+    }
+
+    limparFormularioPeca();
+    atualizarInterface();
+}
+
+function limparFormularioPeca() {
+    document.getElementById('nomePeca').value = '';
+    document.getElementById('larguraPeca').value = '';
+    document.getElementById('alturaPeca').value = '';
+    document.getElementById('editIndex').value = '-1';
+}
+
+function editarPeca(index) {
+    const p = pecas[index];
+    document.getElementById('nomePeca').value = p.nome;
+    document.getElementById('larguraPeca').value = p.largura;
+    document.getElementById('alturaPeca').value = p.altura;
+    document.getElementById('sentidoFio').value = p.sentido;
+    document.getElementById('editIndex').value = index;
+    window.scrollTo({ top: 200, behavior: 'smooth' });
+}
+
+function duplicarPeca(index) {
+    const p = {...pecas[index]};
+    p.nome += " (Cópia)";
+    pecas.push(p);
+    atualizarInterface();
+}
+
+function removerPeca(index) {
+    pecas.splice(index, 1);
+    atualizarInterface();
+}
+
+function atualizarInterface() {
+    const tbody = document.getElementById('tabelaPecasBody');
+    tbody.innerHTML = '';
+
+    if(pecas.length === 0) {
+        tbody.innerHTML = `<tr><td colspan="4" style="text-align: center; color: #888;">Nenhuma peça adicionada ainda.</td></tr>`;
+        document.getElementById('corte-visual').innerHTML = `<span style="color: #999; font-size: 0.9rem;">Adicione peças para visualizar o encaixe no tecido</span>`;
+        document.getElementById('resultadoCompra').innerHTML = `<strong>Quantidade de Tecido Necessária:</strong> 0 cm (0.00 metros)`;
+        return;
+    }
+
+    let htmlTabela = '';
+    let alturaTotalCalculada = 0;
+    let larguraTecido = parseFloat(document.getElementById('larguraTecido').value) || 140;
+
+    pecas.forEach((p, index) => {
+        let larguraComMargem = p.largura + (MARGEM_COSTURA * 2);
+        let alturaComMargem = p.altura + (MARGEM_COSTURA * 2);
+
+        htmlTabela += `
+            <tr>
+                <td><strong>${p.nome}</strong></td>
+                <td>${larguraComMargem} cm x ${alturaComMargem} cm <br><small style="color:#777;">(Peça: ${p.largura}x${p.altura} + 4cm margem)</small></td>
+                <td>${p.sentido}</td>
+                <td>
+                    <div class="action-btns">
+                        <button class="btn-icon btn-edit" title="Editar" onclick="editarPeca(${index})">✏️</button>
+                        <button class="btn-icon btn-duplicate" title="Duplicar" onclick="duplicarPeca(${index})">📋</button>
+                        <button class="btn-icon btn-remove" title="Remover" onclick="removerPeca(${index})">🗑️</button>
+                    </div>
+                </td>
+            </tr>
+        `;
+
+        alturaTotalCalculada += alturaComMargem;
+    });
+
+    tbody.innerHTML = htmlTabela;
+
+    let visualHtml = '';
+    let posicaoY = 10;
+    
+    pecas.forEach((p, index) => {
+        let altM = p.altura + (MARGEM_COSTURA * 2);
+        let largM = p.largura + (MARGEM_COSTURA * 2);
+        
+        visualHtml += `
+            <div class="peca-no-plano" style="width: ${Math.min(largM * 1.5, 200)}px; height: ${Math.min(altM * 0.8, 80)}px; top: ${posicaoY}px; left: ${10 + (index * 30) % 200}px;">
+                <strong>${p.nome}</strong>
+                <span>${largM}x${altM}cm</span>
+            </div>
+        `;
+        posicaoY += 20;
+    });
+
+    document.getElementById('corte-visual').innerHTML = visualHtml;
+
+    let metrosNecessarios = (alturaTotalCalculada / 100).toFixed(2);
+    document.getElementById('resultadoCompra').innerHTML = `
+        <strong>Quantidade de Tecido Necessária:</strong> ${alturaTotalCalculada} cm (${metrosNecessarios} metros) 
+        <br><small style="font-weight: normal; color: #666;">Considerando largura útil de ${larguraTecido} cm com margens de costura inclusas.</small>
+    `;
 }
