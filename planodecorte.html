@@ -24,9 +24,9 @@
 <section class="card">
     <h2> <i class="fa-solid fa-ruler-combined"></i>Dados do Tecido</h2>
     <div class="linha-form">
-        <div class="campo"><label>Largura do tecido (m)</label>
+        <div class="campo medida"><label>Largura do tecido (m)</label>
             <input type="number" id="larguraTecido" step="0.01" placeholder="1.50"> </div>
-        <div class="campo"> <label>Margem de Segurança(cm)</label>
+        <div class="campo medida"> <label>Margem de Segurança(cm)</label>
             <input type="number" id="margem" value="0.5" min="0.5" max="10">
         </div>
     </div>
@@ -38,13 +38,13 @@
     
     <div class="linha-form">
         <div class="campo nome"><label>Nome da peça</label><input type="text" id="nomePeca" placeholder="Frente"></div>
-        <div class="campo"> <label>Altura (m)</label> <input type="number" id="alturaPeca" step="0.01"></div>
-        <div class="campo"> <label>Largura (m)</label> <input type="number" id="larguraPeca" step="0.01"></div>
-        <div class="campo"> <label>Quantidade</label> <input type="number" id="quantidadePeca" value="1"></div>
+        <div class="campo medida"> <label>Altura (m)</label> <input type="number" id="alturaPeca" step="0.01"></div>
+        <div class="campo medida"> <label>Largura (m)</label> <input type="number" id="larguraPeca" step="0.01"></div>
+        <div class="campo quantidade"> <label>Quantidade</label> <input type="number" id="quantidadePeca" value="1"></div>
      </div>
 
      <div class="linha-form">
-        <div class="campo"> <label>Sentido do fio</label>
+        <div class="campo sentido"> <label>Sentido do fio</label>
             <select id="sentidoPeca">
                 <option value="ourela">Ourela</option>
                 <option value="trama">Trama</option>
@@ -53,7 +53,7 @@
         </div>
      </div>
 
-        <div class="campo"><label>Espelhar?</label>
+        <div class="campo espelho"><label>Espelhar?</label>
             <select id="espelhar">
                 <option value="nao">Não</option>
                 <option value="sim">Sim</option>
