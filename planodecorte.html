@@ -2,64 +2,91 @@
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
-    <title>Plano de Corte</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Plano de Corte de Tecido | Pamelete</title>
     <link rel="stylesheet" href="planodecorte.css">
 </head>
 <body>
 
-    <div class="painel-controle">
-        <h2>Configuração do Tecido e Peças</h2>
-        
-        <!-- Controle da Largura do Tecido -->
-        <div class="grupo-campo">
-            <label for="larguraTecido">Largura do Tecido (m):</label>
-            <input type="number" id="larguraTecido" value="1.50" step="0.01" onchange="atualizarTecido()">
+<div class="container">
+    <h1>Plano de Corte Inteligente</h1>
+
+    <!-- Bloco 1: Largura do Tecido e Ação -->
+    <div class="card top-bar">
+        <div class="form-group" style="flex: 1; min-width: 250px;">
+            <label for="larguraTecido">Largura Útil do Tecido (cm) [Ourela a Ourela]:</label>
+            <input type="number" id="larguraTecido" value="140" placeholder="Ex: 140">
         </div>
+        <button class="btn" onclick="gerarNovoPlano()">✨ Novo Plano / Limpar</button>
+    </div>
 
-        <hr>
-
-        <!-- Formulário para Adicionar Peças -->
-        <form onsubmit="adicionarPeca(event)">
-            <div class="grupo-campo">
-                <label>Nome da Peça:</label>
-                <input type="text" id="nomePeca" placeholder="Ex: Calça, Blusa" required>
+    <!-- Bloco 2: Adicionar Peças -->
+    <div class="card">
+        <h2>Adicionar Peça ao Projeto</h2>
+        <input type="hidden" id="editIndex" value="-1">
+        <div class="grid-2">
+            <div class="form-group">
+                <label for="nomePeca">Nome da Peça:</label>
+                <input type="text" id="nomePeca" placeholder="Ex: Frente do Vestido">
             </div>
-            <div class="grupo-campo">
-                <label>Altura (m):</label>
-                <input type="number" id="alturaPeca" step="0.01" placeholder="Ex: 1.06" required>
+            <div class="form-group">
+                <label for="larguraPeca">Largura (cm):</label>
+                <input type="number" id="larguraPeca" placeholder="Ex: 50">
             </div>
-            <div class="grupo-campo">
-                <label>Largura (m):</label>
-                <input type="number" id="larguraPeca" step="0.01" placeholder="Ex: 0.40" required>
+            <div class="form-group">
+                <label for="alturaPeca">Altura / Comprimento (cm):</label>
+                <input type="number" id="alturaPeca" placeholder="Ex: 60">
             </div>
-            <div class="grupo-campo">
-                <label>Quantidade:</label>
-                <input type="number" id="quantidadePeca" value="1" min="1" required>
-            </div>
-            <div class="grupo-campo">
-                <label>Sentido:</label>
-                <select id="sentidoPeca">
-                    <option value="urdume">Normal (Urdume)</option>
-                    <option value="trama">Trave / Invertido</option>
-                    <option value="enviesado">Enviesado</option>
+            <div class="form-group">
+                <label for="sentidoFio">Sentido do Fio:</label>
+                <select id="sentidoFio">
+                    <option value="Trama">Trama</option>
+                    <option value="Ourela">Ourela</option>
+                    <option value="Enviesado (45°)">Enviesado (45°)</option>
                 </select>
             </div>
-
-            <div class="botoes-acao">
-                <button type="submit" class="btn-adicionar">Adicionar Peça</button>
-                <button type="button" class="btn-novo" onclick="novoPlanoDeCorte()">Novo Plano</button>
-            </div>
-        </form>
+        </div>
+        <button class="btn" style="margin-top: 10px;" onclick="salvarPeca()">Adicionar Peça</button>
     </div>
 
-    <!-- Área Visual do Tecido -->
-    <div id="tecido" class="tecido-container">
-        <div class="faixa-ourelha esquerda">Ourela</div>
-        <div id="conteudo-tecido"></div>
-        <div class="faixa-ourelha direita">Ourela</div>
+    <!-- Bloco 3: Lista de Peças Incluídas -->
+    <div class="card">
+        <h2>Peças Incluídas no Projeto</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Nome</th>
+                    <th>Dimensões (c/ Margem 2cm)</th>
+                    <th>Sentido do Fio</th>
+                    <th>Ações</th>
+                </tr>
+            </thead>
+            <tbody id="tabelaPecasBody">
+                <!-- Inserido via JavaScript -->
+            </tbody>
+        </table>
     </div>
 
-    <script src="planodecorte.js"></script>
+    <!-- Bloco 4: Visualização do Plano de Corte e Resultado -->
+    <div class="card" id="print-area">
+        <h2>Simulação do Plano de Corte</h2>
+        <p style="font-size: 0.85rem; color: #666;">*Cada peça inclui automaticamente 2 cm de margem de segurança ao redor para o corte e costura.</p>
+        
+        <div id="corte-visual">
+            <span style="color: #999; font-size: 0.9rem;">Adicione peças para visualizar o encaixe no tecido</span>
+        </div>
+
+        <div class="resultado-compra" id="resultadoCompra">
+            <strong>Quantidade de Tecido Necessária:</strong> 0 cm (0.00 metros)
+        </div>
+    </div>
+
+    <!-- Botão de Impressão -->
+    <div class="print-container">
+        <button class="btn" onclick="window.print()">🖨️ Imprimir Plano de Corte</button>
+    </div>
+</div>
+
+<script src="planodecorte.js"></script>
 </body>
-<footer>@2024_ Criado por Pamela Mendonça</footer>
 </html>
