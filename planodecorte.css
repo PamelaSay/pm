@@ -419,34 +419,23 @@ PLANO DE CORTE
 }
 
 #areaCorte{
-
-    position:relative;
-
-    min-height:700px;
-
-    min-width:100%;
-
+position:relative;
+height:65vh;
+min-height:500px; 
+min-width:100%;
 }
 
 /*======================================
 PEÇAS
 =======================================*/
-
 .peca{
-
-    position:absolute;
-
-    background:#8ecae6;
-
-    border:2px solid var(--azul);
-
-    border-radius:6px;
-
-    display:flex;
-
-    justify-content:center;
-
-    align-items:center;
+position:absolute;
+background:#8ecae6;
+border:2px solid var(--azul);
+border-radius:6px;
+display:flex;
+justify-content:center;
+align-items:center;
 
     text-align:center;
 
