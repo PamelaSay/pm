@@ -1,5 +1,5 @@
 // Variáveis globais para armazenar os dados do plano de corte
-let larguraTecido = 1.50; // Largura padrão inicial de ourela a ourela em metros
+let larguraTecido = 0; // Largura padrão inicial de ourela a ourela em metros
 let MARGEM_SEGURANÇA = 0.02; // 2 cm de margem padrão
 let pecas = [];
 
