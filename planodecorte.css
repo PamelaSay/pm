@@ -1,258 +1,122 @@
-/* Estilos Gerais */
-* {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-}
-
 body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background-color: #f7fafc;
-    color: #2d3748;
-    padding: 20px;
+    font-family: Arial, sans-serif;
+    background-color: #f4f6f9;
+    margin: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
-.container {
-    max-width: 1000px;
-    margin: 0 auto;
-    background: #ffffff;
-    padding: 30px;
-    border-radius: 12px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
-}
-
-h1 {
-    font-size: 1.8rem;
-    margin-bottom: 20px;
-    color: #1a202c;
-    text-align: center;
-}
-
-h3 {
-    font-size: 1.2rem;
-    margin-bottom: 15px;
-    color: #4a5568;
-}
-
-/* Formulários e Entradas */
-.input-container, .adicionar-peca {
-    background: #edf2f7;
+.painel-controle {
+    background: white;
     padding: 20px;
     border-radius: 8px;
-    margin-bottom: 25px;
-}
-
-.linha {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 15px;
-    align-items: flex-end;
-    margin-bottom: 15px;
-}
-
-.linha div {
-    flex: 1;
-    min-width: 120px;
-}
-
-label {
-    display: block;
-    font-size: 0.85rem;
-    font-weight: 600;
-    margin-bottom: 5px;
-    color: #4a5568;
-}
-
-input, select {
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    margin-bottom: 20px;
     width: 100%;
-    padding: 10px;
-    border: 1px solid #cbd5e0;
-    border-radius: 6px;
-    font-size: 0.95rem;
-    background: #fff;
+    max-width: 600px;
 }
 
-button {
-    background-color: #3182ce;
-    color: white;
-    border: none;
-    padding: 10px 20px;
-    font-size: 0.95rem;
-    font-weight: 600;
-    border-radius: 6px;
-    cursor: pointer;
-    transition: background-color 0.2s;
+.grupo-campo {
+    margin-bottom: 12px;
+    display: flex;
+    flex-direction: column;
 }
 
-button:hover {
-    background-color: #2b6cb0;
+.grupo-campo label {
+    font-weight: bold;
+    margin-bottom: 4px;
+    font-size: 14px;
 }
 
-.botoes-form {
+.grupo-campo input, .grupo-campo select {
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.botoes-acao {
     display: flex;
     gap: 10px;
+    margin-top: 15px;
 }
 
-/* Tabela de Peças */
-.lista-pecas {
-    margin-bottom: 30px;
-    overflow-x: auto;
+.btn-adicionar {
+    background-color: #27ae60;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: bold;
+    flex: 1;
 }
 
-table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-top: 10px;
+.btn-novo {
+    background-color: #e74c3c;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: bold;
 }
 
-th, td {
-    padding: 12px;
-    text-align: left;
-    border-bottom: 1px solid #e2e8f0;
-    font-size: 0.9rem;
-}
-
-th {
-    background-color: #edf2f7;
-    color: #4a5568;
-}
-
-td button {
-    padding: 6px 10px;
-    font-size: 0.8rem;
-    margin-right: 5px;
-}
-
-/* Simulação Visual do Tecido (Cores Originais Restauradas) */
-.plano-corte-wrapper {
-    width: 100%;
-    overflow-x: auto;
-    background: #edf2f7;
-    padding: 20px;
-    border-radius: 8px;
-    margin-bottom: 20px;
-}
-
-#tecido {
+/* Container principal do tecido */
+.tecido-container {
+    display: flex;
+    background-color: #ffffff;
+    border: 2px solid #2c3e50;
     position: relative;
-    background-color: #fefcbf; /* Cor simulando tecido cru/algodão */
-    border: 2px dashed #d69e2e;
-    margin: 0 auto;
-    transition: width 0.3s ease;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+    margin-top: 20px;
 }
 
 /* Ourelas nas laterais */
 .faixa-ourelha {
-    position: absolute;
-    top: 0;
     width: 32px;
-    background-color: rgba(214, 158, 46, 0.2);
-    border-left: 1px dashed #b7791f;
-    border-right: 1px dashed #b7791f;
-    font-size: 0.65rem;
-    writing-mode: vertical-rl;
-    text-orientation: mixed;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: #744210;
+    background-color: #e67e22;
+    color: white;
+    writing-mode: vertical-lr;
+    text-align: center;
+    font-size: 12px;
     font-weight: bold;
     letter-spacing: 2px;
-    user-select: none;
-    z-index: 2;
-}
-
-.faixa-ourelha.esquerda {
-    left: 0;
-}
-
-.faixa-ourelha.direita {
-    right: 0;
-}
-
-#conteudo-tecido {
-    position: relative;
-    margin-left: 32px; 
-    margin-right: 32px; 
-    background-color: transparent;
-}
-
-/* Estilo das Peças Renderizadas */
-.peca {
-    position: absolute;
-    background-color: rgba(49, 130, 206, 0.25);
-    border: 2px solid #3182ce;
-    border-radius: 4px;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 0.8rem;
-    font-weight: bold;
-    color: #2b6cb0;
+    user-select: none;
+}
+
+/* Área interna onde ficam as peças alocadas */
+#conteudo-tecido {
+    position: relative;
+    background-color: #fafbfc;
+    min-height: 50px;
+}
+
+/* Estilo individual de cada peça no plano */
+.peca {
+    position: absolute;
+    border: 1.5px dashed #1a2530;
+    background-color: rgba(122, 178, 211, 0.5);
     text-align: center;
-    padding: 4px;
+    font-size: 11px;
+    font-weight: 600;
+    color: #1a2530;
     box-sizing: border-box;
-    overflow: hidden;
-    white-space: nowrap;
-    text-overflow: ellipsis;
-}
-
-.peca.enviesado {
-    border-style: dotted;
-    background-color: rgba(221, 107, 32, 0.25);
-    border-color: #dd6b20;
-    color: #c05621;
-}
-
-/* Metragem em Destaque */
-.metragem-destaque {
+    border-radius: 3px;
     display: flex;
     align-items: center;
-    gap: 12px;
-    background-color: #ebf8ff;
-    border: 1px solid #90cdf4;
-    padding: 15px 20px;
-    border-radius: 8px;
-    font-size: 1.05rem;
-    color: #2b6cb0;
-    margin-bottom: 20px;
+    justify-content: center;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+    padding: 4px;
+    overflow: hidden;
 }
 
-.metragem-destaque i {
-    font-size: 1.4rem;
-}
-
-/* Impressão */
-.impressao {
-    text-align: center;
-}
-
-.impressao button {
-    background-color: #38a169;
-    width: 100%;
-    padding: 12px;
-    font-size: 1rem;
-}
-
-.impressao button:hover {
-    background-color: #2f855a;
-}
-
-@media print {
-    .noprint {
-        display: none !important;
-    }
-    body {
-        background: white;
-        padding: 0;
-    }
-    .container {
-        box-shadow: none;
-        padding: 0;
-    }
-    .plano-corte-wrapper {
-        background: white;
-        padding: 0;
-        overflow: visible;
-    }
+/* Rotação e comportamento limpo para o enviesado */
+.peca.enviesado {
+    transform: rotate(45deg);
+    transform-origin: center center;
+    z-index: 2;
 }
