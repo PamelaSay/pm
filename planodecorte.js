@@ -1,62 +1,34 @@
-let larguraTecido = 0; 
-let MARGEM_SEGURANÇA = 0.02; 
+// Variáveis globais para armazenar os dados do plano de corte
+let larguraTecido = 1.50; // Largura padrão inicial de ourela a ourela em metros
+let MARGEM_SEGURANÇA = 0.02; // 2 cm de margem padrão
 let pecas = [];
 
-document.addEventListener("DOMContentLoaded", () => {
-    const btnDefinirOurela = document.getElementById("btnDefinirOurela");
-    const btnNovoPlano = document.getElementById("btnNovoPlano");
-    const btnSalvar = document.getElementById("btnSalvar");
-    const btnCancelar = document.getElementById("btnCancelar");
-    const btnImprimir = document.getElementById("btnImprimir");
-
-    if (btnDefinirOurela) btnDefinirOurela.addEventListener("click", atualizarTecido);
-    if (btnNovoPlano) btnNovoPlano.addEventListener("click", novoPlano);
-    if (btnSalvar) btnSalvar.addEventListener("click", salvarPeca);
-    if (btnCancelar) btnCancelar.addEventListener("click", cancelarEdicao);
-    if (btnImprimir) btnImprimir.addEventListener("click", () => window.print());
-});
-
+// Função para atualizar as dimensões principais do tecido
 function atualizarTecido() {
     const inputLargura = document.getElementById("larguraTecido");
     if (inputLargura) {
-        larguraTecido = parseFloat(inputLargura.value) || 0;
+        larguraTecido = parseFloat(inputLargura.value) || 1.50;
     }
     atualizarPlanoDeCorte();
 }
 
-function novoPlano() {
-    if (confirm("Deseja realmente limpar todas as peças e reiniciar o plano de corte?")) {
-        pecas = [];
-        larguraTecido = 0;
-        
-        const inputLargura = document.getElementById("larguraTecido");
-        if (inputLargura) inputLargura.value = "";
-        
-        cancelarEdicao();
-        atualizarTabelaPecas();
-        atualizarPlanoDeCorte();
-    }
-}
-
+// Função principal que renderiza o plano de corte e calcula o posicionamento das peças
 function atualizarPlanoDeCorte() {
     const tecidoDiv = document.getElementById("tecido");
     const conteudoDiv = document.getElementById("conteudo-tecido");
-    const resultadoDiv = document.getElementById("resultado");
     
     if (!conteudoDiv || !tecidoDiv) return;
 
     conteudoDiv.innerHTML = ''; 
 
+    // Se a largura for inválida, reseta
     if (larguraTecido <= 0) {
         tecidoDiv.style.width = "100%";
         conteudoDiv.style.height = "50px"; 
-        if (resultadoDiv) {
-            resultadoDiv.innerText = "Defina a largura da ourela e adicione as peças para ver a metragem necessária.";
-        }
         return;
     }
 
-    const escala = 120; 
+    const escala = 120; // Escala visual (1 metro = 120px)
     const larguraTelaTecido = larguraTecido * escala;
     
     tecidoDiv.style.width = (larguraTelaTecido + 64) + "px";
@@ -64,19 +36,16 @@ function atualizarPlanoDeCorte() {
 
     const larguraUtilPx = larguraTelaTecido;
     const margemPx = MARGEM_SEGURANÇA * escala;
-    const metadeMargem = margemPx / 2;
 
     let posX = 0;
     let posY = 0;
     let maiorAlturaNaLinha = 0;
 
+    // Se não houver peças na lista, define uma altura mínima inicial limpa
     if (pecas.length === 0) {
         conteudoDiv.style.height = "50px";
-        const faixasOurela = tecidoDiv.querySelectorAll('.faixa-ourela');
+        const faixasOurela = tecidoDiv.querySelectorAll('.faixa-ourelha');
         faixasOurela.forEach(faixa => faixa.style.height = "50px");
-        if (resultadoDiv) {
-            resultadoDiv.innerText = `Largura da ourela definida: ${larguraTecido}m. Adicione peças para calcular a metragem.`;
-        }
         return;
     }
 
@@ -88,6 +57,7 @@ function atualizarPlanoDeCorte() {
             let larguraRealPeca = peca.largura;
             let alturaRealPeca = peca.altura;
 
+            // Tratamento para o sentido do fio
             if (peca.sentido === "trama") {
                 larguraRealPeca = peca.altura;
                 alturaRealPeca = peca.largura;
@@ -99,20 +69,25 @@ function atualizarPlanoDeCorte() {
             const larguraPx = larguraRealPeca * escala;
             const alturaPx = alturaRealPeca * escala;
 
-            const larguraComMargemPx = larguraPx + margemPx;
-            const alturaComMargemPx = alturaPx + margemPx;
+            // Espaçamento extra seguro para o enviesado não sobrepor as vizinhas
+            const margemVisualPeca = (peca.sentido === "enviesado") ? 120 : 6;
+            const larguraComMargemPx = larguraPx + margemPx + margemVisualPeca;
+            const alturaComMargemPx = alturaPx + margemPx + margemVisualPeca;
 
-            if (posX + larguraComMargemPx > larguraUtilPx + 0.1) {
+            pecaDiv.style.width = larguraPx + "px";
+            pecaDiv.style.height = alturaPx + "px";
+            pecaDiv.innerText = `${peca.nome}`;
+
+            // Quebra de linha se ultrapassar a largura útil do tecido
+            if (posX + larguraComMargemPx > larguraUtilPx + 1) {
                 posX = 0;
                 posY += maiorAlturaNaLinha;
                 maiorAlturaNaLinha = 0;
             }
 
-            pecaDiv.style.width = larguraPx + "px";
-            pecaDiv.style.height = alturaPx + "px";
-            pecaDiv.style.left = (posX + metadeMargem) + "px";
-            pecaDiv.style.top = (posY + metadeMargem) + "px";
-            pecaDiv.innerText = `${peca.nome}`;
+            // Posiciona a peça no plano
+            pecaDiv.style.left = (posX + (margemPx / 2) + 3) + "px";
+            pecaDiv.style.top = (posY + (margemPx / 2) + 3) + "px";
 
             if (alturaComMargemPx > maiorAlturaNaLinha) {
                 maiorAlturaNaLinha = alturaComMargemPx;
@@ -123,28 +98,29 @@ function atualizarPlanoDeCorte() {
         }
     });
 
-    let alturaTotalNecessariaPx = posY + maiorAlturaNaLinha;
-    if (alturaTotalNecessariaPx < 50) {
+    // Pega a altura exata da última peça adicionada para colar o tecido perfeitamente nela
+    let alturaTotalNecessariaPx = 0;
+    
+    if (pecas.length > 0 && conteudoDiv.lastElementChild) {
+        const ultimaPeca = conteudoDiv.lastElementChild;
+        alturaTotalNecessariaPx = ultimaPeca.offsetTop + ultimaPeca.offsetHeight;
+    } else {
         alturaTotalNecessariaPx = 50;
     }
 
+    // Aplica o tamanho exato no tecido e nas ourelas
     conteudoDiv.style.height = alturaTotalNecessariaPx + "px";
     
     const faixasOurela = tecidoDiv.querySelectorAll('.faixa-ourelha');
     faixasOurela.forEach(faixa => {
         faixa.style.height = alturaTotalNecessariaPx + "px";
     });
-
-    const metrosNecessarios = (alturaTotalNecessariaPx / escala).toFixed(2);
-    if (resultadoDiv) {
-        resultadoDiv.innerHTML = `Metragem linear necessária de tecido: <strong>${metrosNecessarios} metros</strong> (com largura de ${larguraTecido}m).`;
-    }
 }
 
-function salvarPeca(event) {
+// Função para adicionar nova peça capturando os dados do formulário
+function adicionarPeca(event) {
     if (event) event.preventDefault();
 
-    const indiceInput = document.getElementById("indiceEdicao");
     const nomeInput = document.getElementById("nomePeca");
     const alturaInput = document.getElementById("alturaPeca");
     const larguraInput = document.getElementById("larguraPeca");
@@ -157,119 +133,39 @@ function salvarPeca(event) {
     const altura = parseFloat(alturaInput.value);
     const largura = parseFloat(larguraInput.value);
     const quantidade = parseInt(quantidadeInput.value) || 1;
-    const sentido = sentidoInput ? sentidoInput.value : "ourela";
+    const sentido = sentidoInput ? sentidoInput.value : "urdume";
 
     if (isNaN(altura) || isNaN(largura) || altura <= 0 || largura <= 0) {
         alert("Por favor, insira medidas válidas de altura e largura.");
         return;
     }
 
-    const indice = indiceInput.value;
+    pecas.push({ nome, altura, largura, quantidade, sentido });
 
-    if (indice === "") {
-        pecas.push({ nome, altura, largura, quantidade, sentido });
-    } else {
-        pecas[parseInt(indice)] = { nome, altura, largura, quantidade, sentido };
-        cancelarEdicao();
-    }
-
+    // Limpa os campos de texto após adicionar
     nomeInput.value = "";
     alturaInput.value = "";
     larguraInput.value = "";
     quantidadeInput.value = "1";
-    if (sentidoInput) sentidoInput.value = "ourela";
 
-    atualizarTabelaPecas();
     atualizarPlanoDeCorte();
 }
 
-function atualizarTabelaPecas() {
-    const tbody = document.querySelector("#tabelaPecas tbody");
-    if (!tbody) return;
+// Função para limpar todo o plano de corte e iniciar um novo
+function novoPlanoDeCorte() {
+    if (confirm("Deseja iniciar um novo plano de corte? Isso apagará todas as peças atuais.")) {
+        pecas = [];
 
-    tbody.innerHTML = "";
+        const nomeInput = document.getElementById("nomePeca");
+        const alturaInput = document.getElementById("alturaPeca");
+        const larguraInput = document.getElementById("larguraPeca");
+        const quantidadeInput = document.getElementById("quantidadePeca");
 
-    pecas.forEach((peca, index) => {
-        const tr = document.createElement("tr");
+        if (nomeInput) nomeInput.value = "";
+        if (alturaInput) alturaInput.value = "";
+        if (larguraInput) larguraInput.value = "";
+        if (quantidadeInput) quantidadeInput.value = "1";
 
-        let textoSentido = "Normal (Ourela / Urdume)";
-        if (peca.sentido === "trama") textoSentido = "Trama (Transversal)";
-        if (peca.sentido === "enviesado") textoSentido = "Enviesado (45°)";
-
-        tr.innerHTML = `
-            <td>${peca.nome}</td>
-            <td>${peca.altura}</td>
-            <td>${peca.largura}</td>
-            <td>${texto.Sentido}</td>
-            <td>${peca.quantidade}</td>
-            <td>
-                <button type="button" class="btn-editar" data-index="${index}" title="Editar"><i class="fa-solid fa-pen"></i></button>
-                <button type="button" class="btn-duplicar" data-index="${index}" title="Duplicar" style="background-color: #b3e0ff; color: #1a202c;"><i class="fa-solid fa-copy"></i></button>
-                <button type="button" class="btn-excluir" data-index="${index}" title="Excluir"><i class="fa-solid fa-trash"></i></button>
-            </td>
-        `;
-        tbody.appendChild(tr);
-    });
-
-    document.querySelectorAll(".btn-editar").forEach(btn => {
-        btn.addEventListener("click", (e) => editarPeca(e.currentTarget.dataset.index));
-    });
-    document.querySelectorAll(".btn-duplicar").forEach(btn => {
-        btn.addEventListener("click", (e) => duplicarPeca(e.currentTarget.dataset.index));
-    });
-    document.querySelectorAll(".btn-excluir").forEach(btn => {
-        btn.addEventListener("click", (e) => removerPeca(e.currentTarget.dataset.index));
-    });
-}
-
-function editarPeca(index) {
-    const peca = pecas[index];
-    if (!peca) return;
-
-    document.getElementById("indiceEdicao").value = index;
-    document.getElementById("nomePeca").value = peca.nome;
-    document.getElementById("alturaPeca").value = peca.altura;
-    document.getElementById("larguraPeca").value = peca.largura;
-    document.getElementById("quantidadePeca").value = peca.quantidade;
-    document.getElementById("sentidoPeca").value = peca.sentido;
-
-    document.getElementById("tituloFormulario").innerText = "Editar Peça";
-    document.getElementById("btnSalvar").innerText = "Salvar Alterações";
-    document.getElementById("btnCancelar").style.display = "inline-block";
-}
-
-function duplicarPeca(index) {
-    const peca = pecas[index];
-    if (!peca) return;
-
-    const novaPeca = { 
-        nome: `${peca.nome} (Cópia)`, 
-        altura: peca.altura, 
-        largura: peca.largura, 
-        quantidade: peca.quantidade, 
-        sentido: peca.sentido 
-    };
-
-    pecas.push(novaPeca);
-    atualizarTabelaPecas();
-    atualizarPlanoDeCorte();
-}
-
-function cancelarEdicao() {
-    document.getElementById("indiceEdicao").value = "";
-    document.getElementById("nomePeca").value = "";
-    document.getElementById("alturaPeca").value = "";
-    document.getElementById("larguraPeca").value = "";
-    document.getElementById("quantidadePeca").value = "1";
-    document.getElementById("sentidoPeca").value = "ourela";
-
-    document.getElementById("tituloFormulario").innerText = "Adicionar Peça";
-    document.getElementById("btnSalvar").innerText = "Adicionar Peça";
-    document.getElementById("btnCancelar").style.display = "none";
-}
-
-function removerPeca(index) {
-    pecas.splice(index, 1);
-    atualizarTabelaPecas();
-    atualizarPlanoDeCorte();
+        atualizarPlanoDeCorte();
+    }
 }
