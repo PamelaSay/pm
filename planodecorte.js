@@ -94,8 +94,7 @@ function atualizarInterface() {
                         <button class="btn-icon btn-remove" title="Remover" onclick="removerPeca(${index})">🗑️</button>
                     </div>
                 </td>
-            </tr>
-        `;
+            </tr>;
 
         alturaTotalCalculada += alturaComMargem;
     });
@@ -113,8 +112,7 @@ function atualizarInterface() {
             <div class="peca-no-plano" style="width: ${Math.min(largM * 1.5, 200)}px; height: ${Math.min(altM * 0.8, 80)}px; top: ${posicaoY}px; left: ${10 + (index * 30) % 200}px;">
                 <strong>${p.nome}</strong>
                 <span>${largM}x${altM}cm</span>
-            </div>
-        `;
+            </div>;
         posicaoY += 20;
     });
 
@@ -123,6 +121,5 @@ function atualizarInterface() {
     let metrosNecessarios = (alturaTotalCalculada / 100).toFixed(2);
     document.getElementById('resultadoCompra').innerHTML = `
         <strong>Quantidade de Tecido Necessária:</strong> ${alturaTotalCalculada} cm (${metrosNecessarios} metros) 
-        <br><small style="font-weight: normal; color: #666;">Considerando largura útil de ${larguraTecido} cm com margens de costura inclusas.</small>
-    `;
+        <br><small style="font-weight: normal; color: #666;">Considerando largura útil de ${larguraTecido} cm com margens de costura inclusas.</small>;
 }
