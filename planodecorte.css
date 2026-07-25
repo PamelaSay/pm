@@ -127,9 +127,8 @@ FORMULÁRIOS
     flex-direction:column;
 }
 
-.campo.nome{
-    flex:1.4;
-}
+ width:220px;
+    flex:none;
 
 .campo.medida{
     width:90px;
