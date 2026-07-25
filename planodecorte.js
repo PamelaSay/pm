@@ -1,125 +1,274 @@
-let pecas = [];
-const MARGEM_COSTURA = 2; // 2 cm ao redor
+/*====================================================
+    PAMELETE CORTE
+    Sistema Inteligente de Plano de Corte
+=====================================================*/
 
-function gerarNovoPlano() {
-    if(confirm("Deseja limpar todas as peças e iniciar um novo plano?")) {
-        pecas = [];
-        document.getElementById('larguraTecido').value = 140;
-        atualizarInterface();
-    }
-}
+const pecas = [];
 
-function salvarPeca() {
-    const nome = document.getElementById('nomePeca').value;
-    const largura = parseFloat(document.getElementById('larguraPeca').value);
-    const altura = parseFloat(document.getElementById('alturaPeca').value);
-    const sentido = document.getElementById('sentidoFio').value;
-    const editIndex = parseInt(document.getElementById('editIndex').value);
+const ESCALA = 200; // 1 metro = 200 pixels
 
-    if(!nome || !largura || !altura) {
-        alert("Por favor, preencha todos os campos da peça.");
+let larguraTecido = 1.50;
+
+/*====================================================
+    ELEMENTOS
+=====================================================*/
+
+const tabela = document.querySelector("#tabelaPecas tbody");
+
+const areaCorte = document.getElementById("areaCorte");
+
+const metragem = document.getElementById("metragem");
+
+const aproveitamento = document.getElementById("aproveitamento");
+
+const desperdicio = document.getElementById("desperdicio");
+
+const areaUtilizada = document.getElementById("areaUtilizada");
+
+/*====================================================
+    BOTÕES
+=====================================================*/
+
+document
+.getElementById("btnAdicionar")
+.addEventListener("click", salvarPeca);
+
+document
+.getElementById("btnCalcular")
+.addEventListener("click", calcularPlano);
+
+document
+.getElementById("btnLimpar")
+.addEventListener("click", limparProjeto);
+
+document
+.getElementById("btnImprimir")
+.addEventListener("click", () => window.print());
+
+/*====================================================
+    SALVAR PEÇA
+=====================================================*/
+
+function salvarPeca(){
+
+    const nome=document
+    .getElementById("nomePeca")
+    .value.trim();
+
+    const altura=parseFloat(
+        document.getElementById("alturaPeca").value
+    );
+
+    const largura=parseFloat(
+        document.getElementById("larguraPeca").value
+    );
+
+    const quantidade=parseInt(
+        document.getElementById("quantidadePeca").value
+    );
+
+    const sentido=
+    document.getElementById("sentidoPeca").value;
+
+    const girar=
+    document.getElementById("girar").value;
+
+    const espelhar=
+    document.getElementById("espelhar").value;
+
+    if(
+        nome=="" ||
+        isNaN(altura) ||
+        isNaN(largura)
+    ){
+
+        alert("Preencha todos os campos.");
+
         return;
+
     }
 
-    const pecaObj = { nome, largura, altura, sentido };
+    pecas.push({
 
-    if(editIndex === -1) {
-        pecas.push(pecaObj);
-    } else {
-        pecas[editIndex] = pecaObj;
-        document.getElementById('editIndex').value = -1;
-    }
+        nome,
 
-    limparFormularioPeca();
-    atualizarInterface();
-}
+        altura,
 
-function limparFormularioPeca() {
-    document.getElementById('nomePeca').value = '';
-    document.getElementById('larguraPeca').value = '';
-    document.getElementById('alturaPeca').value = '';
-    document.getElementById('editIndex').value = '-1';
-}
+        largura,
 
-function editarPeca(index) {
-    const p = pecas[index];
-    document.getElementById('nomePeca').value = p.nome;
-    document.getElementById('larguraPeca').value = p.largura;
-    document.getElementById('alturaPeca').value = p.altura;
-    document.getElementById('sentidoFio').value = p.sentido;
-    document.getElementById('editIndex').value = index;
-    window.scrollTo({ top: 200, behavior: 'smooth' });
-}
+        quantidade,
 
-function duplicarPeca(index) {
-    const p = {...pecas[index]};
-    p.nome += " (Cópia)";
-    pecas.push(p);
-    atualizarInterface();
-}
+        sentido,
 
-function removerPeca(index) {
-    pecas.splice(index, 1);
-    atualizarInterface();
-}
+        girar,
 
-function atualizarInterface() {
-    const tbody = document.getElementById('tabelaPecasBody');
-    tbody.innerHTML = '';
+        espelhar
 
-    if(pecas.length === 0) {
-        tbody.innerHTML = `<tr><td colspan="4" style="text-align: center; color: #888;">Nenhuma peça adicionada ainda.</td></tr>`;
-        document.getElementById('corte-visual').innerHTML = `<span style="color: #999; font-size: 0.9rem;">Adicione peças para visualizar o encaixe no tecido</span>`;
-        document.getElementById('resultadoCompra').innerHTML = `<strong>Quantidade de Tecido Necessária:</strong> 0 cm (0.00 metros)`;
-        return;
-    }
-
-    let htmlTabela = '';
-    let alturaTotalCalculada = 0;
-    let larguraTecido = parseFloat(document.getElementById('larguraTecido').value) || 140;
-
-    pecas.forEach((p, index) => {
-        let larguraComMargem = p.largura + (MARGEM_COSTURA * 2);
-        let alturaComMargem = p.altura + (MARGEM_COSTURA * 2);
-
-        htmlTabela += `
-            <tr>
-                <td><strong>${p.nome}</strong></td>
-                <td>${larguraComMargem} cm x ${alturaComMargem} cm <br><small style="color:#777;">(Peça: ${p.largura}x${p.altura} + 4cm margem)</small></td>
-                <td>${p.sentido}</td>
-                <td>
-                    <div class="action-btns">
-                        <button class="btn-icon btn-edit" title="Editar" onclick="editarPeca(${index})">✏️</button>
-                        <button class="btn-icon btn-duplicate" title="Duplicar" onclick="duplicarPeca(${index})">📋</button>
-                        <button class="btn-icon btn-remove" title="Remover" onclick="removerPeca(${index})">🗑️</button>
-                    </div>
-                </td>
-            </tr>;
-
-        alturaTotalCalculada += alturaComMargem;
     });
 
-    tbody.innerHTML = htmlTabela;
+    atualizarTabela();
 
-    let visualHtml = '';
-    let posicaoY = 10;
-    
-    pecas.forEach((p, index) => {
-        let altM = p.altura + (MARGEM_COSTURA * 2);
-        let largM = p.largura + (MARGEM_COSTURA * 2);
-        
-        visualHtml += `
-            <div class="peca-no-plano" style="width: ${Math.min(largM * 1.5, 200)}px; height: ${Math.min(altM * 0.8, 80)}px; top: ${posicaoY}px; left: ${10 + (index * 30) % 200}px;">
-                <strong>${p.nome}</strong>
-                <span>${largM}x${altM}cm</span>
-            </div>;
-        posicaoY += 20;
+    limparFormulario();
+
+}
+
+/*====================================================
+    LIMPAR FORMULÁRIO
+=====================================================*/
+
+function limparFormulario(){
+
+    document.getElementById("nomePeca").value="";
+
+    document.getElementById("alturaPeca").value="";
+
+    document.getElementById("larguraPeca").value="";
+
+    document.getElementById("quantidadePeca").value=1;
+
+}
+/*====================================================
+    ATUALIZAR TABELA
+=====================================================*/
+
+function atualizarTabela() {
+
+    tabela.innerHTML = "";
+
+    pecas.forEach((peca, indice) => {
+
+        const tr = document.createElement("tr");
+
+        tr.innerHTML = `
+
+            <td>${peca.nome}</td>
+
+            <td>${peca.altura.toFixed(2)} m</td>
+
+            <td>${peca.largura.toFixed(2)} m</td>
+
+            <td>${peca.quantidade}</td>
+
+            <td>${peca.sentido}</td>
+
+            <td>${peca.girar}</td>
+
+            <td>
+
+                <button onclick="editarPeca(${indice})">
+
+                    <i class="fa-solid fa-pen"></i>
+
+                </button>
+
+                <button onclick="duplicarPeca(${indice})">
+
+                    <i class="fa-solid fa-copy"></i>
+
+                </button>
+
+                <button onclick="removerPeca(${indice})">
+
+                    <i class="fa-solid fa-trash"></i>
+
+                </button>
+
+            </td>
+
+        `;
+
+        tabela.appendChild(tr);
+
     });
 
-    document.getElementById('corte-visual').innerHTML = visualHtml;
+}
 
-    let metrosNecessarios = (alturaTotalCalculada / 100).toFixed(2);
-    document.getElementById('resultadoCompra').innerHTML = `
-        <strong>Quantidade de Tecido Necessária:</strong> ${alturaTotalCalculada} cm (${metrosNecessarios} metros) 
-        <br><small style="font-weight: normal; color: #666;">Considerando largura útil de ${larguraTecido} cm com margens de costura inclusas.</small>;
+/*====================================================
+    REMOVER PEÇA
+=====================================================*/
+
+function removerPeca(indice){
+
+    if(confirm("Remover esta peça?")){
+
+        pecas.splice(indice,1);
+
+        atualizarTabela();
+
+        calcularPlano();
+
+    }
+
+}
+
+/*====================================================
+    DUPLICAR PEÇA
+=====================================================*/
+
+function duplicarPeca(indice){
+
+    const copia={...pecas[indice]};
+
+    copia.nome += " (Cópia)";
+
+    pecas.push(copia);
+
+    atualizarTabela();
+
+    calcularPlano();
+
+}
+
+/*====================================================
+    EDITAR PEÇA
+=====================================================*/
+
+function editarPeca(indice){
+
+    const p=pecas[indice];
+
+    document.getElementById("nomePeca").value=p.nome;
+
+    document.getElementById("alturaPeca").value=p.altura;
+
+    document.getElementById("larguraPeca").value=p.largura;
+
+    document.getElementById("quantidadePeca").value=p.quantidade;
+
+    document.getElementById("sentidoPeca").value=p.sentido;
+
+    document.getElementById("girar").value=p.girar;
+
+    document.getElementById("espelhar").value=p.espelhar;
+
+    pecas.splice(indice,1);
+
+    atualizarTabela();
+
+}
+
+/*====================================================
+    LIMPAR PROJETO
+=====================================================*/
+
+function limparProjeto(){
+
+    if(!confirm("Deseja limpar todo o projeto?")) return;
+
+    pecas.length=0;
+
+    tabela.innerHTML="";
+
+    areaCorte.innerHTML="";
+
+    metragem.textContent="0,00 m";
+
+    aproveitamento.textContent="0%";
+
+    desperdicio.textContent="0%";
+
+    areaUtilizada.textContent="0 m²";
+
+    limparFormulario();
+
 }
