@@ -272,3 +272,261 @@ function limparProjeto(){
     limparFormulario();
 
 }
+/*====================================================
+    CALCULAR PLANO DE CORTE
+=====================================================*/
+
+function calcularPlano(){
+
+    larguraTecido=parseFloat(
+        document.getElementById("larguraTecido").value
+    );
+
+    if(isNaN(larguraTecido) || larguraTecido<=0){
+
+        alert("Informe a largura do tecido.");
+
+        return;
+
+    }
+
+    desenharPlano();
+
+    calcularResultados();
+
+}
+
+/*====================================================
+    DESENHAR PLANO
+=====================================================*/
+
+function desenharPlano(){
+
+    areaCorte.innerHTML="";
+
+    const larguraPx=larguraTecido*ESCALA;
+
+    areaCorte.style.width=larguraPx+"px";
+
+    let posX=0;
+
+    let posY=0;
+
+    let maiorAlturaLinha=0;
+
+    /* organiza da maior para a menor */
+
+    const lista=[];
+
+    pecas.forEach(p=>{
+
+        for(let i=0;i<p.quantidade;i++){
+
+            lista.push({...p});
+
+        }
+
+    });
+
+    lista.sort((a,b)=>{
+
+        return (b.altura*b.largura)-
+               (a.altura*a.largura);
+
+    });
+
+    lista.forEach(peca=>{
+
+        let largura=peca.largura;
+
+        let altura=peca.altura;
+
+        if(peca.sentido==="trama"){
+
+            largura=peca.altura;
+
+            altura=peca.largura;
+
+        }
+
+        const larguraTela=largura*ESCALA;
+
+        const alturaTela=altura*ESCALA;
+
+        if(posX+larguraTela>larguraPx){
+
+            posX=0;
+
+            posY+=maiorAlturaLinha;
+
+            maiorAlturaLinha=0;
+
+        }
+
+        const div=document.createElement("div");
+
+        div.className="peca";
+
+        if(peca.sentido==="enviesado"){
+
+            div.classList.add("enviesado");
+
+        }
+
+        div.style.width=larguraTela+"px";
+
+        div.style.height=alturaTela+"px";
+
+        div.style.left=posX+"px";
+
+        div.style.top=posY+"px";
+
+        div.innerHTML=`
+
+            <strong>${peca.nome}</strong>
+
+            <br>
+
+            ${largura.toFixed(2)} × ${altura.toFixed(2)}
+
+        `;
+
+        areaCorte.appendChild(div);
+
+        posX+=larguraTela;
+
+        if(alturaTela>maiorAlturaLinha){
+
+            maiorAlturaLinha=alturaTela;
+
+        }
+
+    });
+
+    areaCorte.style.height=(posY+maiorAlturaLinha+20)+"px";
+
+}
+/*====================================================
+    CALCULAR RESULTADOS
+=====================================================*/
+
+function calcularResultados(){
+
+    let areaTotal = 0;
+
+    let comprimentoUtilizado = 0;
+
+    pecas.forEach(peca=>{
+
+        areaTotal +=
+            (peca.altura *
+             peca.largura *
+             peca.quantidade);
+
+    });
+
+    comprimentoUtilizado = areaTotal / larguraTecido;
+
+    const margem =
+        parseFloat(
+            document.getElementById("margem").value
+        ) / 100;
+
+    comprimentoUtilizado *= (1 + margem);
+
+    metragem.innerHTML =
+        comprimentoUtilizado.toFixed(2) + " m";
+
+    areaUtilizada.innerHTML =
+        areaTotal.toFixed(2) + " m²";
+
+    const areaComprada =
+        comprimentoUtilizado * larguraTecido;
+
+    let aproveitamentoCalc =
+        (areaTotal / areaComprada) * 100;
+
+    if(aproveitamentoCalc > 100){
+
+        aproveitamentoCalc = 100;
+
+    }
+
+    aproveitamento.innerHTML =
+        aproveitamentoCalc.toFixed(1) + "%";
+
+    desperdicio.innerHTML =
+        (100-aproveitamentoCalc).toFixed(1)+"%";
+
+}
+
+/*====================================================
+    SALVAR PROJETO
+=====================================================*/
+
+document
+.getElementById("btnSalvarProjeto")
+.addEventListener("click", salvarProjeto);
+
+function salvarProjeto(){
+
+    localStorage.setItem(
+
+        "pameleteProjeto",
+
+        JSON.stringify({
+
+            largura:
+            document.getElementById("larguraTecido").value,
+
+            tecido:
+            document.getElementById("nomeTecido").value,
+
+            cor:
+            document.getElementById("corTecido").value,
+
+            margem:
+            document.getElementById("margem").value,
+
+            pecas
+
+        })
+
+    );
+
+    alert("Projeto salvo com sucesso!");
+
+}
+
+/*====================================================
+    CARREGAR PROJETO
+=====================================================*/
+
+window.onload = function(){
+
+    const projeto =
+        JSON.parse(
+            localStorage.getItem("pameleteProjeto")
+        );
+
+    if(!projeto) return;
+
+    document.getElementById("larguraTecido").value =
+        projeto.largura;
+
+    document.getElementById("nomeTecido").value =
+        projeto.tecido;
+
+    document.getElementById("corTecido").value =
+        projeto.cor;
+
+    document.getElementById("margem").value =
+        projeto.margem;
+
+    pecas.push(...projeto.pecas);
+
+    atualizarTabela();
+
+    calcularPlano();
+
+};
