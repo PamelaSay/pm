@@ -1,43 +1,144 @@
+
 <!DOCTYPE html>
 <html lang="pt-BR">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>Pamelete Corte | Plano de Corte Inteligente</title>
+
     <link rel="stylesheet" href="planodecorte.css">
+
     <link rel="stylesheet"
         href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css">
 </head>
 
 <body>
-    <header>
-    <div class="logo"> <i class="fa-solid fa-scissors"></i>
+
+<header>
+
+    <div class="logo">
+
+        <i class="fa-solid fa-scissors"></i>
+
         <div>
-            <h1>PAMELETE CORTE</h1> <span>Sistema Inteligente de Plano de Corte</span>
+
+            <h1>PAMELETE CORTE</h1>
+
+            <span>Sistema Inteligente de Plano de Corte</span>
+
         </div>
+
     </div>
-    </header>
+
+</header>
+
 
 <main class="container">
-<section class="card"> <h2><i class="fa-solid fa-ruler-combined"></i>Dados do Tecido</h2>
-<div class="linha-form">
-    <div class="campo"><label>Largura do tecido (m)</label><input type="number" id="larguraTecido" step="0.01" placeholder="1.50">
-    </div>
 
-    <div class="campo"><label>Nome do tecido</label><input type="text" id="nomeTecido" placeholder="Moletom 3 cabos">
-</div>
-    <div class="campo"> <label>Cor</label> <input type="text" id="corTecido" placeholder="Preto">
-</div>
-    <div class="campo"><label>Margem de Segurança</label><select id="margem"> <option value="5">5%</option><option value="10" selected>10%</option><option value="15">15%</option>
-<option value="20">20%</option></select>
-    </div>
-</div>
-</section>
 
 <section class="card">
-<h2><i class="fa-solid fa-layer-group"></i>Cadastro das Peças</h2><input type="hidden" id="indiceEdicao">
-<div class="linha-form"><div class="campo grande"><label>Nome da peça</label><input type="text" id="nomePeca" placeholder="Frente"> 
+
+<h2>
+
+<i class="fa-solid fa-ruler-combined"></i>
+
+Dados do Tecido
+
+</h2>
+
+
+<div class="linha-form">
+
+<div class="campo">
+
+<label>Largura do tecido (m)</label>
+
+<input
+type="number"
+id="larguraTecido"
+step="0.01"
+placeholder="1.50">
+
+</div>
+
+
+<div class="campo">
+
+<label>Nome do tecido</label>
+
+<input
+type="text"
+id="nomeTecido"
+placeholder="Moletom 3 cabos">
+
+</div>
+
+
+<div class="campo">
+
+<label>Cor</label>
+
+<input
+type="text"
+id="corTecido"
+placeholder="Preto">
+
+</div>
+
+
+<div class="campo">
+
+<label>Margem de Segurança</label>
+
+<select id="margem">
+
+<option value="5">5%</option>
+
+<option value="10" selected>10%</option>
+
+<option value="15">15%</option>
+
+<option value="20">20%</option>
+
+</select>
+
+</div>
+
+</div>
+
+</section>
+
+
+
+<section class="card">
+
+<h2>
+
+<i class="fa-solid fa-layer-group"></i>
+
+Cadastro das Peças
+
+</h2>
+
+
+<input type="hidden" id="indiceEdicao">
+
+
+
+<div class="linha-form">
+
+
+<div class="campo grande">
+
+<label>Nome da peça</label>
+
+<input
+type="text"
+id="nomePeca"
+placeholder="Frente">
+
 </div>
 
 
@@ -159,6 +260,28 @@ Sim
 </div>
 
 </div>
+
+
+
+<div class="botoes">
+
+<button id="btnAdicionar">
+
+<i class="fa-solid fa-plus"></i>
+
+Adicionar
+
+</button>
+
+<button id="btnCancelar">
+
+Cancelar
+
+</button>
+
+</div>
+
+</section>
 
 
 
