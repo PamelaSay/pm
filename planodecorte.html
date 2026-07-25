@@ -2,106 +2,61 @@
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Plano de Corte de Tecido - Pamelete</title>
-    <!-- FontAwesome para os ícones de ação -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <title>Plano de Corte</title>
     <link rel="stylesheet" href="planodecorte.css">
 </head>
 <body>
-    <div class="container">
-        <h1>Plano de Corte de Tecido</h1>
 
-        <!-- Seção de Ourela (Largura Fixa) -->
-        <div class="input-container noprint">
-            <label for="larguraTecido">Ourela do Tecido (Largura em metros):</label>
-            <div class="linha-ourelha">
-                <input type="number" id="larguraTecido" placeholder="Ex: 1.40" min="0" step="0.01">
-                <button type="button" id="btnDefinirOurela">Definir Ourela</button>
-                <button type="button" id="btnNovoPlano" title="Iniciar novo plano"><i class="fa-solid fa-rotate-right"></i> Novo</button>
+    <div class="painel-controle">
+        <h2>Configuração do Tecido e Peças</h2>
+        
+        <!-- Controle da Largura do Tecido -->
+        <div class="grupo-campo">
+            <label for="larguraTecido">Largura do Tecido (m):</label>
+            <input type="number" id="larguraTecido" value="1.50" step="0.01" onchange="atualizarTecido()">
+        </div>
+
+        <hr>
+
+        <!-- Formulário para Adicionar Peças -->
+        <form onsubmit="adicionarPeca(event)">
+            <div class="grupo-campo">
+                <label>Nome da Peça:</label>
+                <input type="text" id="nomePeca" placeholder="Ex: Calça, Blusa" required>
             </div>
-        </div>
-
-        <!-- Seção de Adicionar Peça -->
-        <div class="adicionar-peca noprint">
-            <h3 id="tituloFormulario">Adicionar Peça</h3>
-            <input type="hidden" id="indiceEdicao" value="">
-            
-            <div class="linha">
-                <div>
-                    <label for="nomePeca">Nome:</label>
-                    <input type="text" id="nomePeca" placeholder="Descrição">
-                </div>
-                <div>
-                    <label for="alturaPeca">Altura (m):</label>
-                    <input type="number" id="alturaPeca" placeholder="Ex: 0.77" min="0" step="0.01">
-                </div>
-                <div>
-                    <label for="larguraPeca">Largura (m):</label>
-                    <input type="number" id="larguraPeca" placeholder="Ex: 1.07" min="0" step="0.01">
-                </div>
-                <div>
-                    <label for="quantidadePeca">Quant.:</label>
-                    <input type="number" id="quantidadePeca" placeholder="Ex: 1" min="1" value="1">
-                </div>
-                <div>
-                    <label for="sentidoPeca">Sentido do Fio:</label>
-                    <select id="sentidoPeca">
-                        <option value="ourela">Ourela / Urdume (Normal)</option>
-                        <option value="trama">Trama (Transversal)</option>
-                        <option value="enviesado">Enviesado (45° Diagonal)</option>
-                    </select>
-                </div>
+            <div class="grupo-campo">
+                <label>Altura (m):</label>
+                <input type="number" id="alturaPeca" step="0.01" placeholder="Ex: 1.06" required>
             </div>
-            
-            <div class="botoes-form">
-                <button type="button" id="btnSalvar">Adicionar Peça</button>
-                <button type="button" id="btnCancelar" class="btn-cancelar-escondido">Cancelar</button>
+            <div class="grupo-campo">
+                <label>Largura (m):</label>
+                <input type="number" id="larguraPeca" step="0.01" placeholder="Ex: 0.40" required>
             </div>
-        </div>
-
-        <!-- Lista das Peças -->
-        <div class="lista-pecas noprint">
-            <h3>Lista das Peças</h3>
-            <table id="tabelaPecas">
-                <thead>
-                    <tr>
-                        <th>Nome</th>
-                        <th>Altura (m)</th>
-                        <th>Largura (m)</th>
-                        <th>Sentido do Fio</th>
-                        <th>Quantidade</th>
-                        <th>Ações</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <!-- Inserido dinamicamente -->
-                </tbody>
-            </table>
-        </div>
-
-        <!-- Plano de Corte -->
-        <h3>Plano de Corte e Aproveitamento</h3>
-        <div class="plano-corte-wrapper">
-            <div id="tecido">
-                <div class="faixa-ourela esquerda">OURELA</div>
-                <div class="faixa-ourela direita">OURELA</div>
-                <div id="conteudo-tecido">
-                    <!-- As peças ficam estritamente dentro da área útil delimitada pelas ourelas -->
-                </div>
+            <div class="grupo-campo">
+                <label>Quantidade:</label>
+                <input type="number" id="quantidadePeca" value="1" min="1" required>
             </div>
-        </div>
+            <div class="grupo-campo">
+                <label>Sentido:</label>
+                <select id="sentidoPeca">
+                    <option value="urdume">Normal (Urdume)</option>
+                    <option value="trama">Trave / Invertido</option>
+                    <option value="enviesado">Enviesado</option>
+                </select>
+            </div>
 
-        <!-- Metragem Automática em Destaque -->
-        <div class="metragem-destaque">
-            <i class="fa-solid fa-scissors"></i>
-            <span id="resultado">Defina a largura da ourela e adicione as peças para ver a metragem necessária.</span>
-        </div>
+            <div class="botoes-acao">
+                <button type="submit" class="btn-adicionar">Adicionar Peça</button>
+                <button type="button" class="btn-novo" onclick="novoPlanoDeCorte()">Novo Plano</button>
+            </div>
+        </form>
+    </div>
 
-        <!-- Imprimir Plano -->
-        <div class="impressao noprint">
-            <button type="button" id="btnImprimir">Imprimir Plano de Corte</button>
-        </div>
+    <!-- Área Visual do Tecido -->
+    <div id="tecido" class="tecido-container">
+        <div class="faixa-ourelha esquerda">Ourela</div>
+        <div id="conteudo-tecido"></div>
+        <div class="faixa-ourelha direita">Ourela</div>
     </div>
 
     <script src="planodecorte.js"></script>
