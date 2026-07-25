@@ -158,19 +158,18 @@ FORMULÁRIOS
 
 
 .campo.grande{
-    flex:2;
+    flex:1;
 }
 
 .campo label{
     font-size:13px;
     margin-bottom:6px;
     font-weight:600;
-
 }
 
 .campo input,
 .campo select{
-    padding:11px;
+    padding:8px;
     border:1px solid var(--borda);
     border-radius:8px;
     font-size:15px;
