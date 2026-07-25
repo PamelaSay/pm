@@ -19,53 +19,32 @@
     --vermelho:#DC2626;
     --texto:#2B2B2B;
     --borda:#D9D9D9;
-
 }
 
 body{
-
-    background:var(--cinza);
-
-    font-family:
-    "Segoe UI",
-    sans-serif;
-
-    color:var(--texto);
-
-}
+    background:var(cinza);
+    font-family:"Segoe UI",sans-serif;
+    color:var(texto);}
 
 /*======================================
 HEADER
 =======================================*/
 
 header{
-
-    background:var(--azul);
-
+    background:var(azul);
     color:white;
-
     padding:25px;
-
-    box-shadow:0 3px 10px rgba(0,0,0,.15);
-
-}
+    box-shadow:0 3px 10px rgba(0,0,0,.15);}
 
 .logo{
-
     display:flex;
-
     align-items:center;
-
     gap:20px;
-
 }
 
 .logo i{
-
     font-size:45px;
-
-    color:var(--dourado);
-
+    color:var(dourado);
 }
 
 .logo h1{
