@@ -209,78 +209,138 @@ BOTÕES
 
 .botoes,
 .acoes{
+
     display:flex;
+
     flex-wrap:wrap;
+
     gap:15px;
+
     margin-top:20px;
 
 }
 
 button{
+
     border:none;
+
     cursor:pointer;
+
     padding:12px 22px;
+
     border-radius:8px;
+
     font-size:15px;
+
     font-weight:600;
-    transition:0.25s;
+
+    transition:.25s;
+
     display:flex;
+
     align-items:center;
-    gap:8px;}
+
+    gap:8px;
+
+}
 
 #btnAdicionar,
 #btnCalcular{
-    background:var(azul);
-    color:white;}
+
+    background:var(--azul);
+
+    color:white;
+
+}
 
 #btnAdicionar:hover,
 #btnCalcular:hover{
+
     background:#21496f;
-    transform:translateY(-2px);}
+
+    transform:translateY(-2px);
+
+}
 
 #btnCancelar,
 #btnLimpar{
+
     background:#d63031;
-    color:white;}
+
+    color:white;
+
+}
 
 #btnCancelar:hover,
 #btnLimpar:hover{
+
     background:#b71c1c;
+
 }
 
 #btnSalvarProjeto{
-    background:var(verde);
-    color:white;}
+
+    background:var(--verde);
+
+    color:white;
+
+}
 
 #btnSalvarProjeto:hover{
-    background:#16964a;}
+
+    background:#16964a;
+
+}
 
 #btnImprimir{
-    background:var(dourado);
-    color:black;}
+
+    background:var(--dourado);
+
+    color:black;
+
+}
 
 #btnImprimir:hover{
-    filter:brightness(0.95);}
+
+    filter:brightness(.95);
+
+}
 
 /*======================================
 TABELA
 =======================================*/
 
 .tabela-container{
-    overflow:auto;}
+
+    overflow:auto;
+
+}
 
 table{
+
     width:100%;
+
     border-collapse:collapse;
-    min-width:900px;}
+
+    min-width:900px;
+
+}
 
 thead{
-    background:var(azul);
-    color:white;}
+
+    background:var(--azul);
+
+    color:white;
+
+}
 
 th{
-   padding:14px;
-    font-weight:600;}
+
+    padding:14px;
+
+    font-weight:600;
+
+}
 
 td{
 
@@ -346,7 +406,7 @@ PLANO DE CORTE
 
     background:white;
 
-    border:2px solid var(azul);
+    border:2px solid var(--azul);
 
     min-height:700px;
 
@@ -378,7 +438,7 @@ PEÇAS
 
     background:#8ecae6;
 
-    border:2px solid var(azul);
+    border:2px solid var(--azul);
 
     border-radius:6px;
 
@@ -412,7 +472,7 @@ PEÇAS
 
 .peca.selecionada{
 
-    outline:4px solid var(verde);
+    outline:4px solid var(--verde);
 
 }
 /*======================================
@@ -469,7 +529,7 @@ PAINEL DE RESULTADOS
 
     font-size:30px;
 
-    color:var(dourado);
+    color:var(--dourado);
 
     margin:0;
 
@@ -513,7 +573,7 @@ SCROLL
 
 ::-webkit-scrollbar-thumb{
 
-    background:var(azul);
+    background:var(--azul);
 
     border-radius:20px;
 
@@ -671,7 +731,5 @@ footer{
     margin-top:20px;
 
     font-size:12px;
-
-}
 
 }
