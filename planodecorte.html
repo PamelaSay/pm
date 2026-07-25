@@ -24,14 +24,10 @@
 <section class="card">
     <h2> <i class="fa-solid fa-ruler-combined"></i>Dados do Tecido</h2>
     <div class="linha-form">
-        <div class="campo"><label>Largura do tecido (m)</label><input type="number" id="larguraTecido" step="0.01" placeholder="1.50"> </div>
+        <div class="campo"><label>Largura do tecido (m)</label>
+            <input type="number" id="larguraTecido" step="0.01" placeholder="1.50"> </div>
         <div class="campo"> <label>Margem de Segurança</label>
-             <select id="margem">
-                <option value="5">5%</option>
-                <option value="10" selected>10%</option>
-                <option value="15">15%</option>
-                <option value="20">20%</option>
-             </select>
+            <input type="number" id="margem" value="2" min="0" max="10">
         </div>
     </div>
 </section>
@@ -128,10 +124,7 @@
             <span>Metragem</span>
             <h3 id="metragem"> 0,00 m </h3>
         </div>
-        <div class="resultado">
-            <span>Aproveitamento</span>
-            <h3 id="aproveitamento"> 0% </h3>
-        </div>
+       
         <div class="resultado">
             <span>Desperdício</span>
             <h3 id="desperdicio"> 0% </h3>
