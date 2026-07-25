@@ -11,117 +11,198 @@
 
 :root{
 
-   -- azul:#16324F;
-   -- dourado:#D4AF37;
-   -- cinza:#F4F6F8;
-  --  branco:#FFFFFF;
-  --  verde:#22C55E;
- --   vermelho:#DC2626;
- --   texto:#2B2B2B;
- --   borda:#D9D9D9;
+    --azul:#16324F;
+    --dourado:#D4AF37;
+    --cinza:#F4F6F8;
+    --branco:#FFFFFF;
+    --verde:#22C55E;
+    --vermelho:#DC2626;
+    --texto:#2B2B2B;
+    --borda:#D9D9D9;
+
 }
 
 body{
-    background:var(cinza);
-    font-family:"Segoe UI",sans-serif;
-    color:var(texto);}
+
+    background:var(--cinza);
+
+    font-family:
+    "Segoe UI",
+    sans-serif;
+
+    color:var(--texto);
+
+}
 
 /*======================================
 HEADER
 =======================================*/
 
 header{
-    background:var(azul);
+
+    background:var(--azul);
+
     color:white;
+
     padding:25px;
-    box-shadow:0 3px 10px rgba(0,0,0,.15);}
+
+    box-shadow:0 3px 10px rgba(0,0,0,.15);
+
+}
 
 .logo{
+
     display:flex;
+
     align-items:center;
+
     gap:20px;
+
 }
 
 .logo i{
+
     font-size:45px;
-    color:var(dourado);
+
+    color:var(--dourado);
+
 }
 
 .logo h1{
+
     font-size:30px;
-    letter-spacing:2px;}
+
+    letter-spacing:2px;
+
+}
 
 .logo span{
+
     font-size:14px;
-    opacity:0.9;}
+
+    opacity:.9;
+
+}
 
 /*======================================
 CONTAINER
 =======================================*/
 
 .container{
+
     width:95%;
+
     max-width:1600px;
+
     margin:auto;
-    padding:25px;}
+
+    padding:25px;
+
+}
 
 /*======================================
 CARDS
 =======================================*/
 
 .card{
+
     background:white;
+
     margin-bottom:25px;
+
     border-radius:12px;
+
     padding:25px;
+
     box-shadow:0 3px 12px rgba(0,0,0,.08);
+
 }
 
 .card h2{
-    color:var(azul);
+
+    color:var(--azul);
+
     margin-bottom:20px;
+
     display:flex;
+
     align-items:center;
+
     gap:12px;
-    border-bottom:2px solid var(dourado);
-    padding-bottom:10px;}
+
+    border-bottom:2px solid var(--dourado);
+
+    padding-bottom:10px;
+
+}
 
 /*======================================
 FORMULÁRIOS
 =======================================*/
 
 .linha-form{
+
     display:flex;
+
     gap:20px;
+
     flex-wrap:wrap;
-    margin-bottom:18px;}
+
+    margin-bottom:18px;
+
+}
 
 .campo{
+
     display:flex;
+
     flex-direction:column;
-    flex:1;}
+
+    flex:1;
+
+}
 
 .campo.grande{
-    flex:2;}
+
+    flex:2;
+
+}
 
 .campo label{
+
     font-size:13px;
+
     margin-bottom:6px;
-    font-weight:600;}
+
+    font-weight:600;
+
+}
 
 .campo input,
 .campo select{
+
     padding:11px;
-    border:1px solid var(borda);
+
+    border:1px solid var(--borda);
+
     border-radius:8px;
+
     font-size:15px;
-    transition:.25s;}
+
+    transition:.25s;
+
+}
 
 .campo input:focus,
 .campo select:focus{
+
     outline:none;
-    border-color:var(dourado);
-    box-shadow:0 0 5px rgba(212,175,55,.35);}
+
+    border-color:var(--dourado);
+
+    box-shadow:0 0 5px rgba(212,175,55,.35);
+
+}
 /*======================================
 BOTÕES
 =======================================*/
