@@ -1,92 +1,283 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Plano de Corte de Tecido | Pamelete</title>
+
+    <title>Pamelete Corte | Plano de Corte Inteligente</title>
+
     <link rel="stylesheet" href="planodecorte.css">
+
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css">
 </head>
+
 <body>
 
-<div class="container">
-    <h1>Plano de Corte Inteligente</h1>
+<header>
 
-    <!-- Bloco 1: Largura do Tecido e Ação -->
-    <div class="card top-bar">
-        <div class="form-group" style="flex: 1; min-width: 250px;">
-            <label for="larguraTecido">Largura Útil do Tecido (cm) [Ourela a Ourela]:</label>
-            <input type="number" id="larguraTecido" value="140" placeholder="Ex: 140">
-        </div>
-        <button class="btn" onclick="gerarNovoPlano()">✨ Novo Plano / Limpar</button>
-    </div>
+    <div class="logo">
 
-    <!-- Bloco 2: Adicionar Peças -->
-    <div class="card">
-        <h2>Adicionar Peça ao Projeto</h2>
-        <input type="hidden" id="editIndex" value="-1">
-        <div class="grid-2">
-            <div class="form-group">
-                <label for="nomePeca">Nome da Peça:</label>
-                <input type="text" id="nomePeca" placeholder="Ex: Frente do Vestido">
-            </div>
-            <div class="form-group">
-                <label for="larguraPeca">Largura (cm):</label>
-                <input type="number" id="larguraPeca" placeholder="Ex: 50">
-            </div>
-            <div class="form-group">
-                <label for="alturaPeca">Altura / Comprimento (cm):</label>
-                <input type="number" id="alturaPeca" placeholder="Ex: 60">
-            </div>
-            <div class="form-group">
-                <label for="sentidoFio">Sentido do Fio:</label>
-                <select id="sentidoFio">
-                    <option value="Trama">Trama</option>
-                    <option value="Ourela">Ourela</option>
-                    <option value="Enviesado (45°)">Enviesado (45°)</option>
-                </select>
-            </div>
-        </div>
-        <button class="btn" style="margin-top: 10px;" onclick="salvarPeca()">Adicionar Peça</button>
-    </div>
+        <i class="fa-solid fa-scissors"></i>
 
-    <!-- Bloco 3: Lista de Peças Incluídas -->
-    <div class="card">
-        <h2>Peças Incluídas no Projeto</h2>
-        <table>
-            <thead>
-                <tr>
-                    <th>Nome</th>
-                    <th>Dimensões (c/ Margem 2cm)</th>
-                    <th>Sentido do Fio</th>
-                    <th>Ações</th>
-                </tr>
-            </thead>
-            <tbody id="tabelaPecasBody">
-                <!-- Inserido via JavaScript -->
-            </tbody>
-        </table>
-    </div>
+        <div>
 
-    <!-- Bloco 4: Visualização do Plano de Corte e Resultado -->
-    <div class="card" id="print-area">
-        <h2>Simulação do Plano de Corte</h2>
-        <p style="font-size: 0.85rem; color: #666;">*Cada peça inclui automaticamente 2 cm de margem de segurança ao redor para o corte e costura.</p>
-        
-        <div id="corte-visual">
-            <span style="color: #999; font-size: 0.9rem;">Adicione peças para visualizar o encaixe no tecido</span>
+            <h1>PAMELETE CORTE</h1>
+
+            <span>Sistema Inteligente de Plano de Corte</span>
+
         </div>
 
-        <div class="resultado-compra" id="resultadoCompra">
-            <strong>Quantidade de Tecido Necessária:</strong> 0 cm (0.00 metros)
-        </div>
     </div>
 
-    <!-- Botão de Impressão -->
-    <div class="print-container">
-        <button class="btn" onclick="window.print()">🖨️ Imprimir Plano de Corte</button>
-    </div>
+</header>
+
+
+<main class="container">
+
+
+<section class="card">
+
+<h2>
+
+<i class="fa-solid fa-ruler-combined"></i>
+
+Dados do Tecido
+
+</h2>
+
+
+<div class="linha-form">
+
+<div class="campo">
+
+<label>Largura do tecido (m)</label>
+
+<input
+type="number"
+id="larguraTecido"
+step="0.01"
+placeholder="1.50">
+
 </div>
 
-<script src="planodecorte.js"></script>
-</body>
-</html>
+
+<div class="campo">
+
+<label>Nome do tecido</label>
+
+<input
+type="text"
+id="nomeTecido"
+placeholder="Moletom 3 cabos">
+
+</div>
+
+
+<div class="campo">
+
+<label>Cor</label>
+
+<input
+type="text"
+id="corTecido"
+placeholder="Preto">
+
+</div>
+
+
+<div class="campo">
+
+<label>Margem de Segurança</label>
+
+<select id="margem">
+
+<option value="5">5%</option>
+
+<option value="10" selected>10%</option>
+
+<option value="15">15%</option>
+
+<option value="20">20%</option>
+
+</select>
+
+</div>
+
+</div>
+
+</section>
+
+
+
+<section class="card">
+
+<h2>
+
+<i class="fa-solid fa-layer-group"></i>
+
+Cadastro das Peças
+
+</h2>
+
+
+<input type="hidden" id="indiceEdicao">
+
+
+
+<div class="linha-form">
+
+
+<div class="campo grande">
+
+<label>Nome da peça</label>
+
+<input
+type="text"
+id="nomePeca"
+placeholder="Frente">
+
+</div>
+
+
+<div class="campo">
+
+<label>Altura (m)</label>
+
+<input
+type="number"
+id="alturaPeca"
+step="0.01">
+
+</div>
+
+
+<div class="campo">
+
+<label>Largura (m)</label>
+
+<input
+type="number"
+id="larguraPeca"
+step="0.01">
+
+</div>
+
+
+<div class="campo">
+
+<label>Quantidade</label>
+
+<input
+type="number"
+id="quantidadePeca"
+value="1">
+
+</div>
+
+</div>
+
+
+
+<div class="linha-form">
+
+<div class="campo">
+
+<label>Sentido do fio</label>
+
+<select id="sentidoPeca">
+
+<option value="ourela">
+
+Ourela
+
+</option>
+
+<option value="trama">
+
+Trama
+
+</option>
+
+<option value="enviesado">
+
+45° (Viés)
+
+</option>
+
+</select>
+
+</div>
+
+
+
+<div class="campo">
+
+<label>Pode girar?</label>
+
+<select id="girar">
+
+<option value="sim">
+
+Sim
+
+</option>
+
+<option value="nao">
+
+Não
+
+</option>
+
+</select>
+
+</div>
+
+
+
+<div class="campo">
+
+<label>Espelhar?</label>
+
+<select id="espelhar">
+
+<option value="nao">
+
+Não
+
+</option>
+
+<option value="sim">
+
+Sim
+
+</option>
+
+</select>
+
+</div>
+
+</div>
+
+
+
+<div class="botoes">
+
+<button id="btnAdicionar">
+
+<i class="fa-solid fa-plus"></i>
+
+Adicionar
+
+</button>
+
+<button id="btnCancelar">
+
+Cancelar
+
+</button>
+
+</div>
+
+</section>
