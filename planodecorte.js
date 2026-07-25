@@ -127,6 +127,7 @@ function limparFormulario(){
     document.getElementById("quantidadePeca").value=1;
 
 }
+
 /*====================================================
     ATUALIZAR TABELA
 =====================================================*/
@@ -272,6 +273,7 @@ function limparProjeto(){
     limparFormulario();
 
 }
+
 /*====================================================
     CALCULAR PLANO DE CORTE
 =====================================================*/
