@@ -128,7 +128,7 @@ FORMULÁRIOS
 }
 
 .campo.nome{
-    flex:2.5;
+    flex:1.5;
 }
 
 .campo.medida{
@@ -151,15 +151,6 @@ FORMULÁRIOS
     flex:none;
 }
 
-
-
-
-
-
-
-.campo.grande{
-    flex:1;
-}
 
 .campo label{
     font-size:13px;
