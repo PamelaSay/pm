@@ -11,14 +11,14 @@
 
 :root{
 
-    --azul:#16324F;
-    --dourado:#D4AF37;
-    --cinza:#F4F6F8;
-    --branco:#FFFFFF;
-    --verde:#22C55E;
-    --vermelho:#DC2626;
-    --texto:#2B2B2B;
-    --borda:#D9D9D9;
+    azul:#16324F;
+    dourado:#D4AF37;
+    cinza:#F4F6F8;
+    branco:#FFFFFF;
+    verde:#22C55E;
+    vermelho:#DC2626;
+    texto:#2B2B2B;
+    borda:#D9D9D9;
 }
 
 body{
@@ -48,278 +48,158 @@ header{
 }
 
 .logo h1{
-
     font-size:30px;
-
-    letter-spacing:2px;
-
-}
+    letter-spacing:2px;}
 
 .logo span{
-
     font-size:14px;
-
-    opacity:.9;
-
-}
+    opacity:0.9;}
 
 /*======================================
 CONTAINER
 =======================================*/
 
 .container{
-
     width:95%;
-
     max-width:1600px;
-
     margin:auto;
-
-    padding:25px;
-
-}
+    padding:25px;}
 
 /*======================================
 CARDS
 =======================================*/
 
 .card{
-
     background:white;
-
     margin-bottom:25px;
-
     border-radius:12px;
-
     padding:25px;
-
     box-shadow:0 3px 12px rgba(0,0,0,.08);
-
 }
 
 .card h2{
-
-    color:var(--azul);
-
+    color:var(azul);
     margin-bottom:20px;
-
     display:flex;
-
     align-items:center;
-
     gap:12px;
-
-    border-bottom:2px solid var(--dourado);
-
-    padding-bottom:10px;
-
-}
+    border-bottom:2px solid var(dourado);
+    padding-bottom:10px;}
 
 /*======================================
 FORMULÁRIOS
 =======================================*/
 
 .linha-form{
-
     display:flex;
-
     gap:20px;
-
     flex-wrap:wrap;
-
-    margin-bottom:18px;
-
-}
+    margin-bottom:18px;}
 
 .campo{
-
     display:flex;
-
     flex-direction:column;
-
-    flex:1;
-
-}
+    flex:1;}
 
 .campo.grande{
-
-    flex:2;
-
-}
+    flex:2;}
 
 .campo label{
-
     font-size:13px;
-
     margin-bottom:6px;
-
-    font-weight:600;
-
-}
+    font-weight:600;}
 
 .campo input,
 .campo select{
-
     padding:11px;
-
-    border:1px solid var(--borda);
-
+    border:1px solid var(borda);
     border-radius:8px;
-
     font-size:15px;
-
-    transition:.25s;
-
-}
+    transition:.25s;}
 
 .campo input:focus,
 .campo select:focus{
-
     outline:none;
-
-    border-color:var(--dourado);
-
-    box-shadow:0 0 5px rgba(212,175,55,.35);
-
-}
+    border-color:var(dourado);
+    box-shadow:0 0 5px rgba(212,175,55,.35);}
 /*======================================
 BOTÕES
 =======================================*/
 
 .botoes,
 .acoes{
-
     display:flex;
-
     flex-wrap:wrap;
-
     gap:15px;
-
     margin-top:20px;
 
 }
 
 button{
-
     border:none;
-
     cursor:pointer;
-
     padding:12px 22px;
-
     border-radius:8px;
-
     font-size:15px;
-
     font-weight:600;
-
-    transition:.25s;
-
+    transition:0.25s;
     display:flex;
-
     align-items:center;
-
-    gap:8px;
-
-}
+    gap:8px;}
 
 #btnAdicionar,
 #btnCalcular{
-
-    background:var(--azul);
-
-    color:white;
-
-}
+    background:var(azul);
+    color:white;}
 
 #btnAdicionar:hover,
 #btnCalcular:hover{
-
     background:#21496f;
-
-    transform:translateY(-2px);
-
-}
+    transform:translateY(-2px);}
 
 #btnCancelar,
 #btnLimpar{
-
     background:#d63031;
-
-    color:white;
-
-}
+    color:white;}
 
 #btnCancelar:hover,
 #btnLimpar:hover{
-
     background:#b71c1c;
-
 }
 
 #btnSalvarProjeto{
-
-    background:var(--verde);
-
-    color:white;
-
-}
+    background:var(verde);
+    color:white;}
 
 #btnSalvarProjeto:hover{
-
-    background:#16964a;
-
-}
+    background:#16964a;}
 
 #btnImprimir{
-
-    background:var(--dourado);
-
-    color:black;
-
-}
+    background:var(dourado);
+    color:black;}
 
 #btnImprimir:hover{
-
-    filter:brightness(.95);
-
-}
+    filter:brightness(0.95);}
 
 /*======================================
 TABELA
 =======================================*/
 
 .tabela-container{
-
-    overflow:auto;
-
-}
+    overflow:auto;}
 
 table{
-
     width:100%;
-
     border-collapse:collapse;
-
-    min-width:900px;
-
-}
+    min-width:900px;}
 
 thead{
-
-    background:var(--azul);
-
-    color:white;
-
-}
+    background:var(azul);
+    color:white;}
 
 th{
-
-    padding:14px;
-
-    font-weight:600;
-
-}
+   padding:14px;
+    font-weight:600;}
 
 td{
 
@@ -385,7 +265,7 @@ PLANO DE CORTE
 
     background:white;
 
-    border:2px solid var(--azul);
+    border:2px solid var(azul);
 
     min-height:700px;
 
@@ -417,7 +297,7 @@ PEÇAS
 
     background:#8ecae6;
 
-    border:2px solid var(--azul);
+    border:2px solid var(azul);
 
     border-radius:6px;
 
@@ -451,7 +331,7 @@ PEÇAS
 
 .peca.selecionada{
 
-    outline:4px solid var(--verde);
+    outline:4px solid var(verde);
 
 }
 /*======================================
@@ -508,7 +388,7 @@ PAINEL DE RESULTADOS
 
     font-size:30px;
 
-    color:var(--dourado);
+    color:var(dourado);
 
     margin:0;
 
@@ -552,7 +432,7 @@ SCROLL
 
 ::-webkit-scrollbar-thumb{
 
-    background:var(--azul);
+    background:var(azul);
 
     border-radius:20px;
 
