@@ -4,281 +4,70 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
     <title>Pamelete Corte | Plano de Corte Inteligente</title>
-
     <link rel="stylesheet" href="planodecorte.css">
-
-    <link rel="stylesheet"
-        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css">
+    <link rel="stylesheet"href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css">
 </head>
-
+    
 <body>
-
 <header>
-
     <div class="logo">
-
         <i class="fa-solid fa-scissors"></i>
-
         <div>
-
-            <h1>PAMELETE CORTE</h1>
-
+            <h1>PAMELETE CORTE</h1> 
             <span>Sistema Inteligente de Plano de Corte</span>
-
         </div>
-
     </div>
-
 </header>
 
-
 <main class="container">
-
-
 <section class="card">
-
-<h2>
-
-<i class="fa-solid fa-ruler-combined"></i>
-
-Dados do Tecido
-
-</h2>
-
-
-<div class="linha-form">
-
-<div class="campo">
-
-<label>Largura do tecido (m)</label>
-
-<input
-type="number"
-id="larguraTecido"
-step="0.01"
-placeholder="1.50">
-
-</div>
-
-
-<div class="campo">
-
-<label>Nome do tecido</label>
-
-<input
-type="text"
-id="nomeTecido"
-placeholder="Moletom 3 cabos">
-
-</div>
-
-
-<div class="campo">
-
-<label>Cor</label>
-
-<input
-type="text"
-id="corTecido"
-placeholder="Preto">
-
-</div>
-
-
-<div class="campo">
-
-<label>Margem de Segurança</label>
-
-<select id="margem">
-
-<option value="5">5%</option>
-
-<option value="10" selected>10%</option>
-
-<option value="15">15%</option>
-
-<option value="20">20%</option>
-
-</select>
-
-</div>
-
-</div>
-
+    <h2> <i class="fa-solid fa-ruler-combined"></i>Dados do Tecido</h2>
+    <div class="linha-form">
+        <div class="campo"><label>Largura do tecido (m)</label><input type="number" id="larguraTecido" step="0.01" placeholder="1.50"> </div>
+        <div class="campo"> <label>Margem de Segurança</label>
+             <select id="margem">
+                <option value="5">5%</option>
+                <option value="10" selected>10%</option>
+                <option value="15">15%</option>
+                <option value="20">20%</option>
+             </select>
+        </div>
+    </div>
 </section>
 
-
-
 <section class="card">
-
-<h2>
-
-<i class="fa-solid fa-layer-group"></i>
-
-Cadastro das Peças
-
-</h2>
-
-
-<input type="hidden" id="indiceEdicao">
-
-
-
-<div class="linha-form">
-
-
-<div class="campo grande">
-
-<label>Nome da peça</label>
-
-<input
-type="text"
-id="nomePeca"
-placeholder="Frente">
-
-</div>
-
-
-<div class="campo">
-
-<label>Altura (m)</label>
-
-<input
-type="number"
-id="alturaPeca"
-step="0.01">
-
-</div>
-
-
-<div class="campo">
-
-<label>Largura (m)</label>
-
-<input
-type="number"
-id="larguraPeca"
-step="0.01">
-
-</div>
-
-
-<div class="campo">
-
-<label>Quantidade</label>
-
-<input
-type="number"
-id="quantidadePeca"
-value="1">
-
-</div>
-
-</div>
-
-
-
-<div class="linha-form">
-
-<div class="campo">
-
-<label>Sentido do fio</label>
-
-<select id="sentidoPeca">
-
-<option value="ourela">
-
-Ourela
-
-</option>
-
-<option value="trama">
-
-Trama
-
-</option>
-
-<option value="enviesado">
-
-45° (Viés)
-
-</option>
-
-</select>
-
-</div>
-
-
-
-<div class="campo">
-
-<label>Pode girar?</label>
-
-<select id="girar">
-
-<option value="sim">
-
-Sim
-
-</option>
-
-<option value="nao">
-
-Não
-
-</option>
-
-</select>
-
-</div>
-
-
-
-<div class="campo">
-
-<label>Espelhar?</label>
-
-<select id="espelhar">
-
-<option value="nao">
-
-Não
-
-</option>
-
-<option value="sim">
-
-Sim
-
-</option>
-
-</select>
-
-</div>
-
-</div>
-
-
-
-<div class="botoes">
-
-<button id="btnAdicionar">
-
-<i class="fa-solid fa-plus"></i>
-
-Adicionar
-
-</button>
-
-<button id="btnCancelar">
-
-Cancelar
-
-</button>
-
-</div>
+    <h2> <i class="fa-solid fa-layer-group"></i>Cadastro das Peças</h2>
+    <input type="hidden" id="indiceEdicao">
+    
+    <div class="linha-form">
+        <div class="campo grande"><label>Nome da peça</label><input type="text" id="nomePeca" placeholder="Frente"></div>
+        <div class="campo"> <label>Altura (m)</label> <input type="number" id="alturaPeca" step="0.01"></div>
+        <div class="campo"> <label>Largura (m)</label> <input type="number" id="larguraPeca" step="0.01"></div>
+        <div class="campo"> <label>Quantidade</label> <input type="number" id="quantidadePeca" value="1"></div>
+     </div>
+
+     <div class="linha-form">
+        <div class="campo"> <label>Sentido do fio</label>
+            <select id="sentidoPeca">
+                <option value="ourela">Ourela</option>
+                <option value="trama">Trama</option>
+                <option value="enviesado">45° (Viés)</option>
+             </select>
+        </div>
+     </div>
+
+        <div class="campo"><label>Espelhar?</label>
+            <select id="espelhar">
+                <option value="nao">Não</option>
+                <option value="sim">Sim</option>
+            </select>
+        </div>
+
+    <div class="botoes">
+        <button id="btnAdicionar"> <i class="fa-solid fa-plus"></i>Adicionar</button>
+        <button id="btnCancelar">Cancelar</button>
+    </div>
 
 </section>
 
@@ -294,82 +83,37 @@ Cancelar
     </h2>
 
     <div class="tabela-container">
-
         <table id="tabelaPecas">
-
             <thead>
-
                 <tr>
-
                     <th>Peça</th>
-
                     <th>Altura</th>
-
                     <th>Largura</th>
-
                     <th>Qtd.</th>
-
                     <th>Sentido</th>
-
-                    <th>Girar</th>
-
                     <th>Ações</th>
-
                 </tr>
-
             </thead>
-
             <tbody>
-
             </tbody>
-
-        </table>
-
-    </div>
-
+         </table>
+      </div>
 </section>
-
-
 
 <!-- ========================= -->
 <!-- PLANO DE CORTE            -->
 <!-- ========================= -->
 
 <section class="card">
-
-    <h2>
-
-        <i class="fa-solid fa-scissors"></i>
-
-        Plano de Corte
-
-    </h2>
-
+    <h2><i class="fa-solid fa-scissors"></i>Plano de Corte</h2>
     <div class="painel-tecido">
-
-        <div class="ourela esquerda">
-
-            OURELA
-
-        </div>
-
+        <div class="ourela esquerda"> OURELA </div>
         <div id="tecido">
-
-            <div id="areaCorte">
-
-            </div>
-
+            <div id="areaCorte"> </div>
         </div>
-
-        <div class="ourela direita">
-
-            OURELA
-
-        </div>
-
+        <div class="ourela direita"> OURELA</div>
     </div>
-
-</section>
+  </section>
 
 
 
@@ -378,69 +122,22 @@ Cancelar
 <!-- ========================= -->
 
 <section class="card">
-
-    <h2>
-
-        <i class="fa-solid fa-chart-column"></i>
-
-        Resultado
-
-    </h2>
-
+    <h2> <i class="fa-solid fa-chart-column"></i> Resultado </h2>
     <div class="cardsResultado">
-
         <div class="resultado">
-
             <span>Metragem</span>
-
-            <h3 id="metragem">
-
-                0,00 m
-
-            </h3>
-
+            <h3 id="metragem"> 0,00 m </h3>
         </div>
-
         <div class="resultado">
-
             <span>Aproveitamento</span>
-
-            <h3 id="aproveitamento">
-
-                0%
-
-            </h3>
-
+            <h3 id="aproveitamento"> 0% </h3>
         </div>
-
         <div class="resultado">
-
             <span>Desperdício</span>
-
-            <h3 id="desperdicio">
-
-                0%
-
-            </h3>
-
+            <h3 id="desperdicio"> 0% </h3>
         </div>
-
-        <div class="resultado">
-
-            <span>Área Utilizada</span>
-
-            <h3 id="areaUtilizada">
-
-                0 m²
-
-            </h3>
-
-        </div>
-
     </div>
-
 </section>
-
 
 
 <!-- ========================= -->
@@ -448,57 +145,30 @@ Cancelar
 <!-- ========================= -->
 
 <section class="acoes">
-
     <button id="btnCalcular">
-
-        <i class="fa-solid fa-calculator"></i>
-
-        Calcular Plano
-
+        <i class="fa-solid fa-calculator"></i> Calcular Plano
     </button>
 
     <button id="btnLimpar">
-
-        <i class="fa-solid fa-trash"></i>
-
-        Limpar Projeto
-
+        <i class="fa-solid fa-trash"></i>Limpar Projeto
     </button>
 
     <button id="btnSalvarProjeto">
-
-        <i class="fa-solid fa-floppy-disk"></i>
-
-        Salvar Projeto
-
+        <i class="fa-solid fa-floppy-disk"></i> Salvar Projeto
     </button>
 
     <button id="btnImprimir">
-
-        <i class="fa-solid fa-print"></i>
-
-        Imprimir
-
+        <i class="fa-solid fa-print"></i> Imprimir
     </button>
 
 </section>
 
 
-
 <footer>
-
-    <p>
-
-        © Pamelete Corte • Sistema Inteligente de Plano de Corte
-
-    </p>
-
+    <p> © Pamelete • Sistema Inteligente de Plano de Corte </p>
 </footer>
 
 </main>
-
 <script src="planodecorte.js"></script>
-
 </body>
-
 </html>
