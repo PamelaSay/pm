@@ -4,10 +4,9 @@
 =====================================================*/
 
 const pecas = [];
-
-const ESCALA = 200; // 1 metro = 200 pixels
-
-let larguraTecido = 0;
+const ESCALA = 180; // Escala de desenho
+const tecido = document.getElementById("tecido");
+tecido.style.display = "none";
 
 /*====================================================
     ELEMENTOS
@@ -51,8 +50,7 @@ function salvarPeca(){
     .getElementById("nomePeca")
     .value.trim();
 
-    const altura=parseFloat(
-        document.getElementById("alturaPeca").value);
+    const altura=parseFloat(document.getElementById("alturaPeca").value);
     const largura=parseFloat(document.getElementById("larguraPeca").value);
     const quantidade=parseInt(document.getElementById("quantidadePeca").value);
     const sentido= document.getElementById("sentidoPeca").value;  
@@ -66,14 +64,14 @@ function salvarPeca(){
         return;
     }
 
-    pecas.push({
-        nome,
-        altura,
-        largura,
-        quantidade,
-        sentido,
-        espelhar
-    });
+   pecas.push({
+    nome,
+    altura,
+    largura,
+    quantidade,
+    sentido,
+    espelhar
+});
 
     atualizarTabela();
     limparFormulario();
@@ -87,13 +85,9 @@ function salvarPeca(){
 function limparFormulario(){
 
     document.getElementById("nomePeca").value="";
-
     document.getElementById("alturaPeca").value="";
-
     document.getElementById("larguraPeca").value="";
-
     document.getElementById("quantidadePeca").value=1;
-
 }
 
 /*====================================================
@@ -115,16 +109,23 @@ function atualizarTabela() {
             <td>${peca.quantidade}</td>
             <td>${peca.sentido}</td>
             <td>
-                <button onclick="editarPeca(${indice})">
-                    <i class="fa-solid fa-pen"></i>
-                </button>
-                <button onclick="duplicarPeca(${indice})">
-                    <i class="fa-solid fa-copy"></i>
-                </button>
-                <button onclick="removerPeca(${indice})">
-                    <i class="fa-solid fa-trash"></i>
-                </button>
-            </td>;
+              <td>
+
+<button onclick="editarPeca(${indice})">
+<i class="fa-solid fa-pen"></i>
+</button>
+
+<button onclick="duplicarPeca(${indice})">
+<i class="fa-solid fa-copy"></i>
+</button>
+
+<button onclick="removerPeca(${indice})">
+<i class="fa-solid fa-trash"></i>
+</button>
+
+</td>
+
+</tr>
  tabela.appendChild(tr);
  });
 }
@@ -134,17 +135,11 @@ function atualizarTabela() {
 =====================================================*/
 
 function removerPeca(indice){
-
     if(confirm("Remover esta peça?")){
-
         pecas.splice(indice,1);
-
         atualizarTabela();
-
         calcularPlano();
-
-    }
-
+        }
 }
 
 /*====================================================
@@ -152,17 +147,11 @@ function removerPeca(indice){
 =====================================================*/
 
 function duplicarPeca(indice){
-
     const copia={...pecas[indice]};
-
     copia.nome += " (Cópia)";
-
     pecas.push(copia);
-
     atualizarTabela();
-
     calcularPlano();
-
 }
 
 /*====================================================
@@ -194,6 +183,7 @@ function limparProjeto(){
     pecas.length=0;
     tabela.innerHTML="";
     areaCorte.innerHTML="";
+    tecido.style.display="none";
     metragem.textContent="0,00 cm";
     desperdicio.textContent="0%";
     limparFormulario();
@@ -216,11 +206,17 @@ function calcularPlano(){
         return;
 
     }
+if(pecas.length===0){
+
+    tecido.style.display="none";
+
+    return;
+
+}
+
+tecido.style.display="block";
 
     desenharPlano();
-
-    calcularResultados();
-
 }
 
 /*====================================================
@@ -229,19 +225,26 @@ function calcularPlano(){
 
 function desenharPlano(){
 
-    areaCorte.innerHTML="";
+  if(pecas.length==0){
 
-    const larguraPx=larguraTecido*ESCALA;
+    tecido.style.display="none";
 
-    areaCorte.style.width=larguraPx+"px";
+    return;
 
-    let posX=0;
+}
 
-    let posY=0;
+tecido.style.display="block";
 
-    let maiorAlturaLinha=0;
+    const margem =
+    parseFloat(document.getElementById("margem").value)/100;
 
-    /* organiza da maior para a menor */
+    const larguraUtil =
+    larguraTecido;
+
+    const larguraPx =
+    larguraUtil * ESCALA;
+
+    areaCorte.style.width = larguraPx+"px";
 
     const lista=[];
 
@@ -255,31 +258,117 @@ function desenharPlano(){
 
     });
 
-    lista.sort((a,b)=>{
+    lista.sort((a,b)=>b.altura-a.altura);
 
-        return (b.altura*b.largura)-
-               (a.altura*a.largura);
+    let x=0;
 
-    });
+    let y=0;
 
-    lista.forEach(peca=>{
-        let largura=peca.largura;
-        let altura=peca.altura;
-        if(peca.sentido==="trama"){
-            largura=peca.altura;
-            altura=peca.largura;
+    let alturaLinha=0;
+
+    let comprimentoTotal=0;
+
+const linhas=[];
+
+   lista.forEach(peca=>{
+
+    let largura=peca.largura;
+
+    let altura=peca.altura;
+
+    if(peca.sentido==="trama"){
+
+        largura=peca.altura;
+
+        altura=peca.largura;
+
+    }
+
+    largura+=margem*2;
+
+    altura+=margem*2;
+
+    let colocou=false;
+
+    for(const linha of linhas){
+
+        if(linha.larguraUsada+largura<=larguraUtil){
+
+            criarPeca(
+
+                peca,
+
+                linha.larguraUsada,
+
+                linha.y,
+
+                largura,
+
+                altura
+
+            );
+
+            linha.larguraUsada+=largura;
+linha.pecas.push(peca);
+
+if(altura>linha.alturaMaior){
+
+    linha.alturaMaior=altura;
+
+}
+            colocou=true;
+
+            break;
 
         }
 
-        const larguraTela=largura*ESCALA;
-        const alturaTela=altura*ESCALA;
-        if(posX+larguraTela>larguraPx){
+    }
 
-            posX=0;
+    if(!colocou){
 
-            posY+=maiorAlturaLinha;
+        criarPeca(
 
-            maiorAlturaLinha=0;
+            peca,
+
+            0,
+
+            y,
+
+            largura,
+
+            altura
+
+        );
+
+        linhas.push({
+    y,
+
+    alturaMaior:altura,
+
+    larguraUsada:largura,
+
+    pecas:[peca]
+
+});
+
+        y+=altura;
+
+    }
+
+});
+        largura += margem*2;
+
+        altura += margem*2;
+
+        if(x+largura>larguraUtil){
+
+            x=0;
+
+            y+=alturaLinha;
+
+            comprimentoTotal+=alturaLinha;
+
+            alturaLinha=0;
 
         }
 
@@ -291,15 +380,17 @@ function desenharPlano(){
 
             div.classList.add("enviesado");
 
+            div.style.transform="rotate(-45deg)";
+
         }
 
-        div.style.width=larguraTela+"px";
+        div.style.left=(x*ESCALA)+"px";
 
-        div.style.height=alturaTela+"px";
+        div.style.top=(y*ESCALA)+"px";
 
-        div.style.left=posX+"px";
+        div.style.width=(largura*ESCALA)+"px";
 
-        div.style.top=posY+"px";
+        div.style.height=(altura*ESCALA)+"px";
 
         div.innerHTML=`
 
@@ -307,53 +398,141 @@ function desenharPlano(){
 
             <br>
 
-            ${largura.toFixed(2)} × ${altura.toFixed(2)}
+            ${peca.largura.toFixed(2)} × ${peca.altura.toFixed(2)}
 
         `;
 
         areaCorte.appendChild(div);
 
-        posX+=larguraTela;
+        x+=largura;
 
-        if(alturaTela>maiorAlturaLinha){
+        if(altura>alturaLinha){
 
-            maiorAlturaLinha=alturaTela;
+            alturaLinha=altura;
 
         }
 
     });
 
-    areaCorte.style.height=(posY+maiorAlturaLinha+20)+"px";
+  comprimentoTotal=0;
+
+linhas.forEach(l=>{
+
+    comprimentoTotal+=l.alturaMaior;
+
+});
+   const alturaFinal=Math.max(
+
+220,
+
+comprimentoTotal*ESCALA
+
+);
+
+areaCorte.style.height=alturaFinal+"px";
+
+    calcularResultados(comprimentoTotal);
+
+}
+
+
+/*====================================================
+    CRIAR PEÇA
+=====================================================*/
+
+
+function criarPeca(peca,x,y,largura,altura){
+
+    const div=document.createElement("div");
+
+    div.className="peca";
+
+    if(peca.sentido==="enviesado"){
+
+        div.classList.add("enviesado");
+
+        div.style.transform="rotate(-45deg)";
+
+    }
+
+    div.style.left=(x*ESCALA)+"px";
+
+    div.style.top=(y*ESCALA)+"px";
+
+   const larguraReal=peca.largura*ESCALA;
+
+const alturaReal=peca.altura*ESCALA;
+
+const margemPx=(margem*ESCALA);
+
+div.style.width=larguraReal+"px";
+
+div.style.height=alturaReal+"px";
+
+div.style.left=((x*ESCALA)+margemPx)+"px";
+
+div.style.top=((y*ESCALA)+margemPx)+"px";
+
+   const seta=
+
+peca.sentido=="ourela"
+
+?"⬆"
+
+:peca.sentido=="trama"
+
+?"➡"
+
+:"↗";
+
+div.innerHTML=`
+
+<div style="font-size:12px">
+
+<strong>${peca.nome}</strong>
+
+</div>
+
+<div>
+
+${seta}
+
+</div>
+
+<div style="font-size:11px">
+
+${peca.altura.toFixed(2)}
+
+x
+
+${peca.largura.toFixed(2)}
+
+</div>
+
+`;
+
+    areaCorte.appendChild(div);
 
 }
 /*====================================================
     CALCULAR RESULTADOS
 =====================================================*/
 
-function calcularResultados(){
+function calcularResultados(comprimentoUtilizado){
+let areaTotal=0;
 
-    let areaTotal = 0;
+pecas.forEach(peca=>{
 
-    let comprimentoUtilizado = 0;
+    areaTotal+=
 
-    pecas.forEach(peca=>{
+    peca.altura*
 
-        areaTotal +=
-            (peca.altura *
-             peca.largura *
-             peca.quantidade);
+    peca.largura*
 
-    });
+    peca.quantidade;
 
-    comprimentoUtilizado = areaTotal / larguraTecido;
-
-    const margem =
-        parseFloat(
-            document.getElementById("margem").value
-        ) / 100;
-
-    comprimentoUtilizado *= (1 + margem);
-
+});
+    
     metragem.innerHTML =
         comprimentoUtilizado.toFixed(2) + " m";
 
@@ -412,9 +591,6 @@ window.onload = function(){
 
     document.getElementById("larguraTecido").value =
         projeto.largura;
-
-
-
 
     document.getElementById("margem").value =
         projeto.margem;
