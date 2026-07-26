@@ -166,8 +166,11 @@ document.addEventListener("DOMContentLoaded", function () {
         tecido.style.display = "block";
         areaCorte.innerHTML = ""; 
 
+        // O input de margem está em centímetros (ex: valor 2 significa 2cm por segurança ao redor da peça)
         const margemInput = document.getElementById("margem");
-        const margem = parseFloat(margemInput.value) / 100 || 0;
+        const margemCm = parseFloat(margemInput.value) || 0;
+        const margemM = margemCm / 100; // Convertendo para metros para bater com a largura (1.40m)
+
         const larguraPx = larguraTecido * ESCALA;
         areaCorte.style.width = larguraPx + "px";
 
@@ -196,14 +199,15 @@ document.addEventListener("DOMContentLoaded", function () {
                 altura = peca.largura;
             }
 
-            let larguraComMargem = largura + (margem * 2);
-            let alturaComMargem = altura + (margem * 2);
+            // Espaço total ocupado pela peça na linha = largura da peça + margem esquerda + margem direita
+            let larguraComMargem = largura + (margemM * 2);
+            let alturaComMargem = altura + (margemM * 2);
 
             let colocou = false;
 
             for(const linha of linhas){
                 if(linha.larguraUsada + larguraComMargem <= larguraTecido){
-                    criarElementoPeca(peca, linha.larguraUsada, linha.y, margem);
+                    criarElementoPeca(peca, linha.larguraUsada, linha.y, margemM);
                     linha.larguraUsada += larguraComMargem;
                     linha.pecas.push(peca);
 
@@ -216,7 +220,7 @@ document.addEventListener("DOMContentLoaded", function () {
             }
 
             if(!colocou){
-                criarElementoPeca(peca, 0, y, margem);
+                criarElementoPeca(peca, 0, y, margemM);
                 linhas.push({
                     y,
                     alturaMaior: alturaComMargem,
@@ -235,10 +239,10 @@ document.addEventListener("DOMContentLoaded", function () {
         const alturaFinal = Math.max(220, comprimentoTotal * ESCALA);
         areaCorte.style.height = alturaFinal + "px";
 
-        calcularResultados(comprimentoTotal, larguraTecido, margem, linhas);
+        calcularResultados(comprimentoTotal, larguraTecido, margemM, linhas);
     }
 
-    function criarElementoPeca(peca, x, y, margem){
+    function criarElementoPeca(peca, x, y, margemM){
         const div = document.createElement("div");
         div.className = "peca";
 
@@ -256,7 +260,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
         const larguraReal = larguraEfetiva * ESCALA;
         const alturaReal = alturaEfetiva * ESCALA;
-        const margemPx = margem * ESCALA;
+        const margemPx = margemM * ESCALA;
 
         div.style.width = larguraReal + "px";
         div.style.height = alturaReal + "px";
@@ -275,18 +279,19 @@ document.addEventListener("DOMContentLoaded", function () {
         areaCorte.appendChild(div);
     }
 
-    function calcularResultados(comprimentoTotal, larguraTecido, margem, linhas){
+    function calcularResultados(comprimentoTotal, larguraTecido, margemM, linhas){
         metragem.innerHTML = comprimentoTotal.toFixed(2) + " m";
 
         let sobraTotalMetros = 0;
 
-        // Para cada linha gerada no corte, calculamos a sobra lateral e a sobra vertical proporcional
         linhas.forEach(linha => {
-            // Sobra na largura: Largura Total do Tecido - Espaço ocupado pelas peças daquela linha (já incluindo margens)
-            let sobraLarguraLinha = larguraTecido - linha.larguraUsada;
+            // Espaço restante na largura da linha (Largura total - espaço real utilizado pela peça com suas margens)
+            let larguraOcupadaPelaPeca = linha.larguraUsada; 
+            let sobraLarguraLinha = larguraTecido - larguraOcupadaPelaPeca;
+            
             if (sobraLarguraLinha < 0) sobraLarguraLinha = 0;
 
-            // A sobra desta linha acumula a faixa lateral multiplicada pela altura da linha
+            // Converte a sobra da largura desta faixa proporcionalmente à altura da linha
             sobraTotalMetros += (sobraLarguraLinha * linha.alturaMaior) / larguraTecido;
         });
 
