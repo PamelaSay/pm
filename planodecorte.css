@@ -620,7 +620,7 @@ button{
     #btnLimpar,
     #btnImprimir,
     #btnSalvarProjeto {
-        display: inline !important;
+        display: none !important;
     }
 
     /* Reseta a página para A4 limpa e sem margens excessivas */
@@ -632,19 +632,12 @@ button{
         font-size: 10px !important;
     }
 
-    /* Reduz levemente a escala geral para garantir que tudo caiba perfeitamente em 1 folha */
-    .container, main, body {
-        transform: scale(0.92);
-        transform-origin: top center;
-        width: 100% !important;
-    }
-
     /* Título pequeno da Pamelete Corte no topo da impressão */
     h1::before, .cabecalho-impressao::before {
         content: "Pamelete Costura e Educação - Plano de Corte";
         font-size: 12px !important;
         font-weight: bold;
-        display: block;
+        display: inline;
         margin-bottom: 3px;
         color: #334155;
     }
@@ -654,7 +647,6 @@ button{
         display: inline !important;
         flex-direction: row !important;
         justify-content: center !important;
-        gap: 30px !important;
         padding: 6px !important;
         margin: 8px 0 !important;
         border: 1px solid #94a3b8 !important;
