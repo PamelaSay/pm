@@ -620,7 +620,7 @@ button{
     #btnLimpar,
     #btnImprimir,
     #btnSalvarProjeto {
-        display: none !important;
+        display: inline !important;
     }
 
     /* Reseta a página para A4 limpa e sem margens excessivas */
@@ -645,13 +645,13 @@ button{
         font-size: 12px !important;
         font-weight: bold;
         display: block;
-        margin-bottom: 5px;
+        margin-bottom: 3px;
         color: #334155;
     }
 
     /* Deixa os resultados (Metragem e Desperdício) compactos e em linha */
     #painelResultados, .painel-resultados, .resumo-projeto {
-        display: flex !important;
+        display: inline !important;
         flex-direction: row !important;
         justify-content: center !important;
         gap: 30px !important;
