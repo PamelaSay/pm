@@ -616,7 +616,7 @@ button{
     .formulario-pecas, 
     .acoes-projeto,
     header nav {
-        display: none !important;
+        display: inline !important;
     }
 
     /* Reseta o fundo e margens para folha A4 limpa */
