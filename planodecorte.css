@@ -608,8 +608,11 @@ button{
    /* =================================================   
    CONFIGURAÇÃO DE IMPRESSÃO (TUDO EM 1 FOLHA)   
    ================================================ */
+/* =================================================   
+   IMPRESSÃO COMPACTA EM UMA ÚNICA PÁGINA   
+   ================================================ */
 @media print {
-    /* Oculta botões, formulários de cadastro e itens desnecessários na hora de imprimir */
+    /* Oculta o que não deve aparecer no papel */
     button, 
     input, 
     select, 
@@ -620,75 +623,65 @@ button{
         display: none !important;
     }
 
-header{
-    box-shadow:none;
-}
-
-
-footer{
-    margin-top:20px;
-    font-size:12px;
-}
-   
-    /* Força o corpo da página a usar fundo branco e margens limpas para a folha A4 */
+    /* Reseta a página para A4 sem margens exageradas */
     body {
         background-color: #ffffff !important;
         color: #000000 !important;
-        margin: 5mm !important;
+        margin: 2mm !important;
         padding: 0 !important;
-        font-size: 11px !important;
+        font-size: 10px !important;
     }
 
-    /* Organiza o painel de resultados de forma compacta (em linha) */
+    /* Reduz o tamanho geral de todo o conteúdo do sistema na impressão */
+    .container, main, body {
+        transform: scale(0.9); /* Reduz a escala geral para 90% para caber tudo */
+        transform-origin: top center;
+        width: 100% !important;
+    }
+
+    /* Bloco de resultados de metragem e desperdício bem compacto */
     .painel-resultados, .resumo-projeto {
         display: flex !important;
         flex-direction: row !important;
         justify-content: space-around !important;
-        padding: 5px !important;
-        margin: 5px 0 !important;
+        padding: 4px !important;
+        margin: 2px 0 !important;
         border: 1px solid #cbd5e1 !important;
         background: #f8fafc !important;
-        font-size: 12px !important;
+        font-size: 11px !important;
     }
 
-    /* Deixa os textos de metragem e desperdício bem pequenos e lado a lado */
     .resultado-item, div[id*="metragem"], div[id*="desperdicio"] {
-        font-size: 13px !important;
+        font-size: 11px !important;
         font-weight: bold;
         display: inline-block;
-        margin: 0 10px;
+        margin: 0 5px;
     }
 
-    /* Reduz e ajusta a tabela de peças para ocupar pouco espaço vertical */
+    /* Tabela de peças compacta */
     #tabelaPecas {
         width: 100% !important;
-        font-size: 10px !important;
+        font-size: 9px !important;
         border-collapse: collapse !important;
-        margin-bottom: 10px !important;
+        margin-bottom: 5px !important;
     }
 
     #tabelaPecas th, #tabelaPecas td {
-        padding: 4px 6px !important;
+        padding: 2px 4px !important;
         border: 1px solid #cbd5e1 !important;
     }
 
-    /* Oculta a coluna de botões (Ações) da tabela na impressão */
     #tabelaPecas th:last-child, 
     #tabelaPecas td:last-child {
         display: none !important;
     }
 
-    /* Ajusta o container do tecido para caber perfeitamente na folha sem quebrar */
+    /* Tecido e peças menores na folha */
     #tecido {
         max-width: 100% !important;
-        margin: 5px auto !important;
+        margin: 2px auto !important;
         border: 2px solid #0284c7 !important;
         box-shadow: none !important;
         page-break-inside: avoid;
-    }
-
-    /* Garante que o layout geral não crie páginas extras */
-    page {
-        size: A4 portrait;
     }
 }
