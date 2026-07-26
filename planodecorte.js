@@ -234,7 +234,8 @@ document.addEventListener("DOMContentLoaded", function () {
             comprimentoTotal += l.alturaMaior;
         });
 
-        const alturaFinal = Math.max(220, comprimentoTotal * ESCALA);
+        // A altura do tecido visual será exatamente a altura necessária para as peças, multiplicada pela escala
+        const alturaFinal = comprimentoTotal * ESCALA;
         areaCorte.style.height = alturaFinal + "px";
 
         calcularResultados(comprimentoTotal, larguraTecido, margemM, linhas);
