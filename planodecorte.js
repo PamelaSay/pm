@@ -196,19 +196,19 @@ document.addEventListener("DOMContentLoaded", function () {
                 altura = peca.largura;
             }
 
-            largura += margem * 2;
-            altura += margem * 2;
+            let larguraComMargem = largura + (margem * 2);
+            let alturaComMargem = altura + (margem * 2);
 
             let colocou = false;
 
             for(const linha of linhas){
-                if(linha.larguraUsada + largura <= larguraTecido){
+                if(linha.larguraUsada + larguraComMargem <= larguraTecido){
                     criarElementoPeca(peca, linha.larguraUsada, linha.y, margem);
-                    linha.larguraUsada += largura;
+                    linha.larguraUsada += larguraComMargem;
                     linha.pecas.push(peca);
 
-                    if(altura > linha.alturaMaior){
-                        linha.alturaMaior = altura;
+                    if(alturaComMargem > linha.alturaMaior){
+                        linha.alturaMaior = alturaComMargem;
                     }
                     colocou = true;
                     break;
@@ -219,11 +219,11 @@ document.addEventListener("DOMContentLoaded", function () {
                 criarElementoPeca(peca, 0, y, margem);
                 linhas.push({
                     y,
-                    alturaMaior: altura,
-                    larguraUsada: largura,
+                    alturaMaior: alturaComMargem,
+                    larguraUsada: larguraComMargem,
                     pecas: [peca]
                 });
-                y += altura;
+                y += alturaComMargem;
             }
         });
 
@@ -235,7 +235,7 @@ document.addEventListener("DOMContentLoaded", function () {
         const alturaFinal = Math.max(220, comprimentoTotal * ESCALA);
         areaCorte.style.height = alturaFinal + "px";
 
-        calcularResultados(comprimentoTotal, larguraTecido);
+        calcularResultados(comprimentoTotal, larguraTecido, margem, linhas);
     }
 
     function criarElementoPeca(peca, x, y, margem){
@@ -275,21 +275,23 @@ document.addEventListener("DOMContentLoaded", function () {
         areaCorte.appendChild(div);
     }
 
-    function calcularResultados(comprimentoUtilizado, larguraTecido){
-        let areaTotalPecas = 0;
-        pecas.forEach(peca => {
-            let fatorQtd = peca.quantidade * (peca.espelhar === "sim" ? 2 : 1);
-            areaTotalPecas += peca.altura * peca.largura * fatorQtd;
-        });
-        
-        metragem.innerHTML = comprimentoUtilizado.toFixed(2) + " m";
+    function calcularResultados(comprimentoTotal, larguraTecido, margem, linhas){
+        metragem.innerHTML = comprimentoTotal.toFixed(2) + " m";
 
-        const areaTotalTecido = comprimentoUtilizado * larguraTecido;
-        const areaRestante = Math.max(0, areaTotalTecido - areaTotalPecas);
-        const sobraMetros = areaRestante / larguraTecido;
+        let sobraTotalMetros = 0;
+
+        // Para cada linha gerada no corte, calculamos a sobra lateral e a sobra vertical proporcional
+        linhas.forEach(linha => {
+            // Sobra na largura: Largura Total do Tecido - Espaço ocupado pelas peças daquela linha (já incluindo margens)
+            let sobraLarguraLinha = larguraTecido - linha.larguraUsada;
+            if (sobraLarguraLinha < 0) sobraLarguraLinha = 0;
+
+            // A sobra desta linha acumula a faixa lateral multiplicada pela altura da linha
+            sobraTotalMetros += (sobraLarguraLinha * linha.alturaMaior) / larguraTecido;
+        });
 
         if (desperdicio) {
-            desperdicio.innerHTML = sobraMetros.toFixed(2) + " m";
+            desperdicio.innerHTML = sobraTotalMetros.toFixed(2) + " m";
         }
     }
 
