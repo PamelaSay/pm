@@ -305,8 +305,10 @@ tbody tr:hover{
     white-space: nowrap;
 }
 
-/* Estilo padrão dos botões de ação (editar, duplicar, remover) */
+/* Força os botões a ficarem lado a lado, anulando qualquer regra global */
 #tabelaPecas td button {
+    display: inline-block !important;
+    width: auto !important;
     background-color: #f8fafc;
     border: 1px solid #cbd5e1;
     border-radius: 6px;
@@ -314,7 +316,7 @@ tbody tr:hover{
     margin-right: 4px;
     cursor: pointer;
     font-size: 13px;
-    transition: background-color 0.2s;
+    vertical-align: middle;
 }
 
 /* Efeito ao passar o mouse */
