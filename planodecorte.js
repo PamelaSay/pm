@@ -79,6 +79,7 @@ document.addEventListener("DOMContentLoaded", function () {
         document.getElementById("alturaPeca").value = "";
         document.getElementById("larguraPeca").value = "";
         document.getElementById("quantidadePeca").value = 1;
+        document.getElementById("espelhar").value = "nao";
     }
 
     function atualizarTabela() {
@@ -88,7 +89,7 @@ document.addEventListener("DOMContentLoaded", function () {
         pecas.forEach((peca, indice) => {
             const tr = document.createElement("tr");
             tr.innerHTML = `
-                <td>${peca.nome}</td>
+                <td>${peca.nome} ${peca.espelhar === "sim" ? "(Espelhada)" : ""}</td>
                 <td>${peca.altura.toFixed(2)} m</td>
                 <td>${peca.largura.toFixed(2)} m</td>
                 <td>${peca.quantidade}</td>
@@ -138,7 +139,7 @@ document.addEventListener("DOMContentLoaded", function () {
         areaCorte.innerHTML = "";
         tecido.style.display = "none";
         metragem.textContent = "0,00 m";
-        desperdicio.textContent = "0%";
+        desperdicio.textContent = "0,00 m";
         limparFormulario();
         localStorage.removeItem("pameleteProjeto");
     }
@@ -172,11 +173,17 @@ document.addEventListener("DOMContentLoaded", function () {
 
         const lista = [];
         pecas.forEach(p => {
-            for(let i = 0; i < p.quantidade; i++){
-                lista.push({...p});
+            // Se for espelhar, tratamos como 2 unidades separadas (ou geramos a cópia espelhada) para ocupar a largura correta
+            const qtdEfetiva = p.quantidade;
+            for(let i = 0; i < qtdEfetiva; i++){
+                lista.push({...p, espelhadoIndividual: false});
+                if(p.espelhar === "sim"){
+                    lista.push({...p, nome: p.nome + " (Esp.)", espelhadoIndividual: true});
+                }
             }
         });
 
+        // Ordena da maior altura para a menor para melhor aproveitamento do encaixe
         lista.sort((a, b) => b.altura - a.altura);
 
         let y = 0;
@@ -242,8 +249,15 @@ document.addEventListener("DOMContentLoaded", function () {
             div.style.transform = "rotate(-45deg)";
         }
 
-        const larguraReal = peca.largura * ESCALA;
-        const alturaReal = peca.altura * ESCALA;
+        let larguraEfetiva = peca.largura;
+        let alturaEfetiva = peca.altura;
+        if(peca.sentido === "trama"){
+            larguraEfetiva = peca.altura;
+            alturaEfetiva = peca.largura;
+        }
+
+        const larguraReal = larguraEfetiva * ESCALA;
+        const alturaReal = alturaEfetiva * ESCALA;
         const margemPx = margem * ESCALA;
 
         div.style.width = larguraReal + "px";
@@ -252,9 +266,10 @@ document.addEventListener("DOMContentLoaded", function () {
         div.style.top = ((y * ESCALA) + margemPx) + "px";
 
         const seta = peca.sentido == "ourela" ? "⬆" : peca.sentido == "trama" ? "➡" : "↗";
+        const tagEspelhado = peca.espelhadoIndividual ? " (Esp.)" : "";
 
         div.innerHTML = `
-            <div style="font-size:12px"><strong>${peca.nome}</strong></div>
+            <div style="font-size:12px"><strong>${peca.nome}${tagEspelhado}</strong></div>
             <div>${seta}</div>
             <div style="font-size:11px">${peca.altura.toFixed(2)} x ${peca.largura.toFixed(2)}</div>
         `;
@@ -263,19 +278,22 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     function calcularResultados(comprimentoUtilizado, larguraTecido){
-        let areaTotal = 0;
+        let areaTotalPecas = 0;
         pecas.forEach(peca => {
-            areaTotal += peca.altura * peca.largura * peca.quantidade;
+            let fatorQtd = peca.quantidade * (peca.espelhar === "sim" ? 2 : 1);
+            areaTotalPecas += peca.altura * peca.largura * fatorQtd;
         });
         
         metragem.innerHTML = comprimentoUtilizado.toFixed(2) + " m";
 
-        const areaComprada = comprimentoUtilizado * larguraTecido;
-        let percDesperdicio = 0;
-        if (areaComprada > 0) {
-            percDesperdicio = ((areaComprada - areaTotal) / areaComprada) * 100;
-        }
-        desperdicio.innerHTML = Math.max(0, percDesperdicio).toFixed(1) + "%";
+        // Área total de tecido considerada pelo plano (comprimento usado x largura do tecido)
+        const areaTotalTecido = comprimentoUtilizado * larguraTecido;
+        const areaRestante = Math.max(0, areaTotalTecido - areaTotalPecas);
+        
+        // Transformando a área restante em metros lineares equivalentes para facilitar a visualização da sobra
+        const sobraMetros = areaRestante / larguraTecido;
+
+        desperdicio.innerHTML = sobraMetros.toFixed(2) + " m";
     }
 
     function salvarProjeto(){
