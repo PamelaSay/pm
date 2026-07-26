@@ -33,13 +33,13 @@ document.getElementById("btnImprimir").addEventListener("click", () => window.pr
 function salvarPeca(){
     const nome = document.getElementById("nomePeca").value.trim();
     const altura = parseFloat(document.getElementById("alturaPeca").value);
-    const largura = parseFloat(document.getElementById("larguraPeca").value);
-    const quantidade = parseInt(document.getElementById("quantidadePeca").value);
+    const largura = parseFloat(document.getElementById("larguraPeca").value); // Corrigido para corresponder ao ID do HTML
+    const quantidade = parseInt(document.getElementById("quantidadePeca").value) || 1;
     const sentido = document.getElementById("sentidoPeca").value;  
     const espelhar = document.getElementById("espelhar").value;
 
     if(nome === "" || isNaN(altura) || isNaN(largura)) {
-        alert("Preencha todos os campos.");
+        alert("Preencha todos os campos corretamente (Nome, Altura e Largura).");
         return;
     }
 
@@ -187,7 +187,7 @@ function desenharPlano(){
     }
 
     tecido.style.display = "block";
-    areaCorte.innerHTML = ""; // Limpa os desenhos anteriores
+    areaCorte.innerHTML = ""; 
 
     const margem = parseFloat(document.getElementById("margem").value) / 100;
     const larguraTecido = parseFloat(document.getElementById("larguraTecido").value);
