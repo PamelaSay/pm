@@ -3,350 +3,290 @@
     Sistema Inteligente de Plano de Corte
 =====================================================*/
 
-const pecas = [];
-const ESCALA = 180; // Escala de desenho
-const tecido = document.getElementById("tecido");
-tecido.style.display = "none";
+document.addEventListener("DOMContentLoaded", function () {
+    const pecas = [];
+    const ESCALA = 180; 
+    const tecido = document.getElementById("tecido");
+    if (tecido) tecido.style.display = "none";
 
-/*====================================================
-    ELEMENTOS
-=====================================================*/
+    const tabela = document.querySelector("#tabelaPecas tbody");
+    const areaCorte = document.getElementById("areaCorte");
+    const metragem = document.getElementById("metragem");
+    const desperdicio = document.getElementById("desperdicio");
 
-const tabela = document.querySelector("#tabelaPecas tbody");
-const areaCorte = document.getElementById("areaCorte");
-const metragem = document.getElementById("metragem");
-const desperdicio = document.getElementById("desperdicio");
+    // Botões
+    const btnAdicionar = document.getElementById("btnAdicionar");
+    const btnCalcular = document.getElementById("btnCalcular");
+    const btnLimpar = document.getElementById("btnLimpar");
+    const btnImprimir = document.getElementById("btnImprimir");
+    const btnSalvarProjeto = document.getElementById("btnSalvarProjeto");
 
-/*====================================================
-    BOTÕES
-=====================================================*/
+    if (btnAdicionar) btnAdicionar.addEventListener("click", salvarPeca);
+    if (btnCalcular) btnCalcular.addEventListener("click", calcularPlano);
+    if (btnLimpar) btnLimpar.addEventListener("click", limparProjeto);
+    if (btnImprimir) btnImprimir.addEventListener("click", () => window.print());
+    if (btnSalvarProjeto) btnSalvarProjeto.addEventListener("click", salvarProjeto);
 
-document.getElementById("btnAdicionar").addEventListener("click", salvarPeca);
-document.getElementById("btnCalcular").addEventListener("click", calcularPlano);
-document.getElementById("btnLimpar").addEventListener("click", limparProjeto);
-document.getElementById("btnImprimir").addEventListener("click", () => window.print());
-
-/*====================================================
-    SALVAR PEÇA
-=====================================================*/
-
-function salvarPeca(){
-    const nome = document.getElementById("nomePeca").value.trim();
-    const altura = parseFloat(document.getElementById("alturaPeca").value);
-    const largura = parseFloat(document.getElementById("larguraPeca").value); // Corrigido para corresponder ao ID do HTML
-    const quantidade = parseInt(document.getElementById("quantidadePeca").value) || 1;
-    const sentido = document.getElementById("sentidoPeca").value;  
-    const espelhar = document.getElementById("espelhar").value;
-
-    if(nome === "" || isNaN(altura) || isNaN(largura)) {
-        alert("Preencha todos os campos corretamente (Nome, Altura e Largura).");
-        return;
+    // Carregar projeto salvo ao iniciar
+    const projetoSalvo = localStorage.getItem("pameleteProjeto");
+    if (projetoSalvo) {
+        try {
+            const projeto = JSON.parse(projetoSalvo);
+            if (projeto.largura) document.getElementById("larguraTecido").value = projeto.largura;
+            if (projeto.margem) document.getElementById("margem").value = projeto.margem;
+            if (projeto.pecas) {
+                pecas.push(...projeto.pecas);
+                atualizarTabela();
+            }
+        } catch (e) {
+            console.error("Erro ao carregar projeto salvo:", e);
+        }
     }
 
-    pecas.push({
-        nome,
-        altura,
-        largura,
-        quantidade,
-        sentido,
-        espelhar
-    });
+    function salvarPeca(){
+        const nomeInput = document.getElementById("nomePeca");
+        const alturaInput = document.getElementById("alturaPeca");
+        const larguraInput = document.getElementById("larguraPeca");
+        const quantidadeInput = document.getElementById("quantidadePeca");
+        const sentidoInput = document.getElementById("sentidoPeca");
+        const espelharInput = document.getElementById("espelhar");
 
-    atualizarTabela();
-    limparFormulario();
-}
+        if (!nomeInput || !alturaInput || !larguraInput) {
+            alert("Erro: Elementos do formulário não encontrados no HTML.");
+            return;
+        }
 
-/*====================================================
-    LIMPAR FORMULÁRIO
-=====================================================*/
+        const nome = nomeInput.value.trim();
+        const altura = parseFloat(alturaInput.value);
+        const largura = parseFloat(larguraInput.value);
+        const quantidade = parseInt(quantidadeInput.value) || 1;
+        const sentido = sentidoInput ? sentidoInput.value : "ourela";
+        const espelhar = espelharInput ? espelharInput.value : "nao";
 
-function limparFormulario(){
-    document.getElementById("nomePeca").value = "";
-    document.getElementById("alturaPeca").value = "";
-    document.getElementById("larguraPeca").value = "";
-    document.getElementById("quantidadePeca").value = 1;
-}
+        if(nome === "" || isNaN(altura) || isNaN(largura)) {
+            alert("Preencha todos os campos corretamente (Nome, Altura e Largura).");
+            return;
+        }
 
-/*====================================================
-    ATUALIZAR TABELA
-=====================================================*/
+        pecas.push({ nome, altura, largura, quantidade, sentido, espelhar });
 
-function atualizarTabela() {
-    tabela.innerHTML = "";
+        atualizarTabela();
+        limparFormulario();
+    }
 
-    pecas.forEach((peca, indice) => {
-        const tr = document.createElement("tr");
+    function limparFormulario(){
+        document.getElementById("nomePeca").value = "";
+        document.getElementById("alturaPeca").value = "";
+        document.getElementById("larguraPeca").value = "";
+        document.getElementById("quantidadePeca").value = 1;
+    }
 
-        tr.innerHTML = `
-            <td>${peca.nome}</td>
-            <td>${peca.altura.toFixed(2)} m</td>
-            <td>${peca.largura.toFixed(2)} m</td>
-            <td>${peca.quantidade}</td>
-            <td>${peca.sentido}</td>
-            <td>
-                <button onclick="editarPeca(${indice})">
-                    <i class="fa-solid fa-pen"></i>
-                </button>
-                <button onclick="duplicarPeca(${indice})">
-                    <i class="fa-solid fa-copy"></i>
-                </button>
-                <button onclick="removerPeca(${indice})">
-                    <i class="fa-solid fa-trash"></i>
-                </button>
-            </td>
-        `;
-        tabela.appendChild(tr);
-    });
-}
+    function atualizarTabela() {
+        if (!tabela) return;
+        tabela.innerHTML = "";
 
-/*====================================================
-    REMOVER PEÇA
-=====================================================*/
+        pecas.forEach((peca, indice) => {
+            const tr = document.createElement("tr");
+            tr.innerHTML = `
+                <td>${peca.nome}</td>
+                <td>${peca.altura.toFixed(2)} m</td>
+                <td>${peca.largura.toFixed(2)} m</td>
+                <td>${peca.quantidade}</td>
+                <td>${peca.sentido}</td>
+                <td>
+                    <button type="button" onclick="window.editarPeca(${indice})"><i class="fa-solid fa-pen"></i></button>
+                    <button type="button" onclick="window.duplicarPeca(${indice})"><i class="fa-solid fa-copy"></i></button>
+                    <button type="button" onclick="window.removerPeca(${indice})"><i class="fa-solid fa-trash"></i></button>
+                </td>
+            `;
+            tabela.appendChild(tr);
+        });
+    }
 
-function removerPeca(indice){
-    if(confirm("Remover esta peça?")){
-        pecas.splice(indice, 1);
+    window.removerPeca = function(indice){
+        if(confirm("Remover esta peça?")){
+            pecas.splice(indice, 1);
+            atualizarTabela();
+            calcularPlano();
+        }
+    };
+
+    window.duplicarPeca = function(indice){
+        const copia = {...pecas[indice]};
+        copia.nome += " (Cópia)";
+        pecas.push(copia);
         atualizarTabela();
         calcularPlano();
-    }
-}
+    };
 
-/*====================================================
-    DUPLICAR PEÇA
-=====================================================*/
+    window.editarPeca = function(indice){
+        const p = pecas[indice];
+        document.getElementById("nomePeca").value = p.nome;
+        document.getElementById("alturaPeca").value = p.altura;
+        document.getElementById("larguraPeca").value = p.largura;
+        document.getElementById("quantidadePeca").value = p.quantidade;
+        document.getElementById("sentidoPeca").value = p.sentido;
+        document.getElementById("espelhar").value = p.espelhar;
+        pecas.splice(indice, 1);
+        atualizarTabela();
+    };
 
-function duplicarPeca(indice){
-    const copia = {...pecas[indice]};
-    copia.nome += " (Cópia)";
-    pecas.push(copia);
-    atualizarTabela();
-    calcularPlano();
-}
-
-/*====================================================
-    EDITAR PEÇA
-=====================================================*/
-
-function editarPeca(indice){
-    const p = pecas[indice];
-    document.getElementById("nomePeca").value = p.nome;
-    document.getElementById("alturaPeca").value = p.altura;
-    document.getElementById("larguraPeca").value = p.largura;
-    document.getElementById("quantidadePeca").value = p.quantidade;
-    document.getElementById("sentidoPeca").value = p.sentido;
-    document.getElementById("espelhar").value = p.espelhar;
-    pecas.splice(indice, 1);
-    atualizarTabela();
-}
-
-/*====================================================
-    LIMPAR PROJETO
-=====================================================*/
-
-function limparProjeto(){
-    if(!confirm("Deseja limpar todo o projeto?")) return;
-
-    pecas.length = 0;
-    tabela.innerHTML = "";
-    areaCorte.innerHTML = "";
-    tecido.style.display = "none";
-    metragem.textContent = "0,00 m";
-    desperdicio.textContent = "0%";
-    limparFormulario();
-}
-
-/*====================================================
-    CALCULAR PLANO DE CORTE
-=====================================================*/
-
-function calcularPlano(){
-    const larguraTecido = parseFloat(document.getElementById("larguraTecido").value);
-
-    if(isNaN(larguraTecido) || larguraTecido <= 0){
-        alert("Informe a largura do tecido.");
-        return;
-    }
-
-    if(pecas.length === 0){
+    function limparProjeto(){
+        if(!confirm("Deseja limpar todo o projeto?")) return;
+        pecas.length = 0;
+        tabela.innerHTML = "";
+        areaCorte.innerHTML = "";
         tecido.style.display = "none";
-        return;
+        metragem.textContent = "0,00 m";
+        desperdicio.textContent = "0%";
+        limparFormulario();
+        localStorage.removeItem("pameleteProjeto");
     }
 
-    tecido.style.display = "block";
-    desenharPlano();
-}
+    function calcularPlano(){
+        const larguraTecidoInput = document.getElementById("larguraTecido");
+        const larguraTecido = parseFloat(larguraTecidoInput.value);
 
-/*====================================================
-    DESENHAR PLANO
-=====================================================*/
-
-function desenharPlano(){
-    if(pecas.length === 0){
-        tecido.style.display = "none";
-        return;
-    }
-
-    tecido.style.display = "block";
-    areaCorte.innerHTML = ""; 
-
-    const margem = parseFloat(document.getElementById("margem").value) / 100;
-    const larguraTecido = parseFloat(document.getElementById("larguraTecido").value);
-    const larguraPx = larguraTecido * ESCALA;
-
-    areaCorte.style.width = larguraPx + "px";
-
-    const lista = [];
-    pecas.forEach(p => {
-        for(let i = 0; i < p.quantidade; i++){
-            lista.push({...p});
-        }
-    });
-
-    lista.sort((a, b) => b.altura - a.altura);
-
-    let y = 0;
-    const linhas = [];
-
-    lista.forEach(peca => {
-        let largura = peca.largura;
-        let altura = peca.altura;
-
-        if(peca.sentido === "trama"){
-            largura = peca.altura;
-            altura = peca.largura;
+        if(isNaN(larguraTecido) || larguraTecido <= 0){
+            alert("Informe a largura do tecido.");
+            return;
         }
 
-        largura += margem * 2;
-        altura += margem * 2;
+        if(pecas.length === 0){
+            tecido.style.display = "none";
+            return;
+        }
 
-        let colocou = false;
+        tecido.style.display = "block";
+        desenharPlano(larguraTecido);
+    }
 
-        for(const linha of linhas){
-            if(linha.larguraUsada + largura <= larguraTecido){
-                criarPeca(peca, linha.larguraUsada, linha.y, largura, altura, margem);
+    function desenharPlano(larguraTecido){
+        tecido.style.display = "block";
+        areaCorte.innerHTML = ""; 
 
-                linha.larguraUsada += largura;
-                linha.pecas.push(peca);
+        const margemInput = document.getElementById("margem");
+        const margem = parseFloat(margemInput.value) / 100 || 0;
+        const larguraPx = larguraTecido * ESCALA;
+        areaCorte.style.width = larguraPx + "px";
 
-                if(altura > linha.alturaMaior){
-                    linha.alturaMaior = altura;
-                }
-                colocou = true;
-                break;
+        const lista = [];
+        pecas.forEach(p => {
+            for(let i = 0; i < p.quantidade; i++){
+                lista.push({...p});
             }
-        }
+        });
 
-        if(!colocou){
-            criarPeca(peca, 0, y, largura, altura, margem);
+        lista.sort((a, b) => b.altura - a.altura);
 
-            linhas.push({
-                y,
-                alturaMaior: altura,
-                larguraUsada: largura,
-                pecas: [peca]
-            });
+        let y = 0;
+        const linhas = [];
 
-            y += altura;
-        }
-    });
+        lista.forEach(peca => {
+            let largura = peca.largura;
+            let altura = peca.altura;
 
-    let comprimentoTotal = 0;
-    linhas.forEach(l => {
-        comprimentoTotal += l.alturaMaior;
-    });
+            if(peca.sentido === "trama"){
+                largura = peca.altura;
+                altura = peca.largura;
+            }
 
-    const alturaFinal = Math.max(220, comprimentoTotal * ESCALA);
-    areaCorte.style.height = alturaFinal + "px";
+            largura += margem * 2;
+            altura += margem * 2;
 
-    calcularResultados(comprimentoTotal, larguraTecido);
-}
+            let colocou = false;
 
-/*====================================================
-    CRIAR PEÇA
-=====================================================*/
+            for(const linha of linhas){
+                if(linha.larguraUsada + largura <= larguraTecido){
+                    criarElementoPeca(peca, linha.larguraUsada, linha.y, margem);
+                    linha.larguraUsada += largura;
+                    linha.pecas.push(peca);
 
-function criarPeca(peca, x, y, largura, altura, margem){
-    const div = document.createElement("div");
-    div.className = "peca";
+                    if(altura > linha.alturaMaior){
+                        linha.alturaMaior = altura;
+                    }
+                    colocou = true;
+                    break;
+                }
+            }
 
-    if(peca.sentido === "enviesado"){
-        div.classList.add("enviesado");
-        div.style.transform = "rotate(-45deg)";
+            if(!colocou){
+                criarElementoPeca(peca, 0, y, margem);
+                linhas.push({
+                    y,
+                    alturaMaior: altura,
+                    larguraUsada: largura,
+                    pecas: [peca]
+                });
+                y += altura;
+            }
+        });
+
+        let comprimentoTotal = 0;
+        linhas.forEach(l => {
+            comprimentoTotal += l.alturaMaior;
+        });
+
+        const alturaFinal = Math.max(220, comprimentoTotal * ESCALA);
+        areaCorte.style.height = alturaFinal + "px";
+
+        calcularResultados(comprimentoTotal, larguraTecido);
     }
 
-    const larguraReal = peca.largura * ESCALA;
-    const alturaReal = peca.altura * ESCALA;
-    const margemPx = margem * ESCALA;
+    function criarElementoPeca(peca, x, y, margem){
+        const div = document.createElement("div");
+        div.className = "peca";
 
-    div.style.width = larguraReal + "px";
-    div.style.height = alturaReal + "px";
-    div.style.left = ((x * ESCALA) + margemPx) + "px";
-    div.style.top = ((y * ESCALA) + margemPx) + "px";
+        if(peca.sentido === "enviesado"){
+            div.classList.add("enviesado");
+            div.style.transform = "rotate(-45deg)";
+        }
 
-    const seta = peca.sentido == "ourela" ? "⬆" : peca.sentido == "trama" ? "➡" : "↗";
+        const larguraReal = peca.largura * ESCALA;
+        const alturaReal = peca.altura * ESCALA;
+        const margemPx = margem * ESCALA;
 
-    div.innerHTML = `
-        <div style="font-size:12px"><strong>${peca.nome}</strong></div>
-        <div>${seta}</div>
-        <div style="font-size:11px">${peca.altura.toFixed(2)} x ${peca.largura.toFixed(2)}</div>
-    `;
+        div.style.width = larguraReal + "px";
+        div.style.height = alturaReal + "px";
+        div.style.left = ((x * ESCALA) + margemPx) + "px";
+        div.style.top = ((y * ESCALA) + margemPx) + "px";
 
-    areaCorte.appendChild(div);
-}
+        const seta = peca.sentido == "ourela" ? "⬆" : peca.sentido == "trama" ? "➡" : "↗";
 
-/*====================================================
-    CALCULAR RESULTADOS
-=====================================================*/
+        div.innerHTML = `
+            <div style="font-size:12px"><strong>${peca.nome}</strong></div>
+            <div>${seta}</div>
+            <div style="font-size:11px">${peca.altura.toFixed(2)} x ${peca.largura.toFixed(2)}</div>
+        `;
 
-function calcularResultados(comprimentoUtilizado, larguraTecido){
-    let areaTotal = 0;
-
-    pecas.forEach(peca => {
-        areaTotal += peca.altura * peca.largura * peca.quantidade;
-    });
-    
-    metragem.innerHTML = comprimentoUtilizado.toFixed(2) + " m";
-
-    const areaComprada = comprimentoUtilizado * larguraTecido;
-    let percDesperdicio = 0;
-    
-    if (areaComprada > 0) {
-        percDesperdicio = ((areaComprada - areaTotal) / areaComprada) * 100;
+        areaCorte.appendChild(div);
     }
-    
-    desperdicio.innerHTML = Math.max(0, percDesperdicio).toFixed(1) + "%";
-}
 
-/*====================================================
-    SALVAR PROJETO
-=====================================================*/
+    function calcularResultados(comprimentoUtilizado, larguraTecido){
+        let areaTotal = 0;
+        pecas.forEach(peca => {
+            areaTotal += peca.altura * peca.largura * peca.quantidade;
+        });
+        
+        metragem.innerHTML = comprimentoUtilizado.toFixed(2) + " m";
 
-document.getElementById("btnSalvarProjeto").addEventListener("click", salvarProjeto);
+        const areaComprada = comprimentoUtilizado * larguraTecido;
+        let percDesperdicio = 0;
+        if (areaComprada > 0) {
+            percDesperdicio = ((areaComprada - areaTotal) / areaComprada) * 100;
+        }
+        desperdicio.innerHTML = Math.max(0, percDesperdicio).toFixed(1) + "%";
+    }
 
-function salvarProjeto(){
-    localStorage.setItem(
-        "pameleteProjeto",
-        JSON.stringify({
-            largura: document.getElementById("larguraTecido").value,
-            margem: document.getElementById("margem").value,
-            pecas
-        })
-    );
-    alert("Projeto salvo com sucesso!");
-}
-
-/*====================================================
-    CARREGAR PROJETO
-=====================================================*/
-
-window.onload = function(){
-    const projeto = JSON.parse(localStorage.getItem("pameleteProjeto"));
-    if(!projeto) return;
-
-    document.getElementById("larguraTecido").value = projeto.largura;
-    document.getElementById("margem").value = projeto.margem;
-
-    pecas.push(...projeto.pecas);
-    atualizarTabela();
-    calcularPlano();
-};
+    function salvarProjeto(){
+        localStorage.setItem(
+            "pameleteProjeto",
+            JSON.stringify({
+                largura: document.getElementById("larguraTecido").value,
+                margem: document.getElementById("margem").value,
+                pecas
+            })
+        );
+        alert("Projeto salvo com sucesso!");
+    }
+});
