@@ -71,7 +71,9 @@ document.addEventListener("DOMContentLoaded", function () {
         pecas.push({ nome, altura, largura, quantidade, sentido, espelhar });
 
         atualizarTabela();
+        calcularPlano();
         limparFormulario();
+        
     }
 
     function limparFormulario(){
