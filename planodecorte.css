@@ -179,39 +179,23 @@ BOTÕES
 
 .botoes,
 .acoes{
-
-    display:flex;
-
+    display:inline;
     flex-wrap:wrap;
-
     gap:15px;
-
     margin-top:20px;
-
 }
 
 button{
-
     border:none;
-
     cursor:pointer;
-
     padding:12px 22px;
-
     border-radius:8px;
-
     font-size:15px;
-
     font-weight:600;
-
     transition:.25s;
-
     display:flex;
-
     align-items:center;
-
     gap:8px;
-
 }
 
 #btnAdicionar,
@@ -489,49 +473,32 @@ RODAPÉ
 =======================================*/
 
 footer{
-
     margin-top:40px;
-
     padding:20px;
-
     text-align:center;
-
     color:#666;
-
     font-size:14px;
-
 }
 
 /*======================================
 SCROLL
 =======================================*/
-
 ::-webkit-scrollbar{
-
     width:10px;
-
     height:10px;
-
 }
 
 ::-webkit-scrollbar-track{
-
     background:#ececec;
-
 }
 
 ::-webkit-scrollbar-thumb{
-
     background:var(--azul);
-
     border-radius:20px;
-
 }
 
 ::-webkit-scrollbar-thumb:hover{
-
     background:#21496f;
-
 }
 
 /*======================================
@@ -539,29 +506,19 @@ ANIMAÇÕES
 =======================================*/
 
 .card{
-
     animation:fade .5s ease;
-
 }
 
 @keyframes fade{
-
     from{
-
         opacity:0;
-
         transform:translateY(15px);
-
     }
 
     to{
-
         opacity:1;
-
         transform:translateY(0);
-
     }
-
 }
 
 /*======================================
