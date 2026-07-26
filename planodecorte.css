@@ -265,58 +265,68 @@ TABELA
 =======================================*/
 
 .tabela-container{
-
     overflow:auto;
-
 }
 
 table{
-
     width:100%;
-
     border-collapse:collapse;
-
     min-width:900px;
-
 }
 
 thead{
-
     background:var(--azul);
-
     color:white;
-
 }
 
 th{
-
     padding:14px;
-
     font-weight:600;
-
 }
 
 td{
-
     padding:12px;
-
     text-align:center;
-
     border-bottom:1px solid #ECECEC;
-
 }
 
 tbody tr:nth-child(even){
-
     background:#fafafa;
-
 }
 
 tbody tr:hover{
-
     background:#eef6ff;
-
 }
+
+/* === ADIÇÃO PARA OS BOTÕES DA TABELA === */
+
+/* Impede que os botões quebrem de linha (ficam sempre lado a lado) */
+#tabelaPecas td:last-child {
+    white-space: nowrap;
+}
+
+/* Estilo padrão dos botões de ação (editar, duplicar, remover) */
+#tabelaPecas td button {
+    background-color: #f8fafc;
+    border: 1px solid #cbd5e1;
+    border-radius: 6px;
+    padding: 6px 10px;
+    margin-right: 4px;
+    cursor: pointer;
+    font-size: 13px;
+    transition: background-color 0.2s;
+}
+
+/* Efeito ao passar o mouse */
+#tabelaPecas td button:hover {
+    background-color: #f1f5f9;
+    border-color: #94a3b8;
+}
+
+/* Cores opcionais para identificar cada ícone rapidamente */
+#tabelaPecas td button:nth-child(1) { color: #2563eb; } /* Editar - Azul */
+#tabelaPecas td button:nth-child(2) { color: #059669; } /* Duplicar - Verde */
+#tabelaPecas td button:nth-child(3) { color: #dc2626; } /* Remover - Vermelho */
 
 /*======================================
 PLANO DE CORTE
