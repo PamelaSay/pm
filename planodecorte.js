@@ -139,7 +139,7 @@ document.addEventListener("DOMContentLoaded", function () {
         areaCorte.innerHTML = "";
         tecido.style.display = "none";
         metragem.textContent = "0,00 m";
-        desperdicio.textContent = "0,00 m";
+        if (desperdicio) desperdicio.textContent = "0,00 m";
         limparFormulario();
         localStorage.removeItem("pameleteProjeto");
     }
@@ -173,7 +173,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
         const lista = [];
         pecas.forEach(p => {
-            // Se for espelhar, tratamos como 2 unidades separadas (ou geramos a cópia espelhada) para ocupar a largura correta
             const qtdEfetiva = p.quantidade;
             for(let i = 0; i < qtdEfetiva; i++){
                 lista.push({...p, espelhadoIndividual: false});
@@ -183,7 +182,6 @@ document.addEventListener("DOMContentLoaded", function () {
             }
         });
 
-        // Ordena da maior altura para a menor para melhor aproveitamento do encaixe
         lista.sort((a, b) => b.altura - a.altura);
 
         let y = 0;
@@ -286,14 +284,13 @@ document.addEventListener("DOMContentLoaded", function () {
         
         metragem.innerHTML = comprimentoUtilizado.toFixed(2) + " m";
 
-        // Área total de tecido considerada pelo plano (comprimento usado x largura do tecido)
         const areaTotalTecido = comprimentoUtilizado * larguraTecido;
         const areaRestante = Math.max(0, areaTotalTecido - areaTotalPecas);
-        
-        // Transformando a área restante em metros lineares equivalentes para facilitar a visualização da sobra
         const sobraMetros = areaRestante / larguraTecido;
 
-        desperdicio.innerHTML = sobraMetros.toFixed(2) + " m";
+        if (desperdicio) {
+            desperdicio.innerHTML = sobraMetros.toFixed(2) + " m";
+        }
     }
 
     function salvarProjeto(){
