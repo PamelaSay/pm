@@ -605,21 +605,25 @@ button{
 }
 
 /* =================================================   
-   IMPRESSÃO ORGANIZADA E COMPACTA EM UMA ÚNICA PÁGINA   
+   IMPRESSÃO PERSONALIZADA EM UMA ÚNICA PÁGINA   
    ================================================ */
 @media print {
-    /* Oculta botões e campos de edição que não devem sair no papel */
+    /* Oculta botões, formulários e elementos que não devem aparecer no papel */
     button, 
     input, 
     select, 
     label, 
     .formulario-pecas, 
     .acoes-projeto,
-    header nav {
-        display: inline !important;
+    header nav,
+    #btnAdicionar,
+    #btnLimpar,
+    #btnImprimir,
+    #btnSalvarProjeto {
+        display: none !important;
     }
 
-    /* Reseta o fundo e margens para folha A4 limpa */
+    /* Reseta a página para A4 limpa e sem margens excessivas */
     body {
         background-color: #ffffff !important;
         color: #000000 !important;
@@ -628,40 +632,43 @@ button{
         font-size: 10px !important;
     }
 
-    /* Reduz levemente a escala geral para garantir que tudo caiba na folha */
+    /* Reduz levemente a escala geral para garantir que tudo caiba perfeitamente em 1 folha */
     .container, main, body {
-        transform: scale(0.9);
+        transform: scale(0.92);
         transform-origin: top center;
         width: 100% !important;
     }
 
-    /* Container principal para colocar Lista, Dados do Tecido e Resultados lado a lado (em linha) */
-    .painel-topo-impressao, .bloco-superior, .cabecalho-relatorio {
+    /* Título pequeno da Pamelete Corte no topo da impressão */
+    h1::before, .cabecalho-impressao::before {
+        content: "Pamelete Costura e Educação - Plano de Corte";
+        font-size: 12px !important;
+        font-weight: bold;
+        display: block;
+        margin-bottom: 5px;
+        color: #334155;
+    }
+
+    /* Deixa os resultados (Metragem e Desperdício) compactos e em linha */
+    #painelResultados, .painel-resultados, .resumo-projeto {
         display: flex !important;
         flex-direction: row !important;
-        justify-content: space-between !important;
-        align-items: flex-start !important;
-        gap: 10px !important;
-        width: 100% !important;
-        margin-bottom: 8px !important;
-    }
-
-   
-    /* Estilo compacto para os blocos de dados do tecido, lista e resultados ficarem em linha */
-    .dados-tecido-impressao, .resumo-projeto, .painel-resultados {
-        flex: 1 !important;
-        font-size: 10px !important;
-        padding: 5px !important;
-        border: 1px solid #cbd5e1 !important;
+        justify-content: center !important;
+        gap: 30px !important;
+        padding: 6px !important;
+        margin: 8px 0 !important;
+        border: 1px solid #94a3b8 !important;
         background: #f8fafc !important;
-        margin: 0 !important;
+        font-size: 11px !important;
+        font-weight: bold;
     }
 
-    /* Tabela de peças compacta */
+    /* Tabela da lista de peças compacta */
     #tabelaPecas {
         width: 100% !important;
         font-size: 9px !important;
         border-collapse: collapse !important;
+        margin-bottom: 8px !important;
     }
 
     #tabelaPecas th, #tabelaPecas td {
@@ -669,12 +676,13 @@ button{
         border: 1px solid #cbd5e1 !important;
     }
 
+    /* Oculta a coluna de botões de ação (editar, duplicar, excluir) da tabela impressa */
     #tabelaPecas th:last-child, 
     #tabelaPecas td:last-child {
-        display: none !important; /* Oculta a coluna de botões de ação */
+        display: none !important;
     }
 
-    /* Visual do tecido e plano de corte proporcional e limpo */
+    /* Plano de corte inteiro e visualizado perfeitamente */
     #tecido {
         max-width: 100% !important;
         margin: 5px auto !important;
