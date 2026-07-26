@@ -274,7 +274,7 @@ document.addEventListener("DOMContentLoaded", function () {
             <div style="font-size:11px">${peca.altura.toFixed(2)} x ${peca.largura.toFixed(2)}</div>
         `;
 
-        areaCortal = areaCorte.appendChild(div);
+        areaCorte.appendChild(div);
     }
 
     function calcularResultados(comprimentoTotal, larguraTecido, margemM, linhas){
@@ -282,20 +282,16 @@ document.addEventListener("DOMContentLoaded", function () {
 
         let desperdicioTotalMetros = 0;
 
-        // Para cada linha, o desperdício lateral é exatamente: Largura do Tecido - (Largura da Peça + Margem Esquerda + Margem Direita)
+        // O desperdício lateral de cada linha é exatamente a largura total menos o que a linha usou de largura
         linhas.forEach(linha => {
-            // larguraUsada na linha já inclui a peça + (margemM * 2) por cada peça colocada nela
             let larguraLivre = larguraTecido - linha.larguraUsada;
             if (larguraLivre < 0) larguraLivre = 0;
-
-            // O desperdício linear desta faixa corresponde à sobra lateral multiplicada pelo comprimento proporcional da linha
-            desperdicioTotalMetros += larguraLivre * (linha.alturaMaior / comprimentoTotal);
+            desperdicioTotalMetros += larguraLivre;
         });
 
-        // Se for uma única linha contínua, o desperdício lateral é a própria sobra direta de orelha a orelha
+        // Se houver apenas uma linha principal, pega direto a sobra lateral exata
         if (linhas.length === 1) {
-            let larguraLivreUnica = larguraTecido - linhas[0].larguraUsada;
-            desperdicioTotalMetros = larguraLivreUnica;
+            desperdicioTotalMetros = larguraTecido - linhas[0].larguraUsada;
         }
 
         if (desperdicio) {
