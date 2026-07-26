@@ -646,6 +646,7 @@ button{
         margin-bottom: 8px !important;
     }
 
+   
     /* Estilo compacto para os blocos de dados do tecido, lista e resultados ficarem em linha */
     .dados-tecido-impressao, .resumo-projeto, .painel-resultados {
         flex: 1 !important;
