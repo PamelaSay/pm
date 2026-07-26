@@ -14,7 +14,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const metragem = document.getElementById("metragem");
     const desperdicio = document.getElementById("desperdicio");
 
-    // Botões
+    // Botões (o botão calcular pode ser mantido ou removido do HTML sem afetar o sistema)
     const btnAdicionar = document.getElementById("btnAdicionar");
     const btnCalcular = document.getElementById("btnCalcular");
     const btnLimpar = document.getElementById("btnLimpar");
@@ -37,6 +37,7 @@ document.addEventListener("DOMContentLoaded", function () {
             if (projeto.pecas) {
                 pecas.push(...projeto.pecas);
                 atualizarTabela();
+                calcularPlano();
             }
         } catch (e) {
             console.error("Erro ao carregar projeto salvo:", e);
@@ -71,9 +72,8 @@ document.addEventListener("DOMContentLoaded", function () {
         pecas.push({ nome, altura, largura, quantidade, sentido, espelhar });
 
         atualizarTabela();
-        calcularPlano();
         limparFormulario();
-        
+        calcularPlano(); // Executa o cálculo e o desenho automático imediatamente
     }
 
     function limparFormulario(){
@@ -132,6 +132,7 @@ document.addEventListener("DOMContentLoaded", function () {
         document.getElementById("espelhar").value = p.espelhar;
         pecas.splice(indice, 1);
         atualizarTabela();
+        calcularPlano();
     };
 
     function limparProjeto(){
@@ -151,21 +152,25 @@ document.addEventListener("DOMContentLoaded", function () {
         const larguraTecido = parseFloat(larguraTecidoInput.value);
 
         if(isNaN(larguraTecido) || larguraTecido <= 0){
-            alert("Informe a largura do tecido.");
+            if (tecido) tecido.style.display = "none";
             return;
         }
 
         if(pecas.length === 0){
-            tecido.style.display = "none";
+            if (tecido) tecido.style.display = "none";
+            if (metragem) metragem.textContent = "0,00 m";
+            if (desperdicio) desperdicio.textContent = "0,00 m";
+            if (areaCorte) areaCorte.innerHTML = "";
             return;
         }
 
-        tecido.style.display = "block";
+        if (tecido) tecido.style.display = "block";
         desenharPlano(larguraTecido);
     }
 
     function desenharPlano(larguraTecido){
-        tecido.style.display = "block";
+        if (tecido) tecido.style.display = "block";
+        if (!areaCorte) return;
         areaCorte.innerHTML = ""; 
 
         const margemInput = document.getElementById("margem");
@@ -236,7 +241,6 @@ document.addEventListener("DOMContentLoaded", function () {
             comprimentoTotal += l.alturaMaior;
         });
 
-        // A altura do tecido visual será exatamente a altura necessária para as peças, multiplicada pela escala
         const alturaFinal = comprimentoTotal * ESCALA;
         areaCorte.style.height = alturaFinal + "px";
 
@@ -281,18 +285,16 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     function calcularResultados(comprimentoTotal, larguraTecido, margemM, linhas){
-        metragem.innerHTML = comprimentoTotal.toFixed(2) + " m";
+        if (metragem) metragem.innerHTML = comprimentoTotal.toFixed(2) + " m";
 
         let desperdicioTotalMetros = 0;
 
-        // O desperdício lateral de cada linha é exatamente a largura total menos o que a linha usou de largura
         linhas.forEach(linha => {
             let larguraLivre = larguraTecido - linha.larguraUsada;
             if (larguraLivre < 0) larguraLivre = 0;
             desperdicioTotalMetros += larguraLivre;
         });
 
-        // Se houver apenas uma linha principal, pega direto a sobra lateral exata
         if (linhas.length === 1) {
             desperdicioTotalMetros = larguraTecido - linhas[0].larguraUsada;
         }
